@@ -13,7 +13,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="Plone Theme: WISE Theme"
+      title="wise.theme"
       directory="profiles/default"
       description="Installs the Plone theme package wise.theme."
       provides="Products.GenericSetup.interfaces.EXTENSION"
@@ -21,7 +21,7 @@
 
   <genericsetup:registerProfile
       name="uninstall"
-      title="Uninstall: Plone Theme: WISE Theme"
+      title="wise.theme (uninstall)"
       directory="profiles/uninstall"
       description="Uninstalls the Plone theme package wise.theme."
       provides="Products.GenericSetup.interfaces.EXTENSION"
