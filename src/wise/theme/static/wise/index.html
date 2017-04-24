@@ -12,8 +12,9 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/g/jquery.slick@1.6.0(slick-theme.css+slick.css)" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
 </head>
 
 <body class="homepage">
@@ -104,11 +105,12 @@
                 </div>
             </div>
         </div>
+        <img class="header-overlay" src="./img/header-overlay.png">
         <div class="header-bg">
-            <div class="header-overlay">
-                <img src="./img/header-overlay.png">
-            </div>
             <div class="slider-section">
+                <div class="slider-overlay" id="first-slide">
+                <img src="./img/slider-lg1.jpg">
+                </div>
                 <img class="slider-item" src="./img/slider-lg1.jpg"> </img>
                 <div class="slider-text">
                     <h1>Slider Title 1</h1>
@@ -116,15 +118,17 @@
                         <br>do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
                 </div>
             </div>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
-            <img class="slider-item" src=""> </img>
+            <div class="slider-section">
+                <div class="slider-overlay" id="second-slide">
+                    <img src="./img/slider-lg2.jpg">
+                </div>
+                <img class="slider-item" src="./img/slider-lg2.jpg"> </img>
+                <div class="slider-text">
+                    <h1>Slider Title 2</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                        <br>do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="page-body">

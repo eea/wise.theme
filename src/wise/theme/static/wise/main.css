@@ -664,7 +664,7 @@ li {
 
 .header .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .slider-item {
@@ -695,6 +695,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 
 .navmenu a {
@@ -771,11 +772,12 @@ li {
 }
 
 .header-overlay {
-    position: absolute;
-    bottom: 0px;
-    height: 78px;
+     position: absolute;
+    bottom: -28px;
+    height: 115px;
     max-width: 1200px;
     right: 0;
+    z-index: 1;
 }
 
 .header-logos img:first-of-type {
@@ -993,4 +995,41 @@ padding: 1rem;
     float: left;
     padding: 1rem;
     padding-top: 2rem;
+}
+
+.slider-overlay {
+    overflow: hidden;
+    width: 100%;
+    height: 8%;
+    display: block;
+    z-index: 1;
+    position: absolute;
+    -webkit-filter: blur(4px);
+    top: -2px;
+    left: 0;
+        background-size: cover;
+}
+
+
+
+.slider-section {
+    position: relative;
+}
+
+.slick-slider {
+    position: absolute!important;
+}
+
+.slick-prev {
+left: 10px!important;
+z-index: 1;
+}
+
+.slick-next {
+    right: 10px!important;
+}
+
+
+.slick-list {
+        height: 100%;
 }
