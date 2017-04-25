@@ -36,7 +36,22 @@ require(['jquery', 'slick'], function($, slick) {
 
       $other_targets.removeClass("gray");
       $(this).addClass("gray");
-    })
+    });
+
+    $('.login i').on('click',function(){
+      $(this).toggleClass('action-selected');
+      $('.login-container ').animate({
+          'height': 'toggle'
+        });
+    });
+
+    $('.search i').on('click',function(){
+      $(this).toggleClass('action-selected');
+      $('.search-container ').animate({
+          'height': 'toggle'
+        });
+    });
+
   });
   return {};
 });

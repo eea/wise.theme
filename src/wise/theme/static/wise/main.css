@@ -22,9 +22,6 @@ html {
     /* 3 */
 }
 
-img {
-    width: 100%;
-}
 
 
 /* Sections
@@ -780,8 +777,18 @@ li {
 
 .search, .login {
     display: inline-block;
+    position: relative;
+    cursor: pointer;
+  
+}
+
+.search > i, .login > i {
     font-size: 1.8rem;
     padding: 1.9rem;
+    padding-top: 1rem;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-top: 1.6rem;
 }
 
 
@@ -1076,3 +1083,40 @@ z-index: 1;
         height: 100%;
 }
 
+
+.login-container, .search-container {
+  display: none;
+  position: absolute;
+  right: -50px;
+  text-align: center;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  top: 100%;
+}
+
+.login-container textarea, .search-container input{
+      display: block;
+    height: 30px;
+    margin: 1rem;
+    border:2px solid #29a2d9;
+    border-radius: 6px;
+    color: black;
+}
+
+.login-container *:focus, .search-container *:focus{
+   outline: none;
+}
+
+.btn-header {
+  width: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: #29a2d9;
+  border-color: #29a2d9;
+}
+
+
+.action-selected {
+  background: #29a2d9;
+}
