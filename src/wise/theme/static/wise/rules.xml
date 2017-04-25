@@ -4,7 +4,6 @@
   xmlns:css="http://namespaces.plone.org/diazo/css"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-
   <rules css:if-content=".section-index_html" css:if-not-content=".ajax_load">
     <theme href="index.html" css:if-content="#visual-portal-wrapper" />
   </rules>
@@ -12,12 +11,12 @@
   <theme href="page.html" css:if-content="#visual-portal-wrapper" css:if-not-content=".ajax_load" />
 
   <copy css:content="html" css:theme="html" attributes="lang dir" />
-  <drop css:theme="head script" css:if-content=".template-sat"/>
   <before css:content="head style, head link, head script, head meta" css:theme-children="head" />
   <replace css:content="head title" css:theme="head title" />
   <copy css:content="head base" css:theme="head base" />
   <drop css:content="head link[rel='shortcut icon']" />
   <drop css:content="head link[rel='apple-touch-icon']" />
+  <drop css:theme="script[data-drop='true']" />
 
   <merge attributes="class" css:content="body" css:theme="body" />
   <copy attributes="id dir" css:content="body" css:theme="body" />
