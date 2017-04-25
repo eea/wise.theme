@@ -9,7 +9,7 @@
     <meta name="author" content="Destinet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="./main.css">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script data-drop="true" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
@@ -134,55 +134,55 @@
         <div class="container main-content">
             <div class="categories-wrapper clearfix">
                 <div class="categories left">
-                    <div class="square indicators">
+                    <div data-toggle="center-square" data-target="#indicators" class="square indicators">
                         <img src="./img/indicators.png">
                         <div>Indicators catalogue</div>
                     </div>
-                    <div class="square data">
+                    <div  data-toggle="center-square" data-target="#data" class="square data">
                         <img src="./img/data.png">
                         <div>Data</div>
                     </div>
-                    <div class="square maps">
+                    <div data-toggle="center-square" data-target="#maps" class="square maps">
                         <img src="./img/maps.png">
                         <div>Maps</div>
                     </div>
                 </div>
                 <div class="categories center">
-                    <div class="center-square">
+                    <div id="indicators" class="center-square">
                         <h2>Indicators Catalogue</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                     </div>
-                    <div class="center-square">
+                    <div id="data" class="center-square">
                         <h2>Data</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                     </div>
-                    <div class="center-square">
+                    <div id="maps" class="center-square">
                         <h2>Maps</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                     </div>
-                    <div class="center-square">
+                    <div id="topics" class="center-square">
                         <h2>Topics</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                     </div>
-                    <div class="center-square">
+                    <div id="assesment" class="center-square">
                         <h2>Assesment</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                     </div>
-                    <div class="center-square">
+                    <div id="country" class="center-square">
                         <h2>Country profiles</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                     </div>
                 </div>
                 <div class="categories right">
-                    <div class="square topics">
+                    <div data-toggle="center-square" data-target="#topics" class="square topics">
                         <img src="./img/topics.png">
                         <div>Topics</div>
                     </div>
-                    <div class="square assesment">
+                    <div data-toggle="center-square" data-target="#assesment" class="square assesment">
                         <img src="./img/assesment.png">
                         <div>Assesment</div>
                     </div>
-                    <div class="square country">
+                    <div data-toggle="center-square" data-target="#country" class="square country">
                         <img src="./img/country.png">
                         <div>Country profiles</div>
                     </div>
