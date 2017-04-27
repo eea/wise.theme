@@ -10,7 +10,7 @@ require(['jquery', 'slick'], function($, slick) {
   $(document).ready(function() {
 
     if (window.matchMedia("(min-width: 800px)").matches) {
-      $('.header-bg').slick({
+      $('.homepage .header-bg').slick({
         arrows: true,
         infinite: true,
         speed: 300,

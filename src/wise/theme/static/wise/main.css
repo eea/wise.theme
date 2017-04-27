@@ -747,6 +747,8 @@ height: 100%;
 }
 
 
+
+
 .logo-text {
     float: right;
     color: white;
@@ -1100,6 +1102,16 @@ z-index: 1;
 }
 
 
+.login-container ul {
+    text-align: left;
+}
+
+.login-container ul a {
+    color: black;
+    padding: 1rem;
+    font-size: 2rem;
+}
+
 .login-container, .search-container {
   display: none;
   position: absolute;
@@ -1109,6 +1121,7 @@ z-index: 1;
   border-radius: 6px;
   overflow: hidden;
   top: 100%;
+      z-index: 1;
 }
 
 .login-container textarea, .search-container input{

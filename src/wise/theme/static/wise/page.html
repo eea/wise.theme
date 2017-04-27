@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./fixes.css">
 
-    <script data-drop="true" src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+        <script data-drop="true" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
 </head>
 
 <body class="content-page">
@@ -86,12 +87,28 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="nav-right-section">
+                 <div class="nav-right-section">
                     <div class="search">
                         <i class="fa fa-search" aria-hidden="true"></i>
+                         <div class="search-container">
+                            <form class="search-form">
+                                <input type=text placeholder="Search"></input>
+                            </form>
+                        </div>
                     </div>
                     <div class="login">
                         <i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="login-container">
+                            <form class="login-form">
+                                <textarea type=text placeholder="Email"></textarea>
+                                <textarea type="text" placeholder="Password"></textarea>
+                                <button type="submit" class="btn btn-header"><i class="fa fa-user" aria-hidden="true"></i> Log in</button>
+                            </form>
+                            <ul>
+                                <li><a href="#">test</a></li>
+                                <li><a href="#">test</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,6 +156,7 @@
             </div>
             <div class="backdrop"></div>
         </div>
+        <script src="./main.js"></script>
 </body>
 
 </html>
