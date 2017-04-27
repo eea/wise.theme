@@ -43,17 +43,32 @@ require(['jquery', 'slick'], function($, slick) {
 
     $('.login i').on('click',function(){
       $(this).toggleClass('action-selected');
+      $('.search i').removeClass('action-selected')
       $('.login-container ').animate({
           'height': 'toggle'
+        });
+       $('.search-container ').animate({
+          'height': 'hide'
         });
     });
 
     $('.search i').on('click',function(){
       $(this).toggleClass('action-selected');
+      $('.login i').removeClass('action-selected')
       $('.search-container ').animate({
           'height': 'toggle'
         });
+      $('.login-container ').animate({
+          'height': 'hide'
+        });
     });
+
+    $('.mobile-menu-trigger i').on('click',function(){
+      $(this).toggleClass('action-selected');
+      $('.navmenu-items').animate({
+          'height': 'toggle'
+        });
+    })
 
   });
   return {};
