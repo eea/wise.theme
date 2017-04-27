@@ -22,6 +22,9 @@
   <copy attributes="id dir" css:content="body" css:theme="body" />
   <copy attributes="role" css:content="content" css:theme="contentspace" />
 
+  <copy attributes="name" css:content="#portal-searchbox .searchField" css:theme=".login-form input" />
+  <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".login-form" />
+
   <replace css:content="#portal-column-content" css:theme-children=".center-section" />
 
   <copy attributes="href title" css:content="#portal-logo" css:theme=".brand a" />
