@@ -8,13 +8,16 @@ requirejs.config({
 require(['jquery', 'slick'], function($, slick) {
 
   $(document).ready(function() {
-    $('.header-bg').slick({
-      arrows: true,
-      infinite: true,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: false
-    });
+
+    if (window.matchMedia("(min-width: 800px)").matches) {
+      $('.header-bg').slick({
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: false
+      });
+    }
 
     $hover_trigger = $("[data-toggle=center-square]");
 
