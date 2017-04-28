@@ -24,9 +24,11 @@
 
   <copy attributes="name" css:content="#portal-searchbox .searchField" css:theme=".login-form input" />
   <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".login-form" />
+  <drop css:theme=".login-form"></drop>
+  <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
+  <before css:theme-children=".login-container" css:content="#portal-personaltools-wrapper dl dt a" />
 
   <replace css:content="#portal-column-content" css:theme-children=".center-section" />
-
   <copy attributes="href title" css:content="#portal-logo" css:theme=".brand a" />
 
   <replace css:theme-children=".breadcrumbs" css:content="#portal-breadcrumbs" method="raw"/>

@@ -8,3 +8,8 @@
 	width: 100%;
 }
 
+#user-name {
+    display: block;
+    color: white;
+    background-color: Black;
+}
