@@ -70,6 +70,14 @@ require(['jquery', 'slick'], function($, slick) {
         });
     })
 
+    $('.toggle-sidebar').on('click',function(){
+      $('.side-section').addClass('show-sidebar');
+    })
+
+    $('.close-sidebar').on('click',function(){
+       $('.side-section').removeClass('show-sidebar');
+    })
+
   });
   return {};
 });
