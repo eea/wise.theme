@@ -8,7 +8,7 @@
 
   <i18n:registerTranslations directory="locales" />
 
-  <includeDependencies package="." />
+  <!-- <includeDependencies package="." /> -->
 
   <include package="plone.resource" file="meta.zcml"/>
   <include package="z3c.jbot" file="meta.zcml" />

@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='wise.theme',
-    version='1.0a1',
+    version='1.0a2',
     description="WISE Theme",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -47,8 +47,8 @@ setup(
             'plone.app.testing',
         ],
     },
-    entry_points="""
-    [z3c.autoinclude.plugin]
-    target = plone
-    """,
+    # entry_points="""
+    # [z3c.autoinclude.plugin]
+    # target = plone
+    # """,
 )
