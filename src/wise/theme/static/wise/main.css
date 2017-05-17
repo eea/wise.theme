@@ -81,7 +81,7 @@ main {
 
 :before,
 :after {
-    font-family: FontAwesome;
+    /* font-family: FontAwesome; */
 }
 
 
@@ -615,7 +615,7 @@ li {
     width: 100%;
     position: absolute;
     bottom: -85px;
-} 
+}
 
 
 .header-logos, .site-desc {
@@ -800,7 +800,7 @@ height: 100%;
     align-items: flex-end;
     cursor: pointer;
     height: 100%;
-  
+
 }
 
 .search > i, .login > i, .mobile-menu-trigger > i {
@@ -1091,7 +1091,7 @@ padding: 1rem;
 
 .slider-overlay img {
     -webkit-filter: blur(4px);
-    
+
 }
 
 
@@ -1455,12 +1455,12 @@ body {
     font-size: 28px;
 }
 
-.content h3, 
-.content h4, 
-.content h5, 
+.content h3,
+.content h4,
+.content h5,
 .content h6 {
       color: #525252;
-} 
+}
 
 .page-body p {
    color: #525252;
