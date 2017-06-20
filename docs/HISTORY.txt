@@ -1,0 +1,7 @@
+Changelog
+=========
+
+1.0dev (unreleased)
+------------------
+* Task: Correct typos on frontpage
+  [iulianpetchesi #86052]
