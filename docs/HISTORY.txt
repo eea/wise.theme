@@ -3,5 +3,7 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Feature: Added tlspu cookie policy viewlet & style fixes
+  [iulianpetchesi #86058]
 * Task: Correct typos on frontpage
   [iulianpetchesi #86052]
