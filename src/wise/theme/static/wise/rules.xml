@@ -11,9 +11,11 @@
   <theme href="page.html" css:if-content="#visual-portal-wrapper" css:if-not-content=".ajax_load" />
 
   <copy css:content="html" css:theme="html" attributes="lang dir" />
+
   <before css:content="head style, head link, head script, head meta" css:theme-children="head" />
   <replace css:content="head title" css:theme="head title" />
   <replace css:content="head base" css:theme="head base" />
+
   <drop css:content="head link[rel='shortcut icon']" />
   <drop css:content="head link[rel='apple-touch-icon']" />
   <drop css:theme="script[data-drop='true']" />
@@ -41,6 +43,11 @@
         <xsl:apply-templates></xsl:apply-templates>
       </li>
     </xsl:for-each>
+  </replace>
+
+  <!-- Use the meta description to set the site description in the bottom -->
+  <replace css:theme-children="#site-description" >
+        <xsl:value-of select='//meta[@name="description"]/@content' />
   </replace>
 
 </rules>
