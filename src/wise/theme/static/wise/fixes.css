@@ -45,3 +45,20 @@
 #tlspu_cookiepolicy_button {
     background-color: #0071B3;
 }
+
+
+#edit-bar li {
+    display: inline;
+}
+
+
+.navmenu div > img,
+.header-bg img {
+    width: 100%;
+}
+
+#user-name {
+    display: block;
+    color: white;
+    background-color: Black;
+}
