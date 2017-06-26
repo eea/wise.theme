@@ -3,6 +3,8 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Change: Add google-analytics rule
+  [iulianpetchesi #83874]
 * Change: Use portal_actions for footer links
   [iulianpetchesi #83874]
 * Feature: Added diazo rule for analytics plugin

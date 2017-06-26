@@ -52,6 +52,7 @@
   
   <replace css:theme-children=".side-section" css:content="#portal-column-one" />
 
+  <append css:theme='body' css:content="script[data-diazo='google-analytics']" />
   <append css:theme='body' css:content="script[data-diazo-keep='true']" />
 
   <!-- Use portal site actions for footer -->
