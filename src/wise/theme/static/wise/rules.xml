@@ -54,6 +54,9 @@
 
   <append css:theme='body' css:content="script[data-diazo-keep='true']" />
 
+  <!-- Use portal site actions for footer -->
+  <replace css:content="#portal-siteactions" css:theme-children=".footer-links" />
+
   <!-- <drop css:content=".searchSection" /> -->
   <!-- <replace css:content=".search" css:theme="#search" /> -->
 

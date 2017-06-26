@@ -3,6 +3,8 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Change: Use portal_actions for footer links
+  [iulianpetchesi #83874]
 * Feature: Added diazo rule for analytics plugin
   [iulianpetchesi #85253]
 * Feature: Added tlspu cookie policy viewlet & style fixes
