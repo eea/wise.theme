@@ -58,6 +58,9 @@
   <!-- Use portal site actions for footer -->
   <replace css:content="#portal-siteactions" css:theme-children=".footer-links" />
 
+  <!-- Add the cookies viewlet to the homepage -->
+  <append css:theme='body' css:content="#viewlet-cookiepolicy" css:if-content="body.section-index_html"/>
+
   <!-- <drop css:content=".searchSection" /> -->
   <!-- <replace css:content=".search" css:theme="#search" /> -->
 
