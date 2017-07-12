@@ -1610,3 +1610,91 @@ body {
     max-width: 140px;
     padding: 0;
 }
+
+/* Used for PDF */
+@media print {
+    body {
+      min-width: 10cm;
+      width: auto;
+      position: relative;
+      height: auto;
+      float: none !important;
+    }
+
+    .page-body {
+      font-size: 10pt;
+    }
+
+    .page-body .container {
+      width: 95%;
+    }
+
+    /* Hide the breadcrumbs */
+    .breadcrumbs {
+        display: none !important;
+    }
+
+    /* Hide the edit bar */
+    #edit-bar {
+        display: none !important;
+    }
+
+    /* Hide the footer */
+    .footer {
+        display: none !important;
+    }
+
+    /* Hide Pdf export action */
+    .documentActions {
+        display: none !important;
+    }
+
+    /* PDF Cover modifications */
+    .cover-body {
+        display: none;
+    }
+
+    .template-pdf-cover .cover-title {text-align: center;}
+
+    .template-pdf-cover .container #content-core {
+      padding-top: 10vh;
+      padding-bottom: 10vh;
+      min-height: 350pt;
+    }
+
+    .template-pdf-cover .cover-header {
+        text-align: center;
+    }
+
+    a[href]:after {
+        content: none;
+    }
+
+    .nav-right-section {
+        display: none;
+    }
+
+    .mobile-menu-trigger {
+        display: none;
+    }
+
+
+    /* Hide the border */
+    .content-page .main-content {
+        border: none;
+        box-shadow: none;
+    }
+
+    .main-content .center-section {
+        border: none;
+    }
+
+    .main-content .side-section {
+        border: none;
+        display: none;
+    }
+
+    #viewlet-cookiepolicy.portalMessage {
+        display: none;
+    }
+}
