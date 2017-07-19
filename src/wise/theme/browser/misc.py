@@ -1,4 +1,5 @@
 from Products.Five.browser import BrowserView
+from plone import api
 
 
 class FrontpageSlidesView (BrowserView):
@@ -12,7 +13,7 @@ class FrontpageSlidesView (BrowserView):
         return self.index()
 
     def getDescription(self, image):
-        return image.description
+        return image.html2text(image.description.output)
 
     def getTitle(self, image):
         return image.title
