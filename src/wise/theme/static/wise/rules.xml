@@ -64,4 +64,6 @@
   <!-- <drop css:content=".searchSection" /> -->
   <!-- <replace css:content=".search" css:theme="#search" /> -->
 
+  <replace css:if-content="body.section-index_html" css:theme=".header-bg" css:content=".slider-section" href="/@@slides-frontpage" method="document" />
+
 </rules>

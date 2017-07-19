@@ -23,4 +23,12 @@
         class=".viewlets.GoToPDB"
         permission="zope.Public"
         /> -->
+
+    <browser:page
+        name="slides-frontpage"
+        for="*"
+        permission="zope.Public"
+        template="pt/slides.pt"
+        class=".misc.FrontpageSlidesView"
+    />
 </configure>
