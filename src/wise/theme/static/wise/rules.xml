@@ -37,7 +37,7 @@
   <drop css:content="#viewlet-above-content #portal-breadcrumbs" />
 
   <replace css:theme-children=".navmenu-items">
-    <xsl:for-each css:select="#portal-globalnav li">
+    <xsl:for-each css:select="#portal-globalnav > li">
       <xsl:variable name="klass" select="concat(@class, ' navmenu-item')"></xsl:variable>
       <li class="{$klass}">
         <xsl:apply-templates></xsl:apply-templates>
