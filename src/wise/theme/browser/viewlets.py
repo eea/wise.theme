@@ -42,7 +42,16 @@ class NavigationViewlet(GlobalSectionsViewlet):
         for brain in brains:
             obj = brain.getObject()
             children = []
-            for child in obj.listFolderContents():
+
+            types = ['collective.cover.content', 'Document',
+                     'News Item', 'Event', 'Folder']
+            folder_contents = obj.getFolderContents(
+                contentFilter={
+                    'portal_type': types
+                })
+
+            for child in folder_contents:
+                child = child.getObject()
                 children.append({
                     'url': child.absolute_url(),
                     'description': '',
