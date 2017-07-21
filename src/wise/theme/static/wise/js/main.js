@@ -89,6 +89,9 @@ require(['jquery', 'slick'], function($, slick) {
                     $('.navmenu-items').animate({
                       'opacity': 'show'
                     },30);
+
+                    $('.navmenu-items').css('display','flex');
+
                      $('.menu .brand').animate({
                       'opacity': 'show'
                     },30);
