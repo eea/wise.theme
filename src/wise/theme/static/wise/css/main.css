@@ -6884,19 +6884,17 @@ button.close {
 }
 .navmenu-items .submenu .submenu-item {
   padding: 5px;
-  padding-left: 0;
 }
 .navmenu-items .submenu .submenu-item:first-of-type {
   margin-top: 2rem;
 }
-.navmenu-items .submenu .submenu-item a {
-  padding: 5px;
-}
-.navmenu-items .submenu .submenu-item a:hover {
+.navmenu-items .submenu .submenu-item:hover {
   background: white;
-  color: #2d9dd5;
   text-shadow: none;
   box-shadow: 1px 1px 4px #505050;
+}
+.navmenu-items .submenu .submenu-item:hover a {
+  color: #2d9dd5;
 }
 .top-section {
   margin-top: 8px;
@@ -6920,8 +6918,14 @@ button.close {
   border-top-right-radius: 6px;
 }
 .header-bottom-section {
-  bottom: -84%;
-  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.header-logos-wrapper {
+  position: absolute;
+  bottom: -10%;
+  left: 18%;
 }
 .top-section {
   z-index: 9999;
@@ -7552,13 +7556,16 @@ li {
   position: absolute;
   top: 23%;
   text-align: center;
-  width: 100%;
+  width: 80%;
   color: white;
-  font-size: 222%;
+  font-size: 3rem;
   text-shadow: 1px 1px 4px #3c3c3c;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .slider-text h1 {
   font-weight: bold;
+  font-size: 4rem;
 }
 .slider-text h1,
 .slider-text p {
@@ -7766,12 +7773,26 @@ li {
 .slick-slider {
   position: absolute!important;
 }
+.slick-next,
 .slick-prev {
-  left: 10px!important;
+  top: 55%;
   z-index: 1;
 }
 .slick-next {
-  right: 10px!important;
+  right: 36%;
+}
+.slick-next:before {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-size: 11rem;
+}
+.slick-prev {
+  left: 59%;
+}
+.slick-prev:before {
+  content: "\f0d9";
+  font-family: FontAwesome;
+  font-size: 11rem;
 }
 .slick-list {
   height: 100%;

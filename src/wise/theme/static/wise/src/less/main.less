@@ -762,14 +762,17 @@ height: 100%;
     position: absolute;
     top: 23%;
     text-align: center;
-    width: 100%;
+    width: 80%;
     color: white;
-    font-size: 222%;
+    font-size: 3rem;
     text-shadow: 1px 1px 4px #3c3c3c;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .slider-text h1 {
     font-weight: bold;
+    font-size: 4rem;
 }
 
 .slider-text h1,
@@ -1048,13 +1051,27 @@ padding-bottom: 0;
     position: absolute!important;
 }
 
-.slick-prev {
-left: 10px!important;
-z-index: 1;
+.slick-next, .slick-prev {
+    top: 55%;
+    z-index: 1;
 }
 
-.slick-next {
-    right: 10px!important;
+.slick-next  {
+    right: 36%;
+    &:before {
+        content: "\f0da";
+        font-family: FontAwesome;
+        font-size: 11rem;
+    }
+}
+
+.slick-prev {
+    left: 59%;
+       &:before {
+        content: "\f0d9";
+        font-family: FontAwesome;
+        font-size: 11rem;
+    }
 }
 
 
