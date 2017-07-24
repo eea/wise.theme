@@ -670,7 +670,7 @@ height: 100%;
 }
 
 .header {
-    height: 770px;
+    height: 570px;
 }
 
 
@@ -760,7 +760,7 @@ height: 100%;
 
 .slider-text {
     position: absolute;
-    top: 23%;
+    top: 35%;
     text-align: center;
     width: 80%;
     color: white;
@@ -812,7 +812,29 @@ height: 100%;
     background: url('../img/footer-bg.jpg');
     background-size: cover;
     position: relative;
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    overflow: hidden;
 }
+
+
+.content-page {
+    .footer {
+        overflow: initial;
+    }
+}
+
+.footer-bg {
+    position: absolute;
+    width: 100%;
+    img {
+        height: 197px;
+    }
+}
+
+
 
 .content-page .footer {
     margin-top: 12rem;
@@ -824,7 +846,7 @@ height: 100%;
     font-size: 2rem;
     font-weight: 300;
     color: white;
-    margin-top: 4rem;
+    margin-top: 9rem;
     text-align: center;
         text-shadow: 1px 1px 4px #3c3c3c;
             width: 50%;
@@ -834,7 +856,7 @@ height: 100%;
 .footer-logo {
     max-width: 300px;
     float: left;
-    background: rgba(255,255,255,0.5);
+    // background: rgba(255,255,255,0.5);
     border-bottom-left-radius: 5rem;
     border-bottom-right-radius: 5rem;
     padding-right: .5rem;
@@ -1052,7 +1074,7 @@ padding-bottom: 0;
 }
 
 .slick-next, .slick-prev {
-    top: 55%;
+    top: 67%;
     z-index: 1;
 }
 
@@ -1066,7 +1088,8 @@ padding-bottom: 0;
 }
 
 .slick-prev {
-    left: 59%;
+    right: 41%;
+    left: auto;
        &:before {
         content: "\f0d9";
         font-family: FontAwesome;

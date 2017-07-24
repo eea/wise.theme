@@ -76,6 +76,8 @@ require(['jquery', 'slick'], function($, slick) {
     if (window.matchMedia("(min-width: 800px)").matches) {
 
 
+
+
       $('.mobile-menu-trigger i').on('click',function(){
 
           if(!$(this).hasClass('open')){
@@ -90,9 +92,14 @@ require(['jquery', 'slick'], function($, slick) {
                       'opacity': 'show'
                     },30);
 
+                    $bgheight = $('body').height() - $('.menu > img').height()
+
+                    $('.menu-bg').height($bgheight + 3);
+
+
                     $('.navmenu-items').css('display','flex');
 
-                     $('.menu .brand').animate({
+                     $('.menu .menu-brand').animate({
                       'opacity': 'show'
                     },30);
                   }
@@ -109,7 +116,7 @@ require(['jquery', 'slick'], function($, slick) {
                 },
                 { duration: 80,
                   complete: function(){
-                    $('.menu .brand').animate({
+                    $('.menu .menu-brand').animate({
                       'opacity': 'hide'
                     },30);
                     $('.menu').animate({
