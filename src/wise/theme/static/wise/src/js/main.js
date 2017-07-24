@@ -114,6 +114,9 @@ require(['jquery', 'slick'], function($, slick) {
                 }
             })
         }
+
+        $('body').removeClass('icons-on')
+
         $('.toggle-sidebar').on('click', function() {
             $('.side-section').addClass('show-sidebar');
         })

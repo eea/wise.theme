@@ -8330,4 +8330,7 @@ li {
 .categories .gray.square:last-of-type {
   border-bottom: 1px solid #29A2D9;
 }
+.contenttype-image img {
+  display: none;
+}
 /*# sourceMappingURL=./source.css.map */
