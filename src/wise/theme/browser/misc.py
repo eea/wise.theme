@@ -12,7 +12,7 @@ class FrontpageSlidesView (BrowserView):
         return self.index()
 
     def getDescription(self, image):
-        return image.html2text(image.description.output)
+        return image.html2text(image.long_description.output)
 
     def getTitle(self, image):
         return image.title
