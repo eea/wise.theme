@@ -6864,6 +6864,12 @@ button.close {
 .content-page .header-wave .menu-brand p {
   font-size: 2rem;
 }
+@media (max-width: 1200px) {
+  .content-page .menu-brand {
+    transform: scale(0.5);
+    right: 0!important;
+  }
+}
 .content-page .navmenu-items {
   top: 24%;
 }
@@ -6947,8 +6953,8 @@ button.close {
 .top-section .login > i,
 .top-section .mobile-menu-trigger > i {
   font-size: 2rem;
-  padding: 4rem 1.9rem;
-  padding-top: 0;
+  padding: 2rem;
+  padding-top: .5rem;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
@@ -6968,10 +6974,7 @@ button.close {
 .mobile-menu-trigger i.action-selected {
   background: transparent!important;
 }
-#nav-icon1,
-#nav-icon2,
-#nav-icon3,
-#nav-icon4 {
+#nav-icon1 {
   width: 60px;
   height: 35px;
   position: relative;
@@ -6985,10 +6988,9 @@ button.close {
   -o-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
   cursor: pointer;
+  padding: 0 2.5rem;
 }
-#nav-icon1 span,
-#nav-icon3 span,
-#nav-icon4 span {
+#nav-icon1 span {
   display: block;
   position: absolute;
   height: 7px;
@@ -7034,6 +7036,7 @@ button.close {
 }
 .menu-label {
   font-size: 2rem;
+  cursor: pointer;
 }
 /*# sourceMappingURL=./source.css.map */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
@@ -7732,14 +7735,22 @@ li {
     height: 150px;
   }
 }
+.categories.left .square {
+  margin-right: -1px;
+}
+.categories.right .square {
+  margin-left: -1px;
+}
 .categories.right {
   width: 20%;
   border-left: 1px solid #29A2D9;
 }
 .categories.center {
   width: 60%;
-  height: 100%;
+  height: 89.2%;
   position: relative;
+  box-shadow: 0px 0px 3px #aaa;
+  border: 1px solid #29A2D9;
 }
 .categories-wrapper {
   margin-top: 12rem;
@@ -7750,9 +7761,6 @@ li {
   display: none;
   position: absolute;
   top: 115px;
-}
-.gray {
-  filter: grayscale(100%);
 }
 .center-square:first-of-type {
   display: block;
@@ -7826,6 +7834,12 @@ li {
 .slick-prev {
   top: 67%;
   z-index: 1;
+}
+@media (max-width: 1250px) {
+  .slick-next,
+  .slick-prev {
+    top: 76%;
+  }
 }
 .slick-next {
   right: 36%;
@@ -8305,5 +8319,15 @@ li {
 .center-section ul,
 .center-section li {
   list-style-type: disc;
+}
+.gray {
+  box-shadow: 0px 0px 3px #aaa;
+  border: 1px solid #29A2D9;
+}
+.gray > * {
+  filter: grayscale(100%);
+}
+.categories .gray.square:last-of-type {
+  border-bottom: 1px solid #29A2D9;
 }
 /*# sourceMappingURL=./source.css.map */

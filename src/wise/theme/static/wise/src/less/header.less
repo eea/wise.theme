@@ -37,19 +37,18 @@
     .nav-left-section {
         a {
             top: -11%;
-        @media (min-width: 800px) and (max-width:1200px) {
-            top: 2%;
-            height: 171px;
-        }
+            @media (min-width: 800px) and (max-width:1200px) {
+                top: 2%;
+                height: 171px;
+            }
         }
     }
 
     .header {
         height: 279px;
         @media (min-width: 1820px) {
-                height: 318px;
+            height: 318px;
         }
-
     }
 }
 
@@ -133,7 +132,15 @@
             font-size: 2rem;
         }
     }
+}
 
+.content-page {
+    .menu-brand {
+        @media(max-width: 1200px) {
+            transform: scale(0.5);
+            right: 0!important;
+        }
+    }
 }
 
 
@@ -228,8 +235,8 @@
     .login>i,
     .mobile-menu-trigger>i {
         font-size: 2rem;
-        padding: 4rem 1.9rem;
-        padding-top: 0;
+        padding: 2rem;
+        padding-top: .5rem;
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
     }
@@ -263,10 +270,7 @@
 
 
 
-#nav-icon1,
-#nav-icon2,
-#nav-icon3,
-#nav-icon4 {
+#nav-icon1 {
     width: 60px;
     height: 35px;
     position: relative;
@@ -280,11 +284,10 @@
     -o-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
     cursor: pointer;
+    padding: 0 2.5rem;
 }
 
-#nav-icon1 span,
-#nav-icon3 span,
-#nav-icon4 span {
+#nav-icon1 span {
     display: block;
     position: absolute;
     height: 7px;
@@ -338,4 +341,5 @@
 
 .menu-label {
     font-size: 2rem;
+    cursor: pointer;
 }
