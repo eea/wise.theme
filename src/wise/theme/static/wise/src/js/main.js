@@ -78,14 +78,14 @@ require(['jquery', 'slick'], function($, slick) {
             $('.login-container ').animate({
                 'height': 'toggle'
             });
-            $('.search-container ').animate({
+            $('#portal-searchbox ').animate({
                 'height': 'hide'
             });
         });
         $('.search i').on('click', function() {
             $(this).toggleClass('action-selected');
             $('.login i').removeClass('action-selected')
-            $('.search-container ').animate({
+            $('#portal-searchbox ').animate({
                 'height': 'toggle'
             });
             $('.login-container ').animate({

@@ -61,8 +61,8 @@
   <!-- Add the cookies viewlet to the homepage -->
   <append css:theme='body' css:content="#viewlet-cookiepolicy" css:if-content="body.section-index_html"/>
 
-  <!-- <drop css:content=".searchSection" /> -->
-  <!-- <replace css:content=".search" css:theme="#search" /> -->
+  <drop css:content=".searchSection" />
+  <replace css:content="#portal-searchbox" css:theme=".search-container" />
 
   <replace css:if-content="body.section-index_html" css:theme=".header-bg" css:content=".slider-section" href="/@@slides-frontpage" method="document" />
 
