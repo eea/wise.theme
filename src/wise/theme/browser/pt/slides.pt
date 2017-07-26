@@ -6,7 +6,7 @@
         <img class="slider-item" src="" tal:attributes="src python: view.getImageUrl(image)">
         <div class="slider-text">
             <h1 tal:content="python: view.getTitle(image)">Slider Title 1</h1>
-            <p tal:content="python: view.getDescription(image)">Decsription</p>
+            <p tal:content="structure python: view.getDescription(image)">Decsription</p>
         </div>
     </div>
 </div>
