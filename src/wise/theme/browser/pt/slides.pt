@@ -1,8 +1,5 @@
 <div class="header-bg" tal:define="images python: view.images">
     <div class="slider-section" tal:repeat="image images">
-        <div class="slider-overlay">
-            <img src="" tal:attributes="src python: view.getImageUrl(image)">
-        </div>
         <img class="slider-item" src="" tal:attributes="src python: view.getImageUrl(image)">
         <div class="slider-text">
             <h1 tal:content="python: view.getTitle(image)">Slider Title 1</h1>

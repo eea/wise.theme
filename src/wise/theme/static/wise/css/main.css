@@ -7622,6 +7622,9 @@ li {
   margin-left: auto;
   margin-right: auto;
 }
+.slider-text a {
+  text-shadow: none;
+}
 .slider-section {
   height: 100%;
 }
