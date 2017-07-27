@@ -7160,6 +7160,151 @@ button.close {
   cursor: pointer;
 }
 /*# sourceMappingURL=./source.css.map */
+.icons-on .contenttype-folder {
+  word-wrap: break-word;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-folder:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 7px;
+  background: url('../img/icons/Asset 4.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-document {
+  word-wrap: break-word;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-document:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background: url('../img/icons/Asset 1.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-image {
+  word-wrap: break-word;
+  padding-left: 20px;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-image img {
+  display: none;
+}
+.icons-on .contenttype-image:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background: url('../img/icons/Asset 5.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-event {
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-event:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  background: url('../img/icons/Asset 2.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-file {
+  padding-left: 20px;
+  word-wrap: break-word;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-file img {
+  display: none;
+}
+.icons-on .contenttype-file:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  background: url('../img/icons/Asset 3.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-link {
+  word-wrap: break-word;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-link:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  background: url('../img/icons/Asset 6.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-news-item {
+  word-wrap: break-word;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-news-item:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 8px;
+  background: url('../img/icons/Asset 7.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-collection {
+  word-wrap: break-word;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-collection:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 6px;
+  background: url('../img/icons/Asset 8.svg');
+  background-repeat: no-repeat;
+}
+.icons-on .contenttype-richimage {
+  word-wrap: break-word;
+  padding-left: 20px;
+  position: relative;
+  background: none!important;
+}
+.icons-on .contenttype-richimage:before {
+  content: '';
+  width: 16px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background: url('../img/icons/Asset 9.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/*# sourceMappingURL=./source.css.map */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).
@@ -7454,20 +7599,6 @@ fieldset {
  * 3. Remove the padding so developers are not caught out when they zero out
  *    `fieldset` elements in all browsers.
  */
-legend {
-  box-sizing: border-box;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  display: table;
-  /* 1 */
-  max-width: 100%;
-  /* 1 */
-  padding: 0;
-  /* 3 */
-  white-space: normal;
-  /* 1 */
-}
 /**
  * 1. Add the correct display in IE 9-.
  * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
@@ -8394,8 +8525,5 @@ li {
 }
 .categories .gray.square:last-of-type {
   border-bottom: 1px solid #29A2D9;
-}
-.contenttype-image img {
-  display: none;
 }
 /*# sourceMappingURL=./source.css.map */
