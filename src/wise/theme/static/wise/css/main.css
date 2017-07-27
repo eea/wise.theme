@@ -6745,11 +6745,14 @@ button.close {
   color: white;
   background-color: Black;
 }
+.livesearchContainer {
+  border-top: none;
+}
 /*# sourceMappingURL=./source.css.map */
 .header .header-wave {
-  z-index: 1;
   position: absolute;
   top: -3px;
+  z-index: 1;
   left: 0;
   width: 100%;
   height: 100%;
@@ -6759,6 +6762,12 @@ button.close {
   .header .header-wave img {
     transform: scale(1.4) translate(7%, 14%);
   }
+}
+.text-slider {
+  z-index: 999;
+}
+.slider-text p {
+  font-size: 2.2rem;
 }
 .nav-left-section a {
   white-space: nowrap;
@@ -7872,7 +7881,7 @@ li {
   font-size: 2rem;
 }
 .login-container,
-.search-container {
+#portal-searchbox {
   display: none;
   min-width: 134px;
   position: absolute;
@@ -7888,7 +7897,7 @@ li {
   text-align: center;
 }
 .login-container input,
-.search-container input {
+#portal-searchbox input {
   display: block;
   height: 30px;
   margin: 1rem;
@@ -7897,14 +7906,14 @@ li {
   color: black;
   padding-left: 1rem;
 }
-.search-container input {
+#portal-searchbox input {
   width: 93%;
 }
-.search-container {
+#portal-searchbox {
   min-width: 270px;
 }
 .login-container *:focus,
-.search-container *:focus {
+#portal-searchbox *:focus {
   outline: none;
 }
 .btn-header {
@@ -8097,14 +8106,14 @@ li {
   .search {
     position: static;
   }
-  .search-container {
+  #portal-searchbox {
     left: 0;
     width: 100%;
     background: #0071B3;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-  .search-container input {
+  #portal-searchbox input {
     width: 95%;
     height: 50px;
     padding-left: 2rem;

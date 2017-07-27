@@ -49,13 +49,22 @@ require(['jquery', 'slick'], function($, slick) {
     }
     $(document).ready(function() {
         if (window.matchMedia("(min-width: 800px)").matches) {
-            $('.homepage .header-bg').slick({
+            $('.homepage .img-slider').slick({
                 arrows: true,
                 infinite: true,
                 speed: 300,
                 slidesToShow: 1,
                 adaptiveHeight: false
             });
+
+            $(".homepage .text-slider").slick({
+              asNavFor: '.homepage .img-slider',
+              infinite: true,
+              speed: 300,
+            });
+
+
+
         }
         $hover_trigger = $("[data-toggle=center-square]");
         $hover_trigger.on('mouseenter', function() {
@@ -78,14 +87,14 @@ require(['jquery', 'slick'], function($, slick) {
             $('.login-container ').animate({
                 'height': 'toggle'
             });
-            $('.search-container ').animate({
+            $('#portal-searchbox ').animate({
                 'height': 'hide'
             });
         });
         $('.search i').on('click', function() {
             $(this).toggleClass('action-selected');
             $('.login i').removeClass('action-selected')
-            $('.search-container ').animate({
+            $('#portal-searchbox ').animate({
                 'height': 'toggle'
             });
             $('.login-container ').animate({
