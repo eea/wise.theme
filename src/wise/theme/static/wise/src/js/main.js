@@ -49,23 +49,40 @@ require(['jquery', 'slick'], function($, slick) {
     }
     $(document).ready(function() {
         if (window.matchMedia("(min-width: 800px)").matches) {
-            $('.homepage .img-slider').slick({
+
+          $slider_text = $('.slider-text');
+          $slider_text.each(function(index, value){
+
+            $slider_section = $('<div/>', {
+                'class':'slider_section',
+            })
+
+
+            $('.text-slider').append($slider_section)
+            $slider_section.append(value)
+
+          })
+
+          $('.header-bg .slider-text').remove();
+
+            $('.homepage .header-bg').slick({
                 arrows: true,
                 infinite: true,
                 speed: 300,
                 slidesToShow: 1,
                 adaptiveHeight: false
             });
-
             $(".homepage .text-slider").slick({
-              asNavFor: '.homepage .img-slider',
+              asNavFor: '.homepage .header-bg',
               infinite: true,
               speed: 300,
             });
 
 
-
         }
+
+
+
         $hover_trigger = $("[data-toggle=center-square]");
         $hover_trigger.on('mouseenter', function() {
             $data_target = $(this).attr('data-target');
