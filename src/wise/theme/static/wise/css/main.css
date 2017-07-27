@@ -6854,6 +6854,9 @@ button.close {
 .menu .menu-brand p {
   font-size: 2rem;
 }
+.content-page .header-wave {
+  z-index: 1;
+}
 .content-page .header-wave .menu-brand {
   position: absolute;
   right: 10%;
