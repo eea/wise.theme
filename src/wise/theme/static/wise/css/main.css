@@ -7182,7 +7182,7 @@ button.close {
 }
 .icons-on .contenttype-document:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7201,7 +7201,7 @@ button.close {
 }
 .icons-on .contenttype-image:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7215,7 +7215,7 @@ button.close {
 }
 .icons-on .contenttype-event:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7234,7 +7234,7 @@ button.close {
 }
 .icons-on .contenttype-file:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7249,7 +7249,7 @@ button.close {
 }
 .icons-on .contenttype-link:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7264,7 +7264,7 @@ button.close {
 }
 .icons-on .contenttype-news-item:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7279,7 +7279,7 @@ button.close {
 }
 .icons-on .contenttype-collection:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
@@ -7295,7 +7295,7 @@ button.close {
 }
 .icons-on .contenttype-richimage:before {
   content: '';
-  width: 16px;
+  width: 14px;
   height: 20px;
   position: absolute;
   left: 0;
