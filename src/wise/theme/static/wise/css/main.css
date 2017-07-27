@@ -6800,7 +6800,12 @@ button.close {
 }
 @media (min-width: 1820px) {
   .content-page .header {
-    height: 318px;
+    height: 338px;
+  }
+}
+@media (min-width: 2000px) {
+  .content-page .header {
+    height: 397px;
   }
 }
 .logo {
