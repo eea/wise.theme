@@ -6752,11 +6752,13 @@ button.close {
 .header .header-wave {
   position: absolute;
   top: -3px;
-  z-index: 1;
   left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+.header .header-wave a {
+  z-index: 100;
 }
 @media (max-width: 1200px) {
   .header .header-wave img {
