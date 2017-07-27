@@ -6764,7 +6764,7 @@ button.close {
   }
 }
 .text-slider {
-  z-index: 999;
+  z-index: 10;
 }
 .slider-text p {
   font-size: 2.2rem;
