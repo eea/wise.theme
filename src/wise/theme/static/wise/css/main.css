@@ -6903,6 +6903,19 @@ button.close {
   font-size: 2rem;
 }
 @media (max-width: 800px) {
+  .menu {
+    overflow-y: hidden;
+    padding: 2rem;
+    background: white;
+    position: absolute;
+    display: none;
+    width: 100%;
+    top: 118px;
+    box-shadow: 1px 2px 3px #a5a5a5;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    z-index: 1;
+  }
   .menu img {
     display: none;
   }
@@ -6950,6 +6963,17 @@ button.close {
 @media (min-width: 800px) {
   .content-page .navmenu-items {
     top: 24%;
+  }
+}
+@media (max-width: 800px) {
+  .navmenu-items .navmenu-items {
+    flex-direction: column;
+  }
+  .navmenu-items .submenu-item {
+    padding: 4px;
+  }
+  .navmenu-items .submenu {
+    border-top: solid #0071B3;
   }
 }
 @media (min-width: 800px) {
@@ -7794,7 +7818,11 @@ li {
   display: block;
   text-shadow: 1px 1px 4px #191919;
   font-size: 2rem;
-  max-width: 300px;
+}
+@media (min-width: 800px) {
+  .submenu-item {
+    max-width: 300px;
+  }
 }
 .navmenu {
   display: flex;
@@ -7899,7 +7927,11 @@ li {
 }
 .footer .container {
   position: relative;
-  z-index: 1;
+}
+@media (min-width: 800px) {
+  .footer .container {
+    z-index: 1;
+  }
 }
 .content-page .footer {
   overflow: initial;
@@ -7909,7 +7941,7 @@ li {
   width: 100%;
 }
 .footer-bg img {
-  height: 197px;
+  height: 214px;
 }
 .content-page .footer {
   margin-top: 12rem;
@@ -7955,6 +7987,7 @@ li {
 }
 .footer-links {
   margin-top: 2rem;
+  white-space: nowrap;
 }
 .footer-links li:before {
   content: '|';
@@ -8011,8 +8044,12 @@ li {
   height: 89.2%;
   position: relative;
   box-shadow: 0px 0px 3px #aaa;
-  border: 1px solid #29A2D9;
   background: white;
+}
+@media (min-width: 800px) {
+  .categories.center {
+    border: 1px solid #29A2D9;
+  }
 }
 .categories-wrapper {
   margin-top: 12rem;
@@ -8178,8 +8215,19 @@ li {
 .action-selected {
   background: #29a2d9;
 }
+@media (max-width: 800px) {
+  .action-selected {
+    background: none;
+  }
+}
 /*mobile*/
 @media (max-width: 800px) {
+  .mobile_submenu_trigger {
+    font-size: 2rem;
+  }
+  .rotate {
+    transform: rotate(90deg);
+  }
   .footer .container {
     display: flex;
     flex-direction: column-reverse;
@@ -8214,23 +8262,8 @@ li {
     min-height: auto;
     padding-bottom: 1rem;
   }
-  .navmenu-items {
-    border-top: 3px solid #0071B3;
-    overflow-y: hidden;
-    padding-top: 3rem;
-    background: white;
-    position: absolute;
-    display: none;
-    width: 100%;
-    top: 118px;
-    box-shadow: 1px 2px 3px #a5a5a5;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    z-index: 1;
-    flex-direction: column;
-  }
   .navmenu-items a {
-    color: black;
+    color: #444;
   }
   .slider-text {
     font-size: 70%;
@@ -8299,33 +8332,18 @@ li {
   #portal-searchbox {
     left: 0;
     width: 100%;
-    background: #0071B3;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     top: 120px;
+    box-shadow: 0px 3px 3px #aaa;
   }
   #portal-searchbox input {
     width: 95%;
     height: 50px;
     padding-left: 2rem;
   }
-  .action-selected {
-    color: white!important;
-    background: #0071B3;
-  }
   .submenu {
-    float: right;
-    top: 0;
-    width: 50%;
-    box-shadow: none;
     display: none;
-    max-height: 100%;
-    overflow: auto;
-    right: 0;
-    left: auto;
-  }
-  .navmenu-item:hover .submenu {
-    display: block;
   }
   .submenu-item {
     display: block;
@@ -8333,9 +8351,10 @@ li {
   .submenu-item a {
     color: #0071B3;
     text-shadow: none;
+    font-size: 2rem;
   }
   body {
-    background: url(img/mobile-bg.jpg);
+    background: url('../img/mobile-bg.jpg');
     /* background-size: contain; */
     background-repeat: no-repeat;
   }
@@ -8344,6 +8363,11 @@ li {
   }
   .footer-links a {
     padding: 0;
+  }
+}
+@media (max-width: 800px) and (min-width: 800px) {
+  .navmenu-item:hover .submenu {
+    display: block;
   }
 }
 .content h1 {
@@ -8516,12 +8540,14 @@ li {
 .center-section li {
   list-style-type: disc;
 }
-.gray {
-  box-shadow: 0px 0px 3px #aaa;
-  border: 1px solid #29A2D9;
-}
 .gray > * {
   filter: grayscale(100%);
+}
+@media (min-width: 800px) {
+  .gray {
+    box-shadow: 0px 0px 3px #aaa;
+    border: 1px solid #29A2D9;
+  }
 }
 .categories .gray.square:last-of-type {
   border-bottom: 1px solid #29A2D9;
