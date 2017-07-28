@@ -48,7 +48,7 @@ require(['jquery', 'slick'], function($, slick) {
                 }, 30);
                 $bgheight = $('body').height() - $('.menu > img').height()
                 $('.menu-bg').height($bgheight + 3);
-                // $('.navmenu-items').css('display', 'flex');
+                $('.navmenu-items').css('display', 'flex');
                 $('.header-wave .menu-brand').animate({
                     'opacity': 'hide'
                 }, 30);
