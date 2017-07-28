@@ -7093,6 +7093,7 @@ button.close {
   }
   .mobile-menu-trigger-wrapper {
     float: right;
+    margin-right: .5rem;
   }
   .mobile-menu-trigger-wrapper .mobile-menu-trigger {
     margin-right: 1rem;
@@ -8224,6 +8225,7 @@ li {
 @media (max-width: 800px) {
   .mobile_submenu_trigger {
     font-size: 2rem;
+    transition: transform 200ms;
   }
   .rotate {
     transform: rotate(90deg);
