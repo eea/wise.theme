@@ -7184,6 +7184,11 @@ button.close {
   font-size: 2rem;
   cursor: pointer;
 }
+@media (max-width: 800px) {
+  #portal-breadcrumbs {
+    font-size: 1.2rem;
+  }
+}
 /*# sourceMappingURL=./source.css.map */
 .icons-on .contenttype-folder {
   word-wrap: break-word;
@@ -7926,9 +7931,17 @@ li {
 }
 @media (max-width: 800px) {
   .footer .header-logos {
-    display: block;
+    display: flex;
     position: absolute;
-    bottom: 39%;
+    bottom: 58%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+  }
+  .footer .header-logos img {
+    max-width: 108px;
+    margin: 0;
   }
 }
 .footer {
@@ -8011,7 +8024,11 @@ li {
 }
 .footer-links {
   margin-top: 2rem;
-  white-space: nowrap;
+}
+@media (min-width: 800px) {
+  .footer-links {
+    white-space: nowrap;
+  }
 }
 .footer-links li:before {
   content: '|';
@@ -8380,8 +8397,6 @@ li {
   }
   body {
     background: url('../img/mobile-bg.jpg');
-    /* background-size: contain; */
-    background-repeat: no-repeat;
   }
   .page-body {
     background: white;

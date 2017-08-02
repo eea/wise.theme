@@ -862,9 +862,18 @@ li {
     margin-top: -59px;
     }
     @media (max-width: 800px) {
-    display: block;
+    display: flex;
     position: absolute;
-    bottom: 39%;
+    bottom: 58%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+
+    img {
+        max-width: 108px;
+        margin: 0;
+    }
     }
 }
 
@@ -963,7 +972,9 @@ li {
 
 .footer-links {
     margin-top: 2rem;
-    white-space: nowrap;
+    @media(min-width: 800px){
+        white-space: nowrap;
+    }
 }
 
 
@@ -1440,8 +1451,7 @@ li {
 
     body {
         background: url('../img/mobile-bg.jpg');
-        /* background-size: contain; */
-        background-repeat: no-repeat;
+        // background-repeat: no-repeat;
     }
 
     .page-body {
