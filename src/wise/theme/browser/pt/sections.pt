@@ -9,6 +9,7 @@
         <li tal:define="tid tab/id"
             tal:attributes="id string:portaltab-${tid};
                            class python:selected_tab==tid and 'selected' or 'plain'">
+          <img src='' tal:attributes="src tab/image">
           <a href=""
              tal:content="tab/name"
              tal:attributes="href tab/url;

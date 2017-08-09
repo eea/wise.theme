@@ -32,6 +32,7 @@ class NavigationViewlet(GlobalSectionsViewlet):
             'url': site.absolute_url(),
             'id': site.id,
             'name': 'Home',
+            'image': '',
             'subtabs': []}]
 
         brains = site.getFolderContents(
@@ -57,12 +58,24 @@ class NavigationViewlet(GlobalSectionsViewlet):
                     'description': '',
                     'name': child.title,
                     'id': child.id})
+
+            image = self.get_image(obj)
             tab = {
                 'url': obj.absolute_url(),
                 'description': '',
                 'name': obj.title,
                 'id': obj.id,
+                'image': image,
                 'subtabs': children
             }
             tabs.append(tab)
         return tabs
+
+    def get_image(self, obj):
+        if not hasattr(obj, 'image') or obj.image is None:
+            return ''
+
+        scales = obj.restrictedTraverse('@@images')
+        image_url = scales.scale('image', scale='menu-icon')
+
+        return image_url.absolute_url()
