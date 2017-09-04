@@ -7766,7 +7766,7 @@ li {
 }
 .header-logos,
 .site-desc {
-  max-width: 500px;
+ width: 500px;
 }
 .header-logos img {
   max-width: 150px;
@@ -8595,4 +8595,8 @@ li {
 .categories .gray.square:last-of-type {
   border-bottom: 1px solid #29A2D9;
 }
+.leadImage {
+    display: none;
+}
+
 /*# sourceMappingURL=./source.css.map */
