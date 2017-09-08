@@ -6748,6 +6748,9 @@ button.close {
 .livesearchContainer {
   border-top: none;
 }
+.leadImage {
+  display: none;
+}
 /*# sourceMappingURL=./source.css.map */
 @media (min-width: 800px) {
   .header .header-wave {
@@ -7767,6 +7770,7 @@ li {
 .header-logos,
 .site-desc {
   max-width: 500px;
+  min-width: 375px;
 }
 .header-logos img {
   max-width: 150px;
