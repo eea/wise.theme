@@ -61,6 +61,18 @@ require(['jquery', 'slick'], function($, slick) {
     }
 
     $(document).ready(function() {
+           $menu_items = $('.menu .navmenu-item > a');
+
+            $menu_items.each(function(index, value){
+              $submenu_items = $(this).parent().find('.submenu-item');
+
+              if($submenu_items.length == 0)
+                $(this).addClass('no-carret');
+
+            })
+
+
+
         if (window.matchMedia("(min-width: 800px)").matches) {
             $slider_text = $('.slider-text');
             $slider_text.each(function(index, value){
