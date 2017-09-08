@@ -6814,6 +6814,7 @@ button.close {
 @media (min-width: 800px) {
   .content-page .header {
     height: 161px;
+    position: relative;
   }
 }
 .logo {
@@ -6888,11 +6889,13 @@ button.close {
 .header-bottom-section {
   position: absolute;
   bottom: 0;
+  z-index: 1;
   width: 100%;
 }
 .header-logos-wrapper {
   position: absolute;
   bottom: -10%;
+  z-index: 1;
   left: 18%;
 }
 .top-section {
@@ -7705,9 +7708,6 @@ li {
   height: auto!important;
   min-height: 100%;
 }
-.slick-track {
-  height: 100%;
-}
 .header-bg,
 .text-slider {
   position: absolute;
@@ -7718,6 +7718,8 @@ li {
 @media (min-width: 800px) {
   .header {
     height: 570px;
+    position: absolute;
+    width: 100%;
   }
 }
 @media (min-width: 800px) and (max-width: 1000px) {
@@ -7781,7 +7783,7 @@ li {
   cursor: pointer;
   height: 100%;
 }
-.slider-text {
+.slider-highlights {
   position: relative;
   top: 35%;
   width: 80%!important;
@@ -7791,18 +7793,20 @@ li {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
+  z-index: 5;
 }
-.slider-text h1 {
+.slider-highlights h1 {
   font-weight: bold;
   font-size: 4rem;
 }
-.slider-text h1,
-.slider-text p {
+.slider-highlights h1,
+.slider-highlights p {
   max-width: 80%;
   margin-left: auto;
+  color: white!important;
   margin-right: auto;
 }
-.slider-text a {
+.slider-highlights a {
   text-shadow: none;
 }
 .slider-section {
@@ -8067,38 +8071,36 @@ li {
 .slider-section {
   position: relative;
 }
-.slick-slider {
-  position: absolute!important;
-}
-.slick-next,
-.slick-prev {
+.slider-next,
+.slider-prev {
+  cursor: pointer;
   top: 67%;
   z-index: 1;
 }
 @media (max-width: 1250px) {
-  .slick-next,
-  .slick-prev {
+  .slider-next,
+  .slider-prev {
     top: 76%;
   }
 }
-.slick-next {
+.slider-next {
   right: 36%;
 }
-.slick-next:before {
+.slider-next:before {
   content: "\f0da";
   font-family: FontAwesome;
   font-size: 11rem;
 }
-.slick-prev {
+.slider-prev {
   right: 41%;
   left: auto;
 }
-.slick-prev:before {
+.slider-prev:before {
   content: "\f0d9";
   font-family: FontAwesome;
   font-size: 11rem;
 }
-.slick-list {
+.slider-list {
   height: 100%;
 }
 .login-container ul {
@@ -8206,7 +8208,7 @@ li {
   .navmenu-items a {
     color: #444;
   }
-  .slider-text {
+  .slider-highlights {
     font-size: 70%;
   }
   .header-bottom-section {

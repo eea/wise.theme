@@ -706,9 +706,6 @@ li {
 }
 
 
-.slick-track {
-    height: 100%;
-}
 
 .header-bg, .text-slider {
     position: absolute;
@@ -720,6 +717,8 @@ li {
 .header {
     @media(min-width: 800px) {
         height: 570px;
+        position: absolute;
+        width: 100%;
     }
 }
 
@@ -807,7 +806,7 @@ li {
 }
 
 
-.slider-text {
+.slider-highlights {
     position: relative;
     top: 35%;
     width: 80%!important;
@@ -817,21 +816,23 @@ li {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    z-index: 5;
 }
 
-.slider-text h1 {
+.slider-highlights h1 {
     font-weight: bold;
     font-size: 4rem;
 }
 
-.slider-text h1,
-.slider-text p {
+.slider-highlights h1,
+.slider-highlights p {
     max-width: 80%;
     margin-left: auto;
+    color: white!important;
     margin-right: auto;
 }
 
-.slider-text a {
+.slider-highlights a {
     text-shadow: none;
 }
 
@@ -1162,12 +1163,13 @@ li {
     position: relative;
 }
 
-.slick-slider {
-    position: absolute!important;
-}
 
-.slick-next,
-.slick-prev {
+
+
+
+.slider-next,
+.slider-prev {
+    cursor: pointer;
     top: 67%;
     z-index: 1;
     @media(max-width: 1250px) {
@@ -1175,7 +1177,7 @@ li {
     }
 }
 
-.slick-next {
+.slider-next {
     right: 36%;
     &:before {
         content: "\f0da";
@@ -1184,7 +1186,7 @@ li {
     }
 }
 
-.slick-prev {
+.slider-prev {
     right: 41%;
     left: auto;
     &:before {
@@ -1195,7 +1197,7 @@ li {
 }
 
 
-.slick-list {
+.slider-list {
     height: 100%;
 }
 
@@ -1328,7 +1330,7 @@ li {
         color: #444;
     }
 
-    .slider-text {
+    .slider-highlights {
         font-size: 70%;
     }
 

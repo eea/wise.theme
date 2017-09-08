@@ -64,6 +64,6 @@
   <drop css:content=".searchSection" />
   <replace css:content="#portal-searchbox" css:theme=".search-container" />
 
-  <replace css:if-content="body.section-index_html" css:theme=".header-bg" css:content=".header-bg" href="/@@slides-frontpage" method="document" />
+  <replace css:if-content="body.section-index_html" css:theme=".highlight-photos" css:content=".highlight-photos" href="/@@slides-frontpage" method="document" />
 
 </rules>
