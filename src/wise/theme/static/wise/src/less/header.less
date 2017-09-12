@@ -21,13 +21,17 @@
 }
 
 .content-page {
+    .header-bg {
+     overflow: hidden;
     .page-header-bg {
         height: 100%;
 
         img {
             width: 100%;
-            max-height: 100%;
+            position: absolute;
+            top: -353%;
         }
+    }
     }
 }
 
@@ -35,6 +39,8 @@
     @media(max-width: 800px) {
         background: white;
         box-shadow: 0px 1px 8px #777;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
     }
     display: block;
     position: relative;
@@ -324,6 +330,13 @@
 
 
 .menu {
+    @media(max-width: 800px){
+        margin-top: -3rem;
+        padding-top: 4rem;
+        padding-bottom: 1rem;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    }
     display: none;
     box-shadow: 0px 1px 8px #777;
     background: white;

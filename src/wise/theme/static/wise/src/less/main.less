@@ -655,8 +655,10 @@ li {
 
 .header-logos,
 .site-desc {
-    max-width: 500px;
-    min-width: 375px;
+    @media(min-width: 800px){
+        max-width: 500px;
+        min-width: 375px;
+    }
 }
 
 .header-logos img {
@@ -861,7 +863,7 @@ li {
     &.on-homepage {
         display: none;
     }
-    float: right;
+    float: left;
     margin-top: -59px;
     }
     @media (max-width: 800px) {
@@ -884,8 +886,9 @@ li {
 .footer {
     min-height: 200px;
     margin-top: 7rem;
-    background: url('../img/footer-bg.jpg');
-    background-size: cover;
+    background: url('../img/footer.jpg');
+    background-size: 100%;
+    background-position-y: -102%;
     position: relative;
     .container {
         position: relative;
@@ -918,6 +921,12 @@ li {
 }
 
 
+.content-page {
+    .footer-bg {
+        overflow: hidden;
+    }
+}
+
 
 .content-page .footer {
     margin-top: 12rem;
@@ -930,7 +939,10 @@ li {
     font-weight: 300;
     color: white;
     margin-top: 9rem;
-    text-align: center;
+    text-align: right;
+    @media(max-width: 800px) {
+        text-align: center;
+    }
     text-shadow: 1px 1px 4px #3c3c3c;
     width: 50%;
     float: right;
@@ -1098,7 +1110,7 @@ li {
 
 
 .content-page .footer-left-section {
-    float: left;
+    float: right;
     margin-left: 5rem;
     width: 60%;
 }
@@ -1109,7 +1121,9 @@ li {
     box-shadow: 0px 0px 2px #aaa;
     border-radius: 8px;
     min-height: 600px;
-    margin-top: 8rem;
+    @media(min-width: 800px){
+        margin-top: 8rem;
+    }
     border-top: 4px solid #ff4f00;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -1423,6 +1437,7 @@ li {
         border-top-right-radius: 0;
         top: 120px;
         box-shadow: 0px 3px 3px #aaa;
+        margin-top: -1rem;
     }
 
     #portal-searchbox input {
