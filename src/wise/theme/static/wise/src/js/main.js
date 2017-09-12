@@ -83,6 +83,18 @@ require(['jquery', 'slick'], function($, slick) {
 
         })
 
+
+        $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p').each(function(item){
+          $strong = $(this).find('strong');
+
+          if($strong.length > 0 ){
+            $(this).style.fontWeight = 'bold'
+          }
+
+        })
+
+
+
         if (window.matchMedia("(min-width: 800px)").matches) {
             $slider_text = $('.highlight');
             $slider_text.each(function(index, value) {
