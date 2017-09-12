@@ -799,8 +799,10 @@ li {
 
 
 .slider-highlights {
+    margin-top: -10rem;
+    margin-bottom: 24rem;
     position: relative;
-    top: 35%;
+    top: 45%;
     width: 80%!important;
     color: white;
     font-size: 3rem;
@@ -809,6 +811,7 @@ li {
     transform: translateX(-50%);
     text-align: center;
     z-index: 5;
+    max-height: 190px;
 }
 
 .slider-highlights h1 {
@@ -822,6 +825,13 @@ li {
     margin-left: auto;
     color: white!important;
     margin-right: auto;
+}
+
+
+
+
+.slider-highlights p {
+    font-size: 2rem;
 }
 
 .slider-highlights a {
@@ -1103,6 +1113,10 @@ li {
     border-top: 4px solid #ff4f00;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    @media(max-width: 800px){
+        padding: 0;
+        overflow: auto;
+    }
 }
 
 .breadcrumbs {
@@ -1162,7 +1176,8 @@ li {
 .slider-next,
 .slider-prev {
     cursor: pointer;
-    top: 67%;
+    top: 139%;
+    position: absolute;
     z-index: 1;
     @media(max-width: 1250px) {
         top: 76%;
@@ -1402,8 +1417,8 @@ li {
 
 
     #portal-searchbox {
+        width: 100vw;
         left: 0;
-        width: 100%;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
         top: 120px;
@@ -1645,6 +1660,7 @@ li {
     .content-page .main-content {
         border: none;
         box-shadow: none;
+
     }
 
     .main-content .center-section {
