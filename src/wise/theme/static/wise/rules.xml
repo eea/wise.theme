@@ -4,10 +4,23 @@
   xmlns:css="http://namespaces.plone.org/diazo/css"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-  <rules css:if-content=".section-index_html" css:if-not-content=".ajax_load">
+  <!-- For main site frontpage, use landing.html -->
+  <theme
+    href="landing.html"
+    css:if-content=".template-homepage_template"
+    css:if-not-content=".ajax_load" />
+
+  <!-- For Marine section, use index.html -->
+  <rules css:if-content=".section-marine .marine-homepage" css:if-not-content=".ajax_load">
     <theme href="index.html" css:if-content="#visual-portal-wrapper" />
   </rules>
 
+  <!-- For Freshwater section, use freshwater.html -->
+  <!-- <rules css:if&#45;content=".section&#45;freshwater" css:if&#45;not&#45;content=".ajax_load"> -->
+  <!--   <theme href="freshwater.html" css:if&#45;content="#visual&#45;portal&#45;wrapper" /> -->
+  <!-- </rules> -->
+
+  <!-- Fallback is default Marine look -->
   <theme href="page.html" css:if-content="#visual-portal-wrapper" css:if-not-content=".ajax_load" />
 
   <copy css:content="html" css:theme="html" attributes="lang dir" />
@@ -64,6 +77,11 @@
   <drop css:content=".searchSection" />
   <replace css:content="#portal-searchbox" css:theme=".search-container" />
 
-  <replace css:if-content="body.section-index_html" css:theme=".highlight-photos" css:content=".highlight-photos" href="/@@slides-frontpage" method="document" />
+  <replace
+    css:if-content="body.section-index_html"
+    css:theme=".highlight-photos"
+    css:content=".highlight-photos"
+    href="/@@slides-frontpage"
+    method="document" />
 
 </rules>
