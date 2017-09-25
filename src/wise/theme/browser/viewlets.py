@@ -1,10 +1,8 @@
+from plone import api
+from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
-from Products.Five.browser import BrowserView
-from plone.app.layout.viewlets.common import GlobalSectionsViewlet
-from zope.component import getMultiAdapter
-from Acquisition import aq_inner
-from plone import api
 
 
 class CookiesViewlet(CookiePolicyViewlet):
@@ -26,16 +24,17 @@ class NavigationViewlet(GlobalSectionsViewlet):
     index = ViewPageTemplateFile('pt/sections.pt')
 
     def tabs(self):
-        site = api.portal.getSite()
+        # site = api.portal.getSite()
+        root = api.portal.get_navigation_root(context=self.context)
         contentish = ['Folder', 'Collection', 'Topic']
         tabs = [{
-            'url': site.absolute_url(),
-            'id': site.id,
+            'url': root.absolute_url(),
+            'id': root.id,
             'name': 'Home',
             'image': '',
             'subtabs': []}]
 
-        brains = site.getFolderContents(
+        brains = root.getFolderContents(
             contentFilter={
                 'portal_type': contentish
             })
@@ -69,6 +68,7 @@ class NavigationViewlet(GlobalSectionsViewlet):
                 'subtabs': children
             }
             tabs.append(tab)
+
         return tabs
 
     def get_image(self, obj):
