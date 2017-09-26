@@ -1,9 +1,9 @@
 <div class="highlight-photos" tal:define="images python: view.images">
-    <picture class="highlight-photo" tal:repeat="image images">
-        <img class="slider-item" src="" tal:attributes="src python: view.getImageUrl(image)">
-        <div class="highlight">
-            <h1 tal:content="python: view.getTitle(image)">Slider Title 1</h1>
-            <p tal:content="structure python: view.getDescription(image)">Decsription</p>
-        </div>
-    </picture>
+  <picture class="highlight-photo" tal:repeat="image images">
+  <img class="slider-item" src="" tal:attributes="src python: view.getImageUrl(image)">
+  <div class="highlight">
+    <h1 tal:content="python: view.getTitle(image)">Slider Title 1</h1>
+    <p tal:content="structure python: view.getDescription(image)">Decsription</p>
+  </div>
+  </picture>
 </div>

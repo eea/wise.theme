@@ -1,0 +1,2 @@
+EEA https://www.eea.europa.eu/themes/water/highlights/highlights_topic/RSS
+DG ENV http://ec.europa.eu/environment/integration/research/newsalert/rss/marineeco.xml

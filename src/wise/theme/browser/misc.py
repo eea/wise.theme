@@ -1,3 +1,4 @@
+from plone.api import portal
 from Products.Five.browser import BrowserView
 
 
@@ -6,9 +7,10 @@ class FrontpageSlidesView (BrowserView):
     """
 
     def __call__(self):
-        context = self.context
-        self.images = context.unrestrictedTraverse(
-            'frontpage-slides').listFolderContents()
+        site = portal.get()
+        slides_folder = site.unrestrictedTraverse('marine/frontpage-slides')
+        self.images = slides_folder.listFolderContents()
+
         return self.index()
 
     def getDescription(self, image):

@@ -1,0 +1,579 @@
+/* Begin Naaya Blob File styles*/
+/* /var/local/chm/eggs/naaya.content.bfile-1.4.25-py2.6.egg/naaya/content/bfile/www/style.css */
+/*  1*/ table.ny-bfile-all-versions {
+/*  2*/     display: none;
+/*  3*/     min-width: 80%;
+/*  4*/ }
+/*  5*/ 
+/*  6*/ ul.ny-bfile-editversions {
+/*  7*/     list-style: none;
+/*  8*/ }
+/* End Naaya Blob File styles*/
+
+/* Begin Naaya TalkBack Consultation styles*/
+/* /var/local/chm/eggs/naaya.content.talkback-1.4.45-py2.6.egg/naaya/content/talkback/www/talkbackconsultation_style.css */
+/*  1*/ div.consultation_right_box {
+/*  2*/ 	float: right;
+/*  3*/ 	width: 170px;
+/*  4*/ 	border: 1px solid black;
+/*  5*/ 	padding: 0.5em;
+/*  6*/ 	background-color:#FAFAFA;
+/*  7*/ }
+/*  8*/ 
+/*  9*/ a.consultation-button {
+/* 10*/ 	display: block;
+/* 11*/ 	border: 1px outset black;
+/* 12*/ 	padding: 0.3em;
+/* 13*/ 	background-color: #EDE9E3;
+/* 14*/ 	text-decoration: none;
+/* 15*/ 	text-align: center;
+/* 16*/ 	margin-top: 0.1em;
+/* 17*/ 	color: #042D5D;
+/* 18*/ 
+/* 19*/ }
+/* 20*/ 
+/* 21*/ a.consultation-special-button {
+/* 22*/ 	display: block;
+/* 23*/ 	border: 1px outset black;
+/* 24*/ 	padding: 0.3em;
+/* 25*/ 	background-color: #D2DFFF;
+/* 26*/ 	text-decoration: none;
+/* 27*/ 	text-align: center;
+/* 28*/ 	margin-top: 0.5em;
+/* 29*/ 	color: #042D5D;
+/* 30*/ }
+/* 31*/ 
+/* 32*/ div.consultation_right_box a, div.consultation_right_box a:visited { color: #042D5D; }
+/* 33*/ 
+/* 34*/ fieldset.consultation-comments {
+/* 35*/ 	width: 80%;
+/* 36*/ 	border: 1px solid black;
+/* 37*/ 
+/* 38*/ }
+/* 39*/ 
+/* 40*/ span.consultation_day_counter {
+/* 41*/ 	color: blue;
+/* 42*/ 	font-weight: bold;
+/* 43*/ }
+/* 44*/ 
+/* 45*/ div.talkback-comment_floating_box {
+/* 46*/ 	position: absolute;
+/* 47*/ 	overflow: hidden;
+/* 48*/ 	background-color: white;
+/* 49*/ 	border: 2px solid green;
+/* 50*/ 	padding: 10px;
+/* 51*/ 	z-index: 1;
+/* 52*/ }
+/* 53*/ 
+/* 54*/ div.talkback-comment_floating_box iframe {
+/* 55*/ 	width: 720px;
+/* 56*/ 	height: 500px;
+/* 57*/ 	border: none;
+/* 58*/ }
+/* 59*/ 
+/* 60*/ a.tb-iframe-close-bottom, a.tb-iframe-close-top {
+/* 61*/ 	text-decoration: none;
+/* 62*/ 	position: absolute;
+/* 63*/ 	right: 5px;
+/* 64*/ 	background-color: white;
+/* 65*/ 	padding: 3px;
+/* 66*/ }
+/* 67*/ a.tb-iframe-close-top {
+/* 68*/ 	top: 0;
+/* 69*/ }
+/* 70*/ a.tb-iframe-close-bottom {
+/* 71*/ 	bottom: 0;
+/* 72*/ }
+/* 73*/ 
+/* 74*/ p.talkback-cannot_comment {
+/* 75*/ 	margin-top: 1.5em;
+/* 76*/ }
+/* 77*/ .talkback-section-edit div.talkback-paragraph {
+/* 78*/ 	border: 1px solid #888;
+/* 79*/ 	background: #f5f5f5;
+/* 80*/ 	padding: .5em;
+/* 81*/ }
+/* 82*/ #middle_port div.talkback-section div h1 {
+/* 83*/ 	background: transparent;
+/* 84*/ 	border: none;
+/* 85*/ }
+/* 86*/ 
+/* 87*/ .talkback-section h2 {
+/* 88*/ 	font-size: 130%;
+/* 89*/ 	margin: 1em 0;
+/* 90*/ 	font-weight: bold;
+/* 91*/ }
+/* 92*/ .talkback-section h3 {
+/* 93*/ 	font-size: 110%;
+/* 94*/ 	margin: 1em 0;
+/* 95*/ 	font-weight: bold;
+/* 96*/ }
+/* 97*/ .talkback-section input, .talkback-section textarea {
+/* 98*/ 	border: 1px solid #ccc;
+/* 99*/ }
+/*100*/ .talkback-add_comment_form input,.talkback-add_comment_form textarea {
+/*101*/ 	border: 1px solid #ccc;
+/*102*/ }
+/*103*/ .talkback-comments_list {
+/*104*/ 	margin: 0.5em 0;
+/*105*/ }
+/*106*/ .talkback-comments_list ul.tb-comments-tree {
+/*107*/ 	padding: 0;
+/*108*/ }
+/*109*/ ul.tb-comments-tree div.tb-comment-head {
+/*110*/ 	background-color: #F2F2F2;
+/*111*/ 	border: 1px solid #ccc;
+/*112*/ 	padding: 0 0.5em;
+/*113*/ 	overflow: auto;
+/*114*/ }
+/*115*/ 
+/*116*/ ul.tb-comments-tree div.tb-comment {
+/*117*/ 	border: 1px solid #ccc;
+/*118*/ 	background: #E5E5E5;
+/*119*/ 	margin: .5em;
+/*120*/ }
+/*121*/ 
+/*122*/ ul.tb-comments-tree div.tb-comment-body {
+/*123*/ 	margin: 0;
+/*124*/ 	padding: .5em;
+/*125*/ 	clear: left;
+/*126*/ }
+/*127*/ ul.tb-comments-tree div.tb-comment-author {
+/*128*/ 	margin-top: 0.1em;
+/*129*/ 	padding: 0.3em 0.5em 0 0;
+/*130*/ 	font-size: 85%;
+/*131*/ 	font-weight: bold;
+/*132*/ 	float: left;
+/*133*/ }
+/*134*/ ul.tb-comments-tree div.buttons {
+/*135*/ 	float: left;
+/*136*/ 	font-size: 100%;
+/*137*/ }
+/*138*/ ul.tb-comments-tree div.buttons input {
+/*139*/ 	padding: 0.1em 0.3em 0.1em 0.3em;
+/*140*/ 	color: #0061A2;
+/*141*/ 	font-weight: bold;
+/*142*/ }
+/*143*/ ul.tb-comments-tree div.buttons form {
+/*144*/ 	float: left;
+/*145*/ }
+/*146*/ div.buttons a{
+/*147*/ 	border: 1px solid #ccc;
+/*148*/ 	padding: 0.1em 0.3em 0.1em 0.3em;
+/*149*/ 	margin: 0;
+/*150*/ }
+/*151*/ div.buttons input{
+/*152*/ 	border: 1px solid #ccc;
+/*153*/ 	margin: 2px 4px;
+/*154*/ 	padding: 0 1px;
+/*155*/ 	background-color: white; color: #666;
+/*156*/ 	font-weight: bold;
+/*157*/ }
+/*158*/ .talkback-add_comment, .button_sect_edit, a.tb-button{
+/*159*/ 	margin: 0.5em 0;
+/*160*/ 	padding: 3px;
+/*161*/ 	font-size: 85%;
+/*162*/ 	color: #000;
+/*163*/ 	text-decoration: none;
+/*164*/ 	display: inline-block;
+/*165*/ 	background: #dbe6e3;
+/*166*/ 	border: 1px solid #78a095;
+/*167*/ }
+/*168*/ .talkback-add_comment:hover, .button_sect_edit:hover {
+/*169*/ 	border: 1px solid #eee;
+/*170*/ }
+/*171*/ .talkback-add_comment {
+/*172*/ 	margin: 0;
+/*173*/ }
+/*174*/ .talkback-add_comment-p {
+/*175*/ 	margin: 0.5em 0;
+/*176*/ }
+/*177*/ 
+/*178*/ .talkback-show_hide_comments a {
+/*179*/ 	padding: 0.3em;
+/*180*/ 	border: 1px solid #ccc;
+/*181*/ 	background: #eee;
+/*182*/ 	text-decoration: none;
+/*183*/ }
+/*184*/ 
+/*185*/ div.talkback-section_toc {
+/*186*/ 	float:right;
+/*187*/ 	clear: right;
+/*188*/ 	width: 14em;
+/*189*/ 	border: 3px solid #78a095;
+/*190*/ 	background-color: #dbe6e3;
+/*191*/ 	margin: 1em 0 1em 1em;
+/*192*/ }
+/*193*/ 
+/*194*/ div.talkback-section_toc h6 {
+/*195*/     font-size: 1em;
+/*196*/     margin: .6em 1em .6em 1em;
+/*197*/     padding: 0;
+/*198*/     text-align: center;
+/*199*/ }
+/*200*/ 
+/*201*/ div.talkback-section_toc ul {
+/*202*/ 	list-style: none;
+/*203*/     margin: .6em 1em .6em 1em;
+/*204*/     padding: 0;
+/*205*/ }
+/*206*/ 
+/*207*/ div.talkback-section_toc ul li {
+/*208*/ 	padding: .1em .5em .1em .5em;
+/*209*/ }
+/*210*/ 
+/*211*/ li.talkback-current_section a {
+/*212*/ 	font-style: italic;
+/*213*/ }
+/*214*/ 
+/*215*/ li.talkback-section a {
+/*216*/ 	color: #4E7CB0;
+/*217*/ }
+/*218*/ 
+/*219*/ table.talkback-section_list .talkback-section_list-edit_column {
+/*220*/     width: 4em;
+/*221*/     text-align: center;
+/*222*/ }
+/*223*/ 
+/*224*/ table.talkback-section_list {
+/*225*/     width: 70%;
+/*226*/ }
+/*227*/ 
+/*228*/ p.talkback-section_next_prev span {
+/*229*/     margin: 0 1em 0 1em;
+/*230*/ }
+/*231*/ 
+/*232*/ li.tb-comment-box {
+/*233*/     list-style: none;
+/*234*/ }
+/*235*/ 
+/*236*/ body.tb-embedded {
+/*237*/     font-size: .8em;
+/*238*/     color: #333;
+/*239*/ }
+/*240*/ 
+/*241*/ div.tb-comment-body blockquote {
+/*242*/     border-left: 2px solid #689;
+/*243*/     margin-left: 0;
+/*244*/     padding-left: 8px;
+/*245*/     color: #689;
+/*246*/ }
+/*247*/ 
+/*248*/ div.tb-modal-overlay {
+/*249*/     background-color: #777;
+/*250*/     width: 100%;
+/*251*/     position: absolute;
+/*252*/     top: 0;
+/*253*/     left: 0;
+/*254*/     filter:alpha(opacity=50);
+/*255*/     opacity: 0.5;
+/*256*/ }
+/*257*/ 
+/*258*/ dl.tb-invitations dd {
+/*259*/     margin-bottom: 0;
+/*260*/ }
+/*261*/ dl.tb-invitations.revoked dt {
+/*262*/     text-decoration: line-through;
+/*263*/ }
+/*264*/ table.tb-comments-overview {
+/*265*/     width: 100%;
+/*266*/ }
+/*267*/ .search_users {
+/*268*/ 	width: 50%;
+/*269*/ 	float: right;
+/*270*/ 	display:none;
+/*271*/ }
+/*272*/ 
+/* End Naaya TalkBack Consultation styles*/
+
+/* Begin Naaya Expert styles*/
+/* /var/local/chm/eggs/naaya.content_expnet-1.2.8-py2.6.egg/naaya/content/expert/www/expert.css */
+/*  1*/ .description {
+/*  2*/     color: #8DA559;
+/*  3*/     font-size: 100%;
+/*  4*/     padding-bottom: 1em;
+/*  5*/ }
+/*  6*/ 
+/*  7*/ .boxes-right {
+/*  8*/     float: right;
+/*  9*/     width: 20em;
+/* 10*/ }
+/* 11*/ 
+/* 12*/ .box {
+/* 13*/     margin-bottom: 1em;
+/* 14*/     border-color: #DEDEDE;
+/* 15*/     border-style: solid;
+/* 16*/     border-width: 1px;
+/* 17*/ }
+/* 18*/ 
+/* 19*/ .link-box {
+/* 20*/     margin-bottom: 1em;
+/* 21*/ }
+/* 22*/ 
+/* 23*/ .gray {
+/* 24*/     color: gray;
+/* 25*/     font-weight: bold;
+/* 26*/     font-size: 80%;
+/* 27*/ }
+/* 28*/ 
+/* 29*/ .link-box a {
+/* 30*/     font-weight: bold;
+/* 31*/     display: block;
+/* 32*/     margin: 0 0 1em 0;
+/* 33*/ }
+/* 34*/ 
+/* 35*/ .topic-box a {
+/* 36*/     text-decoration: none;
+/* 37*/ }
+/* 38*/ 
+/* 39*/ .topic-box span.object-count {
+/* 40*/     font-size: 80%;
+/* 41*/ }
+/* 42*/ 
+/* 43*/ .topic-box li {
+/* 44*/     margin: 0 0 0.5em 0;
+/* 45*/ }
+/* 46*/ 
+/* 47*/ .topic-box ul {
+/* 48*/     padding-left: 1.5em;
+/* 49*/ }
+/* 50*/ 
+/* 51*/ .box .minimap {
+/* 52*/     margin: -0.5em;
+/* 53*/ }
+/* 54*/ 
+/* 55*/ .box .body {
+/* 56*/     margin: 0.5em;
+/* 57*/ }
+/* 58*/ 
+/* 59*/ .main-content {
+/* 60*/     margin: 0.5em 0 0.5em 0;
+/* 61*/     padding-right: 21em;
+/* 62*/ }
+/* 63*/ 
+/* 64*/ .main-content ul {
+/* 65*/     margin-top: -0.5em;
+/* 66*/     padding-left: 2.5em;
+/* 67*/ }
+/* 68*/ 
+/* 69*/ .picture {
+/* 70*/     float: left;
+/* 71*/     margin-right: 0.5em;
+/* 72*/ }
+/* 73*/ 
+/* 74*/ td#center_cell {
+/* 75*/     padding-bottom: 1em;
+/* 76*/ }
+/* 77*/ 
+/* 78*/ .footer_link {
+/* 79*/     font-weight: bold;
+/* 80*/     margin-top: 5em;
+/* 81*/ }
+/* 82*/ 
+/* 83*/ .hr {
+/* 84*/     color: gray;
+/* 85*/ }
+/* End Naaya Expert styles*/
+
+/* Begin Naaya Municipality styles*/
+/* /var/local/chm/eggs/naaya.content.municipality-1.2.9-py2.6.egg/naaya/content/municipality/www/municipality.css */
+/*  1*/ .description 
+/*  2*/ {
+/*  3*/  color: #8DA559;
+/*  4*/  font-size: 100%;
+/*  5*/  padding-bottom: 1em;
+/*  6*/ }
+/*  7*/ 
+/*  8*/ .boxes-right 
+/*  9*/ {
+/* 10*/  float: right;
+/* 11*/  width: 20em;
+/* 12*/ }
+/* 13*/ 
+/* 14*/ .box 
+/* 15*/ {
+/* 16*/  margin-bottom: 1em;
+/* 17*/  border-color: #DEDEDE;
+/* 18*/  border-style: solid;
+/* 19*/  border-width: 1px;
+/* 20*/ }
+/* 21*/ 
+/* 22*/ .link-box 
+/* 23*/ {
+/* 24*/  margin-bottom: 1em;
+/* 25*/ }
+/* 26*/ 
+/* 27*/ .gray
+/* 28*/ {
+/* 29*/  color: gray;
+/* 30*/  font-weight: bold;
+/* 31*/  font-size: 80%;
+/* 32*/ }
+/* 33*/ 
+/* 34*/ .textarea_message
+/* 35*/ {
+/* 36*/  margin-top: -6px;
+/* 37*/  color: gray;
+/* 38*/  font-style: italic;
+/* 39*/  font-size: 80%;
+/* 40*/ }
+/* 41*/ 
+/* 42*/ .link-box a 
+/* 43*/ {
+/* 44*/  font-weight: bold;
+/* 45*/  display: block;
+/* 46*/  margin: 0 0 1em 0;
+/* 47*/  }
+/* 48*/ 
+/* 49*/ .topic-box ul li a 
+/* 50*/ {
+/* 51*/  text-decoration: none;
+/* 52*/  }
+/* 53*/ 
+/* 54*/ .topic-box li
+/* 55*/ {
+/* 56*/  display: block;
+/* 57*/  list-style-type: none;
+/* 58*/  margin: 0 0 0.5em 0;
+/* 59*/  }
+/* 60*/ 
+/* 61*/ .topic-box ul
+/* 62*/ {
+/* 63*/ padding-left: 0;
+/* 64*/  } 
+/* 65*/  
+/* 66*/ .box .minimap 
+/* 67*/ {
+/* 68*/  margin: -0.5em;
+/* 69*/ }
+/* 70*/ 
+/* 71*/ .box .body 
+/* 72*/ {
+/* 73*/  margin: 0.5em;
+/* 74*/ }
+/* 75*/ 
+/* 76*/ .main-content 
+/* 77*/ {
+/* 78*/  margin: 0.5em 0 0.5em 0;
+/* 79*/  padding-right: 21em;
+/* 80*/ }
+/* 81*/ 
+/* 82*/ .main-content ul 
+/* 83*/ {
+/* 84*/  margin-top: -0.5em;
+/* 85*/  padding-left: 2.5em;
+/* 86*/ }
+/* 87*/ 
+/* 88*/ .main-content a 
+/* 89*/ {
+/* 90*/  text-decoration: None;
+/* 91*/ }
+/* 92*/ 
+/* 93*/ .picture
+/* 94*/ {
+/* 95*/ 	float: left;
+/* 96*/ 	margin-right: 0.5em;	
+/* 97*/ }
+/* 98*/ 
+/* 99*/ td#center_cell {
+/*100*/ padding-bottom: 1em;
+/*101*/ }
+/*102*/ 
+/*103*/ .footer_link
+/*104*/ {
+/*105*/ 	font-weight: bold;
+/*106*/ 	margin-top: 5em;
+/*107*/ }
+/*108*/ 
+/*109*/ .form-errors
+/*110*/ {
+/*111*/ 	color: red;
+/*112*/ }
+/*113*/ 
+/*114*/ .label
+/*115*/ {
+/*116*/ 	width: 33%;
+/*117*/ 	font-weight: bold;
+/*118*/ }
+/*119*/ 
+/*120*/ .fieldset_edit
+/*121*/ {
+/*122*/ 	border: 1px solid #BBC6CD;
+/*123*/ 	margin:2em 0 0 1em;
+/*124*/ 	width:70%;
+/*125*/ }
+/*126*/ 
+/*127*/ /* CSS for JCROP */
+/*128*/ .jcrop-holder { text-align: left; }
+/*129*/ 
+/*130*/ .jcrop-vline, .jcrop-hline
+/*131*/ {
+/*132*/ 	font-size: 0;
+/*133*/ 	position: absolute;
+/*134*/ 	background: white url('Jcrop.gif') top left repeat;
+/*135*/ }
+/*136*/ .jcrop-vline { height: 100%; width: 1px !important; }
+/*137*/ .jcrop-hline { width: 100%; height: 1px !important; }
+/*138*/ .jcrop-handle {
+/*139*/ 	font-size: 1px;
+/*140*/ 	width: 7px !important;
+/*141*/ 	height: 7px !important;
+/*142*/ 	border: 1px #eee solid;
+/*143*/ 	background-color: #333;
+/*144*/ 	*width: 9px;
+/*145*/ 	*height: 9px;
+/*146*/ }
+/*147*/ 
+/*148*/ .jcrop-tracker { width: 100%; height: 100%; }
+/*149*/ 
+/*150*/ .custom .jcrop-vline,
+/*151*/ .custom .jcrop-hline
+/*152*/ {
+/*153*/ 	background: yellow;
+/*154*/ }
+/*155*/ .custom .jcrop-handle
+/*156*/ {
+/*157*/ 	border-color: black;
+/*158*/ 	background-color: #C7BB00;
+/*159*/ 	-moz-border-radius: 3px;
+/*160*/ 	-webkit-border-radius: 3px;
+/*161*/ }
+/* End Naaya Municipality styles*/
+
+/* Begin Naaya Meeting styles*/
+/* /var/local/chm/eggs/naaya.content.meeting-1.2.93-py2.6.egg/naaya/content/meeting/www/style.css */
+/*  1*/ table.meeting-registration-methods {
+/*  2*/     width: 50%;
+/*  3*/     margin-left: 50px;
+/*  4*/ }
+/*  5*/ #link_prepare {
+/*  6*/ 	width: 50%;
+/*  7*/ 	float: right;
+/*  8*/ 	display:none;
+/*  9*/ }
+/* 10*/ #search_users {
+/* 11*/ 	width: 50%;
+/* 12*/ 	float: right;
+/* 13*/ 	display:none;
+/* 14*/ }
+/* 15*/ .insert-button{
+/* 16*/ 	padding-top: 5px;
+/* 17*/ }
+/* 18*/ .tree li a, .tree li span{
+/* 19*/ 	white-space:normal !important;
+/* 20*/ 	height:auto !important;
+/* 21*/ }
+/* 22*/ .sitemap_tree{
+/* 23*/ 	padding-top: 5px;
+/* 24*/ }
+/* 25*/ .force-wrap {
+/* 26*/     max-width: 80px;
+/* 27*/     word-wrap: break-word;
+/* 28*/ }
+/* 29*/ .rejected {
+/* 30*/     text-decoration: line-through;
+/* 31*/ }
+/* 32*/ textarea {
+/* 33*/     overflow:hidden;
+/* 34*/ }
+/* End Naaya Meeting styles*/
