@@ -9,7 +9,7 @@
   <!-- For main site frontpage, use landing.html -->
   <theme
     href="landing.html"
-    css:if-content=".template-homepage_template"
+    css:if-content=".main-homepage"
     css:if-not-content=".ajax_load" />
 
   <!-- For Marine section, use index.html -->

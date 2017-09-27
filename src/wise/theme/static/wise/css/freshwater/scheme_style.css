@@ -181,8 +181,11 @@ fieldset dt {
 .page_title {
   position:relative;
   float:left;
-  padding-left:40px;
+  padding-left:20px;
   width:250px;
+}
+.page_title img {
+    width: 82%;
 }
 #header-front .page_title {
   padding-top:35px;
@@ -195,8 +198,7 @@ fieldset dt {
   color:#00a8c7;
   padding-top:2em;
 }
-#header .page_title img {
-}
+
 #header p.buttons-header {
   width:340px;
   padding-right:20px;
