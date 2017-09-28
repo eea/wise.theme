@@ -1,5 +1,4 @@
 from plone import api
-from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
@@ -12,27 +11,21 @@ class CookiesViewlet(CookiePolicyViewlet):
         return super(CookiesViewlet, self).render()
 
 
-# class GoToPDB(BrowserView):
-#     def __call__(self):
-#         import pdb; pdb.set_trace()
-#         return "done"
-
-
 class NavigationViewlet(GlobalSectionsViewlet):
     """ Navigation menu viewlet override
     """
     index = ViewPageTemplateFile('pt/sections.pt')
 
     def tabs(self):
-        # site = api.portal.getSite()
         root = api.portal.get_navigation_root(context=self.context)
         contentish = ['Folder', 'Collection', 'Topic']
-        tabs = [{
-            'url': root.absolute_url(),
-            'id': root.id,
-            'name': 'Home',
-            'image': '',
-            'subtabs': []}]
+        # tabs = [{
+        #     'url': root.absolute_url(),
+        #     'id': root.id,
+        #     'name': 'Home',
+        #     'image': '',
+        #     'subtabs': []}]
+        tabs = []
 
         brains = root.getFolderContents(
             contentFilter={
