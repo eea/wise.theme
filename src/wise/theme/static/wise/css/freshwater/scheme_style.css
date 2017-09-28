@@ -521,6 +521,10 @@ li#b4 a {
   float: left;
 }
 
+#footer a img {
+  width: 125px;
+}
+
 /* Carousel */
 
 #carousel + div {
