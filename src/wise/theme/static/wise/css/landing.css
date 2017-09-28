@@ -536,6 +536,7 @@ navy {
 .footer-logos img {
   width: 50%;
   float: right;
+    padding: 1rem;
 }
 
 .footer-links li {
@@ -543,13 +544,11 @@ navy {
   padding: 1rem;
 }
 
-@media(min-width: 1060px) {
- .footer-links {
-    width: 50%;
- }
-}
+
 .footer-links {
-  margin-right: 10%;
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    width: 65%;
 }
 a {
   text-decoration: none;
@@ -578,32 +577,22 @@ a {
 
 .landing-section {
   padding: 1rem 2rem;
-  margin: 2rem 0;
-  display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.landing-section.right {
+     border-left: 2px solid #eee;
+}
 .landing-section a {
     width: 100%;
     display: inline-block;
-    font-size: 2rem;
-    border-radius: 4px;
-    padding: 1.2rem 1rem;
-    font-size:  2.5rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    box-shadow: 2px 2px 3px #cecece;
-    color: white;
-    position: relative;
+}
+.landing-section a img {
+width: 100%;
+max-width: 434px;
 }
 
-
-.left a{
-  background: #16a7e1; 
-}
-
-.right a {
- background: #0d79bf; 
-}
 * {
   box-sizing: border-box;
 }
@@ -633,9 +622,6 @@ padding-bottom: 1rem;
   width: 110%;
 }
 
-.footer-links {
-  font-size: 1.5rem;
-}
 
 .footer-links ul {
      display: block;
@@ -653,14 +639,7 @@ padding-bottom: 1rem;
   position: relative;
 }
 
-.landing-section.right:before {
-  content: '';
-  position: absolute;
-  top: -2rem;
-  bottom: -2rem;
-  left: -1px;
-  border-left: 2px solid #eee;
-}
+
 
 .wise-links {
   overflow: hidden;
@@ -770,28 +749,40 @@ padding-bottom: 1rem;
   }
 }
 
-@media(min-width: 1600px){
-  .footer-links {
-        font-size: 2rem;
-  }
-
-  .footer-links li:nth-child(5){
-    margin-left: 2.3rem!important;
-  }
-  .footer-links li:nth-child(6) {
-    padding-left: 3.5rem!important;
-  }
-}
-
-
 
 .landing-desc h2 {
- font-size: 21px; 
+ font-size: 21px;
  margin-top: 1em;
  margin-bottom: 1em;
 }
 .landing-desc h3 {
- font-size: 16px;   
+ font-size: 16px;
  margin-top: 0.83em;
   margin-bottom: 0.83em;
+}
+
+
+@media(max-width: 1250px) {
+    .landing-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .footer-logos {
+    margin-left: 0;
+    width: 35%;
+    }
+}
+
+
+@media (max-width: 768px) {
+ .footer-logos {
+  width: 100%;
+ }
+
+     .landing-footer {
+    flex-direction:column;
+
+     }
 }
