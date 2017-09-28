@@ -193,22 +193,22 @@ require(['jquery', 'slick'], function($, slick) {
 
 
 
-        $hover_trigger = $("[data-toggle=center-square]");
-        $hover_trigger.on('mouseover', function() {
-            $data_target = $(this).attr('data-target');
-            $target_div = $('.categories.center').find($data_target);
-            $other_divs = $('.center-square');
-            $other_targets = $('.square');
-            if (!$(this).hasClass("gray")) {
-                $other_divs.css('display', 'none');
-                $target_div.css({'display': 'flex'});
-                // $target_div.animate({
-                //     'opacity': 'show'
-                // }, 200);
-            }
-            $other_targets.removeClass("gray");
-            $(this).addClass("gray");
-        });
+        // $hover_trigger = $("[data-toggle=center-square]");
+        // $hover_trigger.on('mouseover', function() {
+        //     $data_target = $(this).attr('data-target');
+        //     $target_div = $('.categories.center').find($data_target);
+        //     $other_divs = $('.center-square');
+        //     $other_targets = $('.square');
+        //     if (!$(this).hasClass("gray")) {
+        //         $other_divs.css('display', 'none');
+        //         $target_div.css({'display': 'flex'});
+        //         // $target_div.animate({
+        //         //     'opacity': 'show'
+        //         // }, 200);
+        //     }
+        //     $other_targets.removeClass("gray");
+        //     $(this).addClass("gray");
+        // });
 
         $('.login i').on('click', function() {
             $(this).toggleClass('action-selected');
