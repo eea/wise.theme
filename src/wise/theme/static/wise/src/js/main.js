@@ -200,10 +200,11 @@ require(['jquery', 'slick'], function($, slick) {
             $other_divs = $('.center-square');
             $other_targets = $('.square');
             if (!$(this).hasClass("gray")) {
-                $other_divs.css('display', 'none')
-                $target_div.animate({
-                    'opacity': 'show'
-                }, 200);
+                $other_divs.css('display', 'none');
+                $target_div.css({'display': 'flex'});
+                // $target_div.animate({
+                //     'opacity': 'show'
+                // }, 200);
             }
             $other_targets.removeClass("gray");
             $(this).addClass("gray");
