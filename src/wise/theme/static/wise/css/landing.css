@@ -470,14 +470,29 @@ body {
   }
 }
 
+.template-accessibility-info #content-core p,
+.section-legal-notice #content-core p {
+    padding: 20px 0;
+}
+
 .landing-container {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    /*height: 100vh;*/
     width: 100vw;
     display: flex;
 }
+
+.landing-container #portal-column-content {
+    width: 100%;
+    font-size: 95%;
+}
+
+.landing-container #pfg-fieldwrapper {
+    padding-top: 25px;
+}
+
 .landing-body {
     max-width: 1400px;
     width: 90%;
@@ -567,6 +582,12 @@ a {
   justify-content: center;
   align-items: flex-start;
   text-align: center;
+}
+
+.landing-content #content {
+  text-align: left;
+  padding: 0 40px;
+  font-size: 95%;
 }
 
 .landing-section p {
@@ -781,8 +802,7 @@ padding-bottom: 1rem;
   width: 100%;
  }
 
-     .landing-footer {
+    .landing-footer {
     flex-direction:column;
-
-     }
+    }
 }

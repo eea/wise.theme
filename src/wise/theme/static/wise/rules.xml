@@ -12,6 +12,32 @@
     css:if-content=".main-homepage"
     css:if-not-content=".ajax_load" />
 
+
+  <rules css:if-content="body.section-about-us" css:if-not-content=".ajax_load">
+    <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
+    <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
+  </rules>
+
+  <rules css:if-content="body.section-contact" css:if-not-content=".ajax_load">
+    <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
+    <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
+  </rules>
+
+  <rules css:if-content="body.template-sitemap" css:if-not-content=".ajax_load">
+    <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
+    <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
+  </rules>
+
+  <rules css:if-content="body.template-accessibility-info" css:if-not-content=".ajax_load">
+    <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
+    <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
+  </rules>
+
+  <rules css:if-content="body.section-legal-notice" css:if-not-content=".ajax_load">
+    <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
+    <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
+  </rules>
+
   <!-- For Marine section, use index.html -->
   <rules css:if-content=".marine-homepage" css:if-not-content=".ajax_load">
     <theme href="index.html" css:if-content="#visual-portal-wrapper" />
