@@ -484,6 +484,18 @@ body {
     display: flex;
 }
 
+.template-sitemap .landing-container,
+.template-accessibility-info .landing-container,
+.section-contact .landing-container,
+.section-about-us .landing-container,
+.section-legal-notice .landing-container{
+    height: initial!important;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+
 .landing-container #portal-column-content {
     width: 100%;
     font-size: 95%;
