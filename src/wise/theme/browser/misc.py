@@ -9,7 +9,9 @@ class FrontpageSlidesView (BrowserView):
     def __call__(self):
         site = portal.get()
         slides_folder = site.unrestrictedTraverse('marine/frontpage-slides')
-        self.images = slides_folder.listFolderContents()
+        self.images = slides_folder.listFolderContents(
+            contentFilter={'review_state': 'published'}
+        )
 
         return self.index()
 
