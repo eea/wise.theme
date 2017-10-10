@@ -12,8 +12,7 @@
     css:if-content=".main-homepage"
     css:if-not-content=".ajax_load" />
 
-
-  <rules css:if-content="body.section-about-us" css:if-not-content=".ajax_load">
+  <rules css:if-content="body.section-about-us" css:if-not-content=".site-marine">
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
@@ -23,7 +22,7 @@
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
 
-  <rules css:if-content="body.template-sitemap" css:if-not-content=".ajax_load">
+  <rules css:if-content="body.template-sitemap" css:if-not-content=".site-marine">
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
@@ -106,7 +105,7 @@
   <append css:theme='body' css:content="script[data-diazo-keep='true']" />
 
   <!-- Use portal site actions for footer -->
-  <replace css:content="#portal-siteactions" css:theme-children=".footer-links" />
+  <replace css:content="#portal-siteactions" css:theme-children=".header-info" />
 
   <!-- Add the cookies viewlet to the homepage -->
   <append css:theme='body' css:content="#viewlet-cookiepolicy" css:if-content="body.section-index_html"/>
