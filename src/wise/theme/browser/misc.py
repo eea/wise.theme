@@ -1,4 +1,4 @@
-from plone.api import portal
+from plone.api import content, portal
 from Products.Five.browser import BrowserView
 
 
@@ -8,10 +8,9 @@ class FrontpageSlidesView (BrowserView):
 
     def __call__(self):
         site = portal.get()
-        slides_folder = site.unrestrictedTraverse('marine/frontpage-slides')
-        self.images = slides_folder.listFolderContents(
-            contentFilter={'review_state': 'published'}
-        )
+        sf = site.unrestrictedTraverse('marine/frontpage-slides')
+        self.images = [o for o in sf.contentValues()
+                       if content.get_state(o) == 'published']
 
         return self.index()
 
