@@ -489,9 +489,9 @@ body {
 .section-contact .landing-container,
 .section-about-us .landing-container,
 .section-legal-notice .landing-container{
-    height: initial!important;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+   height: initial!important;
+   margin-top: 1rem;
+   margin-bottom: 1rem;
 }
 
 
@@ -556,7 +556,7 @@ navy {
 }
 
 .footer-logos {
-  margin-left: 10%;
+  margin-left: 8%;
   width: 25%;
 }
 
@@ -568,7 +568,7 @@ navy {
 
 .footer-links li {
   display: inline-block;
-  padding: 1rem;
+  padding: 10px 0;
 }
 
 
@@ -657,10 +657,10 @@ padding-bottom: 1rem;
 
 
 .footer-links ul {
-     display: block;
-    margin-bottom: 24px;
-    margin-top: 24px;
-    padding-left: 40px;
+  display: block;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  padding-left: 7px;
 }
 
 .landing-section.left {
@@ -769,7 +769,7 @@ padding-bottom: 1rem;
 
 .footer-links span {
   color:#16a7e1;
-  margin-left: 2rem;
+  margin: 0 1rem;
 }
 
 @media(max-width: 760px){

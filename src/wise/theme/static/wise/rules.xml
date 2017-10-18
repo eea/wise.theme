@@ -16,23 +16,28 @@
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
-
+  
   <rules css:if-content="body.section-contact" css:if-not-content=".ajax_load">
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
-
+  
   <rules css:if-content="body.template-sitemap" css:if-not-content=".site-marine">
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
-
+  
   <rules css:if-content="body.template-accessibility-info" css:if-not-content=".ajax_load">
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
-
+  
   <rules css:if-content="body.section-legal-notice" css:if-not-content=".ajax_load">
+    <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
+    <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
+  </rules>
+  
+  <rules css:if-content="body.section-links" css:if-not-content=".ajax_load">
     <theme href="landing.html" css:if-content="#visual-portal-wrapper" />
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
