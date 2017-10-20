@@ -1150,8 +1150,9 @@ li {
 .slider-next,
 .slider-prev {
     cursor: pointer;
-    top: 113%;
     position: absolute;
+    top: 0;
+
     z-index: 1;
     @media(max-width: 1250px) {
         top: 76%;
@@ -1159,7 +1160,7 @@ li {
 }
 
 .slider-next {
-    right: 36%;
+    right: 0;
     &:before {
         content: "\f0da";
         font-family: FontAwesome;
@@ -1168,8 +1169,8 @@ li {
 }
 
 .slider-prev {
-    right: 41%;
-    left: auto;
+    right: auto;
+    left: 0;
     &:before {
         content: "\f0d9";
         font-family: FontAwesome;
