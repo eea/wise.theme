@@ -183,7 +183,7 @@
                     <picture class="highlight-photo" style="display: none; ">
                          <source srcset="++theme++wise/img/slider/3-lg.jpg" media="(min-width: 1600px)" />
                          <source srcset=".++theme++wise/img/slider/3-sm.jpg" media="(max-width: 960px)" />
-                         <img src="++theme++wise/img/slider/3.jpg-md" />
+                         <img src="++theme++wise/img/slider/3-md.jpg" />
                     </picture>
                 </div>
                     <div class="slider-highlights">
@@ -211,6 +211,7 @@
             #highlights-slider {
                 display: none;
             }
+
         }
 
 
@@ -326,6 +327,18 @@
             .highlight-title {
                 font-size: 36px;
                 line-height: 44px;
+            }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1331px) {
+            #highlights-slider {
+                padding-top: 308px;
+            }
+        }
+
+        @media (min-width: 1600px){
+            #highlights-slider {
+                padding-top: 500px;
             }
         }
 
