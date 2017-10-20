@@ -151,6 +151,9 @@
     </div>
     <div class="page-body">
         <div id="highlights-slider">
+            <div class="highlight-placeholder">
+                    <img src="++theme++wise/img/slider/placeholder.jpg"/>
+                </div>
             <div class="header-bottom-section">
                 <img src="./img/header-bottom.svg" />
             </div>
@@ -165,10 +168,36 @@
                 </div>
             </div>
             <div id="highlights-slider-content">
+
                 <div class="highlight-photos">
+                    <picture class="highlight-photo current">
+                        <source srcset="++theme++wise/img/slider/1-lg.jpg" media="(min-width: 1600px)" />
+                        <source srcset="++theme++wise/img/slider/1-sm.jpg" media="(max-width: 960px)" />
+                         <img src="++theme++wise/img/slider/1-md.jpg" />
+                    </picture>
+                    <picture class="highlight-photo" style="display: none; ">
+                        <source srcset="++theme++wise/img/slider/2-lg.jpg" media="(min-width: 1600px)" />
+                        <source srcset="++theme++wise/img/slider/2-sm.jpg" media="(max-width: 960px)" />
+                         <img src="++theme++wise/img/slider/2-md.jpg" />
+                    </picture>
+                    <picture class="highlight-photo" style="display: none; ">
+                         <source srcset="++theme++wise/img/slider/3-lg.jpg" media="(min-width: 1600px)" />
+                         <source srcset=".++theme++wise/img/slider/3-sm.jpg" media="(max-width: 960px)" />
+                         <img src="++theme++wise/img/slider/3.jpg-md" />
+                    </picture>
                 </div>
                     <div class="slider-highlights">
                         <div class="highlights" id="hlslider-slides">
+                             <div class="highlight">
+                                <h1 class="highlight-description">Welcome to WISE-Marine - a gateway to information on European marine issues in support of ocean governance and ecosystem based management</h1>
+                            </div>
+                            <div class="highlight" style="display: none; ">
+                                <h1 class="highlight-description">With unprecedented changes occurring in our oceans, a comprehensive knowledge base is our most valuable resource</h1>
+                            </div>
+                            <div class="highlight" style="display: none; ">
+                                <h1 class="highlight-description">Accurate and timely information on the state of marine ecosystems and their resources is essential for achieving sustainable blue growth</h1>
+                            </div>
+
                         </div>
                         <div id="slider-nav"><span class="slider-prev" id="hlslider-prev"></span> <span class="slider-next" id="hlslider-next"></span></div>
                     </div>
@@ -201,14 +230,19 @@
             z-index: 0;
         }
 
+     /*   .highlight-placeholder {
+            background: url('++theme++wise/img/slider/placeholder.jpg');
+            background-size: cover;
+        }*/
+
         .slick-slide {
             height: auto;
         }
 
         .highlight-placeholder {
-            z-index: 49;
+            z-index: 1;
             opacity: 1;
-            transition: opacity .5s;
+            transition: opacity 1s;
         }
 
         .highlight-placeholder img,
@@ -287,7 +321,7 @@
 
         @media (min-width: 1200px) {
             #highlights-slider {
-                padding-top: 320px;
+                padding-top: 376px;
             }
             .highlight-title {
                 font-size: 36px;
@@ -326,6 +360,7 @@
             }
         }
         </style>
+
         <div class="container main-content">
             <div class="categories-wrapper clearfix">
                 <div class="categories">
