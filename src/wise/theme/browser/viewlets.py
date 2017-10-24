@@ -30,7 +30,10 @@ class NavigationViewlet(GlobalSectionsViewlet):
         brains = root.getFolderContents(
             contentFilter={
                 'portal_type': contentish
+
             })
+
+        brains = [b for b in brains if b.exclude_from_nav is False]
 
         for brain in brains:
             obj = brain.getObject()
@@ -44,6 +47,8 @@ class NavigationViewlet(GlobalSectionsViewlet):
                 })
 
             for child in folder_contents:
+                if child.exclude_from_nav:
+                    continue
                 child = child.getObject()
                 children.append({
                     'url': child.absolute_url(),
