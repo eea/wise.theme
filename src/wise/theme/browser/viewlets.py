@@ -74,6 +74,6 @@ class NavigationViewlet(GlobalSectionsViewlet):
             return ''
 
         scales = obj.restrictedTraverse('@@images')
-        image_url = scales.scale('image', scale='menu-icon')
+        image = scales.scale('image', scale='menu-icon')
 
-        return image_url.absolute_url()
+        return image and image.absolute_url() or ''
