@@ -49,6 +49,7 @@
 
   <rules css:if-content=".freshwater-homepage" css:if-not-content=".ajax_load">
     <theme href="freshwater-homepage.html" />
+    <replace css:content="#content-core" css:theme="#freshwater-content" />
   </rules>
 
   For Freshwater section, use freshwater.html

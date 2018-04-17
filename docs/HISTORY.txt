@@ -3,6 +3,8 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Bug fix: fix freshwater page being hardcoded
+  [tiberich #94636]
 * Bug fix: better check for errors in case of images in main dropdown menu
   [tiberich #92045]
 * Change: CSS adjusments for PDF
