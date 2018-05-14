@@ -45,7 +45,7 @@ require(['jquery', 'slick'], function($, slick) {
                     $('.navmenu-items').animate({
                         'opacity': 'show'
                     }, 30);
-                    $bgheight = $('body').height() - $('.menu > img').height()
+                    var $bgheight = $('body').height() - $('.menu > img').height()
                     $('.menu-bg').height($bgheight + 3);
                     $('.navmenu-items').css('display', 'flex');
                     $('.header-wave .menu-brand').animate({
@@ -63,20 +63,20 @@ require(['jquery', 'slick'], function($, slick) {
     $(document).ready(function() {
 
 
-        $menu_items = $('.menu .navmenu-item > a');
+        var $menu_items = $('.menu .navmenu-item > a');
 
         $menu_items.each(function(index, value) {
-            $submenu_items = $(this).parent().find('.submenu-item');
+            var $submenu_items = $(this).parent().find('.submenu-item');
 
             if ($submenu_items.length == 0)
                 $(this).addClass('no-carret');
 
         })
 
-        $portlet_p = $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p');
+        var $portlet_p = $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p');
         if($portlet_p){
             $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p').each(function(item) {
-                $strong = $(this).find('strong');
+                var $strong = $(this).find('strong');
 
                 if ($strong.length > 0) {
                     $(this).style.fontWeight = 'bold'
@@ -140,8 +140,8 @@ require(['jquery', 'slick'], function($, slick) {
                             dir = -1;
                         }
 
-                        $currentImg = $($hlSliderPhotos[current]);
-                        $nextImg = $($hlSliderPhotos[next]);
+                        var $currentImg = $($hlSliderPhotos[current]);
+                        var $nextImg = $($hlSliderPhotos[next]);
                         $nextImg.show();
 
                         var percent = dir * 100 + '%';
@@ -206,7 +206,7 @@ require(['jquery', 'slick'], function($, slick) {
                 }, 200);
             });
             if (window.matchMedia("(max-width: 800px)").matches) {
-                $mobile_submenu_trigger = $('<span/>', {
+                var $mobile_submenu_trigger = $('<span/>', {
                     'class': 'mobile_submenu_trigger fa fa-caret-right pull-right',
                 })
                 if ($('.navmenu-item .submenu .submenu-item').length > 0) {
@@ -250,5 +250,5 @@ require(['jquery', 'slick'], function($, slick) {
     });
 
 
-    return {};
+    return $.noConflict();
 });
