@@ -73,6 +73,8 @@ require(['jquery', 'slick'], function($, slick) {
 
         })
 
+        $('#portaltab-map-viewer > a').attr('target', '_blank');
+
         $portlet_p = $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p');
         if($portlet_p){
             $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p').each(function(item) {
