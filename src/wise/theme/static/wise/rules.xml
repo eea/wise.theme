@@ -6,6 +6,26 @@
 
   <notheme if="$ajax_load" />
 
+  <!-- FOR external templates, faceted search page -->
+  <!-- Header -->
+  <rules css:if-content=".simplified-template-header">
+    <theme href="header-template.html" />
+    <replace css:content="a">
+      <a>
+        <xsl:variable name="absolute" select="substring-after(current()/@href, 'http://192.168.0.125:5080/Plone')" />
+        <xsl:attribute name='href'><xsl:copy-of select="$absolute" /></xsl:attribute>
+        <!-- <xsl:copy&#45;of select="current()/@href" /> -->
+        <xsl:value-of select="current()/text()" />
+      </a>
+    </replace>
+  </rules>
+  <!-- Footer -->
+  <rules css:if-content=".simplified-template-footer">
+    <theme href="footer-template.html" />
+    <replace css:content="script"/>
+    <replace css:theme-children="#site-description">Marine Information System for Europe</replace>
+  </rules>
+
   <!-- For main site frontpage, use landing.html -->
   <theme
     href="landing.html"

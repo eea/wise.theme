@@ -1,0 +1,48 @@
+<!--<div tal:replace="structure provider:plone.htmlhead" />-->
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<link rel="icon" type="image/x-icon" href="/marine/marine_favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="/marine/marine_favicon.ico">
+<link rel="icon" type="image/png" sizes="196x196" href="/marine/marine_favicon-192.png">
+<link rel="icon" type="image/png" sizes="160x160" href="/marine/marine_favicon-160.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/marine/marine_favicon-96.png">
+<link rel="icon" type="image/png" sizes="64x64" href="/marine/marine_favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/marine/marine_favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/marine/marine_favicon-16.png">
+<link rel="apple-touch-icon" href="/marine/marine_favicon-57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/marine/marine_favicon-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/marine/marine_favicon-72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/marine/marine_favicon-144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/marine/marine_favicon-60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/marine/marine_favicon-120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/marine/marine_favicon-76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/marine/marine_favicon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/marine/marine_favicon-180.png">
+<title>Wise</title>
+<meta name="description" content="Wise Marine">
+<meta name="author" content="Wise Marine">
+
+<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>-->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+
+<link rel="stylesheet" href="/portal_css/Sunburst%20Theme/reset.css" />
+<link rel="stylesheet" href="/portal_css/Sunburst%20Theme/fixes.css" />
+<link rel="stylesheet" href="/++theme++wise/css/main.css" />
+<link rel="stylesheet" href="/++theme++wise/css/search-style.css" />
+
+<!--<script data-drop="true" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>-->
+<!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++collective.cover/js/contentchooser.js"></script>-->
+<!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++collective.js.bootstrap/js/bootstrap.min.js"></script>-->
+<!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++plone.app.widgets.js"></script>-->
+<!--<script type="text/javascript" src="/portal_javascripts/Sunburst%20Theme/++resource++eea.jquery.screentimeanalytics.js"></script>-->
+
+<meta name="description" content="Marine Information System for Europe">
+
+
+

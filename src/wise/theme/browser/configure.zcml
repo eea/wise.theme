@@ -40,5 +40,24 @@
         permission="zope2.View"
         layer="wise.theme.interfaces.IWiseThemeLayer"
     />
+    <browser:page
+        name="external-template-head"
+        for="*"
+        template="pt/external-template-head.pt"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="external-template-header"
+        for="*"
+        template="pt/external-template-header.pt"
+        permission="zope2.View"
+        class=".externaltemplates.ExternalTemplateHeader"
+    />
 
+    <browser:page
+        name="external-template-footer"
+        for="*"
+        template="pt/external-template-footer.pt"
+        permission="zope2.View"
+    />
 </configure>
