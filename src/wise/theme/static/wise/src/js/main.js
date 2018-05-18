@@ -246,6 +246,34 @@ require(['jquery', 'slick'], function($, slick) {
 
         // };
     });
+    
+    var $fields = $("#wise-search-form").find("[data-fieldname]");
+     $fields.each(function(indx, elem){
+         //console.log(indx);
+         var cheks = $(elem).find("[type='checkbox']");
+         var hasChecks = cheks.length > 0 ? true : false;
+         if(hasChecks){
+            var sp = '<span class="option"><input  class="checkbox-widget required list-field" value="all" type="checkbox"><label for="form-widgets-member_states-0"><span class="label">All</span></label></span>'
+            var par = $(cheks[0]).parent().parent();
+            par.prepend(sp);
+            var opt = $(par).find("input[value='all']");
+            $(opt).on("click focus", function (e){
+               if($(e.target).is(":checked")){
+                   $.each( $(elem).find("[type='checkbox']") , function(id,chelem){
+                       if($(chelem).val() === "all") return;
+                       //console.log($(chelem));
+                       $(chelem).attr("checked", false);
+                   });
+               } else {
+                   $.each( $(elem).find("[type='checkbox']") , function(id,chelem){
+                       if($(chelem).val() === "all") return;
+                       //console.log($(chelem));
+                       $(chelem).attr("checked", true);
+                   });
+               }
+            });
+         }
+     });
 
     return $.noConflict();
 });
