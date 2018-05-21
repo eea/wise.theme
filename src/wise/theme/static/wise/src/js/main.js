@@ -275,5 +275,44 @@ require(['jquery', 'slick'], function($, slick) {
          }
      });
 
+    var $fields = $("#wise-search-form").find("[data-fieldname]");
+
+    $fields.each(function(indx, elem){
+        var cheks = $(elem).find("[type='checkbox']");
+        var hasChecks = cheks.length > 0;
+        if(hasChecks){
+            var sp = '<span class="option"><input class="checkbox-widget required list-field" value="all" type="checkbox"><label for="form-widgets-member_states-0"><span class="label">All</span></label></span>';
+            var par = $(cheks[0]).parent().parent();
+            par.prepend(sp);
+
+            var notchecked = cheks.filter(function(item){
+                return !$(cheks[item]).is(":checked");
+            });
+            if(notchecked.length === 0){
+                $(elem).find("input[value='all']").prop("checked", true);
+            }
+        }
+    });
+    var allch = $("#wise-search-form").find("[data-fieldname]");
+    function checkboxHandler(){
+        var par = $(this).parent().parent();
+        var rest = $(par).find("[type='checkbox']");
+        rest = rest.filter(function (item) {
+            return $(this) !== $(item);
+        });
+        if($(this).is(":checked")){
+            $(this).prop("checked", false);
+        } else {
+            $(this).prop("checked", true);
+        }
+        $.each(rest, function (idx, elemt) {
+            $(rest[idx]).prop("checked", !$(this).is(":checked"));
+        });
+
+    }
+    allch.on("change","input[value='all']", checkboxHandler);
+
+
     return $.noConflict();
 });
+
