@@ -261,6 +261,10 @@ require(['jquery', 'slick'], function($, slick) {
             var notchecked = cheks.filter(function(item){
                 return !$(cheks[item]).is(":checked");
             });
+            cheks.each(function (idx, check) {
+               var text = $(cheks[idx]).text();
+               $(cheks[idx]).attr("title", text);
+            });
             if(notchecked.length === 0){
                 $(elem).find("input[value='all']").prop("checked", true);
             }
