@@ -303,7 +303,11 @@ require(['jquery', 'slick'], function($, slick) {
 
     $("#wise-search-form .button-field").addClass("btn");
 
-    return $.noConflict();
+    $("#tabs-wrapper ul li:first-child a").trigger('click');
+
+    return jQuery.noConflict();
 });
+
+
 
 
