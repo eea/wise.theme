@@ -255,6 +255,7 @@ require(['jquery', 'slick'], function($, slick) {
         if(hasChecks){
             var sp = '<span class="option"><input class="checkbox-widget required list-field" value="all" type="checkbox"><label for="form-widgets-member_states-0"><span class="label">All</span></label></span>';
             var par = $(cheks[0]).parent().parent();
+            // add "all" checkbox
             par.prepend(sp);
 
             var notchecked = cheks.filter(function(item){
@@ -281,9 +282,11 @@ require(['jquery', 'slick'], function($, slick) {
         $.each(rest, function (idx, elemt) {
             $(rest[idx]).prop("checked", !$(this).is(":checked"));
         });
-
     }
     allch.on("change","input[value='all']", checkboxHandler);
+    allch.on("click", ".option", function (ev){
+       $(ev.target).find("input[type='checkbox']").trigger('click');
+    });
 
     $("#wise-search-form select").each(function (ind, selectElement) {
         $(selectElement).addClass("js-example-basic-single");
