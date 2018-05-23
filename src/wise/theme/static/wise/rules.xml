@@ -104,7 +104,6 @@
   <replace css:theme-children=".login-container" css:content="#portal-personaltools-wrapper ul" />
   <before css:theme-children=".login-container" css:content="#portal-personaltools-wrapper dl dt a" />
 
-  <replace css:content="#portal-column-content" css:theme-children=".center-section" />
   <copy attributes="href title" css:content="#portal-logo" css:theme=".brand a" />
 
   <replace css:theme-children=".breadcrumbs" css:content="#portal-breadcrumbs" method="raw"/>
@@ -125,7 +124,39 @@
     <xsl:value-of select='//meta[@name="description"]/@content' />
   </replace>
 
-  <replace css:theme-children=".side-section" css:content="#portal-column-one" />
+  For MSFD-Search, copy the left-side buttons to the right side
+  <xsl:template match="*//node()[contains(@class, 'left-side-form')]" >
+    <xsl:for-each css:select=".formControls">
+      <xsl:copy-of select="current()" ></xsl:copy-of>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template css:match="#wise-search-form-top" >
+    <!-- Top here in the theme -->
+  </xsl:template>
+
+  <rules css:if-content="#wise-search-form">
+    <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
+
+    <replace css:theme-children=".center-section">
+      <div id="wise-search-form">
+
+        <xsl:for-each css:select="#wise-search-form-top">
+          <xsl:copy-of select="current()" ></xsl:copy-of>
+        </xsl:for-each>
+
+        <xsl:for-each css:select="#wise-search-form .left-side-form">
+          <xsl:copy-of select="current()" ></xsl:copy-of>
+        </xsl:for-each>
+      </div>
+    </replace>
+
+  </rules>
+
+  <rules css:if-not-content="#wise-search-form">
+    <replace css:content="#portal-column-content" css:theme-children=".center-section" />
+    <replace css:theme-children=".side-section" css:content="#portal-column-one" />
+  </rules>
 
   <append css:theme='body' css:content="script[data-diazo='google-analytics']" />
   <append css:theme='body' css:content="script[data-diazo-keep='true']" />
