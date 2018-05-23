@@ -255,7 +255,7 @@ require(['jquery', 'slick'], function($, slick) {
         var hasChecks = cheks.find("input[type='checkbox']").length > 0;
         if(hasChecks){
             var spAll = '<span class="option controls" style="display: inline-block;background-color: #ddd;padding: 2px ">' +
-                '<a class="" data-value="all"><label>' +
+                'Select : <a class="" data-value="all"><label>' +
                 '<span class="label">All</span></label></a>';
             var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
             var invertSel = '<a class="" data-value="invert"><label><span class="label">Inverse selection</span></label></span>';
