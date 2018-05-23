@@ -248,48 +248,97 @@ require(['jquery', 'slick'], function($, slick) {
     });
 
     var $fields = $("#wise-search-form").find("[data-fieldname]");
+    var exceptVal = ["all", "none", "invert"];
 
     $fields.each(function(indx, elem){
-        var cheks = $(elem).find("[type='checkbox']");
-        var hasChecks = cheks.length > 0;
+        var cheks = $(elem).find(".option");
+        var hasChecks = cheks.find("input[type='checkbox']").length > 0;
         if(hasChecks){
-            var sp = '<span class="option"><input class="checkbox-widget required list-field" value="all" type="checkbox"><label for="form-widgets-member_states-0"><span class="label">All</span></label></span>';
-            var par = $(cheks[0]).parent().parent();
-            // add "all" checkbox
-            par.prepend(sp);
+            var spAll = '<span class="option" style="display: inline-block;background-color: #ddd; "><input class="checkbox-widget required list-field" value="all" type="checkbox" checked><label for="form-widgets-member_states-0"><span class="label">All</span></label>';
+            var spClear = '<input class="checkbox-widget required list-field" value="none" type="checkbox"><label for="form-widgets-member_states-00"><span class="label">Clear all</span></label>';
+            var invertSel = '<input class="checkbox-widget required list-field" value="invert" type="checkbox"><label for="form-widgets-member_states-000"><span class="label">Inverse selection</span></label></span>';
 
-            var notchecked = cheks.filter(function(item){
-                return !$(cheks[item]).is(":checked");
-            });
+            var firstCheck = $(cheks[0]);
+
+            // add "all" checkbox
+            if(cheks.length > 4){
+                var all = spAll+spClear+invertSel;
+                firstCheck.before(all);
+                /*firstCheck.before(spAll);
+                firstCheck.before(invertSel);
+                firstCheck.before(spClear);*/
+            }
+
+            //tooltips
             cheks.each(function (idx, check) {
                var text = $(cheks[idx]).text();
-               $(cheks[idx]).attr("title", text);
+               $(cheks[idx]).attr("title", text.trim());
             });
-            if(notchecked.length === 0){
-                $(elem).find("input[value='all']").prop("checked", true);
-            }
+
         }
     });
 
     var allch = $("#wise-search-form").find("[data-fieldname]");
-    function checkboxHandler(){
-        var par = $(this).parent().parent();
-        var rest = $(par).find("[type='checkbox']");
-        rest = rest.filter(function (item) {
-            return $(this) !== $(item);
-        });
-        if($(this).is(":checked")){
-            $(this).prop("checked", false);
-        } else {
-            $(this).prop("checked", true);
-        }
-        $.each(rest, function (idx, elemt) {
-            $(rest[idx]).prop("checked", !$(this).is(":checked"));
+
+    function filterInvalidCheckboxes(cbxs){
+        return cbxs.filter(function (idx, item) {
+            return exceptVal.indexOf($(item).val()) === -1;
         });
     }
-    allch.on("change","input[value='all']", checkboxHandler);
+
+    function checkboxHandlerAll(ev){
+        ev.preventDefault();
+        var par = $(this).parent().parent();
+        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+        $.each(rest, function (idx, elemt) {
+            if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
+        });
+    }
+
+    function checkboxHandlerNone(ev){
+        ev.preventDefault();
+        $(this).prop("checked", false);
+        var par = $(this).parent().parent();
+        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+        $.each(rest, function (idx, elemt) {
+            $(rest[idx]).prop("checked", false);
+            //if( $(rest[idx]).val() !== "none")
+        });
+    }
+
+    function checkboxHandlerInvert(ev){
+        ev.preventDefault();
+        $(this).prop("checked", false);
+        var par = $(this).parent().parent();
+        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+        var checked = rest.filter(function (ind, item) {
+           return $(item).is(":checked");
+        });
+
+        var unchecked = rest.filter(function (ind, item) {
+            return !$(item).is(":checked");
+        });
+
+        $.each(checked, function (idx, elemt) {
+            $(checked[idx]).prop("checked", false);
+        });
+
+        $.each(unchecked, function (idx, elemt) {
+            $(unchecked[idx]).prop("checked", true);
+        });
+    }
+
+    allch.on("click","input[value='all']", checkboxHandlerAll);
+    allch.on("click", "input[value='none']", checkboxHandlerNone);
+    allch.on("click", "input[value='invert']", checkboxHandlerInvert);
+
+    // listener for click on the whole span
     allch.on("click", ".option", function (ev){
-       $(ev.target).find("input[type='checkbox']").trigger('click');
+        var checkboxV = $(this).find("input[type='checkbox']").val();
+        if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
     });
 
     $("#wise-search-form select").each(function (ind, selectElement) {
@@ -308,6 +357,8 @@ require(['jquery', 'slick'], function($, slick) {
     $("#wise-search-form .button-field").addClass("btn");
 
     $("#tabs-wrapper ul li:first-child a").trigger('click');
+
+
 
     return jQuery.noConflict();
 });
