@@ -1,64 +1,69 @@
 
-.wise-search-form-container dl,
-#wise-search-form dl {
+.wise-search-form-container dl
+{
   overflow: hidden;
 }
 
-.wise-search-form-container dt,
-#wise-search-form dt {
-  width: 20rem;
-  float: left;
-  clear: left;
-  border-right: 1px solid #CCC;
-  margin-top: 0.4rem;
-}
+.wise-search-form-container,
+#wise-search-form {
+  dl {
+    overflow: hidden;
+  }
 
-.wise-search-form-container dd,
-#wise-search-form dd {
-  float: left;
-  width: 48rem;
-  border-left: 1px solid #CCC;
-  margin-left: -1px;
-  margin-top: 0.4rem;
-  background-color: #EEE;
-  padding: 0.4rem;
-  max-height: 200px;
-  overflow: auto;
-}
+  dt {
+    width: 20rem;
+    float: left;
+    clear: left;
+    border-right: 1px solid #CCC;
+    margin-top: 0.4rem;
+  }
 
-.wise-search-form-container ul.nav,
-#wise-search-form ul.nav {
-  list-style-type: none !important;
-  display: inline-block;
-  border-bottom: none;
-  overflow: hidden;
-  margin-left: 0;
-}
+  dd {
+    float: left;
+    width: 48rem;
+    border-left: 1px solid #CCC;
+    margin-left: -1px;
+    margin-top: 0.4rem;
+    background-color: #EEE;
+    padding: 0.4rem;
+    max-height: 200px;
+    overflow: auto;
+  }
 
-.wise-search-form-container ul.nav li,
-#wise-search-form ul.nav li {
-  list-style-type: none !important;
-  display: inline-block;
-  float: left;
-  border: none;
-  background-color: #eeeeee;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  ul {
+    &.nav {
+      list-style-type: none !important;
+      display: inline-block;
+      border-bottom: none;
+      overflow: hidden;
+      margin-left: 0;
+    }
 
-  transition: background-color 0.5s ease-in;
-  -webkit-transition: background-color 0.5 ease-out;
-  -moz-transition: background-color 0.5s ease-out;
-  -o-transition: background-color 0.5s ease-out;
+    li {
+      list-style-type: none !important;
+      display: inline-block;
+      float: left;
+      border: none;
+      background-color: #eeeeee;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
 
-  /*padding-bottom: 99999px;
-  margin-bottom: -99999px;*/
-}
+      transition: background-color 0.5s ease-in;
+      -webkit-transition: background-color 0.5 ease-out;
+      -moz-transition: background-color 0.5s ease-out;
+      -o-transition: background-color 0.5s ease-out;
 
-.wise-search-form-container ul li:not(:first-child),
-#wise-search-form ul li:not(:first-child) {
-  margin-left: 2px;
+      /*padding-bottom: 99999px;
+      margin-bottom: -99999px;*/
+
+      &:not(:first-child){
+        margin-left: 2px;
+      }
+    }
+  }
+
 }
 
 .wise-search-form-container ul.nav li:hover,
@@ -254,14 +259,14 @@
   color: white;
 }
 
-.wise-search-form-container  ul.topnav li
+.wise-search-form-container  ul.topnav li,
 #wise-search-form ul.topnav li {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-cc > ul.topnav .tab-active,
-#wise-search-form > ul.topnav .tab-active {
+.wise-search-form-container > ul.topnav li.tab-active ,
+#wise-search-form  ul.topnav li.tab-active {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 0;
@@ -269,8 +274,8 @@ cc > ul.topnav .tab-active,
   background: #337ab7;
 }
 
-.wise-search-form-container  > ul.topnav .tab-active a
-#wise-search-form > ul.topnav .tab-active a {
+.wise-search-form-container  > ul.topnav .tab-active a,
+#wise-search-form ul.topnav .tab-active a {
   color: white;
 }
 
