@@ -1,4 +1,7 @@
 
+@controls-link-color : #337ab7;
+
+
 .wise-search-form-container dl
 {
   overflow: hidden;
@@ -211,7 +214,6 @@
 
 .option label {
   max-width: 80%;
-
   margin-bottom: 0;
   height: 100%;
   display: inline-block;
@@ -224,6 +226,29 @@
 
 .option label span{
   display: inline;
+}
+
+.option.controls a {
+  padding-left: 1%;
+  padding-right: 1%;
+
+  label {
+    margin-bottom: auto;
+    font-style: italic;
+
+    .label {
+      color: black;
+
+      &:hover {
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 .field > span {

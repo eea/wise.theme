@@ -254,16 +254,18 @@ require(['jquery', 'slick'], function($, slick) {
         var cheks = $(elem).find(".option");
         var hasChecks = cheks.find("input[type='checkbox']").length > 0;
         if(hasChecks){
-            var spAll = '<span class="option" style="display: inline-block;background-color: #ddd; "><input class="checkbox-widget required list-field" value="all" type="checkbox" checked><label for="form-widgets-member_states-0"><span class="label">All</span></label>';
-            var spClear = '<input class="checkbox-widget required list-field" value="none" type="checkbox"><label for="form-widgets-member_states-00"><span class="label">Clear all</span></label>';
-            var invertSel = '<input class="checkbox-widget required list-field" value="invert" type="checkbox"><label for="form-widgets-member_states-000"><span class="label">Inverse selection</span></label></span>';
+            var spAll = '<span class="option controls" style="display: inline-block;background-color: #ddd;padding: 2px ">' +
+                '<a class="" data-value="all"><label>' +
+                '<span class="label">All</span></label></a>';
+            var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
+            var invertSel = '<a class="" data-value="invert"><label><span class="label">Inverse selection</span></label></span>';
 
             var firstCheck = $(cheks[0]);
 
             // add "all" checkbox
             if(cheks.length > 4){
                 var all = spAll+spClear+invertSel;
-                firstCheck.before(all);
+                firstCheck.parent().before(all);
                 /*firstCheck.before(spAll);
                 firstCheck.before(invertSel);
                 firstCheck.before(spClear);*/
@@ -331,9 +333,9 @@ require(['jquery', 'slick'], function($, slick) {
         });
     }
 
-    allch.on("click","input[value='all']", checkboxHandlerAll);
-    allch.on("click", "input[value='none']", checkboxHandlerNone);
-    allch.on("click", "input[value='invert']", checkboxHandlerInvert);
+    $(".option.controls").on("click","a[data-value='all']", checkboxHandlerAll);
+    $(".option.controls").on("click", "a[data-value='none']", checkboxHandlerNone);
+    $(".option.controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
 
     // listener for click on the whole span
     allch.on("click", ".option", function (ev){
@@ -360,6 +362,19 @@ require(['jquery', 'slick'], function($, slick) {
 
     $("#tabs-wrapper ul li:first-child a").trigger('click');
 
+    var prevButton = $(".center-section [name='form.buttons.prev']");
+
+    var nextButton = $(".center-section [name='form.buttons.next']");
+
+
+    $(".wise-search-form-container [name='form.buttons.prev']").hide();
+    $(".wise-search-form-container [name='form.buttons.next']").hide();
+    prevButton.one("click", function (){
+        $(".wise-search-form-container [name='form.buttons.prev']").trigger("click");
+    });
+    nextButton.one("click", function(){
+        $(".wise-search-form-container [name='form.buttons.next']").trigger("click");
+    });
 
 
     return jQuery.noConflict();
