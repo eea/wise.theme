@@ -247,7 +247,7 @@ require(['jquery', 'slick'], function($, slick) {
         // };
     });
 
-    var $fields = $("#wise-search-form").find("[data-fieldname]");
+    var $fields = $(".wise-search-form-container").find("[data-fieldname]");
     var exceptVal = ["all", "none", "invert"];
 
     $fields.each(function(indx, elem){
@@ -278,7 +278,7 @@ require(['jquery', 'slick'], function($, slick) {
         }
     });
 
-    var allch = $("#wise-search-form").find("[data-fieldname]");
+    var allch = $(".wise-search-form-container").find("[data-fieldname]");
 
     function filterInvalidCheckboxes(cbxs){
         return cbxs.filter(function (idx, item) {
@@ -341,12 +341,14 @@ require(['jquery', 'slick'], function($, slick) {
         if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
     });
 
-    $("#wise-search-form select").each(function (ind, selectElement) {
+    $(".wise-search-form-container select").each(function (ind, selectElement) {
         $(selectElement).addClass("js-example-basic-single");
         var lessOptions = $(selectElement).find("option").length < 10;
         var options = {
             placeholder: 'Select an option',
             closeOnSelect: true,
+            dropdownAutoWidth : true,
+            width: '100%',
             theme: "flat"
         };
         if(lessOptions) options.minimumResultsForSearch = Infinity;
@@ -354,7 +356,7 @@ require(['jquery', 'slick'], function($, slick) {
         $(selectElement).select2(options);
     });
 
-    $("#wise-search-form .button-field").addClass("btn");
+    $(".button-field").addClass("btn");
 
     $("#tabs-wrapper ul li:first-child a").trigger('click');
 
