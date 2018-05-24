@@ -124,7 +124,10 @@
     <xsl:value-of select='//meta[@name="description"]/@content' />
   </replace>
 
-  For MSFD-Search, copy the left-side buttons to the right side
+
+  == MSFD-Search section ==
+
+  <!-- When copying content to right side, only do the fields and buttons -->
   <xsl:template match="*//node()[contains(@class, 'left-side-form')]" >
     <xsl:for-each css:select=".field">
       <xsl:copy-of select="current()" ></xsl:copy-of>
@@ -134,13 +137,15 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template css:match="#wise-search-form-top" >
-    <!-- Top here in the theme -->
-  </xsl:template>
+  <!-- Remove the nav pills from the sidebar -->
+  <xsl:template css:match="#wise-search-form-top" ></xsl:template>
 
   <rules css:if-content="#wise-search-form">
+
+    <!-- Copy everything to the right side -->
     <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
 
+    <!-- Recreate the main content side with specially selected content -->
     <replace css:theme-children=".center-section">
       <div id="wise-search-form">
 
