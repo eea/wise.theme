@@ -262,12 +262,12 @@ require(['jquery', 'slick'], function($, slick) {
             if(hasChecks){
                 var fieldId = $(field).attr("id");
 
-                var spAll = '<span class="option controls " style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
+                var spAll = '<span class="controls " style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
                     'padding-left: 8px; ">' +
                     '<span>Select :</span><a class="" data-value="all"><label>' +
                     '<span class="label">All</span></label></a>';
                 var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
-                var invertSel = '<a class="" data-value="invert"><label><span class="label">Inverse selection</span></label></span>';
+                var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></span>';
 
                 // add "all" checkbox
                 var all = spAll + spClear + invertSel;
@@ -286,7 +286,7 @@ require(['jquery', 'slick'], function($, slick) {
                 var chekspan = $(field).find("> span:not(.controls)");
                 chekspan.addClass( fieldId + "-collapse");
                 chekspan.addClass("collapse");
-                var checked = filterInvalidCheckboxes($(field).find(".option:not(.controls) input[type='checkbox']:checked"));
+                var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
                 console.log(checked.length);
 
                 if(checked.length === 0) {
@@ -297,7 +297,7 @@ require(['jquery', 'slick'], function($, slick) {
                         toggle: true
                     });
                 }  else {
-                    $(field).find(".option.controls").slideUp("fast");
+                    $(field).find(".controls").slideUp("fast");
                     chekspan.collapse({
                         toggle: false
                     });
@@ -309,14 +309,15 @@ require(['jquery', 'slick'], function($, slick) {
 
                 chekspan.on("hidden.bs.collapse", function (ev) {
                     chekspan.fadeOut("fast");
-                   $(field).find(".option.controls").slideUp("fast");
+                   $(field).find(".controls").slideUp("fast");
                    console.log($(field));
                    $(field).css({"border-bottom" : "1px solid #ccc;"});
                 });
 
                 chekspan.on("show.bs.collapse", function (ev) {
                     chekspan.fadeIn("fast");
-                    $(field).find(".option.controls").slideDown("fast");
+                    $(field).find(".controls").slideDown("fast");
+                    $(field).find("> span").css({"display" : "block"});
                     //$(field).css({"border-bottom" : "none"});
                 });
 

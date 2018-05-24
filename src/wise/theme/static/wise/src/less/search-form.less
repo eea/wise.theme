@@ -174,6 +174,8 @@
   }
 
   .field {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+
     .option:nth-child(even) {
       background-color: @checkbox-other-color;
     }
@@ -184,10 +186,11 @@
 @checkboxes-radius: 3px;
 @checkboxes-box-shadow: rgba(3,3,3,0.05);
 
-.option {
+ .option {
   display: block;
   width: 100%;
-
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
   /* checkbox styling*/
 
   input[type='checkbox'] {
@@ -247,50 +250,63 @@
     }
   }
 
-  &.controls {
-    a {
-      padding-left: 1%;
-      padding-right: 1%;
 
-      label {
-        margin-bottom: auto;
+}
 
-        .label {
-          color: black;
+.controls {
+  display: block;
+  width: 100%;
+  border:none;
+  padding-left: 5px;
 
-          &:hover {
-            color: white;
-            cursor: pointer;
-          }
-        }
+  label {
+    max-width: 80%;
+    margin-bottom: 0;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    span {
+      display: inline;
+    }
+  }
+
+  a {
+    padding-left: 1%;
+    padding-right: 1%;
+
+    label {
+      margin-bottom: auto;
+
+      .label {
+        color: black;
 
         &:hover {
           color: white;
+          cursor: pointer;
         }
+      }
+
+      &:hover {
+        color: white;
       }
     }
   }
 }
 
 .field {
-
   & > span {
-
     /**/
-
-    &:not(.controls){
       max-height: 150px;
-      border: 1px solid rgba(0,0,0,0.1);
+      /*border: 1px solid rgba(0,0,0,0.1);*/
       /*display: block;*/
       position: relative;
       overflow-y: auto;
       overflow-x: hidden;
-    }
-
-    &.controls {
-      border:none;
-      padding-left: 5px;
-    }
   }
 
   label.horizontal {
