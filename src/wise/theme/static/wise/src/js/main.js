@@ -65,6 +65,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(document).ready(function() {
 
+
         var $menu_items = $('.menu .navmenu-item > a');
 
         $menu_items.each(function(index, value) {
@@ -250,36 +251,78 @@ require(['jquery', 'slick'], function($, slick) {
     var $fields = $(".wise-search-form-container").find("[data-fieldname]");
     var exceptVal = ["all", "none", "invert"];
 
-    $fields.each(function(indx, elem){
-        var cheks = $(elem).find(".option");
-        var hasChecks = cheks.find("input[type='checkbox']").length > 0;
-        if(hasChecks){
-            var spAll = '<span class="option controls" style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
-                'padding-left: 8px; ">' +
-                'Select : <a class="" data-value="all"><label>' +
-                '<span class="label">All</span></label></a>';
-            var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
-            var invertSel = '<a class="" data-value="invert"><label><span class="label">Inverse selection</span></label></span>';
 
-            var firstCheck = $(cheks[0]);
 
-            // add "all" checkbox
-            if(cheks.length > 4){
-                var all = spAll+spClear+invertSel;
-                firstCheck.parent().before(all);
-                /*firstCheck.before(spAll);
-                firstCheck.before(invertSel);
-                firstCheck.before(spClear);*/
+    function generateCheckboxes(){
+        var count = $fields.length;
+        $fields.each(function(indx, field){
+
+            var cheks = $(field).find(".option");
+            var hasChecks = cheks.find("input[type='checkbox']").length > 0;
+            if(hasChecks){
+                var fieldId = $(field).attr("id");
+
+                var spAll = '<span class="option controls " style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
+                    'padding-left: 8px; ">' +
+                    '<span>Select :</span><a class="" data-value="all"><label>' +
+                    '<span class="label">All</span></label></a>';
+                var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
+                var invertSel = '<a class="" data-value="invert"><label><span class="label">Inverse selection</span></label></span>';
+
+                // add "all" checkbox
+                var all = spAll + spClear + invertSel;
+                $(field).find("> label.horizontal").after(all);
+
+                if(cheks.length < 4) {
+                    $(field).find(".controls").hide();
+                }
+
+                //tooltips
+                cheks.each(function (idx, check) {
+                    var text = $(cheks[idx]).text();
+                    $(cheks[idx]).attr("title", text.trim());
+                });
+
+                var chekspan = $(field).find("> span:not(.controls)");
+                chekspan.addClass( fieldId + "-collapse");
+                chekspan.addClass("collapse");
+                var checked = filterInvalidCheckboxes($(field).find(".option:not(.controls) input[type='checkbox']:checked"));
+                console.log(checked.length);
+
+                if(checked.length === 0) {
+
+                    chekspan.collapse({
+                        toggle: true
+                    });
+                }  else {
+                    $(field).find(".option.controls").slideUp("fast");
+                    chekspan.collapse({
+                        toggle: false
+                    });
+                }
+
+                var label = $(field).find(".horizontal");
+                label.attr("data-toggle", "collapse");
+                label.attr("data-target", "." + fieldId + "-collapse" );
+
+                chekspan.on("hidden.bs.collapse", function (ev) {
+                   $(field).find(".option.controls").slideUp("fast");
+                });
+
+                chekspan.on("show.bs.collapse", function (ev) {
+                    $(field).find(".option.controls").slideDown("fast");
+                });
+
             }
 
-            //tooltips
-            cheks.each(function (idx, check) {
-               var text = $(cheks[idx]).text();
-               $(cheks[idx]).attr("title", text.trim());
-            });
+            if (!--count) $(".wise-search-form-container").animate({"opacity" : 1}, 1000);
 
-        }
-    });
+        });
+
+    }
+
+    generateCheckboxes();
+
 
     var allch = $(".wise-search-form-container").find("[data-fieldname]");
 
@@ -370,6 +413,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(".wise-search-form-container [name='form.buttons.prev']").hide();
     $(".wise-search-form-container [name='form.buttons.next']").hide();
+
     prevButton.one("click", function (){
         $(".wise-search-form-container [name='form.buttons.prev']").trigger("click");
     });
@@ -377,11 +421,23 @@ require(['jquery', 'slick'], function($, slick) {
         $(".wise-search-form-container [name='form.buttons.next']").trigger("click");
     });
 
-
     return jQuery.noConflict();
-    //return {};
 });
 
+// AJAX request interception
+/*(function(open) {
 
+    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+
+        this.addEventListener("readystatechange", function() {
+            console.log("########### intercepted request #####################");
+            console.log(method);
+            console.log(url); // this one I changed
+        }, false);
+
+        open.call(this, method, url, async, user, pass);
+    };
+
+})(XMLHttpRequest.prototype.open);*/
 
 

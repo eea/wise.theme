@@ -1,5 +1,5 @@
 @import "./bootstrap/variables.less";
-@dark-theme-color:  #337ab;
+@dark-theme-color:  #337ab7;
 @controls-link-color : @dark-theme-color;
 @border-bottom-color-tabs: @dark-theme-color;
 @checkbox-other-color: #f0f6f9;
@@ -19,8 +19,15 @@
   overflow: hidden;
 }
 
+.wise-search-form-container {
+  opacity:0;
+}
+
 .wise-search-form-container,
 #wise-search-form {
+
+
+
   dl {
     overflow: hidden;
   }
@@ -52,7 +59,6 @@
       /*border-bottom: none;*/
       overflow: hidden;
       margin-left: 0;
-
 
       li {
         &:hover {
@@ -168,7 +174,7 @@
     }
   }
 
-  .field > span {
+  .field {
     .option:nth-child(even) {
       background-color: @checkbox-other-color;
     }
@@ -268,24 +274,43 @@
 }
 
 .field {
-  & > span:last-child {
-
-  }
 
   & > span {
-    border: 1px solid rgba(0,0,0,0.1);
-    display: block;
-    position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
-    max-height: 150px;
+
+    /**/
+
+    &:not(.controls){
+      max-height: 150px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      /*display: block;*/
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
 
     &.controls {
       border:none;
       padding-left: 5px;
     }
   }
+
+  label.horizontal {
+    width: 100%;
+
+    &:after {
+      content: none;
+      /*content: '\f053';*/
+    }
+
+    span.required span:after {
+      content: none;
+    }
+
+    &.collapsed {
+      border: 1px solid @dark-theme-color;
+    }
+  }
+
 
 
 }
