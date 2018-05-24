@@ -290,7 +290,9 @@ require(['jquery', 'slick'], function($, slick) {
                 console.log(checked.length);
 
                 if(checked.length === 0) {
-
+                    chekspan.collapse({
+                        toggle: true
+                    });
                     chekspan.collapse({
                         toggle: true
                     });
@@ -306,11 +308,16 @@ require(['jquery', 'slick'], function($, slick) {
                 label.attr("data-target", "." + fieldId + "-collapse" );
 
                 chekspan.on("hidden.bs.collapse", function (ev) {
+                    chekspan.fadeOut("fast");
                    $(field).find(".option.controls").slideUp("fast");
+                   console.log($(field));
+                   $(field).css({"border-bottom" : "1px solid #ccc;"});
                 });
 
                 chekspan.on("show.bs.collapse", function (ev) {
+                    chekspan.fadeIn("fast");
                     $(field).find(".option.controls").slideDown("fast");
+                    //$(field).css({"border-bottom" : "none"});
                 });
 
             }
