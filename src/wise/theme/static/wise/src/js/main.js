@@ -378,6 +378,7 @@ require(['jquery', 'slick'], function($, slick) {
 
 
     return jQuery.noConflict();
+    //return {};
 });
 
 
