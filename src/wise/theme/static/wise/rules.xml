@@ -126,6 +126,9 @@
 
   For MSFD-Search, copy the left-side buttons to the right side
   <xsl:template match="*//node()[contains(@class, 'left-side-form')]" >
+    <xsl:for-each css:select=".field">
+      <xsl:copy-of select="current()" ></xsl:copy-of>
+    </xsl:for-each>
     <xsl:for-each css:select=".formControls">
       <xsl:copy-of select="current()" ></xsl:copy-of>
     </xsl:for-each>
