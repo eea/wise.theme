@@ -264,7 +264,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                 var spAll = '<span class="controls " style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
                     'padding-left: 8px; ">' +
-                    '<span>Select :</span><a class="" data-value="all"><label>' +
+                    '<span style="font-size: 0.8em">Select :</span><a class="" data-value="all"><label>' +
                     '<span class="label">All</span></label></a>';
                 var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
                 var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></span>';

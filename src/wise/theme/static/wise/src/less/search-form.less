@@ -259,42 +259,29 @@
   border:none;
   padding-left: 5px;
 
-  label {
-    max-width: 80%;
-    margin-bottom: 0;
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    span {
-      display: inline;
-    }
+  .label {
+    color: black;
+    font-size: 0.9em;
+    display: inline;
   }
 
   a {
     padding-left: 1%;
     padding-right: 1%;
 
-    label {
-      margin-bottom: auto;
+    .label {
+       color: black;
 
-      .label {
-        color: black;
-
-        &:hover {
-          color: white;
-          cursor: pointer;
+       &:hover {
+         color: white;
+         cursor: pointer;
         }
-      }
-
-      &:hover {
-        color: white;
-      }
     }
+
+    &:hover {
+      color: white;
+    }
+
   }
 }
 
@@ -393,7 +380,7 @@
   margin-left: 0;
 }
 
-@media (min-width: @screen-md-min) and (max-width: @screen-lg-min){
+@media (min-width: @screen-md-max) and (max-width: @screen-lg-min){
   .wise-search-form-container > ul.topnav li,
   #wise-search-form > ul.topnav li {
     width: 30%;
@@ -420,5 +407,11 @@
   #wise-search-form dd {
     max-height: auto;
     max-width: 100%;
+  }
+}
+
+@media (max-width: @screen-md-min){
+  .toggle-sidebar {
+    margin-bottom: 20px;
   }
 }
