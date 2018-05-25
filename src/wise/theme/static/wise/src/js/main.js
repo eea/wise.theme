@@ -287,7 +287,6 @@ require(['jquery', 'slick'], function($, slick) {
                 chekspan.addClass( fieldId + "-collapse");
                 chekspan.addClass("collapse");
                 var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
-                console.log(checked.length);
 
                 if(checked.length === 0) {
                     chekspan.collapse({
@@ -403,12 +402,20 @@ require(['jquery', 'slick'], function($, slick) {
             closeOnSelect: true,
             dropdownAutoWidth : true,
             width: '100%',
-            theme: "flat"
+            theme: "flat",
         };
         if(lessOptions) options.minimumResultsForSearch = Infinity;
 
         $(selectElement).select2(options);
+
+        $(selectElement).on("select2-selecting", function(ev) {
+            // what you would like to happen
+            if($(this).val() !== ev.choice.id) $(ev.target).parent().parent().next().remove();
+
+        });
     });
+
+
 
     $(".button-field").addClass("btn");
 
