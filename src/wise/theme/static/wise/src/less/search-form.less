@@ -16,7 +16,10 @@
 
 .wise-search-form-container dl
 {
-  overflow: hidden;
+  /*overflow: hidden;*/
+  display: flex;
+  flex-flow: row wrap;
+
 }
 
 .wise-search-form-container {
@@ -28,27 +31,34 @@
 
   dl {
     overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
   }
 
   dt {
     width: 20rem;
     float: left;
     clear: left;
-    border-right: 1px solid #CCC;
+    /*border-right: 1px solid #CCC;*/
     margin-top: 0.4rem;
   }
 
   dd {
     float: left;
     max-width: 62rem;
-    border-left: 1px solid #CCC;
+    /*border-left: 1px solid #CCC;*/
     margin-left: -1px;
     margin-top: 0.4rem;
     background-color: #EEE;
     padding: 0.4rem;
+    padding-left: 0.6rem;
     max-height: 200px;
     overflow: auto;
     width: 100%;
+
+    .vendor-prefix(box-shadow , inset 1px 0px 1px rgba(0,0,0,0.1));
+
+
   }
 
   ul {
