@@ -413,6 +413,7 @@ require(['jquery', 'slick'], function($, slick) {
     $(".button-field").addClass("btn");
 
     $("#tabs-wrapper ul li:first-child a").trigger('click');
+    $(".tabs-wrapper ul li:first-child a").trigger('click');
 
     var prevButton = $(".center-section [name='form.buttons.prev']");
 

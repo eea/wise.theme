@@ -378,7 +378,16 @@
 .wise-search-form-container div.formControls,
 #wise-search-form div.formControls {
   margin-left: 0;
+  position: relative;
 }
+
+#wise-search-form div.formControls {
+  [name="form.buttons.next"] {
+    position: absolute;
+    right: 0;
+  }
+}
+
 
 @media (min-width: @screen-md-max) and (max-width: @screen-lg-min){
   .wise-search-form-container > ul.topnav li,
