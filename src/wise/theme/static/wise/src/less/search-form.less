@@ -186,6 +186,11 @@
   .field {
     border-bottom: 1px solid rgba(0,0,0,0.1);
 
+    &.error {
+      background-color: transparent;
+      border: inherit;
+    }
+
     .option:nth-child(even) {
       background-color: @checkbox-other-color;
     }
