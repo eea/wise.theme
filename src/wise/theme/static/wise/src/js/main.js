@@ -438,10 +438,12 @@ require(['jquery', 'slick'], function($, slick) {
 
     XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
 
-        this.addEventListener("readystatechange", function() {
-            console.log("########### intercepted request #####################");
+        this.addEventListener("readystatechange", function(ev) {
+            /!*console.log("########### intercepted request #####################");
             console.log(method);
-            console.log(url); // this one I changed
+            console.log(url);*!/
+
+            console.log(ev.target);
         }, false);
 
         open.call(this, method, url, async, user, pass);

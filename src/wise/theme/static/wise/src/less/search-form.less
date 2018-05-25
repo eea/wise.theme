@@ -112,12 +112,14 @@
             border-left: none;
             border-right: none;
             color: white;
+            border-top: none;
 
             &:hover {
               color: white;
               background-color: transparent;
               border-left: none;
               border-right: none;
+              border-top: none;
             }
           }
         }
@@ -155,7 +157,8 @@
   }
 
   .tab-content {
-    border-top: 1px solid rgb(204, 204, 204);
+    border-top: 1px solid #cccccc;
+    padding-top: 10px;
   }
 
   & > ul {
@@ -384,6 +387,10 @@
 .extra-details {
   border-top: 1px solid #CCC;
   padding-top: 1rem;
+
+  h4:not(:first-child) {
+    padding-top: 10px;
+  }
 }
 .label {
   color: Black;
