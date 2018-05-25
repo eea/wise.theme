@@ -385,9 +385,9 @@ require(['jquery', 'slick'], function($, slick) {
         });
     }
 
-    $(".option.controls").on("click","a[data-value='all']", checkboxHandlerAll);
-    $(".option.controls").on("click", "a[data-value='none']", checkboxHandlerNone);
-    $(".option.controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
+    $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
+    $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
+    $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
 
     // listener for click on the whole span
     allch.on("click", ".option", function (ev){
