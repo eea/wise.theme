@@ -409,8 +409,9 @@ require(['jquery', 'slick'], function($, slick) {
         $(selectElement).select2(options);
 
         $(selectElement).on("select2-selecting", function(ev) {
+
             // what you would like to happen
-            if($(this).val() !== ev.choice.id) $(ev.target).parent().parent().next().remove();
+            //if($(this).val() !== ev.choice.id && ) $(ev.target).parent().parent().next().remove();
 
         });
     });
