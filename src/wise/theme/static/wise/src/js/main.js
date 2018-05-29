@@ -438,7 +438,8 @@ require(['jquery', 'slick'], function($, slick) {
             width: '100%',
             theme: "flat",
             minimumResultsForSearch: Infinity,
-            containerCssClass : "select2-top-override"
+            containerCssClass : "select2-top-override",
+            dropdownCssClass: "select2-top-override-dropdown"
         };
 
         $(selectElement).select2(options);
@@ -479,9 +480,10 @@ require(['jquery', 'slick'], function($, slick) {
 
     var topPrevBtn = $("#form-buttons-prev").clone(true);
     $("#form-buttons-prev-top").append(topPrevBtn);
+    $("#form-buttons-prev-top .btn").css({"margin-right": "20px"})
 
-    var topPrevBtn = $("#form-buttons-next").clone(true);
-    $("#form-buttons-next-top").append(topPrevBtn);
+    var topNextBtn = $("#form-buttons-next").clone(true);
+    $("#form-buttons-next-top").append(topNextBtn);
 
 
 
