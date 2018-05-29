@@ -477,6 +477,15 @@ require(['jquery', 'slick'], function($, slick) {
         $(".wise-search-form-container").find("[name='form.buttons.next']").trigger("click");
     });
 
+
+    var topPrevBtn = $("#form-buttons-prev").clone(true);
+    $("#form-buttons-prev-top").append(topPrevBtn);
+
+    var topPrevBtn = $("#form-buttons-next").clone(true);
+    $("#form-buttons-next-top").append(topPrevBtn);
+
+
+
     return jQuery.noConflict();
 });
 
