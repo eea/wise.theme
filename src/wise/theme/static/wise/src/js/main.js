@@ -418,7 +418,7 @@ require(['jquery', 'slick'], function($, slick) {
             //var par = $(ev.target).parentsUntil(".subform").next();
 
             if( $(this).attr("id") === "form-widgets-article" ) {
-                $(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");
+                /*$(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");*/
             } else {
                 //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
             }
@@ -431,15 +431,15 @@ require(['jquery', 'slick'], function($, slick) {
 
     $("#wise-search-form select").each(function (ind, selectElement) {
         $(selectElement).addClass("js-example-basic-single");
-        var lessOptions = $(selectElement).find("option").length < 10;
         var options = {
             placeholder: 'Select an option',
             closeOnSelect: true,
             dropdownAutoWidth : true,
             width: '100%',
             theme: "flat",
+            minimumResultsForSearch: Infinity,
+            containerCssClass : "select2-top-override"
         };
-        if(lessOptions) options.minimumResultsForSearch = Infinity;
 
         $(selectElement).select2(options);
 
@@ -449,7 +449,6 @@ require(['jquery', 'slick'], function($, slick) {
 
         });
     });
-
 
 
     $(".button-field").addClass("btn");
