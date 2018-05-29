@@ -392,6 +392,9 @@ require(['jquery', 'slick'], function($, slick) {
     allch.on("click", ".option", function (ev){
         var checkboxV = $(this).find("input[type='checkbox']").val();
         if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
+
+        console.log( $(this).parentsUntil(".form-right-side") );
+
     });
 
     $(".wise-search-form-container select").each(function (ind, selectElement) {
@@ -408,10 +411,41 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(selectElement).select2(options);
 
-        $(selectElement).on("select2-selecting", function(ev) {
 
+        $(selectElement).on("select2-selecting", function(ev) {
             // what you would like to happen
-            //if($(this).val() !== ev.choice.id && ) $(ev.target).parent().parent().next().remove();
+            //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
+            //var par = $(ev.target).parentsUntil(".subform").next();
+
+            if( $(this).attr("id") === "form-widgets-article" ) {
+                $(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");
+            } else {
+                //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
+            }
+            //$(this).parentsUntil(".form-right-side").nextUntil(".form-right-side").remove(":not('.formControls')");
+
+            //par.remove(":not('.formControls')");
+
+        });
+    });
+
+    $("#wise-search-form select").each(function (ind, selectElement) {
+        $(selectElement).addClass("js-example-basic-single");
+        var lessOptions = $(selectElement).find("option").length < 10;
+        var options = {
+            placeholder: 'Select an option',
+            closeOnSelect: true,
+            dropdownAutoWidth : true,
+            width: '100%',
+            theme: "flat",
+        };
+        if(lessOptions) options.minimumResultsForSearch = Infinity;
+
+        $(selectElement).select2(options);
+
+        $(selectElement).on("select2-selecting", function(ev) {
+            console.log( ev.val );
+            console.log(ev);
 
         });
     });
@@ -427,15 +461,20 @@ require(['jquery', 'slick'], function($, slick) {
 
     var nextButton = $(".center-section [name='form.buttons.next']");
 
-
-    $(".wise-search-form-container [name='form.buttons.prev']").hide();
-    $(".wise-search-form-container [name='form.buttons.next']").hide();
-
     prevButton.one("click", function (){
-        $(".wise-search-form-container [name='form.buttons.prev']").trigger("click");
+        var appBtn = prevButton.clone();
+        $(appBtn).attr("class","").hide();
+
+        $(".wise-search-form-container").find(".formControls").append(appBtn);
+        $(".wise-search-form-container").find("[name='form.buttons.prev']").trigger("click");
+
     });
     nextButton.one("click", function(){
-        $(".wise-search-form-container [name='form.buttons.next']").trigger("click");
+        var appBtn = nextButton.clone();
+        $(appBtn).attr("class","").hide();
+
+        $(".wise-search-form-container").find(".formControls").append(appBtn);
+        $(".wise-search-form-container").find("[name='form.buttons.next']").trigger("click");
     });
 
     return jQuery.noConflict();
