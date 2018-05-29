@@ -393,7 +393,7 @@ require(['jquery', 'slick'], function($, slick) {
         var checkboxV = $(this).find("input[type='checkbox']").val();
         if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
 
-        console.log( $(this).parentsUntil(".form-right-side") );
+         //$(this).parentsUntil(".form-right-side") );
 
     });
 
@@ -445,8 +445,8 @@ require(['jquery', 'slick'], function($, slick) {
         $(selectElement).select2(options);
 
         $(selectElement).on("select2-selecting", function(ev) {
-            console.log( ev.val );
-            console.log(ev);
+            $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
+            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
         });
     });
