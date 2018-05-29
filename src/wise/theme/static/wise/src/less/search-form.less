@@ -45,7 +45,7 @@
 
   dd {
     float: left;
-    max-width: 62rem;
+    max-width: 63rem;
     /*border-left: 1px solid #CCC;*/
     margin-left: -1px;
     margin-top: 0.4rem;
@@ -57,8 +57,10 @@
     width: 100%;
 
     .vendor-prefix(box-shadow , inset 1px 0px 1px rgba(0,0,0,0.1));
+  }
 
-
+  table.listing {
+    width: 100%;
   }
 
   ul {
@@ -70,6 +72,9 @@
       margin-left: 0;
 
       li {
+
+
+
         &:hover {
           background-color: #006699;
           border-right: none;
@@ -161,16 +166,20 @@
     padding-top: 10px;
   }
 
-  & > ul {
+  &  ul {
     &.topnav {
       list-style-type: none !important;
       margin: 0 auto;
       width: 100%;
       overflow: hidden;
-      border-bottom: 1px solid @dark-theme-color;
+      border-bottom: 1px solid #ccc;
 
       li {
         background-color: #eeeeee;
+
+        max-width: 32%;
+        padding-bottom: 9999px;
+        margin-bottom: -9999px;
 
         list-style-type: none !important;
         border-top-left-radius: 10px;
@@ -410,6 +419,25 @@
   }
 }
 
+#form-buttons-next-row {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  right: 0;
+}
+
+#form-buttons-prev-row {
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+#prev-next-row {
+  margin: 0;
+  display: block;
+  height: auto;
+  margin-bottom: 30px;
+
+}
 
 @media (min-width: @screen-md-max) and (max-width: @screen-lg-min){
   .wise-search-form-container > ul.topnav li,

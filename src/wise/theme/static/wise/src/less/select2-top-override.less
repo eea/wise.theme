@@ -1,3 +1,5 @@
+@import "./bootstrap/variables.less";
+
 .select2-top-override {
     &.select2-container{
       border: none;
@@ -25,5 +27,30 @@
     }
   }
 
+}
+
+@media (max-width: @screen-md-min){
+  .select2-top-override {
+    &.select2-container{
+      margin-right: 0px;
+
+      .select2-choice {
+        font-size: 1em;
+        padding-left: 0;
+      }
+    }
+  }
+
+  .select2-top-override-dropdown {
+
+    .select2-results {
+
+
+      li {
+        font-size: 1em;
+      }
+    }
+
+  }
 }
 
