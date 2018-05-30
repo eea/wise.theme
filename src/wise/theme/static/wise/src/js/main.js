@@ -330,11 +330,8 @@ require(['jquery', 'slick'], function($, slick) {
                         },600);
                     });
                 }
-
             }
-
             if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
-
         });
 
     }
@@ -358,6 +355,8 @@ require(['jquery', 'slick'], function($, slick) {
         $.each(rest, function (idx, elemt) {
             if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
         });
+
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
     }
 
     function checkboxHandlerNone(ev){
@@ -370,6 +369,8 @@ require(['jquery', 'slick'], function($, slick) {
             $(rest[idx]).prop("checked", false);
             //if( $(rest[idx]).val() !== "none")
         });
+
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
     }
 
     function checkboxHandlerInvert(ev){
@@ -393,6 +394,8 @@ require(['jquery', 'slick'], function($, slick) {
         $.each(unchecked, function (idx, elemt) {
             $(unchecked[idx]).prop("checked", true);
         });
+
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
     }
 
     $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
@@ -404,6 +407,7 @@ require(['jquery', 'slick'], function($, slick) {
         var checkboxV = $(this).find("input[type='checkbox']").val();
         if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
 
+        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
          //$(this).parentsUntil(".form-right-side") );
 
     });

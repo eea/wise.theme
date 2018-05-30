@@ -1,4 +1,7 @@
 @import "./bootstrap/variables.less";
+
+
+
 @dark-theme-color:  #337ab7;
 @controls-link-color : @dark-theme-color;
 @border-bottom-color-tabs: @dark-theme-color;
@@ -31,34 +34,47 @@
   }
 }
 
-.panel-heading .accordion-toggle.accordion-after:after {
-  content: "\e114";
-  webkit-transition: content 0.8s;
-  -moz-transition: content 0.8s;
-  transition: content 0.8s;
-}
-
-
-.panel-heading .accordion-toggle:after {
-  webkit-transition: content 0.8s;
-  -moz-transition: content 0.8s;
-  transition: content 0.8s;
-  /* symbol for "opening" panels */
-  font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
-  content: "\e080";
-  /*content: "\e114";*/    /* adjust as needed, taken from bootstrap.css */
-  float: right;        /* adjust as needed */
-  color: grey;         /* adjust as needed */
-}
-
-.panel-heading .accordion-toggle.collapsed:after {
-  /* symbol for "collapsed" panels */
-  content: "\e080";    /* adjust as needed, taken from bootstrap.css */
-}
-
 
 .wise-search-form-container,
 #wise-search-form {
+
+  .subform {
+    margin-top: 30px;
+  }
+
+  .panel-heading .accordion-toggle.accordion-after:after {
+    /*content: "\e114";*/
+    content: "\f107";
+
+    webkit-transition: content 0.8s;
+    -moz-transition: content 0.8s;
+    transition: content 0.8s;
+  }
+
+  .panel-heading .accordion-toggle:after {
+    webkit-transition: content 0.8s;
+    -moz-transition: content 0.8s;
+    transition: content 0.8s;
+    /* symbol for "opening" panels */
+    /*font-family: 'Glyphicons Halflings';*/  /* essential for enabling glyphicon */
+    content: "\f105";
+    font-family: FontAwesome;
+    font-weight: 700;
+    /*content: "\e080"*/;
+    /*content: "\e114";*/    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+  }
+
+  .panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+  }
+
+  .panel-group {
+    margin-bottom: 10px;
+  }
+
 
   dl {
     overflow: hidden;
@@ -342,6 +358,9 @@
 }
 
 .field {
+
+  margin-bottom: 20px;
+
   & > span {
     /**/
       max-height: 150px;
@@ -355,6 +374,8 @@
   label.horizontal {
     width: 100%;
     padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 2px;
 
     &:after {
       content: none;
@@ -368,6 +389,15 @@
     &.collapsed {
       border: 1px solid @dark-theme-color;
     }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
   }
 
 
@@ -454,6 +484,7 @@
   margin: 0;
   top: 0px;
   right: 0;
+  display: inline-block;
 
   .label {
     padding: 0;
@@ -461,6 +492,8 @@
 }
 
 #form-buttons-prev-row {
+  position: absolute;
+
   margin: 0;
   margin-bottom: 5px;
 
