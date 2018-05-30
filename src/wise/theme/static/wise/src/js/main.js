@@ -407,7 +407,7 @@ require(['jquery', 'slick'], function($, slick) {
         var checkboxV = $(this).find("input[type='checkbox']").val();
         if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
 
-        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
          //$(this).parentsUntil(".form-right-side") );
 
     });
@@ -485,8 +485,8 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(".wise-search-form-container").find(".formControls").append(appBtn);
         $(".wise-search-form-container").find("[name='form.buttons.prev']").trigger("click");
-
     });
+
     nextButton.one("click", function(){
         var appBtn = nextButton.clone();
         $(appBtn).attr("class","").hide();
