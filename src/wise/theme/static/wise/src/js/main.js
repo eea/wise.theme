@@ -489,7 +489,9 @@ require(['jquery', 'slick'], function($, slick) {
 
     var topPrevBtn = $("#form-buttons-prev").clone(true);
     $("#form-buttons-prev-top").append(topPrevBtn);
-    $("#form-buttons-prev-top .btn").css({"margin-right": "20px"})
+    $("#form-buttons-prev-top .btn")
+        .css("position", "relative")
+        .css({"margin-right": "20px"})
 
     var topNextBtn = $("#form-buttons-next").clone(true);
     $("#form-buttons-next-top").append(topNextBtn);
