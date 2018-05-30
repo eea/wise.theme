@@ -440,6 +440,10 @@ require(['jquery', 'slick'], function($, slick) {
 
             //par.remove(":not('.formControls')");
 
+            setTimeout( function (){
+                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+            }, 300);
+
         });
     });
 
