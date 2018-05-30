@@ -284,19 +284,7 @@ require(['jquery', 'slick'], function($, slick) {
                     chekspan.addClass("collapse");
                     var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
 
-                    if(checked.length === 0) {
-                        chekspan.collapse({
-                            toggle: true
-                        });
-                        chekspan.collapse({
-                            toggle: true
-                        });
-                    }  else {
-                        $(field).find(".controls").slideUp("fast");
-                        chekspan.collapse({
-                            toggle: false
-                        });
-                    }
+
                     chekspan.addClass("panel");
                     chekspan.addClass("panel-default");
 
@@ -310,6 +298,23 @@ require(['jquery', 'slick'], function($, slick) {
                     label.attr("data-toggle", "collapse");
                     label.attr("data-target", "." + fieldId + "-collapse" );
 
+                    if(checked.length === 0) {
+                        chekspan.collapse({
+                            toggle: true
+                        });
+                        chekspan.collapse({
+                            toggle: true
+                        });
+                        $(field).find(".accordion-toggle").addClass("accordion-after");
+                    }  else {
+                        $(field).find(".controls").slideUp("fast");
+                        chekspan.collapse({
+                            toggle: false
+                        });
+
+                        //$(field).find(".accordion-toggle").removeClass("accordion-after");
+                    }
+
                     chekspan.on("hidden.bs.collapse", function (ev) {
                         chekspan.fadeOut("fast");
                         $(field).find(".controls").slideUp("fast");
@@ -317,6 +322,7 @@ require(['jquery', 'slick'], function($, slick) {
                     });
 
                     chekspan.on("show.bs.collapse", function (ev) {
+                        // collapsed
                         chekspan.fadeIn("fast");
                         $(field).find(".controls").slideDown("fast");
                         $(field).find("> span").css({"display" : "block"});
@@ -325,6 +331,7 @@ require(['jquery', 'slick'], function($, slick) {
                     });
 
                     chekspan.on("hide.bs.collapse", function (ev) {
+                        // not collapsed
                         setTimeout( function (){
                             $(field).find(".accordion-toggle").removeClass("accordion-after");
                         },600);
