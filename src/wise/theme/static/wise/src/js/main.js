@@ -267,68 +267,70 @@ require(['jquery', 'slick'], function($, slick) {
                 var all = spAll + spClear + invertSel;
                 $(field).find("> label.horizontal").after(all);
 
-                if(cheks.length < 4) {
-                    $(field).find(".controls").hide();
-                }
-
-                $(field).addClass("panel-group");
-
                 //tooltips
                 cheks.each(function (idx, check) {
                     var text = $(cheks[idx]).text();
                     $(cheks[idx]).attr("title", text.trim());
                 });
 
-                var chekspan = $(field).find("> span:not(.controls)");
-                chekspan.addClass( fieldId + "-collapse");
-                chekspan.addClass("collapse");
-                var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
+                if(cheks.length < 4) {
+                    $(field).find(".controls").hide();
 
-                if(checked.length === 0) {
-                    chekspan.collapse({
-                        toggle: true
+                } else {
+                    $(field).addClass("panel-group");
+
+                    var chekspan = $(field).find("> span:not(.controls)");
+                    chekspan.addClass( fieldId + "-collapse");
+                    chekspan.addClass("collapse");
+                    var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
+
+                    if(checked.length === 0) {
+                        chekspan.collapse({
+                            toggle: true
+                        });
+                        chekspan.collapse({
+                            toggle: true
+                        });
+                    }  else {
+                        $(field).find(".controls").slideUp("fast");
+                        chekspan.collapse({
+                            toggle: false
+                        });
+                    }
+                    chekspan.addClass("panel");
+                    chekspan.addClass("panel-default");
+
+                    var label = $(field).find(".horizontal");
+
+                    var alabel = "<a data-toggle='collapse' class='accordion-toggle' >" + label.text() + "</a>";
+                    label.html(alabel);
+
+                    label.addClass("panel-heading").addClass("panel-title");
+
+                    label.attr("data-toggle", "collapse");
+                    label.attr("data-target", "." + fieldId + "-collapse" );
+
+                    chekspan.on("hidden.bs.collapse", function (ev) {
+                        chekspan.fadeOut("fast");
+                        $(field).find(".controls").slideUp("fast");
+                        $(field).css({"border-bottom" : "1px solid #ccc;"});
                     });
-                    chekspan.collapse({
-                        toggle: true
+
+                    chekspan.on("show.bs.collapse", function (ev) {
+                        chekspan.fadeIn("fast");
+                        $(field).find(".controls").slideDown("fast");
+                        $(field).find("> span").css({"display" : "block"});
+
+                        $(field).find(".accordion-toggle").addClass("accordion-after");
                     });
-                }  else {
-                    $(field).find(".controls").slideUp("fast");
-                    chekspan.collapse({
-                        toggle: false
+
+                    chekspan.on("hide.bs.collapse", function (ev) {
+                        setTimeout( function (){
+                            $(field).find(".accordion-toggle").removeClass("accordion-after");
+                        },600);
                     });
                 }
-                chekspan.addClass("panel");
-                chekspan.addClass("panel-default");
 
-                var label = $(field).find(".horizontal");
-
-                var alabel = "<a data-toggle='collapse' class='accordion-toggle' >" + label.text() + "</a>";
-                label.html(alabel);
-
-                label.addClass("panel-heading").addClass("panel-title");
-
-                label.attr("data-toggle", "collapse");
-                label.attr("data-target", "." + fieldId + "-collapse" );
-
-                chekspan.on("hidden.bs.collapse", function (ev) {
-                    chekspan.fadeOut("fast");
-                    $(field).find(".controls").slideUp("fast");
-                    $(field).css({"border-bottom" : "1px solid #ccc;"});
-                });
-
-                chekspan.on("show.bs.collapse", function (ev) {
-                    chekspan.fadeIn("fast");
-                    $(field).find(".controls").slideDown("fast");
-                    $(field).find("> span").css({"display" : "block"});
-
-                    $(field).find(".accordion-toggle").addClass("accordion-after");
-                });
-
-                chekspan.on("hide.bs.collapse", function (ev) {
-                    setTimeout( function (){
-                        $(field).find(".accordion-toggle").removeClass("accordion-after");
-                    },600);
-                });
             }
 
             if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
