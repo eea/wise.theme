@@ -248,10 +248,8 @@ require(['jquery', 'slick'], function($, slick) {
         // };
     });
 
-    var $fields = $(".wise-search-form-container").find("[data-fieldname]");
+    var $fields = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
     var exceptVal = ["all", "none", "invert"];
-
-
 
     function generateCheckboxes(){
         var count = $fields.length;
@@ -322,7 +320,7 @@ require(['jquery', 'slick'], function($, slick) {
 
             }
 
-            if (!--count) $(".wise-search-form-container").animate({"opacity" : 1}, 1000);
+            if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
 
         });
 
@@ -331,7 +329,7 @@ require(['jquery', 'slick'], function($, slick) {
     generateCheckboxes();
 
 
-    var allch = $(".wise-search-form-container").find("[data-fieldname]");
+    var allch = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
 
     function filterInvalidCheckboxes(cbxs){
         return cbxs.filter(function (idx, item) {
