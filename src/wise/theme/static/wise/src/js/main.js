@@ -62,10 +62,7 @@ require(['jquery', 'slick'], function($, slick) {
         });
     }
 
-
     $(document).ready(function() {
-
-
         var $menu_items = $('.menu .navmenu-item > a');
 
         $menu_items.each(function(index, value) {
@@ -259,7 +256,6 @@ require(['jquery', 'slick'], function($, slick) {
             var hasChecks = cheks.find("input[type='checkbox']").length > 0;
             if(hasChecks){
                 var fieldId = $(field).attr("id");
-
                 var spAll = '<span class="controls " style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
                     'padding-left: 8px; ">' +
                     '<span style="font-size: 0.8em">Select :</span><a class="" data-value="all"><label>' +
@@ -274,6 +270,8 @@ require(['jquery', 'slick'], function($, slick) {
                 if(cheks.length < 4) {
                     $(field).find(".controls").hide();
                 }
+
+                $(field).addClass("panel-group");
 
                 //tooltips
                 cheks.each(function (idx, check) {
@@ -299,25 +297,38 @@ require(['jquery', 'slick'], function($, slick) {
                         toggle: false
                     });
                 }
+                chekspan.addClass("panel");
+                chekspan.addClass("panel-default");
 
                 var label = $(field).find(".horizontal");
+
+                var alabel = "<a data-toggle='collapse' class='accordion-toggle' >" + label.text() + "</a>";
+                label.html(alabel);
+
+                label.addClass("panel-heading").addClass("panel-title");
+
                 label.attr("data-toggle", "collapse");
                 label.attr("data-target", "." + fieldId + "-collapse" );
 
                 chekspan.on("hidden.bs.collapse", function (ev) {
                     chekspan.fadeOut("fast");
-                   $(field).find(".controls").slideUp("fast");
-                   console.log($(field));
-                   $(field).css({"border-bottom" : "1px solid #ccc;"});
+                    $(field).find(".controls").slideUp("fast");
+                    $(field).css({"border-bottom" : "1px solid #ccc;"});
                 });
 
                 chekspan.on("show.bs.collapse", function (ev) {
                     chekspan.fadeIn("fast");
                     $(field).find(".controls").slideDown("fast");
                     $(field).find("> span").css({"display" : "block"});
-                    //$(field).css({"border-bottom" : "none"});
+
+                    $(field).find(".accordion-toggle").addClass("accordion-after");
                 });
 
+                chekspan.on("hide.bs.collapse", function (ev) {
+                    setTimeout( function (){
+                        $(field).find(".accordion-toggle").removeClass("accordion-after");
+                    },600);
+                });
             }
 
             if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
@@ -409,7 +420,6 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(selectElement).select2(options);
 
-
         $(selectElement).on("select2-selecting", function(ev) {
             // what you would like to happen
             //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
@@ -475,15 +485,12 @@ require(['jquery', 'slick'], function($, slick) {
         $(".wise-search-form-container").find("[name='form.buttons.next']").trigger("click");
     });
 
-
     var topPrevBtn = $("#form-buttons-prev").clone(true);
     $("#form-buttons-prev-top").append(topPrevBtn);
     $("#form-buttons-prev-top .btn").css({"margin-right": "20px"})
 
     var topNextBtn = $("#form-buttons-next").clone(true);
     $("#form-buttons-next-top").append(topNextBtn);
-
-
 
     return jQuery.noConflict();
 });

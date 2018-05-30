@@ -5,7 +5,6 @@
 @checkbox-other-color: #f0f6f9;
 
 
-
 .vendor-prefix(@prop,@val) {
     @{prop}: @val;
   -ms-@{prop}: @val;
@@ -24,7 +23,39 @@
 
 .wise-search-form-container {
   opacity:0;
+
+  #content li.formTab a.required span:after,
+  #content-core li.formTab a.required span:after,
+  div.field span.required:after {
+    /*content: ">";*/
+  }
 }
+
+.panel-heading .accordion-toggle.accordion-after:after {
+  content: "\e114";
+  webkit-transition: content 0.8s;
+  -moz-transition: content 0.8s;
+  transition: content 0.8s;
+}
+
+
+.panel-heading .accordion-toggle:after {
+  webkit-transition: content 0.8s;
+  -moz-transition: content 0.8s;
+  transition: content 0.8s;
+  /* symbol for "opening" panels */
+  font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+  content: "\e080";
+  /*content: "\e114";*/    /* adjust as needed, taken from bootstrap.css */
+  float: right;        /* adjust as needed */
+  color: grey;         /* adjust as needed */
+}
+
+.panel-heading .accordion-toggle.collapsed:after {
+  /* symbol for "collapsed" panels */
+  content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+
 
 .wise-search-form-container,
 #wise-search-form {
@@ -72,8 +103,6 @@
       margin-left: 0;
 
       li {
-
-
 
         &:hover {
           background-color: #006699;
@@ -325,6 +354,7 @@
 
   label.horizontal {
     width: 100%;
+    padding-left: 0;
 
     &:after {
       content: none;
