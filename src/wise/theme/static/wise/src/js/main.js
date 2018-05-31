@@ -354,6 +354,7 @@ require(['jquery', 'slick'], function($, slick) {
                                 var cheks = $(field).find(".option .label:not(.horizontal) ");
 
                                 if( $(event.target).val() === "" ){
+                                    cheks.parentsUntil(".option").parent().parent().find(".noresults").remove();
                                     cheks.parentsUntil(".option").parent().show();
                                     return true;
                                 }
@@ -367,24 +368,36 @@ require(['jquery', 'slick'], function($, slick) {
                                 var matcher = new RegExp( "^" +  $.ui.autocomplete.escapeRegex( toSearch ), "i" );
                                 var matcher2 = new RegExp( $.ui.autocomplete.escapeRegex( toSearch ), "i" );
 
+                                var temp = {};
                                 var checksLabels = $(field).find(".option .label:not(.horizontal) ").map(function (ind, item) {
+                                    temp[$(item).text().toLowerCase()] = $(item).text().toLowerCase()
+                                        .replace(/\s/g, "_")
+                                    //return temp;
                                     return $(item).text().toLowerCase()
-                                        /*.replace(/^\s+|\s+$/g, '')*/
-                                        /*.replace(/_/g, "")*/
-                                        .replace(/\s/g, "_");
+                                    /*.replace(/^\s+|\s+$/g, '')*/
+                                    /*.replace(/_/g, "")*/
+                                    .replace(/\s/g, "_");
                                 });
 
-                                var found = $.grep( checksLabels, function( item ){
-                                    return  !matcher2.test( item ) ;
+                                var found = [];
+                                $.each(temp, function (indx, item) {
+                                    if(!matcher2.test( item )){
+                                        found.push(indx);
+                                    }
                                 });
 
                                 var tohide = cheks.filter(function (idx, elem) {
-                                    return found.indexOf($(elem).text().toLowerCase()) !== -1;
+                                    return found.indexOf( $(elem).text().toLowerCase()) !== -1;
                                 });
 
                                 $.each(tohide, function (inx, item) {
                                     $(item).parentsUntil(".option").parent().hide();
                                 });
+
+                                if(tohide.length === cheks.length){
+                                    console.log("no result");
+                                    cheks.parentsUntil(".option").parent().parent().append("<span class='noresults'>No results found</span>")
+                                }
 
                             }
                         });
