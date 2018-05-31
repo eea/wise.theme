@@ -557,6 +557,10 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(selectElement).select2(options);
 
+        $(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
+        $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: inline-block;'> Marine Unit ID: </h4>");
+        console.log(selectElement);
+
         $(selectElement).on("select2-selecting", function(ev) {
             $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
             $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
@@ -591,14 +595,24 @@ require(['jquery', 'slick'], function($, slick) {
     });
 
     var topPrevBtn = $("#form-buttons-prev").clone(true);
+    var tpBid = topPrevBtn.attr("id");
+    topPrevBtn.attr("id", tpBid + "-top");
     $("#form-buttons-prev-top").append(topPrevBtn);
     $("#form-buttons-prev-top .btn")
         .css("position", "relative")
         .css({"margin-right": "20px"})
 
     var topNextBtn = $("#form-buttons-next").clone(true);
+    var tpNbid = topNextBtn.attr("id");
+    topNextBtn.attr("id", tpNbid + "-top");
     $("#form-buttons-next-top").append(topNextBtn);
 
+    if (window.matchMedia("(max-width: 1024px)").matches) {
+        var el = $("#form-buttons-next-top");
+        el.css("float","right");
+        $("#form-buttons-prev-top").after(el);
+
+    }
 
 
     return jQuery.noConflict();
