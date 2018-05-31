@@ -256,12 +256,16 @@ require(['jquery', 'slick'], function($, slick) {
             var hasChecks = cheks.find("input[type='checkbox']").length > 0;
             if(hasChecks){
                 var fieldId = $(field).attr("id");
-                var spAll = '<span class="controls " style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
-                    'padding-left: 8px; ">' +
-                    '<span style="font-size: 0.8em">Select :</span><a class="" data-value="all"><label>' +
+                var spAll = '<span class="controls" style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
+                    'padding-left: 0;position: relative;  ">' +
+                    '<span style="font-size: 0.8em; margin-left: 5px;">Select :</span><a class="" data-value="all"><label>' +
                     '<span class="label">All</span></label></a>';
                 var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
-                var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></span>';
+                var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
+                    '<span class="ui-autocomplete">' +
+                        '<span class=" search-icon" ></span>' +
+                        '<input class="ui-autocomplete-input" type="text" style="width: 90%;" /></span>';
+
 
                 // add "all" checkbox
                 var all = spAll + spClear + invertSel;
@@ -274,16 +278,17 @@ require(['jquery', 'slick'], function($, slick) {
                 });
 
                 if(cheks.length < 4) {
-                    $(field).find(".controls").hide();
+                    $(field).find(".controls a").hide();
+                    $(field).find(".controls").html("").css("height" ,"1px").css("padding", 0);
 
                 } else {
                     $(field).addClass("panel-group");
 
                     var chekspan = $(field).find("> span:not(.controls)");
+                    chekspan.css("border-radius", 0);
                     chekspan.addClass( fieldId + "-collapse");
                     chekspan.addClass("collapse");
                     var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
-
 
                     chekspan.addClass("panel");
                     chekspan.addClass("panel-default");
@@ -298,6 +303,7 @@ require(['jquery', 'slick'], function($, slick) {
                     label.attr("data-toggle", "collapse");
                     label.attr("data-target", "." + fieldId + "-collapse" );
 
+                    // if already checked than collapse
                     if(checked.length === 0) {
                         chekspan.collapse({
                             toggle: true
@@ -306,13 +312,11 @@ require(['jquery', 'slick'], function($, slick) {
                             toggle: true
                         });
                         $(field).find(".accordion-toggle").addClass("accordion-after");
-                    }  else {
+                    } else {
                         $(field).find(".controls").slideUp("fast");
                         chekspan.collapse({
                             toggle: false
                         });
-
-                        //$(field).find(".accordion-toggle").removeClass("accordion-after");
                     }
 
                     chekspan.on("hidden.bs.collapse", function (ev) {
@@ -335,6 +339,49 @@ require(['jquery', 'slick'], function($, slick) {
                         setTimeout( function (){
                             $(field).find(".accordion-toggle").removeClass("accordion-after");
                         },600);
+                    });
+
+
+                    // initialize autocomplete for more than 6 checkboxes
+                    if(cheks.length < 6) {
+                        $(field).find(".controls .ui-autocomplete").hide();
+                    } else {
+
+                        $(field).find(".ui-autocomplete-input").autocomplete({
+                            minLength: 0,
+                            search: function( event, ui ) {
+                                var toSearch = $(event.target).val().toLowerCase();
+
+                                var cheks = $(field).find(".option .label:not(.horizontal) ");
+                                cheks.parentsUntil(".option").parent().show();
+
+                                var checksLabels = $(field).find(".option .label:not(.horizontal) ").map(function (ind, item) {
+                                    return $(item).text().toLowerCase();
+                                });
+
+                                var found = checksLabels.filter(function (indx, item) {
+                                    return item.indexOf(toSearch) === -1;
+                                });
+
+                                var tohide = cheks.filter(function (idx, elem) {
+                                    return found.toArray().indexOf($(elem).text().toLowerCase()) !== -1;
+                                });
+
+                                $.each(tohide, function (inx, item) {
+                                    $(item).parentsUntil(".option").parent().hide();
+                                });
+                            }
+                        });
+                    }
+                    /*$(field).find(".ui-autocomplete-input").on("focusin" , function (ev) {
+                        //$(ev.target).parent().find(".glyphicon").css("background", "#ffffe0");
+                    });
+
+                    $(field).find(".ui-autocomplete-input").on("focusout" , function (ev) {
+                        //$(ev.target).parent().find(".glyphicon").css("background", "white");
+                    });*/
+                    $(field).find(".search-icon").on("click" , function (ev) {
+                        $(ev.target).parent().find("input").trigger("focus");
                     });
                 }
             }
@@ -433,6 +480,18 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(selectElement).select2(options);
 
+        if($(selectElement).attr("id") === "form-widgets-marine_unit_id"){
+            //console.log( $(selectElement) );
+        }
+
+        //$(".wise-search-form-container #marineunitidsform [data-fieldname] .select2-container").hide();
+
+        $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+        /*$(selectElement).on("select2-loaded", function (ev) {
+            console.log($(selectElement).attr("id") + " loaded");
+        });*/
+
         $(selectElement).on("select2-selecting", function(ev) {
             // what you would like to happen
             //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
@@ -471,11 +530,11 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(selectElement).on("select2-selecting", function(ev) {
             $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
+            $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
             $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
         });
     });
-
 
     $(".button-field").addClass("btn");
 
@@ -510,6 +569,8 @@ require(['jquery', 'slick'], function($, slick) {
 
     var topNextBtn = $("#form-buttons-next").clone(true);
     $("#form-buttons-next-top").append(topNextBtn);
+
+
 
     return jQuery.noConflict();
 });
