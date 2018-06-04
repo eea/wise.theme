@@ -629,8 +629,40 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
+    $(".formControls #form-buttons-continue").unbind("click").on("click", function (ev){
+        //ev.preventDefault();
+        var form =  $(".wise-search-form-container").find("form");
+        var url = form.attr("action");
+
+        var data = form.serialize();
+
+        /*$.ajax({
+            contentType:false,
+            cache:false,
+            data: data,
+            url: url,
+            processData:false,
+            success:function (data, status, req) {
+                console.log(data);
+            },
+            error:function (req, status, error) {
+                console.log(req);
+            }
+        })*/;
+
+    });
+
+
+    /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
+        ev.preventDefault();
+        console.log(ev);
+    });*/
+
+
     return jQuery.noConflict();
 });
+
+
 
 // AJAX request interception
 /*(function(open) {
