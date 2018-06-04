@@ -356,7 +356,6 @@ require(['jquery', 'slick'], function($, slick) {
                                 if( $(event.target).val() === "" ){
                                     cheks.parentsUntil(".option").parent().parent().find(".noresults").remove();
                                     cheks.parentsUntil(".option").parent().show();
-
                                     return true;
                                 }
                                 cheks.parentsUntil(".option").parent().show();
@@ -572,6 +571,8 @@ require(['jquery', 'slick'], function($, slick) {
         $(selectElement).on("select2-selecting", function(ev) {
             $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
             $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+
             $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
         });
     });
@@ -606,8 +607,8 @@ require(['jquery', 'slick'], function($, slick) {
     topPrevBtn.attr("id", tpBid + "-top");
     $("#form-buttons-prev-top").append(topPrevBtn);
     $("#form-buttons-prev-top .btn")
-        .css("position", "relative")
-        .css({"margin-right": "20px"})
+        .css("position", "relative");
+        //.css({"margin-right": "20px"})
 
     var topNextBtn = $("#form-buttons-next").clone(true);
     var tpNbid = topNextBtn.attr("id");
@@ -625,6 +626,8 @@ require(['jquery', 'slick'], function($, slick) {
             $("#marine-widget-top .field").css("display", "block");*/
         }
     });
+
+    $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
     return jQuery.noConflict();
 });
