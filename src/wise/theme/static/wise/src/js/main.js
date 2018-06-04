@@ -356,6 +356,7 @@ require(['jquery', 'slick'], function($, slick) {
                                 if( $(event.target).val() === "" ){
                                     cheks.parentsUntil(".option").parent().parent().find(".noresults").remove();
                                     cheks.parentsUntil(".option").parent().show();
+
                                     return true;
                                 }
                                 cheks.parentsUntil(".option").parent().show();
@@ -390,7 +391,15 @@ require(['jquery', 'slick'], function($, slick) {
                                     return found.indexOf( $(elem).text().toLowerCase()) !== -1;
                                 });
 
+                                var toshow =  cheks.filter(function (idx, elem) {
+                                    return found.indexOf( $(elem).text().toLowerCase()) === -1;
+                                });
+                                $.each(toshow, function (ind, item) {
+                                    $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", true);
+                                });
+
                                 $.each(tohide, function (inx, item) {
+                                    $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
                                     $(item).parentsUntil(".option").parent().hide();
                                 });
 
@@ -557,15 +566,13 @@ require(['jquery', 'slick'], function($, slick) {
 
         $(selectElement).select2(options);
 
-        $(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
+        //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
         $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: inline-block;'> Marine Unit ID: </h4>");
-        console.log(selectElement);
 
         $(selectElement).on("select2-selecting", function(ev) {
             $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
             $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
             $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-
         });
     });
 
@@ -607,13 +614,17 @@ require(['jquery', 'slick'], function($, slick) {
     topNextBtn.attr("id", tpNbid + "-top");
     $("#form-buttons-next-top").append(topNextBtn);
 
-    if (window.matchMedia("(max-width: 1024px)").matches) {
-        var el = $("#form-buttons-next-top");
-        el.css("float","right");
-        $("#form-buttons-prev-top").after(el);
 
-    }
+    $(window).on("resize", function () {
+        if (window.matchMedia("(max-width: 1024px)").matches) {
+            var el = $("#form-buttons-next-top");
+            el.css("float","right");
+            $("#form-buttons-prev-top").after(el);
 
+            /*$("#marine-widget-top > div").css("display", "block");
+            $("#marine-widget-top .field").css("display", "block");*/
+        }
+    });
 
     return jQuery.noConflict();
 });
