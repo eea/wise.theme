@@ -723,9 +723,9 @@ require(['jquery', 'slick'], function($, slick) {
             url: url,
             //processData:false,
             beforeSend: function(jqXHR, settings){
-                $(".wise-search-form-container").fadeOut("slow");
+                $(".wise-search-form-container").fadeOut("fast");
                 $("#wise-search-form").html("");
-                $("#wise-search-form").fadeOut("slow");
+                $("#wise-search-form").fadeOut("fast");
             },
             success:function (data, status, req) {
                 var $data = $(data);
@@ -786,8 +786,8 @@ require(['jquery', 'slick'], function($, slick) {
 
             },
             complete:function(){
-                $(".wise-search-form-container").fadeIn("slow");
-                $("#wise-search-form").fadeIn("slow");
+                $(".wise-search-form-container").fadeIn("fast");
+                $("#wise-search-form").fadeIn("fast");
                 $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
                 $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
 
