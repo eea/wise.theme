@@ -726,11 +726,12 @@ require(['jquery', 'slick'], function($, slick) {
             //processData:false,
             beforeSend: function(jqXHR, settings){
                 $(".wise-search-form-container").fadeOut("fast");
+            },
+            success:function (data, status, req) {
                 $("#wise-search-form #wise-search-form-top").siblings().html("");
                 $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
                 $("#wise-search-form .topnav").next().remove();
-            },
-            success:function (data, status, req) {
+
                 var $data = $(data);
 
                 var chtml = $data.find(".wise-search-form-container");
