@@ -245,10 +245,10 @@ require(['jquery', 'slick'], function($, slick) {
         // };
     });
 
-    var $fields = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
+    //var $fields = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
     var exceptVal = ["all", "none", "invert"];
 
-    function generateCheckboxes(){
+    function generateCheckboxes($fields){
         var count = $fields.length;
         $fields.each(function(indx, field){
 
@@ -323,6 +323,7 @@ require(['jquery', 'slick'], function($, slick) {
                         chekspan.fadeOut("fast");
                         $(field).find(".controls").slideUp("fast");
                         $(field).css({"border-bottom" : "1px solid #ccc;"});
+                        //addCheckboxHandlers( $(".wise-search-form-container") );
                     });
 
                     chekspan.on("show.bs.collapse", function (ev) {
@@ -332,6 +333,8 @@ require(['jquery', 'slick'], function($, slick) {
                         $(field).find("> span").css({"display" : "block"});
 
                         $(field).find(".accordion-toggle").addClass("accordion-after");
+                        //addCheckboxHandlers( $(".wise-search-form-container") );
+
                     });
 
                     chekspan.on("hide.bs.collapse", function (ev) {
@@ -427,17 +430,6 @@ require(['jquery', 'slick'], function($, slick) {
 
     }
 
-    generateCheckboxes();
-
-
-    var allch = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
-
-    function filterInvalidCheckboxes(cbxs){
-        return cbxs.filter(function (idx, item) {
-            return exceptVal.indexOf($(item).val()) === -1;
-        });
-    }
-
     function checkboxHandlerAll(ev){
         ev.preventDefault();
         var par = $(this).parent().parent();
@@ -467,11 +459,15 @@ require(['jquery', 'slick'], function($, slick) {
     function checkboxHandlerInvert(ev){
         ev.preventDefault();
         $(this).prop("checked", false);
+
         var par = $(this).parent().parent();
+
+        console.log($(this).parentsUntil(".field").parent());
+
         var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 
         var checked = rest.filter(function (ind, item) {
-           return $(item).is(":checked");
+            return $(item).is(":checked");
         });
 
         var unchecked = rest.filter(function (ind, item) {
@@ -489,98 +485,176 @@ require(['jquery', 'slick'], function($, slick) {
         //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
     }
 
-    $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
-    $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
-    $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
+    function addCheckboxHandlers($cont){
+        $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
+        $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
+        $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
 
-    // listener for click on the whole span
-    allch.on("click", ".option", function (ev){
-        var checkboxV = $(this).find("input[type='checkbox']").val();
-        if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
-
-        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-         //$(this).parentsUntil(".form-right-side") );
-
-    });
-
-    $(".wise-search-form-container select").each(function (ind, selectElement) {
-        $(selectElement).addClass("js-example-basic-single");
-        var lessOptions = $(selectElement).find("option").length < 10;
-        var options = {
-            placeholder: 'Select an option',
-            closeOnSelect: true,
-            dropdownAutoWidth : true,
-            width: '100%',
-            theme: "flat",
-        };
-        if(lessOptions) options.minimumResultsForSearch = Infinity;
-
-        $(selectElement).select2(options);
-
-        if($(selectElement).attr("id") === "form-widgets-marine_unit_id"){
-            //console.log( $(selectElement) );
-        }
-
-        //$(".wise-search-form-container #marineunitidsform [data-fieldname] .select2-container").hide();
-
-        $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
-
-        /*$(selectElement).on("select2-loaded", function (ev) {
-            console.log($(selectElement).attr("id") + " loaded");
+        /*$cont.on("click","[data-fieldname] .controls a[data-value]", function(ev){
+            if($(this).attr("data-value") === "invert") console.log(ev);
+            var actions = {
+                all: checkboxHandlerAll,
+                none: checkboxHandlerNone,
+                invert: checkboxHandlerInvert
+            };
+            actions[ $(this).attr("data-value")].call(this, ev);
         });*/
+    }
 
-        $(selectElement).on("select2-selecting", function(ev) {
-            // what you would like to happen
-            //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
-            //var par = $(ev.target).parentsUntil(".subform").next();
-
-            if( $(this).attr("id") === "form-widgets-article" ) {
-                /*$(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");*/
-            } else {
-                //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
-            }
-            //$(this).parentsUntil(".form-right-side").nextUntil(".form-right-side").remove(":not('.formControls')");
-
-            //par.remove(":not('.formControls')");
-
-            setTimeout( function (){
-                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-            }, 300);
-
+    function filterInvalidCheckboxes(cbxs){
+        return cbxs.filter(function (idx, item) {
+            return exceptVal.indexOf($(item).val()) === -1;
         });
-    });
+    }
 
-    $("#wise-search-form select").each(function (ind, selectElement) {
-        $(selectElement).addClass("js-example-basic-single");
-        var options = {
-            placeholder: 'Select an option',
-            closeOnSelect: true,
-            dropdownAutoWidth : true,
-            width: '100%',
-            theme: "flat",
-            minimumResultsForSearch: Infinity,
-            containerCssClass : "select2-top-override",
-            dropdownCssClass: "select2-top-override-dropdown"
-        };
+    function addCheckboxLabelHandlers(){
+        var allch = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
+        // listener for click on the whole span
+        allch.on("click", ".option", function(ev){
+            var checkboxV = $(this).find("input[type='checkbox']").val();
+            if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
+        });
+    }
 
-        $(selectElement).select2(options);
+    function attachSelect2(){
+        $(".wise-search-form-container select").each(function (ind, selectElement) {
+            $(selectElement).addClass("js-example-basic-single");
+            var lessOptions = $(selectElement).find("option").length < 10;
+            var options = {
+                placeholder: 'Select an option',
+                closeOnSelect: true,
+                dropdownAutoWidth : true,
+                width: '100%',
+                theme: "flat",
+            };
+            if(lessOptions) options.minimumResultsForSearch = Infinity;
 
-        //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
-        $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: inline-block;'> Marine Unit ID: </h4>");
+            $(selectElement).select2(options);
 
-        $(selectElement).on("select2-selecting", function(ev) {
-            $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
+            if($(selectElement).attr("id") === "form-widgets-marine_unit_id"){
+                //console.log( $(selectElement) );
+            }
+
+            //$(".wise-search-form-container #marineunitidsform [data-fieldname] .select2-container").hide();
+
             $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
 
+            /*$(selectElement).on("select2-loaded", function (ev) {
+                console.log($(selectElement).attr("id") + " loaded");
+            });*/
 
-            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+            $(selectElement).on("select2-selecting", function(ev) {
+                // what you would like to happen
+                //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
+                //var par = $(ev.target).parentsUntil(".subform").next();
+
+                if( $(this).attr("id") === "form-widgets-article" ) {
+                    /*$(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");*/
+                } else {
+                    //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
+                }
+                //$(this).parentsUntil(".form-right-side").nextUntil(".form-right-side").remove(":not('.formControls')");
+
+                //par.remove(":not('.formControls')");
+
+                setTimeout( function (){
+                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                }, 300);
+
+            });
         });
-    });
+
+        $("#wise-search-form select").each(function (ind, selectElement) {
+            $(selectElement).addClass("js-example-basic-single");
+            var options = {
+                placeholder: 'Select an option',
+                closeOnSelect: true,
+                dropdownAutoWidth : true,
+                width: '100%',
+                theme: "flat",
+                minimumResultsForSearch: Infinity,
+                containerCssClass : "select2-top-override",
+                dropdownCssClass: "select2-top-override-dropdown"
+            };
+
+            $(selectElement).select2(options);
+
+            //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
+            $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: inline-block;'> Marine Unit ID: </h4>");
+
+            $(selectElement).on("select2-selecting", function(ev) {
+                $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
+                $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+
+                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+            });
+        });
+    }
+
+    function clickFirstTab(){
+        $("#tabs-wrapper ul li:first-child a").trigger('click');
+        $(".tabs-wrapper ul li:first-child a").trigger('click');
+    }
+
+    $.randomString = function() {
+        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        var string_length = 8;
+        var randomstring = '';
+        for (var i=0; i<string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum,rnum+1);
+        }
+        return randomstring;
+    };
+
+    $.getMultipartData = function(frmName){
+        //Start multipart formatting
+        var initBoundary= $.randomString();
+        var strBoundary = "--" + initBoundary;
+        var strMultipartBody = "";
+        var strCRLF = "\r\n";
+
+        var iname = $(frmName).attr('id');
+
+        var formData = $(frmName).serializeArray();
+        //Create multipart for each element of the form
+
+        if(formData.length === 0){
+            return false;
+        }
+
+        $.each( formData ,function(indx, val){
+            strMultipartBody +=
+                strBoundary
+                + strCRLF
+                + "Content-Disposition: form-data; name=\"" + val.name + "\""
+                + strCRLF
+                + strCRLF
+                + val.value
+                +strCRLF;
+        });
+
+        //End the body by delimiting it
+
+        strMultipartBody += strBoundary + "--" + strCRLF;
+
+        //Return boundary without -- and the multipart content
+        return [initBoundary,strMultipartBody];
+
+    };
+
+    generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]") );
+
+    addCheckboxHandlers( $(".wise-search-form-container") );
+
+    addCheckboxLabelHandlers();
+
+    attachSelect2();
+
+    clickFirstTab();
 
     $(".button-field").addClass("btn");
-
-    $("#tabs-wrapper ul li:first-child a").trigger('click');
-    $(".tabs-wrapper ul li:first-child a").trigger('click');
 
     var prevButton = $(".center-section [name='form.buttons.prev']");
 
@@ -615,7 +689,6 @@ require(['jquery', 'slick'], function($, slick) {
     topNextBtn.attr("id", tpNbid + "-top");
     $("#form-buttons-next-top").append(topNextBtn);
 
-
     $(window).on("resize", function () {
         if (window.matchMedia("(max-width: 1024px)").matches) {
             var el = $("#form-buttons-next-top");
@@ -629,34 +702,119 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
-    $(".formControls #form-buttons-continue").unbind("click").on("click", function (ev){
-        //ev.preventDefault();
+
+    // ajax form submission
+    $(".wise-search-form-container").unbind("click").on("click",".formControls #form-buttons-continue", function (ev){
+        ev.preventDefault();
         var form =  $(".wise-search-form-container").find("form");
         var url = form.attr("action");
 
         var data = form.serialize();
 
-        /*$.ajax({
-            contentType:false,
+
+        var strContent = $.getMultipartData("#" + form.attr("id"));
+
+        $.ajax({
+            type: "POST",
+            contentType: 'multipart/form-data; boundary='+strContent[0],
             cache:false,
-            data: data,
+            data: strContent[1],
+            dataType: "html",
             url: url,
-            processData:false,
+            //processData:false,
+            beforeSend: function(jqXHR, settings){
+                $(".wise-search-form-container").fadeOut("slow");
+                $("#wise-search-form").html("");
+                $("#wise-search-form").fadeOut("slow");
+            },
             success:function (data, status, req) {
-                console.log(data);
+                var $data = $(data);
+
+                var chtml = $data.find(".wise-search-form-container");
+
+                var fhtml = chtml.html();
+
+                var centerContentD = $data.find("#wise-search-form").html();
+
+                $(".wise-search-form-container").html(fhtml);
+                $("#wise-search-form").html(centerContentD);
+
+                // regenerate checkboxes widget
+                generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]"));
+
+                addCheckboxHandlers( $(".wise-search-form-container") );
+
+                addCheckboxLabelHandlers();
+
+                //add class btn to all buttons
+                $(".button-field").addClass("btn");
+
+                attachSelect2();
+
+                clickFirstTab();
+
+                // hide marineUnit ID from right form
+                $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
+
+                var prevButton = $(".center-section [name='form.buttons.prev']");
+
+                var nextButton = $(".center-section [name='form.buttons.next']");
+
+                prevButton.on("click", function (ev){
+                    if( $(".wise-search-form-container").find("[name='form.buttons.prev']").length > 0 ) {
+                        return false;
+                    } else {
+                        var appBtn = prevButton.clone();
+                        $(appBtn).attr("class","").hide();
+
+                        $(".wise-search-form-container").find(".formControls").append(appBtn);
+                        $(".wise-search-form-container").find("[name='form.buttons.prev']").trigger("click");
+                    }
+                });
+
+                nextButton.one("click", function(){
+                    if( $(".wise-search-form-container").find("[name='form.buttons.next']").length > 0 ){
+                        return false;
+                    } else {
+                        var appBtn = nextButton.clone();
+                        $(appBtn).attr("class","").hide();
+
+                        $(".wise-search-form-container").find(".formControls").append(appBtn);
+                        $(".wise-search-form-container").find("[name='form.buttons.next']").trigger("click");
+                    }
+                });
+
+                var topPrevBtn = $("#form-buttons-prev").clone(true);
+                var tpBid = topPrevBtn.attr("id");
+                topPrevBtn.attr("id", tpBid + "-top");
+                $("#form-buttons-prev-top").append(topPrevBtn);
+                $("#form-buttons-prev-top .btn")
+                    .css("position", "relative");
+                //.css({"margin-right": "20px"})
+
+                var topNextBtn = $("#form-buttons-next").clone(true);
+                var tpNbid = topNextBtn.attr("id");
+                topNextBtn.attr("id", tpNbid + "-top");
+                $("#form-buttons-next-top").append(topNextBtn);
+
+            },
+            complete:function(){
+                $(".wise-search-form-container").fadeIn("slow");
+                $("#wise-search-form").fadeIn("slow");
+
             },
             error:function (req, status, error) {
                 console.log(req);
             }
-        })*/;
+        });
 
     });
 
 
-    /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
+    $(".wise-search-form-container").find("form").on("submit", function (ev) {
         ev.preventDefault();
         console.log(ev);
-    });*/
+    });
 
 
     return jQuery.noConflict();
