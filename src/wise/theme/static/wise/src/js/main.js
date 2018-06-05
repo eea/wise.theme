@@ -739,7 +739,8 @@ require(['jquery', 'slick'], function($, slick) {
                 var sp = $("#ajax-spinner").clone().attr("id", "ajax-spinner-form").css({
                     "position": "absolute",
                     "top" : "50%",
-                    "left" : "50%"
+                    "left" : "50%",
+                    "transform": "translate3d(-50%, -50%,0)"
                 }).show();
 
                 $(".wise-search-form-container").append(t);
