@@ -714,6 +714,8 @@ require(['jquery', 'slick'], function($, slick) {
 
         var strContent = $.getMultipartData("#" + form.attr("id"));
 
+        var oldContent = $("#wise-search-form").html();
+
         $.ajax({
             type: "POST",
             contentType: 'multipart/form-data; boundary='+strContent[0],
@@ -724,8 +726,8 @@ require(['jquery', 'slick'], function($, slick) {
             //processData:false,
             beforeSend: function(jqXHR, settings){
                 $(".wise-search-form-container").fadeOut("fast");
-                $("#wise-search-form").html("");
-                $("#wise-search-form").fadeOut("fast");
+                $("#wise-search-form #wise-search-form-top").siblings().html("");
+                $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
             },
             success:function (data, status, req) {
                 var $data = $(data);
@@ -734,10 +736,11 @@ require(['jquery', 'slick'], function($, slick) {
 
                 var fhtml = chtml.html();
 
-                var centerContentD = $data.find("#wise-search-form").html();
+                var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings().html();
 
                 $(".wise-search-form-container").html(fhtml);
-                $("#wise-search-form").html(centerContentD);
+
+                $("#wise-search-form #wise-search-form-top").siblings().html(centerContentD);
 
                 // regenerate checkboxes widget
                 generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]"));
@@ -787,14 +790,16 @@ require(['jquery', 'slick'], function($, slick) {
             },
             complete:function(){
                 $(".wise-search-form-container").fadeIn("fast");
-                $("#wise-search-form").fadeIn("fast");
+                $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
                 $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
                 $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+                //$("#wise-search-form #loader-placeholder").remove();
 
 
             },
             error:function (req, status, error) {
                 console.log(req);
+                $("#wise-search-form").html(oldContent);
             }
         });
 
