@@ -728,6 +728,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $(".wise-search-form-container").fadeOut("fast");
                 $("#wise-search-form #wise-search-form-top").siblings().html("");
                 $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
+                $("#wise-search-form .topnav").next().remove();
             },
             success:function (data, status, req) {
                 var $data = $(data);
@@ -736,11 +737,19 @@ require(['jquery', 'slick'], function($, slick) {
 
                 var fhtml = chtml.html();
 
-                var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings().html();
+                var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings();
 
                 $(".wise-search-form-container").html(fhtml);
 
-                $("#wise-search-form #wise-search-form-top").siblings().html(centerContentD);
+                console.log($data.find("#wise-search-form .topnav").next().length);
+                if( $data.find("#wise-search-form .topnav").next().length > 0){
+                    //console.log($data.find("#wise-search-form .topnav").next().length);
+                    $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
+                }
+
+
+                $("#wise-search-form #wise-search-form-top").siblings().remove();
+                $("#wise-search-form #wise-search-form-top").after(centerContentD);
 
                 // regenerate checkboxes widget
                 generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]"));
@@ -789,14 +798,19 @@ require(['jquery', 'slick'], function($, slick) {
 
             },
             complete:function(){
-                $(".wise-search-form-container").fadeIn("fast");
-                $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
                 $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
                 $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+
+                $(".wise-search-form-container").fadeIn("fast", function () {
+                    $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
+                });
+
+
                 //$("#wise-search-form #loader-placeholder").remove();
 
+            }
 
-            },
+            ,
             error:function (req, status, error) {
                 console.log(req);
                 $("#wise-search-form").html(oldContent);
