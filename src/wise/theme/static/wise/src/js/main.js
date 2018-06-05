@@ -662,16 +662,23 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(".button-field").addClass("btn");
 
+    var loading = false;
+
+
     var prevButton = $(".center-section [name='form.buttons.prev']");
 
     var nextButton = $(".center-section [name='form.buttons.next']");
 
     prevButton.one("click", function (){
+        if(loading) return false;
+
         $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
         $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
     });
 
     nextButton.one("click", function(){
+        if(loading) return false;
+
         $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
         $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
     });
@@ -703,6 +710,8 @@ require(['jquery', 'slick'], function($, slick) {
     $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
 
+
+
     // ajax form submission
     $(".wise-search-form-container").unbind("click").on("click",".formControls #form-buttons-continue", function (ev){
         ev.preventDefault();
@@ -710,7 +719,6 @@ require(['jquery', 'slick'], function($, slick) {
         var url = form.attr("action");
 
         var data = form.serialize();
-
 
         var strContent = $.getMultipartData("#" + form.attr("id"));
 
@@ -725,7 +733,26 @@ require(['jquery', 'slick'], function($, slick) {
             url: url,
             //processData:false,
             beforeSend: function(jqXHR, settings){
-                $(".wise-search-form-container").fadeOut("fast");
+                $("#ajax-spinner").hide();
+                var t = "<div id='wise-search-form-container-preloader' " +
+                "></div>";
+                var sp = $("#ajax-spinner").clone().attr("id", "ajax-spinner-form").css({
+                    "position": "absolute",
+                    "top" : "50%",
+                    "left" : "50%"
+                }).show();
+
+                $(".wise-search-form-container").append(t);
+                $("#wise-search-form-container-preloader").append(sp);
+
+
+                $("#form-widgets-marine_unit_id").prop("disabled", true);
+                //$("s2id_form-widgets-marine_unit_id").select2("enable",false);
+                $("[name='form.buttons.prev']").prop("disabled" , true);
+                $("[name='form.buttons.next']").prop("disabled" , true);
+
+                loading = true;
+
             },
             success:function (data, status, req) {
                 $("#wise-search-form #wise-search-form-top").siblings().html("");
@@ -742,7 +769,6 @@ require(['jquery', 'slick'], function($, slick) {
 
                 $(".wise-search-form-container").html(fhtml);
 
-                console.log($data.find("#wise-search-form .topnav").next().length);
                 if( $data.find("#wise-search-form .topnav").next().length > 0){
                     //console.log($data.find("#wise-search-form .topnav").next().length);
                     $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
@@ -774,11 +800,15 @@ require(['jquery', 'slick'], function($, slick) {
                 var nextButton = $(".center-section [name='form.buttons.next']");
 
                 prevButton.one("click", function (){
+                    if(loading) return false;
+
                     $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
                     $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
                 });
 
                 nextButton.one("click", function(){
+                    if(loading) return false;
+
                     $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
                     $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
                 });
@@ -805,16 +835,23 @@ require(['jquery', 'slick'], function($, slick) {
                 $(".wise-search-form-container").fadeIn("fast", function () {
                     $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
                 });
-
+                //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
 
                 //$("#wise-search-form #loader-placeholder").remove();
+                $("#form-widgets-marine_unit_id").prop("disabled", false);
 
+                loading = false;
+
+                /*$("[name='form.buttons.prev']").prop("disabled" , true);
+                $("[name='form.buttons.next']").prop("disabled" , true);*/
             }
 
             ,
             error:function (req, status, error) {
                 console.log(req);
                 $("#wise-search-form").html(oldContent);
+
+                loading = false;
             }
         });
 
