@@ -1,7 +1,5 @@
 @import "./bootstrap/variables.less";
 
-
-
 @dark-theme-color:  #337ab7;
 @controls-link-color : @dark-theme-color;
 @border-bottom-color-tabs: @dark-theme-color;
@@ -42,8 +40,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(255,255,255, 0.5);
+  background: rgba(255,255,255, 0.3);
 }
+
 
 
 .wise-search-form-container,
@@ -53,6 +52,13 @@
     margin-top: 30px;
   }
 
+  table.listing {
+    width: 100%;
+
+    tr:nth-child(odd) {
+      background-color: #EEE;
+    }
+  }
 
 
   .panel-heading .accordion-toggle.accordion-after:after {
@@ -119,9 +125,7 @@
     .vendor-prefix(box-shadow , inset 1px 0px 1px rgba(0,0,0,0.1));
   }
 
-  table.listing {
-    width: 100%;
-  }
+
 
   ul {
     &.nav {
@@ -578,6 +582,7 @@
 
 .extra-details {
   border-top: 1px solid #CCC;
+  padding-top: 0.7rem;
 
   h4 {
     padding-top: 1.7rem;
