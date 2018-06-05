@@ -557,7 +557,13 @@ require(['jquery', 'slick'], function($, slick) {
 
                 //par.remove(":not('.formControls')");
 
+                $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+                $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+                $(".wise-search-form-container").find("[name='form.widgets.page']").remove();
+
+
                 setTimeout( function (){
+
                     $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
                 }, 300);
 
@@ -661,19 +667,13 @@ require(['jquery', 'slick'], function($, slick) {
     var nextButton = $(".center-section [name='form.buttons.next']");
 
     prevButton.one("click", function (){
-        var appBtn = prevButton.clone();
-        $(appBtn).attr("class","").hide();
-
-        $(".wise-search-form-container").find(".formControls").append(appBtn);
-        $(".wise-search-form-container").find("[name='form.buttons.prev']").trigger("click");
+        $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
+        $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
     });
 
     nextButton.one("click", function(){
-        var appBtn = nextButton.clone();
-        $(appBtn).attr("class","").hide();
-
-        $(".wise-search-form-container").find(".formControls").append(appBtn);
-        $(".wise-search-form-container").find("[name='form.buttons.next']").trigger("click");
+        $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
+        $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
     });
 
     var topPrevBtn = $("#form-buttons-prev").clone(true);
@@ -760,29 +760,16 @@ require(['jquery', 'slick'], function($, slick) {
 
                 var nextButton = $(".center-section [name='form.buttons.next']");
 
-                prevButton.on("click", function (ev){
-                    if( $(".wise-search-form-container").find("[name='form.buttons.prev']").length > 0 ) {
-                        return false;
-                    } else {
-                        var appBtn = prevButton.clone();
-                        $(appBtn).attr("class","").hide();
-
-                        $(".wise-search-form-container").find(".formControls").append(appBtn);
-                        $(".wise-search-form-container").find("[name='form.buttons.prev']").trigger("click");
-                    }
+                prevButton.one("click", function (){
+                    $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
+                    $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
                 });
 
                 nextButton.one("click", function(){
-                    if( $(".wise-search-form-container").find("[name='form.buttons.next']").length > 0 ){
-                        return false;
-                    } else {
-                        var appBtn = nextButton.clone();
-                        $(appBtn).attr("class","").hide();
-
-                        $(".wise-search-form-container").find(".formControls").append(appBtn);
-                        $(".wise-search-form-container").find("[name='form.buttons.next']").trigger("click");
-                    }
+                    $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
+                    $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
                 });
+
 
                 var topPrevBtn = $("#form-buttons-prev").clone(true);
                 var tpBid = topPrevBtn.attr("id");
@@ -801,6 +788,9 @@ require(['jquery', 'slick'], function($, slick) {
             complete:function(){
                 $(".wise-search-form-container").fadeIn("slow");
                 $("#wise-search-form").fadeIn("slow");
+                $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+                $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+
 
             },
             error:function (req, status, error) {
@@ -813,7 +803,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(".wise-search-form-container").find("form").on("submit", function (ev) {
         ev.preventDefault();
-        console.log(ev);
+        //console.log(ev);
     });
 
 
