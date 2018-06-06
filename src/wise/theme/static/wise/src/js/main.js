@@ -586,7 +586,7 @@ require(['jquery', 'slick'], function($, slick) {
             $(selectElement).select2(options);
 
             //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
-            $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: inline-block;'> Marine Unit ID: </h4>");
+            $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;'> Marine Unit ID: </h4>");
 
             $(selectElement).on("select2-selecting", function(ev) {
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
@@ -596,6 +596,19 @@ require(['jquery', 'slick'], function($, slick) {
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             });
         });
+    }
+
+    function setupTabs() {
+        var t = $("ul.nav:not(.topnav) > li");
+        if(t.length > 1) {
+            var tabLength = t.length === 2 ? 35 : Math.floor(100 / t.length) - t.length;
+
+            t.css("width", tabLength + "%");
+            var rest = 100 - tabLength*t.length;
+            $(t[0]).css("margin-left", rest/2 + "%");
+        } else {
+            $(t).css({"margin-left": 0});
+        }
     }
 
     function clickFirstTab(){
@@ -658,6 +671,8 @@ require(['jquery', 'slick'], function($, slick) {
 
     attachSelect2();
 
+    setupTabs();
+
     clickFirstTab();
 
     $(".button-field").addClass("btn");
@@ -668,6 +683,8 @@ require(['jquery', 'slick'], function($, slick) {
     var prevButton = $(".center-section [name='form.buttons.prev']");
 
     var nextButton = $(".center-section [name='form.buttons.next']");
+
+
 
     prevButton.one("click", function (){
         if(loading) return false;
@@ -790,6 +807,8 @@ require(['jquery', 'slick'], function($, slick) {
                 $(".button-field").addClass("btn");
 
                 attachSelect2();
+
+                setupTabs();
 
                 clickFirstTab();
 

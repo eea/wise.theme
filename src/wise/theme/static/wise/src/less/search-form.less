@@ -134,8 +134,17 @@
       /*border-bottom: none;*/
       overflow: hidden;
       margin-left: 0;
+      width: 100%;
 
       li {
+        text-align: center;
+        /*max-height: 4rem;*/
+
+        a {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
 
         &:hover {
           background-color: #006699;
@@ -152,8 +161,11 @@
           -o-transition: background-color 0.5s ease-in;
 
           a {
-
             margin: 0 auto;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
 
@@ -180,6 +192,7 @@
             border-right: none;
             color: white;
             border-top: none;
+            font-weight: 700;
 
             &:hover {
               color: white;
@@ -238,6 +251,7 @@
 
       li {
         background-color: #eeeeee;
+        text-align: center;
 
         max-width: 32%;
         padding-bottom: 9999px;
@@ -526,7 +540,7 @@
 
     #form-buttons-prev-top {
       /*width: 30%;*/
-      height: auto;
+      /*height: auto;*/
       position: relative;
       display: inline-block;
       float: left;
@@ -570,10 +584,17 @@
     }
 
     .select-article {
-      display: inline-block;
+      /*display: inline-block;
       width: 87%;
       text-align: center;
+      padding-bottom: 5px;*/
+      display: block;
+      width: 87%;
+      margin-top: 1.5rem;
+      text-align: justify;
       padding-bottom: 5px;
+      clear: both;
+      float: left;
     }
 
   }
@@ -659,6 +680,39 @@
     .vendor-prefix(transform, translate3d(-50%, 0, 0));*/
   }
 }
+
+span [name="form.buttons.prev"],
+span [name="form.buttons.next"] {
+  border:none;
+  background: rgb(221, 221, 221);
+  cursor: pointer;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  &[disabled]:hover {
+    background: #dddddd;
+  }
+}
+
+/*.pagination-prev {
+  position: relative;
+
+  &:after {
+    content: "\f536";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 10px solid red;
+    border-bottom: 10px solid transparent;
+    right: -20px;
+    top: -1px;
+
+  }
+}*/
+
+
+
 
 .left-side-form {
   /*margin-top: 20px;*/
@@ -774,6 +828,22 @@
 
       }
 
+    }
+  }
+
+  ul {
+    &.nav {
+
+      li {
+        margin-bottom: -9999px;
+        padding-bottom: 9999px;
+
+        a {
+          white-space: inherit !important;
+          overflow: inherit !important;
+          text-overflow: none !important;
+        }
+      }
     }
   }
 }
