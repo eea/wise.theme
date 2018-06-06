@@ -599,6 +599,7 @@ require(['jquery', 'slick'], function($, slick) {
     }
 
     function setupTabs() {
+
         var t = $("ul.nav:not(.topnav) > li");
         if(t.length > 1) {
             var tabLength = t.length === 2 ? 35 : Math.floor(100 / t.length) - t.length;
@@ -610,6 +611,8 @@ require(['jquery', 'slick'], function($, slick) {
             $(t).css({"margin-left": 0});
         }
     }
+
+
 
     function clickFirstTab(){
         $("#tabs-wrapper ul li:first-child a").trigger('click');
@@ -670,6 +673,7 @@ require(['jquery', 'slick'], function($, slick) {
     addCheckboxLabelHandlers();
 
     attachSelect2();
+
 
     setupTabs();
 
@@ -769,12 +773,30 @@ require(['jquery', 'slick'], function($, slick) {
                 $("[name='form.buttons.prev']").prop("disabled" , true);
                 $("[name='form.buttons.next']").prop("disabled" , true);
 
+                var cont = $("#marine-widget-top").next();
+                cont.css("position", "relative");
+                cont.prepend("<div id='wise-search-form-preloader' ></div>");
+
+                $("#wise-search-form-preloader")
+                    .append("<span style='position: absolute;" +
+                        "    display: block;" +
+                        "    left: 50%;" +
+                        " top: 10%;'></span>");
+                $("#wise-search-form-preloader > span").append( $("#ajax-spinner").clone().attr("id","ajax-spinner-center" ).show());
+
+                $("#ajax-spinner-center").css({
+                   "position" : "fixed",
+                   //"top" : "50%",
+                   //"left" : "30%",
+                   // "transform" : "translateX(-50%)"
+                });
                 loading = true;
 
             },
             success:function (data, status, req) {
                 $("#wise-search-form #wise-search-form-top").siblings().html("");
                 $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
+
                 $("#wise-search-form .topnav").next().remove();
 
                 var $data = $(data);
@@ -788,7 +810,6 @@ require(['jquery', 'slick'], function($, slick) {
                 $(".wise-search-form-container").html(fhtml);
 
                 if( $data.find("#wise-search-form .topnav").next().length > 0){
-                    //console.log($data.find("#wise-search-form .topnav").next().length);
                     $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
                 }
 
@@ -857,7 +878,7 @@ require(['jquery', 'slick'], function($, slick) {
                 });
                 //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
 
-                //$("#wise-search-form #loader-placeholder").remove();
+                $("#wise-search-form #loader-placeholder").remove();
                 $("#form-widgets-marine_unit_id").prop("disabled", false);
 
                 loading = false;
@@ -869,6 +890,9 @@ require(['jquery', 'slick'], function($, slick) {
             ,
             error:function (req, status, error) {
                 console.log(req);
+
+                $(body).append($("#ajax-spinner").clone().hide());
+
                 $("#wise-search-form").html(oldContent);
 
                 loading = false;
