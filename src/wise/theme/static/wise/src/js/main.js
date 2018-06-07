@@ -587,7 +587,7 @@ require(['jquery', 'slick'], function($, slick) {
 
             //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
             $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
-                "font-weight: 700;'> Marine Unit ID: </h4>");
+                "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
 
             $(selectElement).on("select2-selecting", function(ev) {
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
