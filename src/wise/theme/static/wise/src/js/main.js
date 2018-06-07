@@ -267,7 +267,7 @@ require(['jquery', 'slick'], function($, slick) {
                         '<span class=" search-icon" ></span>' +
                         '<span style="position: relative;">' +
                             '<input class="ui-autocomplete-input" type="text" style="width: 80%;" />' +
-                    '<a class="fa fa-times"></a>' +
+                    '<span class="clear-btn"><a class="fa fa-times"></a></span>' +
                     '</span>' +
                                         '</span>';
 
@@ -424,11 +424,11 @@ require(['jquery', 'slick'], function($, slick) {
                             create: function (event, ui){
                                 var that = this;
 
-                                var removeBtn = $(this).parentsUntil(".ui-autocomplete").find(".fa-times");
+                                var removeBtn = $(this).parentsUntil(".ui-autocomplete").find(".clear-btn ");
 
                                 removeBtn.on("click", null ,  that, function (ev) {
-                                    $(this).parent().find("input").val("");
-                                    $(this).parent().find("input").trigger("change");
+                                    $(this).parentsUntil(".controls").find("input").val("");
+                                    $(this).parentsUntil(".controls").find("input").trigger("change");
                                     $(ev.data).autocomplete("search","undefined");
 
                                     //console.log();
