@@ -107,7 +107,7 @@
     width: 20rem;
     float: left;
     clear: left;
-    /*border-right: 1px solid #CCC;*/
+    border-bottom: 1px dotted #CCC;
     margin-top: 0.4rem;
   }
 
@@ -509,6 +509,8 @@
         background: @dark-theme-color;
         color: white;
       }
+
+
     }
 
     &.tab-active {
@@ -519,6 +521,16 @@
   ul.topnav li {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
+    a {
+      >span {
+        display: block;
+      }
+
+      > span:first-child {
+        font-weight: 800;
+      }
+    }
   }
 
   & > ul.topnav li.tab-active,
@@ -586,17 +598,12 @@
     }
 
     .select-article {
-      /*display: inline-block;
-      width: 87%;
-      text-align: center;
-      padding-bottom: 5px;*/
       display: block;
       width: 87%;
       margin-top: 1.5rem;
       text-align: justify;
-      padding-bottom: 5px;
-      clear: both;
-      float: left;
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
     }
 
   }
@@ -811,6 +818,19 @@ span [name="form.buttons.next"] {
 }
 
 @media (max-width: @screen-sm-min){
+  .wise-search-form-container,
+  #wise-search-form {
+
+    dt {
+      border-bottom: none;
+
+    }
+
+    dd {
+      margin-bottom: 1.5rem;
+    }
+  }
+
   #marine-widget-top {
     .select-article {
       float: left;

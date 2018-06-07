@@ -599,7 +599,6 @@ require(['jquery', 'slick'], function($, slick) {
     }
 
     function setupTabs() {
-
         var t = $("ul.nav:not(.topnav) > li");
         if(t.length > 1) {
             var tabLength = t.length === 2 ? 35 : Math.floor(100 / t.length) - t.length;
@@ -610,8 +609,20 @@ require(['jquery', 'slick'], function($, slick) {
         } else {
             $(t).css({"margin-left": 0});
         }
-    }
 
+
+        if ($("#tabs-wrapper ul").find("li").length === 0){
+            if( $("#tabs-wrapper").find("ul").length ===  0 ){ return true;}
+            if($("#tabs-wrapper").find("ul li").length === 0) $("#tabs-wrapper").hide();
+        }
+
+        $.each( $(".tabs-wrapper") , function (indx, item) {
+            if($(item).find("ul").length ===  0){ return true;}
+            if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
+        });
+
+
+    }
 
 
     function clickFirstTab(){
@@ -731,10 +742,13 @@ require(['jquery', 'slick'], function($, slick) {
     $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
 
-
+    var AJAX_MODE = true;
 
     // ajax form submission
     $(".wise-search-form-container").unbind("click").on("click",".formControls #form-buttons-continue", function (ev){
+        if(!AJAX_MODE){
+            return true;
+        }
         ev.preventDefault();
         var form =  $(".wise-search-form-container").find("form");
         var url = form.attr("action");
@@ -754,6 +768,8 @@ require(['jquery', 'slick'], function($, slick) {
             url: url,
             //processData:false,
             beforeSend: function(jqXHR, settings){
+
+
                 $("#ajax-spinner").hide();
                 var t = "<div id='wise-search-form-container-preloader' " +
                 "></div>";
@@ -903,6 +919,9 @@ require(['jquery', 'slick'], function($, slick) {
 
 
     $(".wise-search-form-container").find("form").on("submit", function (ev) {
+        if(!AJAX_MODE){
+            return true;
+        }
         ev.preventDefault();
         //console.log(ev);
     });
