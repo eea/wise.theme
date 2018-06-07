@@ -606,7 +606,8 @@ require(['jquery', 'slick'], function($, slick) {
 
             t.css("width", tabLength + "%");
             var rest = 100 - tabLength*t.length;
-            $(t[0]).css("margin-left", rest/2 + "%");
+            //$(t[0]).css("margin-left", rest/2 + "%");
+            $(t).css({"margin-left": 0});
         } else {
             $(t).css({"margin-left": 0});
         }
