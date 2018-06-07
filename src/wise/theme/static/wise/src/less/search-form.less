@@ -430,6 +430,10 @@
       &:focus {
         border: none;
         outline: none;
+
+        & ~ .clear-btn {
+          background-color: #ffffe0;
+        }
       }
     }
 
@@ -440,13 +444,26 @@
       padding-right: 5px;
       display: inline-block;
 
+
+      &:active {
+        a {
+          transform: rotate(30deg);
+        }
+
+      }
+
       a {
+        background: transparent;
         line-height: 1.15;
+        text-decoration: none;
 
         &:hover {
+          text-decoration: none;
           color: inherit !important;
-          //transform: rotate(15deg);
+
         }
+
+
       }
 
     }
