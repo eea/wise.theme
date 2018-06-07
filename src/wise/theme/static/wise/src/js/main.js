@@ -586,7 +586,8 @@ require(['jquery', 'slick'], function($, slick) {
             $(selectElement).select2(options);
 
             //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
-            $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;'> Marine Unit ID: </h4>");
+            $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
+                "font-weight: 700;'> Marine Unit ID: </h4>");
 
             $(selectElement).on("select2-selecting", function(ev) {
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
@@ -609,7 +610,6 @@ require(['jquery', 'slick'], function($, slick) {
         } else {
             $(t).css({"margin-left": 0});
         }
-
 
         if ($("#tabs-wrapper ul").find("li").length === 0){
             if( $("#tabs-wrapper").find("ul").length ===  0 ){ return true;}
