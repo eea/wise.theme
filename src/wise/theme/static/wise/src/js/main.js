@@ -254,6 +254,7 @@ require(['jquery', 'slick'], function($, slick) {
 
             var cheks = $(field).find(".option");
             var hasChecks = cheks.find("input[type='checkbox']").length > 0;
+
             if(hasChecks){
                 var fieldId = $(field).attr("id");
                 var spAll = '<span class="controls" style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
@@ -264,7 +265,11 @@ require(['jquery', 'slick'], function($, slick) {
                 var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
                     '<span class="ui-autocomplete">' +
                         '<span class=" search-icon" ></span>' +
-                        '<input class="ui-autocomplete-input" type="text" style="width: 90%;" /></span>';
+                        '<span style="position: relative;">' +
+                            '<input class="ui-autocomplete-input" type="text" style="width: 80%;" />' +
+                    '<a class="fa fa-times"></a>' +
+                    '</span>' +
+                                        '</span>';
 
 
                 // add "all" checkbox
@@ -353,15 +358,18 @@ require(['jquery', 'slick'], function($, slick) {
                         $(field).find(".ui-autocomplete-input").autocomplete({
                             minLength: 0,
                             source: [],
-                            search: function( event, ui ) {
-                                var cheks = $(field).find(".option .label:not(.horizontal) ");
+                            search: function( event, ui, dat ) {
+                                debugger;
+
+                                var cheks2 = $(field).find(".option .label:not(.horizontal) ");
 
                                 if( $(event.target).val() === "" ){
-                                    cheks.parentsUntil(".option").parent().parent().find(".noresults").remove();
-                                    cheks.parentsUntil(".option").parent().show();
+                                    cheks2.parentsUntil(".option").parent().parent().find(".noresults").remove();
+                                    cheks2.parentsUntil(".option").parent().show();
+                                    cheks2.parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
                                     return true;
                                 }
-                                cheks.parentsUntil(".option").parent().show();
+                                cheks2.parentsUntil(".option").parent().show();
 
                                 var toSearch = $(event.target).val().toLowerCase()
                                     /*.replace(/^\s+|\s+$/g, '_')*/
@@ -389,11 +397,11 @@ require(['jquery', 'slick'], function($, slick) {
                                     }
                                 });
 
-                                var tohide = cheks.filter(function (idx, elem) {
+                                var tohide = cheks2.filter(function (idx, elem) {
                                     return found.indexOf( $(elem).text().toLowerCase()) !== -1;
                                 });
 
-                                var toshow =  cheks.filter(function (idx, elem) {
+                                var toshow =  cheks2.filter(function (idx, elem) {
                                     return found.indexOf( $(elem).text().toLowerCase()) === -1;
                                 });
                                 $.each(toshow, function (ind, item) {
@@ -402,17 +410,37 @@ require(['jquery', 'slick'], function($, slick) {
 
                                 $.each(tohide, function (inx, item) {
                                     $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
+                                    $(item).parentsUntil(".option").parent().find("input[type='checkbox']").prop("checked", false);
+                                    $(item).parentsUntil(".option").parent().find("input[type='checkbox']").removeAttr('checked');
                                     $(item).parentsUntil(".option").parent().hide();
                                 });
 
-                                if(tohide.length === cheks.length){
-                                    console.log("no result");
-                                    cheks.parentsUntil(".option").parent().parent().append("<span class='noresults'>No results found</span>")
+                                if(tohide.length === cheks2.length){
+
+                                    cheks2.parentsUntil(".option").parent().parent().append("<span class='noresults'>No results found</span>")
                                 }
 
+                            },
+                            create: function (event, ui){
+                                var that = this;
+
+                                var removeBtn = $(this).parentsUntil(".ui-autocomplete").find(".fa-times");
+
+                                removeBtn.on("click", null ,  that, function (ev) {
+                                    $(this).parent().find("input").val("");
+                                    $(this).parent().find("input").trigger("change");
+                                    $(ev.data).autocomplete("search","undefined");
+
+                                    //console.log();
+                                });
                             }
                         });
+
+
                     }
+
+
+
                     /*$(field).find(".ui-autocomplete-input").on("focusin" , function (ev) {
                         //$(ev.target).parent().find(".glyphicon").css("background", "#ffffe0");
                     });
@@ -426,7 +454,11 @@ require(['jquery', 'slick'], function($, slick) {
                 }
             }
             if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
+
+
         });
+
+
 
     }
 
@@ -686,7 +718,6 @@ require(['jquery', 'slick'], function($, slick) {
 
     attachSelect2();
 
-
     setupTabs();
 
     clickFirstTab();
@@ -699,8 +730,6 @@ require(['jquery', 'slick'], function($, slick) {
     var prevButton = $(".center-section [name='form.buttons.prev']");
 
     var nextButton = $(".center-section [name='form.buttons.next']");
-
-
 
     prevButton.one("click", function (){
         if(loading) return false;
@@ -928,8 +957,10 @@ require(['jquery', 'slick'], function($, slick) {
     });
 
 
+
     return jQuery.noConflict();
 });
+
 
 
 
