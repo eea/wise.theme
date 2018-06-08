@@ -686,8 +686,11 @@ require(['jquery', 'slick'], function($, slick) {
         var nextEl  = $(selectedV.element[0]).next();
         var prevEl = $(selectedV.element[0]).before();
 
-
-        marinUidSelect.val(nextEl.val()).trigger("change");
+        if(direction === "next"){
+            marinUidSelect.val(nextEl.val()).trigger("change");
+        } else if(direction === "prev"){
+            marinUidSelect.val(prevEl.val()).trigger("change");
+        }
 
         $("#form-buttons-continue").trigger("click");
 
