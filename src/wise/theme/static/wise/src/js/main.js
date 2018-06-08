@@ -672,10 +672,47 @@ require(['jquery', 'slick'], function($, slick) {
 
     }
 
-
     function clickFirstTab(){
         $("#tabs-wrapper ul li:first-child a").trigger('click');
         $(".tabs-wrapper ul li:first-child a").trigger('click');
+    }
+
+    function setPaginationButtons(){
+        var prevButton = $(".center-section [name='form.buttons.prev']");
+
+        var nextButton = $(".center-section [name='form.buttons.next']");
+
+        prevButton.one("click", function (){
+            if(loading) return false;
+
+            $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
+            $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
+        });
+
+        nextButton.one("click", function(){
+            if(loading) return false;
+
+            $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
+            $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
+        });
+
+        var topNextBtn = '<button type="submit" ' +
+            'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
+            '            </button>';
+        $("#form-buttons-next-top").append(topNextBtn);
+
+
+        /*var topPrevBtn = $("#form-buttons-prev").clone(true);
+        var tpBid = topPrevBtn.attr("id");
+        topPrevBtn.attr("id", tpBid + "-top");
+        $("#form-buttons-prev-top").append(topPrevBtn);
+        $("#form-buttons-prev-top .btn")
+            .css("position", "relative");
+
+        var topNextBtn = $("#form-buttons-next").clone(true);
+        var tpNbid = topNextBtn.attr("id");
+        topNextBtn.attr("id", tpNbid + "-top");
+        $("#form-buttons-next-top").append(topNextBtn);*/
     }
 
     $.randomString = function() {
@@ -741,37 +778,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     var loading = false;
 
-
-    var prevButton = $(".center-section [name='form.buttons.prev']");
-
-    var nextButton = $(".center-section [name='form.buttons.next']");
-
-    prevButton.on("click", function (){
-        if(loading) return false;
-
-        $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
-        $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
-    });
-
-    nextButton.on("click", function(){
-        if(loading) return false;
-
-        $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
-        $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
-    });
-
-    var topPrevBtn = $("#form-buttons-prev").clone(true);
-    var tpBid = topPrevBtn.attr("id");
-    topPrevBtn.attr("id", tpBid + "-top");
-    $("#form-buttons-prev-top").append(topPrevBtn);
-    $("#form-buttons-prev-top .btn")
-        .css("position", "relative");
-        //.css({"margin-right": "20px"})
-
-    var topNextBtn = $("#form-buttons-next").clone(true);
-    var tpNbid = topNextBtn.attr("id");
-    topNextBtn.attr("id", tpNbid + "-top");
-    $("#form-buttons-next-top").append(topNextBtn);
+    setPaginationButtons();
 
     $(window).on("resize", function () {
         if (window.matchMedia("(max-width: 1024px)").matches) {
@@ -857,8 +864,6 @@ require(['jquery', 'slick'], function($, slick) {
 
             },
             success:function (data, status, req) {
-
-
                 $("#wise-search-form #wise-search-form-top").siblings().html("");
                 $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
 
@@ -903,37 +908,9 @@ require(['jquery', 'slick'], function($, slick) {
                 // hide marineUnit ID from right form
                 $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
-                var prevButton = $(".center-section [name='form.buttons.prev']");
 
-                var nextButton = $(".center-section [name='form.buttons.next']");
+                setPaginationButtons();
 
-                prevButton.one("click", function (){
-                    if(loading) return false;
-
-                    $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
-                    $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
-                });
-
-                nextButton.one("click", function(){
-                    if(loading) return false;
-
-                    $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
-                    $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
-                });
-
-
-                var topPrevBtn = $("#form-buttons-prev").clone(true);
-                var tpBid = topPrevBtn.attr("id");
-                topPrevBtn.attr("id", tpBid + "-top");
-                $("#form-buttons-prev-top").append(topPrevBtn);
-                $("#form-buttons-prev-top .btn")
-                    .css("position", "relative");
-                //.css({"margin-right": "20px"})
-
-                var topNextBtn = $("#form-buttons-next").clone(true);
-                var tpNbid = topNextBtn.attr("id");
-                topNextBtn.attr("id", tpNbid + "-top");
-                $("#form-buttons-next-top").append(topNextBtn);
 
                 $("[name='form.buttons.prev']").prop("disabled" , false);
                 $("[name='form.buttons.next']").prop("disabled" , false);
@@ -974,6 +951,7 @@ require(['jquery', 'slick'], function($, slick) {
                     });
                 }
 
+                $("#wise-search-form-top").find(".alert").remove();
                 $("#wise-search-form-top").append('<div class="alert alert-danger alert-dismissible show" style="margin-top: 2rem;" role="alert">' +
                     '  <strong>There was a error from the server.</strong> You should check in on some of those fields from the form.' +
                     '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
