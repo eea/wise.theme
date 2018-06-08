@@ -629,9 +629,10 @@ require(['jquery', 'slick'], function($, slick) {
                 found.parent().find("[type='checkbox']").prop("checked", false);
                 found.parent().find("input[type='checkbox']").prop("checked", false);*/
 
+                //window.WISE.marineUnit = ev.val;
 
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
-                $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+                //$(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
 
 
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
@@ -681,18 +682,24 @@ require(['jquery', 'slick'], function($, slick) {
 
     function marineBtnHandler(ev){
         var direction = ev.data.direction;
-        var marinUidSelect = $("#wise-search-form select");
+        var marinUidSelect = $(".wise-search-form-container #s2id_form-widgets-marine_unit_id");
         var selectedV =  marinUidSelect.select2('data');
+
         var nextEl  = $(selectedV.element[0]).next();
-        var prevEl = $(selectedV.element[0]).before();
+        var prevEl = $(selectedV.element[0]).prev();
 
         if(direction === "next"){
-            marinUidSelect.val(nextEl.val()).trigger("change");
-        } else if(direction === "prev"){
-            marinUidSelect.val(prevEl.val()).trigger("change");
-        }
+            var dir = nextEl.val();
 
-        $("#form-buttons-continue").trigger("click");
+        } else if(direction === "prev"){
+            var dir = prevEl.val();
+        }
+        $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
+        $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+
+        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
     }
 
@@ -815,6 +822,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     window.WISE = {};
     window.WISE.formData = $(".wise-search-form-container").clone(true);
+    //window.WISE.marineUnit = $("#wise-search-form select").val();
 
     // ajax form submission
     $(".wise-search-form-container").unbind("click").on("click",".formControls #form-buttons-continue", function (ev){
@@ -840,7 +848,6 @@ require(['jquery', 'slick'], function($, slick) {
             url: url,
             //processData:false,
             beforeSend: function(jqXHR, settings){
-
                 $("#ajax-spinner").hide();
                 var t = "<div id='wise-search-form-container-preloader' " +
                 "></div>";
@@ -880,6 +887,9 @@ require(['jquery', 'slick'], function($, slick) {
                    //"left" : "30%",
                    // "transform" : "translateX(-50%)"
                 });
+
+                //window.WISE.marineUnit = $("#wise-search-form select").val(  );
+
                 loading = true;
 
             },
@@ -954,6 +964,11 @@ require(['jquery', 'slick'], function($, slick) {
 
                 $("#form-widgets-marine_unit_id").prop("disabled", false);
 
+                //console.log($("#wise-search-form select").val());
+
+                //if($("#wise-search-form select").val() === "--NOVALUE--" ) $("#wise-search-form select").val(window.WISE.marineUnit).trigger("change.select2");
+
+
                 loading = false;
 
             }
@@ -993,6 +1008,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                 $("[name='marine.buttons.prev']").prop("disabled" , true);
                 $("[name='marine.buttons.next']").prop("disabled" , true);
+
 
                 loading = false;
             }
