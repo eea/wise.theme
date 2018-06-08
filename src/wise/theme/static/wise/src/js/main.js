@@ -620,11 +620,27 @@ require(['jquery', 'slick'], function($, slick) {
                 "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
 
             $(selectElement).on("select2-selecting", function(ev) {
+                /*$(".wise-search-form-container #form-widgets-marine_unit_ids").find("[type='checkbox']").prop("checked", false);
+
+                var found = $(".wise-search-form-container #form-widgets-marine_unit_ids").find(".option[title='"+ ev.val + "']");
+                found.parent().find("[type='checkbox']").prop("checked", false);
+                found.parent().find("input[type='checkbox']").prop("checked", false);*/
+
+
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
                 $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
 
 
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+
+                //$(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
+                //$(".wise-search-form-container #form-widgets-marine_unit_id").find("")
+
+
+                //$(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+
+                //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             });
         });
     }
