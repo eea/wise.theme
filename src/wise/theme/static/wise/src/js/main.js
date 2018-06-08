@@ -270,6 +270,10 @@ require(['jquery', 'slick'], function($, slick) {
                     '</span>' +
                                         '</span>';
 
+                $("#" + fieldId).on("click", ".option", function (evO) {
+                    setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
+                        , 300);
+                });
 
                 // add "all" checkbox
                 var all = spAll + spClear + invertSel;
@@ -520,6 +524,7 @@ require(['jquery', 'slick'], function($, slick) {
         $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
         $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
 
+
         /*$cont.on("click","[data-fieldname] .controls a[data-value]", function(ev){
             if($(this).attr("data-value") === "invert") console.log(ev);
             var actions = {
@@ -616,7 +621,6 @@ require(['jquery', 'slick'], function($, slick) {
 
             $(selectElement).select2(options);
 
-            //$(selectElement).parentsUntil(".field").parent().css("display","inline-block").css("margin", "0 auto");
             $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
                 "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
 
@@ -677,6 +681,18 @@ require(['jquery', 'slick'], function($, slick) {
         $(".tabs-wrapper ul li:first-child a").trigger('click');
     }
 
+    function marineBtnHandler(ev){
+        var direction = ev.data.direction;
+        var marinUidSelect = $("#wise-search-form select");
+        var selectedV =  marinUidSelect.select2('data');
+        var nextEl  = $(selectedV.element[0]).next();
+        var prevEl = $(selectedV.element[0]).before();
+
+
+        //marinUidSelect.val(nextEl).trigger("change");
+        //debugger;
+    }
+
     function setPaginationButtons(){
         var prevButton = $(".center-section [name='form.buttons.prev']");
 
@@ -696,23 +712,21 @@ require(['jquery', 'slick'], function($, slick) {
             $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
         });
 
+        var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
+            ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
+            '          </button>';
+        $("#form-buttons-prev-top").append(topPrevBtn);
+
+        $("#form-buttons-prev-top").on("click", null, { direction : "prev"} , marineBtnHandler);
+
         var topNextBtn = '<button type="submit" ' +
             'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
             '            </button>';
         $("#form-buttons-next-top").append(topNextBtn);
 
+        $("#form-buttons-next-top").on("click", null, { direction : "next"} , marineBtnHandler);
 
-        /*var topPrevBtn = $("#form-buttons-prev").clone(true);
-        var tpBid = topPrevBtn.attr("id");
-        topPrevBtn.attr("id", tpBid + "-top");
-        $("#form-buttons-prev-top").append(topPrevBtn);
-        $("#form-buttons-prev-top .btn")
-            .css("position", "relative");
 
-        var topNextBtn = $("#form-buttons-next").clone(true);
-        var tpNbid = topNextBtn.attr("id");
-        topNextBtn.attr("id", tpNbid + "-top");
-        $("#form-buttons-next-top").append(topNextBtn);*/
     }
 
     $.randomString = function() {
