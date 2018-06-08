@@ -601,6 +601,7 @@ require(['jquery', 'slick'], function($, slick) {
         });
 
         $("#wise-search-form select").each(function (ind, selectElement) {
+
             $(selectElement).addClass("js-example-basic-single");
             var options = {
                 placeholder: 'Select an option',
