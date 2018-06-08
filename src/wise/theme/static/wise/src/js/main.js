@@ -270,6 +270,7 @@ require(['jquery', 'slick'], function($, slick) {
                     '</span>' +
                                         '</span>';
 
+                // each checkbox does auto submit
                 $("#" + fieldId).on("click", ".option", function (evO) {
                     setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
                         , 300);

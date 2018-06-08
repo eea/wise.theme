@@ -16,9 +16,26 @@
         padding-left: 0;
         border-bottom: 1px solid #eee;
 
-        .select2-arrow b {
-          background: url("++resource++select2/select2.png") no-repeat 0 8px !important;
+        .select2-arrow {
+          width: 20px;
+          margin-right: 10px;
+
+          b {
+            //background: url("++resource++select2/select2.png") no-repeat 0 8px !important;
+            background: none;
+            padding: 0.5rem;
+            &:after {
+              content: "\f107";
+              font-family: FontAwesome;
+              font-size: 2.3rem;
+              line-height: 2.5rem;
+              margin-top: 50%;
+              width: 100%;
+              display: block;
+            }
+          }
         }
+
 
 
       }
@@ -60,6 +77,27 @@
       .select2-choice {
         font-size: 1em;
         padding-left: 0;
+        border-bottom: 1px solid #eee;
+
+        .select2-arrow {
+          width: 20px;
+          margin-right: 10px;
+
+          b {
+            background: none !important;
+            padding: 0.5rem;
+            &:after {
+              content: "\f107";
+              font-family: FontAwesome;
+              font-size: 2.3rem;
+              line-height: 2.5rem;
+              margin-top: 50%;
+              width: 100%;
+              display: block;
+            }
+          }
+        }
+
       }
     }
   }
