@@ -858,6 +858,9 @@ require(['jquery', 'slick'], function($, slick) {
                 $("[name='form.buttons.prev']").prop("disabled" , true);
                 $("[name='form.buttons.next']").prop("disabled" , true);
 
+                $("[name='marine.buttons.prev']").prop("disabled" , true);
+                $("[name='marine.buttons.next']").prop("disabled" , true);
+
                 var cont = $("#marine-widget-top").next();
                 cont.css("position", "relative");
                 cont.prepend("<div id='wise-search-form-preloader' ></div>");
@@ -930,6 +933,8 @@ require(['jquery', 'slick'], function($, slick) {
                 $("[name='form.buttons.prev']").prop("disabled" , false);
                 $("[name='form.buttons.next']").prop("disabled" , false);
 
+                $("[name='marine.buttons.prev']").prop("disabled" , false);
+                $("[name='marine.buttons.next']").prop("disabled" , false);
             },
             complete:function(jqXHR, textStatus){
                 if(textStatus === "success"){
@@ -985,6 +990,9 @@ require(['jquery', 'slick'], function($, slick) {
 
                 $("[name='form.buttons.prev']").prop("disabled" , true);
                 $("[name='form.buttons.next']").prop("disabled" , true);
+
+                $("[name='marine.buttons.prev']").prop("disabled" , true);
+                $("[name='marine.buttons.next']").prop("disabled" , true);
 
                 loading = false;
             }
