@@ -182,7 +182,6 @@ require(['jquery', 'slick'], function($, slick) {
         };
 
         $('.login i').on('click', function() {
-            debugger;
             $(this).toggleClass('action-selected');
             $('.search i').removeClass('action-selected')
             $('.login-container ').animate({
@@ -359,14 +358,13 @@ require(['jquery', 'slick'], function($, slick) {
                             minLength: 0,
                             source: [],
                             search: function( event, ui, dat ) {
-                                debugger;
-
                                 var cheks2 = $(field).find(".option .label:not(.horizontal) ");
 
                                 if( $(event.target).val() === "" ){
                                     cheks2.parentsUntil(".option").parent().parent().find(".noresults").remove();
+
                                     cheks2.parentsUntil(".option").parent().show();
-                                    cheks2.parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
+                                    //cheks2.parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
                                     return true;
                                 }
                                 cheks2.parentsUntil(".option").parent().show();
@@ -607,7 +605,7 @@ require(['jquery', 'slick'], function($, slick) {
             var options = {
                 placeholder: 'Select an option',
                 closeOnSelect: true,
-                dropdownAutoWidth : true,
+                dropdownAutoWidth : false,
                 width: '100%',
                 theme: "flat",
                 minimumResultsForSearch: Infinity,
@@ -731,14 +729,14 @@ require(['jquery', 'slick'], function($, slick) {
 
     var nextButton = $(".center-section [name='form.buttons.next']");
 
-    prevButton.one("click", function (){
+    prevButton.on("click", function (){
         if(loading) return false;
 
         $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
         $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
     });
 
-    nextButton.one("click", function(){
+    nextButton.on("click", function(){
         if(loading) return false;
 
         $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
@@ -774,6 +772,9 @@ require(['jquery', 'slick'], function($, slick) {
 
     var AJAX_MODE = true;
 
+    window.WISE = {};
+    window.WISE.formData = $(".wise-search-form-container").clone(true);
+
     // ajax form submission
     $(".wise-search-form-container").unbind("click").on("click",".formControls #form-buttons-continue", function (ev){
         if(!AJAX_MODE){
@@ -787,7 +788,7 @@ require(['jquery', 'slick'], function($, slick) {
 
         var strContent = $.getMultipartData("#" + form.attr("id"));
 
-        var oldContent = $("#wise-search-form").html();
+        var oldFormContent = $(".wise-search-form-container").clone(true);
 
         $.ajax({
             type: "POST",
@@ -798,7 +799,6 @@ require(['jquery', 'slick'], function($, slick) {
             url: url,
             //processData:false,
             beforeSend: function(jqXHR, settings){
-
 
                 $("#ajax-spinner").hide();
                 var t = "<div id='wise-search-form-container-preloader' " +
@@ -840,12 +840,16 @@ require(['jquery', 'slick'], function($, slick) {
 
             },
             success:function (data, status, req) {
+
+
                 $("#wise-search-form #wise-search-form-top").siblings().html("");
                 $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
 
                 $("#wise-search-form .topnav").next().remove();
 
                 var $data = $(data);
+
+                window.WISE.formData = $(data).find(".wise-search-form-container").clone(true);
 
                 var chtml = $data.find(".wise-search-form-container");
 
@@ -914,32 +918,63 @@ require(['jquery', 'slick'], function($, slick) {
                 topNextBtn.attr("id", tpNbid + "-top");
                 $("#form-buttons-next-top").append(topNextBtn);
 
+                $("[name='form.buttons.prev']").prop("disabled" , false);
+                $("[name='form.buttons.next']").prop("disabled" , false);
+
             },
-            complete:function(){
+            complete:function(jqXHR, textStatus){
+                if(textStatus === "success"){
+                    $(".wise-search-form-container").fadeIn("fast", function () {
+                        $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
+                    });
+                }
                 $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
                 $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
 
-                $(".wise-search-form-container").fadeIn("fast", function () {
-                    $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
-                });
+
                 //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
 
                 $("#wise-search-form #loader-placeholder").remove();
+
                 $("#form-widgets-marine_unit_id").prop("disabled", false);
 
                 loading = false;
 
-                /*$("[name='form.buttons.prev']").prop("disabled" , true);
-                $("[name='form.buttons.next']").prop("disabled" , true);*/
             }
 
             ,
             error:function (req, status, error) {
-                console.log(req);
+                if(window.WISE.formData.length > 0){
+                    var data = $($(window.WISE.formData)[0]).find(".field");
+                    $.each( data , function (indx, $field) {
+                       var chk = $($field).find(".option input[type='checkbox']:checked");
 
-                $(body).append($("#ajax-spinner").clone().hide());
+                       if(chk.length > 0){
+                            debugger;
+                       }
 
-                $("#wise-search-form").html(oldContent);
+
+                    });
+                }
+
+                $("#wise-search-form-top").append('<div class="alert alert-danger alert-dismissible show" style="margin-top: 2rem;" role="alert">' +
+                    '  <strong>There was a error from the server.</strong> You should check in on some of those fields from the form.' +
+                    '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                    '    <span aria-hidden="true">&times;</span>' +
+                    '  </button>' +
+                    '</div>');
+
+                $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+                $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+                $("#form-widgets-marine_unit_id").prop("disabled", false);
+
+                $("#wise-search-form-container-preloader").remove();
+                $("#wise-search-form-preloader").remove();
+
+                $("#ajax-spinner-form").hide();
+
+                $("[name='form.buttons.prev']").prop("disabled" , true);
+                $("[name='form.buttons.next']").prop("disabled" , true);
 
                 loading = false;
             }
