@@ -353,7 +353,6 @@ require(['jquery', 'slick'], function($, slick) {
                         },600);
                     });
 
-
                     // initialize autocomplete for more than 6 checkboxes
                     if(cheks.length < 6) {
                         $(field).find(".controls .ui-autocomplete").hide();
@@ -441,8 +440,6 @@ require(['jquery', 'slick'], function($, slick) {
 
 
                     }
-
-
 
                     /*$(field).find(".ui-autocomplete-input").on("focusin" , function (ev) {
                         //$(ev.target).parent().find(".glyphicon").css("background", "#ffffe0");
@@ -690,8 +687,10 @@ require(['jquery', 'slick'], function($, slick) {
         var prevEl = $(selectedV.element[0]).before();
 
 
-        //marinUidSelect.val(nextEl).trigger("change");
-        //debugger;
+        marinUidSelect.val(nextEl.val()).trigger("change");
+
+        $("#form-buttons-continue").trigger("click");
+
     }
 
     function setPaginationButtons(){
@@ -962,11 +961,9 @@ require(['jquery', 'slick'], function($, slick) {
                     var data = $($(window.WISE.formData)[0]).find(".field");
                     $.each( data , function (indx, $field) {
                        var chk = $($field).find(".option input[type='checkbox']:checked");
-
                        if(chk.length > 0){
                             debugger;
                        }
-
 
                     });
                 }
