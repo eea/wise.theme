@@ -603,18 +603,21 @@ require(['jquery', 'slick'], function($, slick) {
             });
         });
 
-        $("#wise-search-form select").each(function (ind, selectElement) {
+        $("#wise-search-form select").addClass("js-example-basic-single");
 
-            $(selectElement).addClass("js-example-basic-single");
+        $("#wise-search-form select").each(function (ind, selectElement) {
             var options = {
                 placeholder: 'Select an option',
                 closeOnSelect: true,
                 dropdownAutoWidth : false,
                 width: '100%',
                 theme: "flat",
-                minimumResultsForSearch: Infinity,
+                minimumResultsForSearch: 20,
+                allowClear: true,
+
                 containerCssClass : "select2-top-override",
-                dropdownCssClass: "select2-top-override-dropdown"
+                dropdownCssClass: "select2-top-override-dropdown",
+                debug: true,
             };
 
             $(selectElement).select2(options);
