@@ -666,7 +666,8 @@ require(['jquery', 'slick'], function($, slick) {
         }
 
         if ($("#tabs-wrapper ul").find("li").length === 0){
-            if( $("#tabs-wrapper").find("ul").length ===  0 ){ return true;}
+            if( $("#tabs-wrapper").find("ul").length ===  0 ){ //return true;
+            }
             if($("#tabs-wrapper").find("ul li").length === 0) $("#tabs-wrapper").hide();
         }
 
@@ -674,7 +675,6 @@ require(['jquery', 'slick'], function($, slick) {
             if($(item).find("ul").length ===  0){ return true;}
             if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
         });
-
 
     }
 
