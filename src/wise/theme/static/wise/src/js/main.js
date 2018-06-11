@@ -654,13 +654,24 @@ require(['jquery', 'slick'], function($, slick) {
 
     function setupTabs() {
         var t = $("ul.nav:not(.topnav) > li");
+
         if(t.length > 1) {
-            var tabLength = t.length === 2 ? 35 : Math.floor(100 / t.length) - t.length;
+            var nrtabs = t.length;
+
+            var tabLength = t.length === 2 ? 35 : Math.floor((100 - t.length) / t.length );
 
             t.css("width", tabLength + "%");
             var rest = 100 - tabLength*t.length;
+
+            var totalL = $("ul.nav").width();
+            var mrR = Math.floor( totalL /100 ) ;
+
             //$(t[0]).css("margin-left", rest/2 + "%");
-            $(t).css({"margin-left": 0});
+            $(t).css({
+                "margin-left": 0,
+                "margin-right" : mrR/2 + "px"
+            });
+
         } else {
             $(t).css({"margin-left": 0});
         }
@@ -675,6 +686,19 @@ require(['jquery', 'slick'], function($, slick) {
             if($(item).find("ul").length ===  0){ return true;}
             if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
         });
+
+        if( $("#tabs-wrapper ul li").length === 1 ){
+            $("#tabContents").removeClass("tab-content");
+            $("#tabs-wrapper ul").attr("class", "");
+            $("#tabs-wrapper ul li").css({
+               "background-color": "transparent",
+               "float" : "none",
+            });
+            var lt = $("#tabs-wrapper ul li a").text();
+            $("#tabs-wrapper ul li").append("<h4>" + lt + "</h4>");
+            $("#tabs-wrapper ul li a").remove();
+            $("#tabs-wrapper .tab-pane").removeClass("fade");
+        }
 
     }
 
@@ -813,9 +837,9 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(window).on("resize", function () {
         if (window.matchMedia("(max-width: 1024px)").matches) {
-            var el = $("#form-buttons-next-top");
+            /*var el = $("#form-buttons-next-top");
             el.css("float","right");
-            $("#form-buttons-prev-top").after(el);
+            $("#form-buttons-prev-top").after(el);*/
 
             /*$("#marine-widget-top > div").css("display", "block");
             $("#marine-widget-top .field").css("display", "block");*/
@@ -1024,15 +1048,13 @@ require(['jquery', 'slick'], function($, slick) {
     });
 
 
-    $(".wise-search-form-container").find("form").on("submit", function (ev) {
+    /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
         if(!AJAX_MODE){
             return true;
         }
         ev.preventDefault();
         //console.log(ev);
-    });
-
-
+    });*/
 
     return jQuery.noConflict();
 });
