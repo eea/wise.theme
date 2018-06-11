@@ -553,6 +553,9 @@ require(['jquery', 'slick'], function($, slick) {
         $(".wise-search-form-container select").each(function (ind, selectElement) {
             $(selectElement).addClass("js-example-basic-single");
             var lessOptions = $(selectElement).find("option").length < 10;
+
+
+
             var options = {
                 placeholder: 'Select an option',
                 closeOnSelect: true,
@@ -649,8 +652,23 @@ require(['jquery', 'slick'], function($, slick) {
 
                 //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             });
+
+
+            if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
+                // Select2 has been initialized
+
+                if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
+                    $("#wise-search-form .select2-choice").css("width", "50%");
+                } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
+                    $("#wise-search-form .select2-choice").css("width", "70%");
+                }
+
+            }
+
         });
     }
+
+
 
     function setupTabs() {
         var t = $("ul.nav:not(.topnav) > li");
@@ -998,7 +1016,16 @@ require(['jquery', 'slick'], function($, slick) {
                 //console.log($("#wise-search-form select").val());
 
                 //if($("#wise-search-form select").val() === "--NOVALUE--" ) $("#wise-search-form select").val(window.WISE.marineUnit).trigger("change.select2");
+                if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
+                    // Select2 has been initialized
 
+                    if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
+                        $("#wise-search-form .select2-choice").css("width", "50%");
+                    } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
+                        $("#wise-search-form .select2-choice").css("width", "70%");
+                    }
+
+                }
 
                 loading = false;
 
