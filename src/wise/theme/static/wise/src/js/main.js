@@ -695,7 +695,9 @@ require(['jquery', 'slick'], function($, slick) {
             var dir = prevEl.val();
         }
 
+        // reset paging
         $(".wise-search-form-container [name='form.widgets.page']").val(0);
+
         $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
         $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
 
