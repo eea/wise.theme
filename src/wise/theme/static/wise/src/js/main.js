@@ -663,10 +663,12 @@ require(['jquery', 'slick'], function($, slick) {
                     $("#wise-search-form .select2-choice").css("width", "70%");
                 }*/
 
-                var pres = $("#wise-search-form .select2-arrow");
+                /*var pres = $("#wise-search-form .select2-arrow");
                 var tchose = $("#wise-search-form .select2-chosen");
-
+*/
                 //pres.appendTo();
+
+
 
             }
 
@@ -776,21 +778,30 @@ require(['jquery', 'slick'], function($, slick) {
             $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
         });
 
+        var selected = $("#wise-search-form select").val();
 
-        var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
-            ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
-            '          </button>';
-        $("#form-buttons-prev-top").append(topPrevBtn);
 
-        $("#form-buttons-prev-top").on("click", null, { direction : "prev"} , marineBtnHandler);
+        var opts = $("#wise-search-form select option");
+        // ignore 1st option for "prev" button
+        if( $("#wise-search-form select").val() !== $(opts[1]).val() ){
+            //$($("#wise-search-form select option")[1]).val()
+            var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
+                ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
+                '          </button>';
+            $("#form-buttons-prev-top").append(topPrevBtn);
 
-        var topNextBtn = '<button type="submit" ' +
-            'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
-            '            </button>';
-        $("#form-buttons-next-top").append(topNextBtn);
+            $("#form-buttons-prev-top").on("click", null, { direction : "prev"} , marineBtnHandler);
+        }
 
-        $("#form-buttons-next-top").on("click", null, { direction : "next"} , marineBtnHandler);
+        // ignore last option for "next" button
+        if( $("#wise-search-form select").val() !== $(opts[opts.length-1]).val() ){
+            var topNextBtn = '<button type="submit" ' +
+                'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
+                '            </button>';
+            $("#form-buttons-next-top").append(topNextBtn);
 
+            $("#form-buttons-next-top").on("click", null, { direction : "next"} , marineBtnHandler);
+        }
 
     }
 
