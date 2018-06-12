@@ -1019,11 +1019,11 @@ require(['jquery', 'slick'], function($, slick) {
                 if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
                     // Select2 has been initialized
 
-                    if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
+                    /*if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
                         $("#wise-search-form .select2-choice").css("width", "50%");
                     } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
                         $("#wise-search-form .select2-choice").css("width", "70%");
-                    }
+                    }*/
 
                 }
 

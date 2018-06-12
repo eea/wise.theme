@@ -9,28 +9,45 @@
 
       & > a {
         border: none;
+
+        &:hover {
+          /*b:after {
+            margin-top: 50% !important;
+          }*/
+        }
       }
 
       .select2-choice {
         font-size: 1.5em;
         padding-left: 0;
-        border-bottom: 1px solid #eee;
+        /*border-bottom: 1px solid #eee;*/
         /*width: 50%;*/
+
+        .select2-chosen {
+          margin-right: 0;
+        }
 
         .select2-arrow {
           width: 20px;
           margin-right: 10px;
+          display: block;
+          position: relative;
+          margin-left: 50%;
+          transform: translate3d(-50%, 0,0);
 
           b {
             //background: url("++resource++select2/select2.png") no-repeat 0 8px !important;
             background: none;
-            padding: 0.5rem;
+            padding: 0;
+            margin: 0 auto;
+            position: relative;
+
             &:after {
               content: "\f107";
               font-family: FontAwesome;
               /*font-size: 2.3rem;*/
-              line-height: 2.5rem;
-              margin-top: 50%;
+              /*line-height: 2.5rem;*/
+              margin-top: 0;
               width: 100%;
               display: block;
             }
