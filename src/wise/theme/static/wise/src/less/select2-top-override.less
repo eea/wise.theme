@@ -11,9 +11,9 @@
         border: none;
 
         &:hover {
-          /*b:after {
-            margin-top: 50% !important;
-          }*/
+          b:after {
+            top: 25% !important;
+          }
         }
       }
 
@@ -34,6 +34,7 @@
           position: relative;
           margin-left: 50%;
           transform: translate3d(-50%, 0,0);
+          height: 2rem;
 
           b {
             //background: url("++resource++select2/select2.png") no-repeat 0 8px !important;
@@ -50,6 +51,7 @@
               margin-top: 0;
               width: 100%;
               display: block;
+              position:absolute;
             }
           }
         }
@@ -95,7 +97,7 @@
       .select2-choice {
         font-size: 1em;
         padding-left: 0;
-        border-bottom: 1px solid #eee;
+       /* border-bottom: 1px solid #eee;*/
 
         .select2-arrow {
           width: 20px;
@@ -103,16 +105,6 @@
 
           b {
             background: none !important;
-            padding: 0.5rem;
-            &:after {
-              content: "\f107";
-              font-family: FontAwesome;
-              font-size: 2.3rem;
-              line-height: 2.5rem;
-              margin-top: 50%;
-              width: 100%;
-              display: block;
-            }
           }
         }
 
