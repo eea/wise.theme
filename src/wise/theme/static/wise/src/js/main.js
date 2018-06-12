@@ -637,9 +637,17 @@ require(['jquery', 'slick'], function($, slick) {
 
                 //window.WISE.marineUnit = ev.val;
 
+                $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
+                var trW = $("#marine-unit-trigger a").width();
+                var trH = $("#marine-unit-trigger a").height();
+
+                $("#marine-unit-trigger .arrow").css({
+                    "top": trH +"px",
+                    "left": Math.floor(trW/2) + "px",
+                });
+
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
                 //$(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
-
 
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
@@ -656,6 +664,23 @@ require(['jquery', 'slick'], function($, slick) {
 
             if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
                 // Select2 has been initialized
+                var text = $('#wise-search-form select [value="' + jQuery('#wise-search-form select').val() + '"]').text();
+                $('#wise-search-form select').before('<div id="marine-unit-trigger"><a>'+ text +'</a>' +
+                    '<span class="arrow"></span></div>');
+
+                var trW = $("#marine-unit-trigger a").width();
+                var trH = $("#marine-unit-trigger a").height();
+
+                $("#marine-unit-trigger .arrow").css({
+                    "top": trH +"px",
+                    "left": Math.floor(trW/2) + "px",
+                });
+
+                $("#marine-unit-trigger").on("click", function () {
+                    if(loading) return false;
+                    $('#wise-search-form select').select2("open");
+                });
+
 
                 /*if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
                     $("#wise-search-form .select2-choice").css("width", "50%");

@@ -1,8 +1,50 @@
 @import "./bootstrap/variables.less";
 
+#marine-unit-trigger {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 15rem;
+
+  a {
+    text-shadow: 2px 1px 1px #ccc;
+    font-size: 2.5em;
+    text-decoration: none;
+    color: #444;
+    font-weight: bold;
+    position: relative;
+    /*white-space: nowrap;*/
+    max-width: 100%;
+    display: inline-block;
+
+  }
+
+  .arrow {
+    width: auto;
+    height: 5rem;
+    font-size: 2.5em;
+    line-height: 2.5em;
+    display: block;
+    position: absolute;
+
+    &:after {
+      content: "\f107";
+      font-family: FontAwesome;
+      font-weight: normal;
+      margin-left: 1rem;
+      color: #0071b3;
+
+      /*position:absolute;
+      top: 0;
+      left: 50%;
+      transform: translate3d(-50%,0,0);*/
+    }
+  }
+
+}
+
 .select2-top-override {
     &.select2-container{
-      width: initial !important;
+      width: 100% !important;
       max-width: 100% !important;
       border: none;
       font-size: 1.5em;
@@ -21,6 +63,8 @@
       }
 
       .select2-choice {
+        display:none !important;
+
         font-size: 1.5em;
         padding-left: 0;
         /*border-bottom: 1px solid #eee;*/
@@ -73,6 +117,9 @@
 }
 
 .select2-top-override-dropdown {
+
+    margin-top: 40px !important;
+
 
   .select2-results {
 
