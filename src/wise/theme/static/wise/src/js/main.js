@@ -613,7 +613,7 @@ require(['jquery', 'slick'], function($, slick) {
                 placeholder: 'Select an option',
                 closeOnSelect: true,
                 dropdownAutoWidth : false,
-                width: '100%',
+                width: 'auto',
                 theme: "flat",
                 minimumResultsForSearch: 20,
                 allowClear: true,
@@ -657,11 +657,16 @@ require(['jquery', 'slick'], function($, slick) {
             if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
                 // Select2 has been initialized
 
-                if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
+                /*if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
                     $("#wise-search-form .select2-choice").css("width", "50%");
                 } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
                     $("#wise-search-form .select2-choice").css("width", "70%");
-                }
+                }*/
+
+                var pres = $("#wise-search-form .select2-arrow");
+                var tchose = $("#wise-search-form .select2-chosen");
+
+                //pres.appendTo();
 
             }
 
@@ -770,6 +775,7 @@ require(['jquery', 'slick'], function($, slick) {
             $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
             $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
         });
+
 
         var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
             ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
