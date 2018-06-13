@@ -3,6 +3,11 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Bug fix: Open maps viewer link in external window
+  [iulianpetchesi #94706]
+* Bug fix: Add try/except in order to catch un-authorized access for the
+  navigation menu
+  [iulianpetchesi #95347]
 * Bug fix: fix freshwater page being hardcoded
   [tiberich #94636]
 * Bug fix: better check for errors in case of images in main dropdown menu
