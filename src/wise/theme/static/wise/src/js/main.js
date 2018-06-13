@@ -266,7 +266,7 @@ require(['jquery', 'slick'], function($, slick) {
                 var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
                     '<span class="ui-autocomplete">' +
                         '<span class=" search-icon" ></span>' +
-                        '<span style="position: relative;">' +
+                        '<span style="position: relative;padding-top:1px;padding-bottom:1px;background: white;">' +
                             '<input class="ui-autocomplete-input" type="text" style="width: 80%;" />' +
                     '<span class="clear-btn"><a class="fa fa-times"></a></span>' +
                     '</span>' +
@@ -614,7 +614,7 @@ require(['jquery', 'slick'], function($, slick) {
 
             var arrH = 40;
             if(trH <= 40) {
-                arrH = 45;
+                arrH = 50;
                 $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
@@ -634,7 +634,7 @@ require(['jquery', 'slick'], function($, slick) {
                 });
 
             } else if( trH <= 80 ){
-                arrH = 85;
+                arrH = 90;
                 $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
@@ -654,7 +654,7 @@ require(['jquery', 'slick'], function($, slick) {
                 });
 
             } else if(trH <= 120){
-                arrH = 125;
+                arrH = 130;
                 $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
@@ -756,23 +756,6 @@ require(['jquery', 'slick'], function($, slick) {
                     '<span class="arrow"></span></div>');
 
                 recalculateMarineUnitArrow();
-
-                /*$("#marine-unit-trigger .arrow").css({
-                    "top": arrH-5 +"px",
-                    "left": Math.floor(trW/2) + "px",
-                });
-
-                $("#marine-unit-trigger").on("mouseover", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH +"px",
-                    });
-                });
-
-                $("#marine-unit-trigger").on("mouseout", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH-5 +"px"
-                    });
-                });*/
 
                 $("#marine-unit-trigger").on("click", function () {
                     if(loading) return false;
