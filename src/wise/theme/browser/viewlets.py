@@ -1,3 +1,4 @@
+from AccessControl import Unauthorized
 from plone import api
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -49,7 +50,10 @@ class NavigationViewlet(GlobalSectionsViewlet):
             for child in folder_contents:
                 if child.exclude_from_nav:
                     continue
-                child = child.getObject()
+                try:
+                    child = child.getObject()
+                except Unauthorized:
+                    continue
                 children.append({
                     'url': child.absolute_url(),
                     'description': '',

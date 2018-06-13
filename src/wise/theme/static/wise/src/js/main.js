@@ -74,6 +74,8 @@ require(['jquery', 'slick'], function($, slick) {
         });
 
         var $portlet_p = $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p');
+        $('#portaltab-map-viewer > a').attr('target', '_blank');
+
         if($portlet_p){
             $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p').each(function(item) {
                 var $strong = $(this).find('strong');
