@@ -1,10 +1,17 @@
 @import "./bootstrap/variables.less";
 
 #marine-unit-trigger {
-  /*overflow: hidden;
-  text-overflow: ellipsis;*/
   max-height: 8rem;
   margin-bottom: 30px;
+
+  &:hover {
+    cursor: pointer;
+    //background: rgb(238, 238, 238);
+
+    a {
+      //background: rgb(238, 238, 238);
+    }
+  }
 
   a {
     text-shadow: 2px 1px 1px #ccc;
@@ -17,7 +24,11 @@
     max-width: 100%;
     display: inline-block;
     line-height: 4rem;
-
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    /*padding: 1rem;*/
   }
 
   .arrow {
@@ -120,7 +131,7 @@
 
 .select2-top-override-dropdown {
 
-    margin-top: 40px !important;
+    /*margin-top: 40px !important;*/
 
 
   .select2-results {

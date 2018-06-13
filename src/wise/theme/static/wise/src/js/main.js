@@ -608,6 +608,97 @@ require(['jquery', 'slick'], function($, slick) {
 
         $("#wise-search-form select").addClass("js-example-basic-single");
 
+        function recalculateMarineUnitArrow(){
+            var trW = $("#marine-unit-trigger a").width();
+            var trH = $("#marine-unit-trigger a").height();
+
+            var arrH = 40;
+            if(trH <= 40) {
+                arrH = 45;
+                $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
+                $("#marine-unit-trigger .arrow").css({
+                    "top": arrH-5 +"px",
+                    "left": Math.floor(trW/2) + "px",
+                });
+
+                $("#marine-unit-trigger").on("mouseover", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        "top": arrH +"px",
+                    });
+                });
+
+                $("#marine-unit-trigger").on("mouseout", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        "top": arrH-5 +"px"
+                    });
+                });
+
+            } else if( trH <= 80 ){
+                arrH = 85;
+                $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
+                $("#marine-unit-trigger .arrow").css({
+                    "top": arrH-5 +"px",
+                    "left": Math.floor(trW/2) + "px",
+                });
+
+                $("#marine-unit-trigger").on("mouseover", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        "top": arrH +"px",
+                    });
+                });
+
+                $("#marine-unit-trigger").on("mouseout", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        "top": arrH-5 +"px"
+                    });
+                });
+
+            } else if(trH <= 120){
+                arrH = 125;
+                $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
+                $("#marine-unit-trigger .arrow").css({
+                    "top": arrH-5 +"px",
+                    "left": Math.floor(trW/2) + "px",
+                });
+
+                $("#marine-unit-trigger").on("mouseover", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        "top": arrH +"px",
+                    });
+                });
+
+                $("#marine-unit-trigger").on("mouseout", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        "top": arrH-5 +"px"
+                    });
+                });
+
+            } else if(trH <= 400){
+                arrH = 200;
+                $("#marine-unit-trigger").css("margin-bottom", 1.5 * (arrH/2) + "px");
+                $("#marine-unit-trigger .arrow").css({
+                    //"top": arrH-5 +"px",
+                    "top" : "72%",
+                    "left": Math.floor(trW/2) + "px",
+                });
+
+                $("#marine-unit-trigger").on("mouseover", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        //"top": arrH +"px",
+                        "top" : "73%",
+                    });
+                });
+
+                $("#marine-unit-trigger").on("mouseout", function(){
+                    $("#marine-unit-trigger .arrow").css({
+                        //"top": arrH-5 +"px"
+                        "top" : "72%",
+                    });
+                });
+                $('#marine-widget-top .select-article').css("margin-bottom", "6rem");
+            }
+        }
+
         $("#wise-search-form select").each(function (ind, selectElement) {
             var options = {
                 placeholder: 'Select an option',
@@ -636,43 +727,9 @@ require(['jquery', 'slick'], function($, slick) {
                 found.parent().find("input[type='checkbox']").prop("checked", false);*/
 
                 //window.WISE.marineUnit = ev.val;
-
                 $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
-                var trW = $("#marine-unit-trigger a").width();
-                var trH = $("#marine-unit-trigger a").height();
 
-                var arrH = 40;
-                if(trH <= 40) {
-                    arrH = 45;
-                    $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                } else if( trH <= 80 ){
-                    arrH = 85;
-                    $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                } else if(trH <= 120){
-                    arrH = 125;
-                    $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                } else if(trH <= 400){
-                    arrH = 220;
-                    $("#marine-unit-trigger").css("margin-bottom", 1.5 * (arrH/2) + "px");
-                }
-
-
-                $("#marine-unit-trigger .arrow").css({
-                    "top": arrH-5 +"px",
-                    "left": Math.floor(trW/2) + "px",
-                });
-
-                $("#marine-unit-trigger").on("mouseover", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH +"px",
-                    });
-                });
-
-                $("#marine-unit-trigger").on("mouseout", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH-5 +"px"
-                    });
-                });
+                recalculateMarineUnitArrow();
 
 
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
@@ -698,25 +755,9 @@ require(['jquery', 'slick'], function($, slick) {
                 $('#wise-search-form select').parentsUntil(".field").before('<div id="marine-unit-trigger"><a>'+ text +'</a>' +
                     '<span class="arrow"></span></div>');
 
-                var trW = $("#marine-unit-trigger a").width();
-                var trH = $("#marine-unit-trigger a").height();
+                recalculateMarineUnitArrow();
 
-                var arrH = 40;
-                if(trH <= 40) {
-                    arrH = 45;
-                    $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                } else if( trH <= 80 ){
-                    arrH = 85;
-                    $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                } else if(trH <= 120){
-                    arrH = 125;
-                    $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                } else if(trH <= 400){
-                    arrH = 200;
-                    $("#marine-unit-trigger").css("margin-bottom", 1.5 * (arrH/2) + "px");
-                }
-
-                $("#marine-unit-trigger .arrow").css({
+                /*$("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
                     "left": Math.floor(trW/2) + "px",
                 });
@@ -731,19 +772,27 @@ require(['jquery', 'slick'], function($, slick) {
                     $("#marine-unit-trigger .arrow").css({
                         "top": arrH-5 +"px"
                     });
-                });
+                });*/
 
                 $("#marine-unit-trigger").on("click", function () {
                     if(loading) return false;
+                    $("#marine-unit-trigger").css("background", "rgb(238, 238, 238)");
+                    $("#marine-unit-trigger a").css("background", "rgb(238, 238, 238)");
+
                     $('#wise-search-form select').select2("open");
+
+                    //
+                    var top = $("#marine-unit-trigger a").offset().top;
+                    var trH = $("#marine-unit-trigger a").height();
+
+                    $(".select2-top-override-dropdown").css("margin-top", trH/2 + "px" );
+
                 });
 
             }
 
         });
     }
-
-
 
     function setupTabs() {
         var t = $("ul.nav:not(.topnav) > li");
