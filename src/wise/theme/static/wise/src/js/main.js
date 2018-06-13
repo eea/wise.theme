@@ -993,6 +993,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
+    $("#form-buttons-continue").hide("fast");
 
     var AJAX_MODE = true;
 
@@ -1155,6 +1156,7 @@ require(['jquery', 'slick'], function($, slick) {
                 }
 
                 loading = false;
+                $("#form-buttons-continue").hide("fast");
 
             }
 
