@@ -386,6 +386,8 @@
     display: inline;
   }
 
+
+
   a {
     padding-left: 1%;
     padding-right: 1%;
@@ -397,6 +399,16 @@
          color: white;
          cursor: pointer;
         }
+    }
+
+    &.apply-filters {
+      .label {
+        color: #0071b3;
+      }
+
+      & .label:hover {
+        color: white;
+      }
     }
 
     &:hover {
@@ -412,6 +424,12 @@
     /*background: white;*/
     /*border: 1px solid #ccc;*/
     position: relative;
+
+
+
+    .search-span:hover {
+      background-color: #ffffe0;
+    }
 
     .search-icon {
       padding: 0;

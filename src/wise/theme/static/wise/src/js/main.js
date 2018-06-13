@@ -247,7 +247,7 @@ require(['jquery', 'slick'], function($, slick) {
     });
 
     //var $fields = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
-    var exceptVal = ["all", "none", "invert"];
+    var exceptVal = ["all", "none", "invert", "apply"];
 
     function generateCheckboxes($fields){
         var count = $fields.length;
@@ -264,13 +264,15 @@ require(['jquery', 'slick'], function($, slick) {
                     '<span class="label">All</span></label></a>';
                 var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
                 var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
+                    '<a class="apply-filters"  data-value="apply"><label><span class="label" >Apply filters</span></label></a>'+
                     '<span class="ui-autocomplete">' +
                         '<span class=" search-icon" ></span>' +
-                        '<span style="position: relative;padding-top:1px;padding-bottom:1px;background: white;">' +
+                        '<span style="position: relative;padding-top:1px;padding-bottom:1px;background: white;" class="search-span">' +
                             '<input class="ui-autocomplete-input" type="text" style="width: 80%;" />' +
                     '<span class="clear-btn"><a class="fa fa-times"></a></span>' +
                     '</span>' +
                                         '</span>';
+
 
                 // each checkbox does auto submit
                 $("#" + fieldId).on("click", ".option", function (evO) {
@@ -523,7 +525,10 @@ require(['jquery', 'slick'], function($, slick) {
         $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
         $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
         $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
-
+        //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
+        $(".controls").one("click","a[data-value='apply']", function (ev) {
+            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+        });
 
         /*$cont.on("click","[data-fieldname] .controls a[data-value]", function(ev){
             if($(this).attr("data-value") === "invert") console.log(ev);
@@ -614,7 +619,7 @@ require(['jquery', 'slick'], function($, slick) {
 
             var arrH = 40;
             if(trH <= 40) {
-                arrH = 50;
+                arrH = 55;
                 $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
@@ -634,7 +639,7 @@ require(['jquery', 'slick'], function($, slick) {
                 });
 
             } else if( trH <= 80 ){
-                arrH = 90;
+                arrH = 95;
                 $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
@@ -654,7 +659,7 @@ require(['jquery', 'slick'], function($, slick) {
                 });
 
             } else if(trH <= 120){
-                arrH = 130;
+                arrH = 135;
                 $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
@@ -745,6 +750,11 @@ require(['jquery', 'slick'], function($, slick) {
 
 
                 //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+            });
+
+            $(selectElement).on("select2-close", function () {
+                $("#marine-unit-trigger").css("background", "transparent");
+                $("#marine-unit-trigger a").css("background", "transparent");
             });
 
 
