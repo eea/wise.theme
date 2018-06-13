@@ -624,6 +624,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
                     "left": Math.floor(trW/2) + "px",
+                    "transform" : "translate3d(-50%, 0, 0)"
                 });
 
                 $("#marine-unit-trigger").on("mouseover", function(){
@@ -649,6 +650,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $("#marine-unit-trigger").on("mouseover", function(){
                     $("#marine-unit-trigger .arrow").css({
                         "top": arrH +"px",
+                        "transform" : "translate3d(-50%, 0, 0)"
                     });
                 });
 
@@ -664,6 +666,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $("#marine-unit-trigger .arrow").css({
                     "top": arrH-5 +"px",
                     "left": Math.floor(trW/2) + "px",
+                    "transform" : "translate3d(-50%, 0, 0)"
                 });
 
                 $("#marine-unit-trigger").on("mouseover", function(){
@@ -685,6 +688,7 @@ require(['jquery', 'slick'], function($, slick) {
                     //"top": arrH-5 +"px",
                     "top" : "72%",
                     "left": Math.floor(trW/2) + "px",
+                    "transform" : "translate3d(-50%, 0, 0)"
                 });
 
                 $("#marine-unit-trigger").on("mouseover", function(){
