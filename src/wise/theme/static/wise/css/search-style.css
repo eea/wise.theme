@@ -1,0 +1,86 @@
+.site-marine .header-info a:hover,
+.site-marine .header-info a:focus {
+  color: #dedede !important;
+  text-decoration: none;
+}
+#eea-above-columns {
+    margin-top: 31px;
+    margin-bottom: -17px;
+}
+#content h1 {
+    margin: 0px;
+}
+input.facetview_freetext.span9.ui-autocomplete-input {
+    padding-left: 40px;
+    height: 42px;
+}
+.header-top .container,
+.menu.container,
+.footer .container {
+    width: 1170px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+#facetview_rangechoices_5 input {
+    display: inline;
+    font-size: 13px;
+    width: 36%;
+    margin: 0px;
+}
+#facetview_rangechoices_5 .um {
+    width: 28%;
+}
+.menu .submenu a {
+    color: white;
+}
+.header-info #portal-siteactions,
+.header-info #portal-siteactions li {
+    float: none;
+    margin: 0 0 0 10px;
+    padding: 0px;
+    font-size: 19px;
+}
+.header-info a {
+    font-size: 19px !important;
+}
+#siteaction-about_marine {
+    padding: 0px;
+}
+#portal-siteactions {
+    width: auto;
+    heigth: auto;
+}
+.footer {
+    margin: 0px !important;
+}
+
+/* Responsive CSS */
+@media (max-width: 1200px) {
+    .header-top .container,
+    .menu.container,
+    .footer .container {
+        width: 970px !important;
+    }
+}
+@media (max-width: 992px) {
+    .header-top .container,
+    .menu.container,
+    .footer .container {
+        width: 750px !important;
+    }
+}
+@media (max-width: 800px) {
+    .menu .submenu-item a {
+        color: #0071B3;
+    }
+}
+@media (max-width: 767px) {
+    #portal-searchbox {
+        display: none !important;
+    }
+    .header-top .container,
+    .menu.container,
+    .footer .container {
+        width: 100% !important;
+    }
+}
