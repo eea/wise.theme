@@ -11,6 +11,12 @@
     a {
       //background: rgb(238, 238, 238);
     }
+
+    .arrow {
+      transition: margin-top 300ms cubic-bezier();
+      margin-top: 5px;
+    }
+
   }
 
   a {
@@ -24,7 +30,7 @@
     /*white-space: nowrap;*/
     max-width: 100%;
     display: inline-block;
-    line-height: 4rem;
+    line-height: 2.5rem;
     padding-left: 0;
     padding-right: 0;
     padding-top: 2px;
@@ -32,11 +38,64 @@
     /*padding: 1rem;*/
   }
 
+  .arrow-m(@color) {
+    width: 12px;
+    height: 12px;
+    border: none;
+    background: none;
+
+    display: block;
+    transform: translate3d(-50%, 0, 0) scale(2,2);
+    position: absolute;
+    // Scales well with transform too!
+    // transform: scale(2.5);
+    &::before {
+      top: 3px;
+      right: 5px;
+      width: 8px;
+      height: 8px;
+      content: '';
+      /*content: "\f107";
+      font-family: FontAwesome;*/
+      position: absolute;
+      transform: rotate(45deg);
+      box-shadow: 1px 1px 0 @color, 2px 1px 0 @color, 1px 2px 0 @color, 2px 2px 0 @color;
+
+      transition: top .1s ease-out, bottom .1s ease-out, letter-spacing .1s ease-out;
+    }
+    &::after {
+      width: 0;
+      height: 0;
+      left: -1px;
+      bottom: 50%;
+      content: '•';
+      color: @color;
+      line-height: 0;
+      font-size: 14px;
+      position: absolute;
+
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      &::before {
+        top: 1px;
+      }
+    }
+  }
+
+
   .arrow {
+    .arrow-m(#0071b3);
+  }
+
+
+  /*.arrow {
     width: auto;
     height: 4.6rem;
     font-size: 2.3em;
-    /*line-height: 2.5em;*/
+    line-height: 1em;
     display: block;
     position: absolute;
 
@@ -47,12 +106,12 @@
       margin-left: 1rem;
       color: #0071b3;
 
-      /*position:absolute;
+      !*position:absolute;
       top: 0;
       left: 50%;
-      transform: translate3d(-50%,0,0);*/
+      transform: translate3d(-50%,0,0);*!
     }
-  }
+  }*/
 
 }
 
@@ -158,6 +217,7 @@
 }
 
 @media (max-width: @screen-md-min){
+
   .select2-top-override {
     &.select2-container{
       margin-right: 0px;
@@ -191,5 +251,15 @@
     }
 
   }
+
+  #marine-unit-trigger {
+
+    .arrow {
+      /*line-height: 2.5em;*/
+
+    }
+
+  }
+
 }
 

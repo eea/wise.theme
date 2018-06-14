@@ -614,98 +614,24 @@ require(['jquery', 'slick'], function($, slick) {
         $("#wise-search-form select").addClass("js-example-basic-single");
 
         function recalculateMarineUnitArrow(){
-            var trW = $("#marine-unit-trigger a").width();
-            var trH = $("#marine-unit-trigger a").height();
 
-            var arrH = 40;
-            if(trH <= 40) {
-                arrH = 55;
-                $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
+            $("#marine-unit-trigger .arrow").css({
+                "left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
+            });
+
+            /*$("#marine-unit-trigger").on("mouseover", function(){
                 $("#marine-unit-trigger .arrow").css({
-                    "top": arrH-5 +"px",
-                    "left": Math.floor(trW/2) + "px",
-                    "transform" : "translate3d(-50%, 0, 0)"
+                    "top" : $("#marine-unit-trigger .arrow").height() + 5 + "px",
                 });
+            });
 
-                $("#marine-unit-trigger").on("mouseover", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH +"px",
-                    });
-                });
-
-                $("#marine-unit-trigger").on("mouseout", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH-5 +"px"
-                    });
-                });
-
-            } else if( trH <= 80 ){
-                arrH = 95;
-                $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
+            $("#marine-unit-trigger").on("mouseout", function(){
                 $("#marine-unit-trigger .arrow").css({
-                    "top": arrH-5 +"px",
-                    "left": Math.floor(trW/2) + "px",
+                    "top" : $("#marine-unit-trigger .arrow").height() + "px",
                 });
+            });*/
 
-                $("#marine-unit-trigger").on("mouseover", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH +"px",
-                        "transform" : "translate3d(-50%, 0, 0)"
-                    });
-                });
 
-                $("#marine-unit-trigger").on("mouseout", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH-5 +"px"
-                    });
-                });
-
-            } else if(trH <= 120){
-                arrH = 135;
-                $("#marine-unit-trigger").css("margin-bottom", arrH/2 + "px");
-                $("#marine-unit-trigger .arrow").css({
-                    "top": arrH-5 +"px",
-                    "left": Math.floor(trW/2) + "px",
-                    "transform" : "translate3d(-50%, 0, 0)"
-                });
-
-                $("#marine-unit-trigger").on("mouseover", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH +"px",
-                    });
-                });
-
-                $("#marine-unit-trigger").on("mouseout", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        "top": arrH-5 +"px"
-                    });
-                });
-
-            } else if(trH <= 400){
-                arrH = 200;
-                $("#marine-unit-trigger").css("margin-bottom", 1.5 * (arrH/2) + "px");
-                $("#marine-unit-trigger .arrow").css({
-                    //"top": arrH-5 +"px",
-                    "top" : "72%",
-                    "left": Math.floor(trW/2) + "px",
-                    "transform" : "translate3d(-50%, 0, 0)"
-                });
-
-                $("#marine-unit-trigger").on("mouseover", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        //"top": arrH +"px",
-                        "top" : "73%",
-                    });
-                });
-
-                $("#marine-unit-trigger").on("mouseout", function(){
-                    $("#marine-unit-trigger .arrow").css({
-                        //"top": arrH-5 +"px"
-                        "top" : "72%",
-                    });
-                });
-                $('#marine-widget-top .select-article').css("margin-bottom", "6rem");
-            }
         }
 
         $("#wise-search-form select").each(function (ind, selectElement) {
@@ -717,7 +643,7 @@ require(['jquery', 'slick'], function($, slick) {
                 theme: "flat",
                 minimumResultsForSearch: 20,
                 allowClear: true,
-
+                //dropdownParent: $('#marine-unit-trigger .arrow'),
                 containerCssClass : "select2-top-override",
                 dropdownCssClass: "select2-top-override-dropdown",
                 debug: true,
