@@ -45,7 +45,7 @@
     background: none;
 
     display: block;
-    transform: translate3d(-50%, 0, 0) scale(2,2);
+    transform: translate3d(-50%, 0, 0) scale(1.8);
     position: absolute;
     // Scales well with transform too!
     // transform: scale(2.5);
@@ -59,19 +59,19 @@
       font-family: FontAwesome;*/
       position: absolute;
       transform: rotate(45deg);
-      box-shadow: 1px 1px 0 @color, 2px 1px 0 @color, 1px 2px 0 @color, 2px 2px 0 @color;
+      box-shadow: 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color;
 
       transition: top .1s ease-out, bottom .1s ease-out, letter-spacing .1s ease-out;
     }
     &::after {
       width: 0;
       height: 0;
-      left: -1px;
+      left: 0px;
       bottom: 50%;
       content: '•';
       color: @color;
       line-height: 0;
-      font-size: 14px;
+      font-size: 10px;
       position: absolute;
 
     }
@@ -87,7 +87,14 @@
 
 
   .arrow {
-    .arrow-m(#0071b3);
+    .arrow-m(rgba(204, 204, 204, 1));
+    transition: top .1s ease-out, bottom .1s ease-out, letter-spacing .1s ease-out;
+    &:hover,
+    &:focus{
+      &::before {
+        top: 1px;
+      }
+    }
   }
 
 
