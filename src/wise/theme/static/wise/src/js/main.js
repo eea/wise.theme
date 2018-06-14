@@ -526,19 +526,11 @@ require(['jquery', 'slick'], function($, slick) {
         $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
         $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
         //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
+
         $(".controls").one("click","a[data-value='apply']", function (ev) {
             $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
         });
 
-        /*$cont.on("click","[data-fieldname] .controls a[data-value]", function(ev){
-            if($(this).attr("data-value") === "invert") console.log(ev);
-            var actions = {
-                all: checkboxHandlerAll,
-                none: checkboxHandlerNone,
-                invert: checkboxHandlerInvert
-            };
-            actions[ $(this).attr("data-value")].call(this, ev);
-        });*/
     }
 
     function filterInvalidCheckboxes(cbxs){
@@ -619,6 +611,15 @@ require(['jquery', 'slick'], function($, slick) {
                 "left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
             });
 
+            $("#wise-search-form select").off("scroll");
+
+            $(window).on("scroll" , function (ev){
+                $(".select2-top-override-dropdown").css({
+                    "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
+                    "margin-top": "0px !important"
+                });
+            });
+
             /*$("#marine-unit-trigger").on("mouseover", function(){
                 $("#marine-unit-trigger .arrow").css({
                     "top" : $("#marine-unit-trigger .arrow").height() + 5 + "px",
@@ -643,7 +644,9 @@ require(['jquery', 'slick'], function($, slick) {
                 theme: "flat",
                 minimumResultsForSearch: 20,
                 allowClear: true,
-                //dropdownParent: $('#marine-unit-trigger .arrow'),
+                dropdownParent: "#marine-unit-trigger",
+                dropdownAdapter: "AttachContainer",
+
                 containerCssClass : "select2-top-override",
                 dropdownCssClass: "select2-top-override-dropdown",
                 debug: true,
@@ -654,40 +657,40 @@ require(['jquery', 'slick'], function($, slick) {
             $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
                 "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
 
+            $(selectElement).on("select2-open", function() {
+                var trh = $("#marine-unit-trigger").offset().top;
+                //$(".select2-top-override-dropdown").css("margin-top", $("#marine-unit-trigger").height()/2 + "px" );
+
+                $("#marine-unit-trigger .arrow").hide();
+
+                $(".select2-top-override-dropdown").css({
+                    "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
+                    "margin-top": "12" + "px !important"
+                });
+            });
+
+
             $(selectElement).on("select2-selecting", function(ev) {
-                /*$(".wise-search-form-container #form-widgets-marine_unit_ids").find("[type='checkbox']").prop("checked", false);
 
-                var found = $(".wise-search-form-container #form-widgets-marine_unit_ids").find(".option[title='"+ ev.val + "']");
-                found.parent().find("[type='checkbox']").prop("checked", false);
-                found.parent().find("input[type='checkbox']").prop("checked", false);*/
-
-                //window.WISE.marineUnit = ev.val;
                 $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
 
                 recalculateMarineUnitArrow();
 
-
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
-                //$(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
 
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
-                //$(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
-                //$(".wise-search-form-container #form-widgets-marine_unit_id").find("")
 
-
-                //$(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
-
-
-                //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             });
 
             $(selectElement).on("select2-close", function () {
                 $("#marine-unit-trigger").css("background", "transparent");
                 $("#marine-unit-trigger a").css("background", "transparent");
+                $("#marine-unit-trigger .arrow").show();
             });
 
 
+            /// Marine Unit id selector
             if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
 
                 // Select2 has been initialized
@@ -715,6 +718,8 @@ require(['jquery', 'slick'], function($, slick) {
             }
 
         });
+
+
     }
 
     function setupTabs() {
@@ -731,7 +736,6 @@ require(['jquery', 'slick'], function($, slick) {
             var totalL = $("ul.nav").width();
             var mrR = Math.floor( totalL /100 ) ;
 
-            //$(t[0]).css("margin-left", rest/2 + "%");
             $(t).css({
                 "margin-left": 0,
                 "margin-right" : mrR/2 + "px"
@@ -1141,6 +1145,8 @@ require(['jquery', 'slick'], function($, slick) {
         ev.preventDefault();
         //console.log(ev);
     });*/
+
+
 
     return jQuery.noConflict();
 });
