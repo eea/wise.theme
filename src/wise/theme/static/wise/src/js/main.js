@@ -607,23 +607,49 @@ require(['jquery', 'slick'], function($, slick) {
 
         function recalculateMarineUnitArrow(){
             if (window.matchMedia("(max-width: 956px)").matches) {
-                if($("#marine-unit-trigger a").height() > 120 ){
+               /* if($("#marine-unit-trigger a").height() > 120 ){
                     $(".select-article").css("margin-bottom", "10rem");
-                }
+                }*/
             }
 
-            $("#marine-unit-trigger .arrow").css({
-                "left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
+            /*$("#marine-unit-trigger .arrow-left, #marine-unit-trigger .arrow-right").css({
+                //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
+                "top": $("#marine-unit-trigger a").height()/2 + "px",
+                //"transform" : "translate3d(0,-50%,0)"
+            });*/
+
+            $("#marine-unit-trigger .text-trigger").css({
+               "margin-left" : "20" + "px" ,
             });
 
-            $("#wise-search-form select").off("scroll");
+            var raLeft = $("#marine-unit-trigger .text-trigger").width()  + $("#marine-unit-trigger .arrow-left-container").width();
 
-            $(window).on("scroll" , function (ev){
+            if(raLeft > $("#marine-widget-top .select-article").width() ){
+                raLeft = $("#marine-widget-top .select-article").width() - 20 ;
+            }
+
+            $("#marine-unit-trigger .arrow-right-container").css({
+               "left" : raLeft + "px",
+                "top": $("#marine-unit-trigger .text-trigger").height() / 4 + "px"
+            });
+
+            $("#marine-unit-trigger .arrow-left-container").css({
+                "top": $("#marine-unit-trigger .text-trigger").height() / 4 + "px"
+            });
+
+
+            /*$("#marine-unit-trigger .arrow").css({
+                //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
+            });*/
+
+            //$("#wise-search-form select").off("scroll");
+
+            /*$(window).on("scroll" , function (ev){
                 $(".select2-top-override-dropdown").css({
                     "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
                     "margin-top": "0px !important"
                 });
-            });
+            });*/
 
             /*$("#marine-unit-trigger").on("mouseover", function(){
                 $("#marine-unit-trigger .arrow").css({
@@ -700,8 +726,28 @@ require(['jquery', 'slick'], function($, slick) {
 
                 // Select2 has been initialized
                 var text = $('#wise-search-form select [value="' + jQuery('#wise-search-form select').val() + '"]').text();
-                $('#wise-search-form select').parentsUntil(".field").before('<div id="marine-unit-trigger"><a>'+ text +'</a>' +
-                    '<span class="arrow"></span></div>');
+                $('#wise-search-form select').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
+
+                    '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
+                        '<div class="text-trigger">'+ text + "</div>" +
+                            '<div class="arrow-left-container">' +
+                                '<div class="arrow-left">' +
+                                    '<div class="arrow-top"></div>' +
+                                    '<div class="arrow-bottom"></div>' +
+                                '</div>' +
+                            '</div>'+
+
+                            '<div class="arrow-right-container" >' +
+                                '<div class="arrow-right">' +
+                                    '<div class="arrow-top"></div>' +
+                                    '<div class="arrow-bottom"></div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+
+
+                '</div>');
 
                 recalculateMarineUnitArrow();
 

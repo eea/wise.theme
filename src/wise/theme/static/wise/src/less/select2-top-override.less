@@ -3,6 +3,10 @@
 #marine-unit-trigger {
   max-height: 8rem;
   margin-bottom: 30px;
+  display: table-row;
+  border-spacing: 2rem;
+
+  max-width: 100%;
 
   &:hover {
     cursor: pointer;
@@ -12,10 +16,10 @@
       //background: rgb(238, 238, 238);
     }
 
-    .arrow {
+    /*.arrow {
       transition: margin-top 300ms cubic-bezier();
       margin-top: 5px;
-    }
+    }*/
 
   }
 
@@ -27,102 +31,280 @@
     color: #444;
     font-weight: bold;
     position: relative;
-    /*white-space: nowrap;*/
-    max-width: 100%;
-    display: inline-block;
+    /*max-width: 90%;*/
+    /*display: inline-block;*/
+    display: block;
     line-height: 2.5rem;
     padding-left: 0;
     padding-right: 0;
     padding-top: 2px;
     padding-bottom: 5px;
-    /*padding: 1rem;*/
+
   }
 
-  .arrow-m(@color) {
-    width: 12px;
-    height: 12px;
-    border: none;
-    background: none;
-
-    display: block;
-    transform: translate3d(-50%, 0, 0) scale(1.8);
-    position: absolute;
-    // Scales well with transform too!
-    // transform: scale(2.5);
-    &::before {
-      top: 3px;
-      right: 5px;
-      width: 8px;
-      height: 8px;
-      content: '';
-      /*content: "\f107";
-      font-family: FontAwesome;*/
-      position: absolute;
-      transform: rotate(45deg);
-
-      box-shadow : 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color;
-      -webkit-box-shadow: 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color;
-      -moz-box-shadow: 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color;
-      -o-box-shadow: 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color, 1px 1px 0 @color;
-
-      transition: top .1s ease-out, bottom .1s ease-out, letter-spacing .1s ease-out;
-    }
-    &::after {
-      width: 0;
-      height: 0;
-      left: 0px;
-      bottom: 50%;
-      content: '•';
-      color: @color;
-      line-height: 0;
-      font-size: 10px;
-      position: absolute;
-
-    }
-
-    &:hover,
-    &:focus {
-      outline: none;
-      &::before {
-        top: 1px;
-      }
-    }
-  }
-
-
-  .arrow {
-    .arrow-m(rgba(204, 204, 204, 1));
-    transition: top .1s ease-out, bottom .1s ease-out, letter-spacing .1s ease-out;
-    &:hover,
-    &:focus{
-      &::before {
-        top: 1px;
-      }
-    }
-  }
-
-
-  /*.arrow {
-    width: auto;
+  /*.arrow-left {
+    width: 5%;
     height: 4.6rem;
-    font-size: 2.3em;
+    font-size: 1.1em;
     line-height: 1em;
-    display: block;
-    position: absolute;
+    display: inline-block;
+    position: relative;
 
     &:after {
-      content: "\f107";
+      content: "\f053";
       font-family: FontAwesome;
       font-weight: normal;
-      margin-left: 1rem;
       color: #0071b3;
+      margin-right: 10px;
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+  }
 
-      !*position:absolute;
-      top: 0;
-      left: 50%;
-      transform: translate3d(-50%,0,0);*!
+  .arrow-right {
+    width: 5%;
+    height: 4.6rem;
+    font-size: 1.1em;
+    line-height: 1em;
+    display: inline-block;
+    position: relative;
+
+    &:after {
+      content: "\f054";
+      font-family: FontAwesome;
+      font-weight: normal;
+      color: #0071b3;
+      margin-left: 10px;
+      position:absolute;
+      top: 50%;
+      right: 0;
     }
   }*/
+
+  .arrow-left-container {
+    /*display: inline-block;*/
+    width: 10%;
+    display: block;
+    position: absolute;
+    top:0;
+    left: 0;
+
+    /*.arrow-left {
+      cursor: pointer;
+      height: 24px;
+      left: 0;
+      position: relative;
+      display: inline-block;
+      margin-top: 50%;
+      transform: rotate(180deg);
+      transition: transform .1s;
+      width: 16px;
+      margin-right: 2rem;
+
+      @transition-time: .15s;
+
+      .arrow-top,
+      .arrow-bottom {
+        background-color: #666;
+        height: 4px;
+        left: -5px;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+
+        &:after {
+          background-color: #000;
+          content: '';
+          height: 100%;
+          position: absolute;
+          top: 0;
+          transition: all @transition-time;
+        }
+      }
+
+      .arrow-top {
+        transform: rotate(45deg);
+        transform-origin: bottom right;
+
+        &:after {
+          left: 100%;
+          right: 0;
+          transition-delay: 0s;
+        }
+      }
+
+      .arrow-bottom {
+        transform: rotate(-45deg);
+        transform-origin: top right;
+
+        &:after {
+          left: 0;
+          right: 100%;
+          transition-delay: @transition-time;
+        }
+      }
+
+      &:hover {
+
+        .arrow-top:after {
+          left: 0;
+          transition-delay: @transition-time;
+        }
+
+        .arrow-bottom:after {
+          right: 0;
+          transition-delay: 0s;
+        }
+      }
+
+      &:active {
+        //transform: translateX(-50%) translateY(-50%);
+      }
+    }*/
+
+
+    .arrow-left {
+      width: auto;
+      /*height: 4.6rem;*/
+
+      display: inline-block;
+      position: absolute;
+      margin-right: 10px;
+
+      left: 0;
+
+      &:after {
+        content: "\f053";
+        font-family: FontAwesome;
+        font-weight: normal;
+        color: #0071b3;
+        position: absolute;
+        top: 50%;
+        left: 0;
+      }
+    }
+
+  }
+
+  .text-trigger {
+    display: block;
+    max-width: 94%;
+    font-size: 1.5em;
+    text-shadow: 2px 1px 1px #ccc;
+
+    text-decoration: none;
+    color: #444;
+    font-weight: bold;
+  }
+
+  .arrow-right-container {
+    /*display: inline-block;*/
+    width: 10%;
+    display: table-cell;
+    position: absolute;
+    padding-left: 5px;
+    /*right: -20px;*/
+    top: 0;
+
+    /*.arrow-right {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      margin-top: 50%;
+      !*transform: translateX(-50%) translateY(-50%);*!
+      transition: transform .1s;
+      width: 16px;
+      margin-left: 2rem;
+      height: 24px;
+      right: 0;
+
+      @transition-time: .15s;
+
+      .arrow-top,
+      .arrow-bottom {
+        background-color: #666;
+        height: 4px;
+        left: -5px;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+
+        &:after {
+          background-color: #000;
+          content: '';
+          height: 100%;
+          position: absolute;
+          top: 0;
+          transition: all @transition-time;
+        }
+      }
+
+      .arrow-top {
+        transform: rotate(45deg);
+        transform-origin: bottom right;
+
+        &:after {
+          left: 100%;
+          right: 0;
+          transition-delay: 0s;
+        }
+      }
+
+      .arrow-bottom {
+        transform: rotate(-45deg);
+        transform-origin: top right;
+
+        &:after {
+          left: 0;
+          right: 100%;
+          transition-delay: @transition-time;
+        }
+      }
+
+      &:hover {
+
+        .arrow-top:after {
+          left: 0;
+          transition-delay: @transition-time;
+        }
+
+        .arrow-bottom:after {
+          right: 0;
+          transition-delay: 0s;
+        }
+      }
+
+      &:active {
+        //transform: translateX(-50%) translateY(-50%);
+      }
+    }*/
+
+    .arrow-right {
+      width: auto;
+      /*height: 4.6rem;*/
+
+      display: inline-block;
+      position: absolute;
+
+
+      &:after {
+        content: "\f053";
+        font-family: FontAwesome;
+        font-weight: normal;
+        color: #0071b3;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: rotate(180deg);
+      }
+    }
+
+  }
+
+
+
+
 
 }
 
@@ -258,10 +440,7 @@
 
   #marine-unit-trigger {
 
-    .arrow {
-      /*line-height: 2.5em;*/
 
-    }
 
   }
 
