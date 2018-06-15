@@ -6,7 +6,7 @@
 @checkbox-other-color: #f0f6f9;
 
 
-.vendor-prefix(@prop,@val) {
+.vendor-prefix(@prop; @val) {
     @{prop}: @val;
   -ms-@{prop}: @val;
   -moz-@{prop}: @val;
@@ -127,7 +127,7 @@
     }
 
 
-    .vendor-prefix(box-shadow , inset 1px 0px 1px rgba(0,0,0,0.1));
+    .vendor-prefix(box-shadow ; inset 1px 0px 1px rgba(0,0,0,0.1));
   }
 
 
@@ -280,7 +280,7 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
 
     .horizontal {
-      .vendor-prefix(user-select, none);
+      .vendor-prefix(user-select; none);
     }
 
     .horizontal:hover {
@@ -323,7 +323,7 @@
     -webkit-appearance: none;
     background-color: #fafafa;
     border: 1px solid #cdcece;
-    .vendor-prefix (box-shadow, 0 1px 2px @checkboxes-box-shadow);
+    .vendor-prefix (box-shadow; 0 1px 2px @checkboxes-box-shadow);
     padding: @checkboxes-radius*2;
     border-radius: @checkboxes-radius;
     display: inline-block;
@@ -889,6 +889,7 @@ span [name="marine.buttons.prev"]
         width: 100%;
 
         .widget {
+          clear: both;
           padding-bottom: 2px;
           margin-left: 0 !important;
           display: block !important;

@@ -606,6 +606,11 @@ require(['jquery', 'slick'], function($, slick) {
         $("#wise-search-form select").addClass("js-example-basic-single");
 
         function recalculateMarineUnitArrow(){
+            if (window.matchMedia("(max-width: 956px)").matches) {
+                if($("#marine-unit-trigger a").height() > 120 ){
+                    $(".select-article").css("margin-bottom", "10rem");
+                }
+            }
 
             $("#marine-unit-trigger .arrow").css({
                 "left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
