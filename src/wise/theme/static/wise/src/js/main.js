@@ -910,6 +910,8 @@ require(['jquery', 'slick'], function($, slick) {
 
 
         var opts = $("#wise-search-form select:not(.notselect) option");
+
+        $("#marine-unit-nav").hide();
         // ignore 1st option for "prev" button
         if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[1]).val() ){
 
@@ -919,6 +921,13 @@ require(['jquery', 'slick'], function($, slick) {
             $("#form-buttons-prev-top").append(topPrevBtn);
 
             $("#form-buttons-prev-top").on("click", null, { direction : "prev"} , marineBtnHandler);
+            $("#form-buttons-prev-top").hide();
+            $("#marine-unit-trigger .arrow-left-container").one("click", function(){
+                $("#form-buttons-prev-top").trigger("click");
+            });
+        } else {
+            $("#marine-unit-trigger .arrow-left-container").hide();
+            $(".text-trigger").css("margin-left", 0);
         }
 
         // ignore last option for "next" button
@@ -929,9 +938,17 @@ require(['jquery', 'slick'], function($, slick) {
             $("#form-buttons-next-top").append(topNextBtn);
 
             $("#form-buttons-next-top").on("click", null, { direction : "next"} , marineBtnHandler);
-        }
+            $("#form-buttons-next-top").hide();
+            $("#marine-unit-trigger .arrow-right-container").one("click",function(){
+                    $("#form-buttons-next-top").trigger("click")
+            });
+        } else {
 
+            $("#marine-unit-trigger .arrow-right-container").hide();
+        }
     }
+
+
 
     $.randomString = function() {
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
