@@ -676,7 +676,7 @@ require(['jquery', 'slick'], function($, slick) {
 
         }
 
-        $("#wise-search-form select").each(function (ind, selectElement) {
+        $("#wise-search-form select:not(.notselect)").each(function (ind, selectElement) {
             var options = {
                 placeholder: 'Select an option',
                 closeOnSelect: true,
@@ -736,7 +736,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                 // Select2 has been initialized
                 var text = $('#wise-search-form select [value="' + jQuery('#wise-search-form select').val() + '"]').text();
-                $('#wise-search-form select').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
+                $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
 
                     '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
                         '<div class="text-trigger">'+ text + "</div>" +
@@ -766,7 +766,7 @@ require(['jquery', 'slick'], function($, slick) {
                     $("#marine-unit-trigger").css("background", "rgb(238, 238, 238)");
                     $("#marine-unit-trigger a").css("background", "rgb(238, 238, 238)");
 
-                    $('#wise-search-form select').select2("open");
+                    $('#wise-search-form select:not(.notselect)').select2("open");
 
 
                     //var top = $("#marine-unit-trigger a").offset().top;
@@ -780,6 +780,29 @@ require(['jquery', 'slick'], function($, slick) {
 
         });
 
+        var options = {
+            placeholder: 'Select an option',
+            closeOnSelect: true,
+            dropdownAutoWidth : true,
+            width: '50%',
+            theme: "flat",
+            minimumResultsForSearch: 20,
+        };
+
+        $("#wise-search-form #extra-details-select").select2(options);
+        $("#wise-search-form .extra-details .tab-panel").fadeOut('fast');
+        $($("#wise-search-form .extra-details .tab-panel")[0]).fadeIn('fast');
+
+        $("#wise-search-form #extra-details-select").on("select2-selecting", function(ev) {
+            $.each( $("#wise-search-form .extra-details .tab-panel"), function (indx, item) {
+                if($(item).attr("id") !== ev.choice.id){
+                    $(item).hide();
+                }
+            });
+            $("#" + ev.choice.id).fadeIn();
+        });
+
+        $("#wise-search-form #extra-details-select").trigger("click");
 
     }
 
@@ -809,12 +832,12 @@ require(['jquery', 'slick'], function($, slick) {
         if ($("#tabs-wrapper ul").find("li").length === 0){
             if( $("#tabs-wrapper").find("ul").length ===  0 ){ //return true;
             }
-            if($("#tabs-wrapper").find("ul li").length === 0) $("#tabs-wrapper").hide();
+            //if($("#tabs-wrapper").find("ul li").length === 0) $("#tabs-wrapper").hide();
         }
 
         $.each( $(".tabs-wrapper") , function (indx, item) {
             if($(item).find("ul").length ===  0){ return true;}
-            if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
+            //if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
         });
 
         if( $("#tabs-wrapper ul li").length === 1 ){
@@ -883,13 +906,13 @@ require(['jquery', 'slick'], function($, slick) {
             $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
         });
 
-        var selected = $("#wise-search-form select").val();
+        var selected = $("#wise-search-form select:not(.notselect)").val();
 
 
-        var opts = $("#wise-search-form select option");
+        var opts = $("#wise-search-form select:not(.notselect) option");
         // ignore 1st option for "prev" button
-        if( $("#wise-search-form select").val() !== $(opts[1]).val() ){
-            //$($("#wise-search-form select option")[1]).val()
+        if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[1]).val() ){
+
             var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
                 ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
                 '          </button>';
@@ -899,7 +922,7 @@ require(['jquery', 'slick'], function($, slick) {
         }
 
         // ignore last option for "next" button
-        if( $("#wise-search-form select").val() !== $(opts[opts.length-1]).val() ){
+        if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[opts.length-1]).val() ){
             var topNextBtn = '<button type="submit" ' +
                 'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
                 '            </button>';
