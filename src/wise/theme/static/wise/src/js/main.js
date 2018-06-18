@@ -628,14 +628,24 @@ require(['jquery', 'slick'], function($, slick) {
                 raLeft = $("#marine-widget-top .select-article").width() - 20 ;
             }
 
-            $("#marine-unit-trigger .arrow-right-container").css({
+            var todivide = $("#marine-unit-trigger .text-trigger").height() < 80 ? 2 : 2;
+            var targetH = Math.floor( $("#marine-unit-trigger .text-trigger").height() / todivide ) ;
+
+
+            $("#marine-unit-trigger .arrow-right").css({
                "left" : raLeft + "px",
-                "top": $("#marine-unit-trigger .text-trigger").height() / 4 + "px"
+                "top":  targetH + "px",
+                "transform": "translate3d(0,-10px,0)"
             });
 
-            $("#marine-unit-trigger .arrow-left-container").css({
-                "top": $("#marine-unit-trigger .text-trigger").height() / 4 + "px"
+            $("#marine-unit-trigger .arrow-left").css({
+                "top": targetH + "px",
+                "transform": "translate3d(0,-10px,0)"
             });
+
+            if( $(".text-trigger").height() > 40 && window.matchMedia("(max-width: 991px)").matches ){
+                $(".text-trigger").css("max-width", "90%");
+            }
 
 
             /*$("#marine-unit-trigger .arrow").css({
@@ -758,8 +768,8 @@ require(['jquery', 'slick'], function($, slick) {
 
                     $('#wise-search-form select').select2("open");
 
-                    //
-                    var top = $("#marine-unit-trigger a").offset().top;
+
+                    //var top = $("#marine-unit-trigger a").offset().top;
                     var trH = $("#marine-unit-trigger a").height();
 
                     $(".select2-top-override-dropdown").css("margin-top", trH/2 + "px" );
