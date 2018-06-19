@@ -789,20 +789,38 @@ require(['jquery', 'slick'], function($, slick) {
             minimumResultsForSearch: 20,
         };
 
-        $("#wise-search-form #extra-details-select").select2(options);
-        $("#wise-search-form .extra-details .tab-panel").fadeOut('fast');
-        $($("#wise-search-form .extra-details .tab-panel")[0]).fadeIn('fast');
+        $.each( $("#wise-search-form .extra-details-select") , function (idx, elem) {
+            //.select2(options);
 
-        $("#wise-search-form #extra-details-select").on("select2-selecting", function(ev) {
-            $.each( $("#wise-search-form .extra-details .tab-panel"), function (indx, item) {
-                if($(item).attr("id") !== ev.choice.id){
-                    $(item).hide();
-                }
-            });
-            $("#" + ev.choice.id).fadeIn();
+            if($(elem).find("option").length > 1){
+                $(elem).select2(options);
+            } else {
+                $(elem).hide();
+                //$(elem).after("<span>"+ $($(elem).find("option")[0]).attr("title") +"</span>");
+            }
         });
 
-        $("#wise-search-form #extra-details-select").trigger("click");
+
+        $("#wise-search-form .extra-details .tab-panel").fadeOut('fast', function () {
+            $.each( $("#wise-search-form .extra-details .extra-details-section"), function (indx, item){
+                $($(item).find(".tab-panel")[0]).show();
+            });
+        });
+
+        //$($("#wise-search-form .extra-details .tab-panel")
+
+        $("#wise-search-form .extra-details-select").on("select2-selecting", function(ev) {
+            var sect = $(ev.target).parent();
+            $.each( $(sect).find(".tab-panel") , function (idx, elem) {
+                if ($(elem).attr("id") !== ev.choice.id) {
+                    $(elem).hide();
+                }
+                $("#" + ev.choice.id).fadeIn();
+            });
+
+        });
+
+        $("#wise-search-form .extra-details-select").trigger("click");
 
     }
 
