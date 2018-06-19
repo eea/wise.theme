@@ -779,7 +779,7 @@ require(['jquery', 'slick'], function($, slick) {
             }
 
         });
-        var w = "50%";
+        var w = "80%";
         var daw = true;
         if (window.matchMedia("(max-width: 967px)").matches) {
             w = false;
