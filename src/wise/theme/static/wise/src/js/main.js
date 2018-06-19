@@ -246,7 +246,7 @@ require(['jquery', 'slick'], function($, slick) {
         // };
     });
 
-    //var $fields = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
+
     var exceptVal = ["all", "none", "invert", "apply"];
 
     function generateCheckboxes($fields){
@@ -336,7 +336,7 @@ require(['jquery', 'slick'], function($, slick) {
                         chekspan.fadeOut("fast");
                         $(field).find(".controls").slideUp("fast");
                         $(field).css({"border-bottom" : "1px solid #ccc;"});
-                        //addCheckboxHandlers( $(".wise-search-form-container") );
+
                     });
 
                     chekspan.on("show.bs.collapse", function (ev) {
@@ -346,7 +346,6 @@ require(['jquery', 'slick'], function($, slick) {
                         $(field).find("> span").css({"display" : "block"});
 
                         $(field).find(".accordion-toggle").addClass("accordion-after");
-                        //addCheckboxHandlers( $(".wise-search-form-container") );
 
                     });
 
@@ -370,9 +369,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                                 if( $(event.target).val() === "" ){
                                     cheks2.parentsUntil(".option").parent().parent().find(".noresults").remove();
-
                                     cheks2.parentsUntil(".option").parent().show();
-                                    //cheks2.parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
                                     return true;
                                 }
                                 cheks2.parentsUntil(".option").parent().show();
@@ -441,8 +438,6 @@ require(['jquery', 'slick'], function($, slick) {
                                 });
                             }
                         });
-
-
                     }
 
                     /*$(field).find(".ui-autocomplete-input").on("focusin" , function (ev) {
@@ -459,11 +454,7 @@ require(['jquery', 'slick'], function($, slick) {
             }
             if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
 
-
         });
-
-
-
     }
 
     function checkboxHandlerAll(ev){
@@ -1007,8 +998,6 @@ require(['jquery', 'slick'], function($, slick) {
         }
     }
 
-
-
     $.randomString = function() {
         var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
         var string_length = 8;
@@ -1093,10 +1082,11 @@ require(['jquery', 'slick'], function($, slick) {
 
     window.WISE = {};
     window.WISE.formData = $(".wise-search-form-container").clone(true);
-    //window.WISE.marineUnit = $("#wise-search-form select").val();
 
     // ajax form submission
-    $(".wise-search-form-container").unbind("click").on("click",".formControls #form-buttons-continue", function (ev){
+    $(".wise-search-form-container")
+        .unbind("click")
+        .on("click",".formControls #form-buttons-continue", function (ev){
         if(!AJAX_MODE){
             return true;
         }
@@ -1104,11 +1094,7 @@ require(['jquery', 'slick'], function($, slick) {
         var form =  $(".wise-search-form-container").find("form");
         var url = form.attr("action");
 
-        var data = form.serialize();
-
         var strContent = $.getMultipartData("#" + form.attr("id"));
-
-        var oldFormContent = $(".wise-search-form-container").clone(true);
 
         $.ajax({
             type: "POST",
@@ -1120,6 +1106,9 @@ require(['jquery', 'slick'], function($, slick) {
             //processData:false,
             beforeSend: function(jqXHR, settings){
                 $("#ajax-spinner").hide();
+
+                $("#wise-search-form .no-results").remove();
+
                 var t = "<div id='wise-search-form-container-preloader' " +
                 "></div>";
                 var sp = $("#ajax-spinner").clone().attr("id", "ajax-spinner-form").css({
@@ -1190,6 +1179,16 @@ require(['jquery', 'slick'], function($, slick) {
                 $("#wise-search-form #wise-search-form-top").siblings().remove();
                 $("#wise-search-form #wise-search-form-top").after(centerContentD);
 
+                /*var res = $data.find("#wise-search-form");
+
+                debugger;
+                if(res.children().length === 1){
+                    if($(res[0]).attr("id") === "wise-search-form-top" ){
+                        $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
+                    }
+
+                }*/
+
                 // regenerate checkboxes widget
                 generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]"));
 
@@ -1209,9 +1208,7 @@ require(['jquery', 'slick'], function($, slick) {
                 // hide marineUnit ID from right form
                 $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
-
                 setPaginationButtons();
-
 
                 $("[name='form.buttons.prev']").prop("disabled" , false);
                 $("[name='form.buttons.next']").prop("disabled" , false);
@@ -1249,12 +1246,14 @@ require(['jquery', 'slick'], function($, slick) {
 
                 }
 
+                if($("#wise-search-form-top").next().length === 0){
+                    $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
+                }
+
                 loading = false;
                 $("#form-buttons-continue").hide("fast");
 
-            }
-
-            ,
+            },
             error:function (req, status, error) {
                 if(window.WISE.formData.length > 0){
                     var data = $($(window.WISE.formData)[0]).find(".field");
@@ -1306,30 +1305,5 @@ require(['jquery', 'slick'], function($, slick) {
         //console.log(ev);
     });*/
 
-
-
     return jQuery.noConflict();
 });
-
-
-
-
-// AJAX request interception
-/*(function(open) {
-
-    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
-
-        this.addEventListener("readystatechange", function(ev) {
-            /!*console.log("########### intercepted request #####################");
-            console.log(method);
-            console.log(url);*!/
-
-            console.log(ev.target);
-        }, false);
-
-        open.call(this, method, url, async, user, pass);
-    };
-
-})(XMLHttpRequest.prototype.open);*/
-
-
