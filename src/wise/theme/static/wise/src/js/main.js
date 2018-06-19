@@ -735,7 +735,7 @@ require(['jquery', 'slick'], function($, slick) {
             if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
 
                 // Select2 has been initialized
-                var text = $('#wise-search-form select [value="' + jQuery('#wise-search-form select').val() + '"]').text();
+                var text = $('#wise-search-form  select [value="' + jQuery('#wise-search-form .select-article select').val() + '"]').text();
                 $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
 
                     '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
@@ -900,6 +900,17 @@ require(['jquery', 'slick'], function($, slick) {
             $("#tabs-wrapper ul li a").remove();
             $("#tabs-wrapper .tab-pane").removeClass("fade");
         }
+
+        var nrTabs = $("#wise-search-form ul.topnav li").length;
+
+        var wdth = (100/nrTabs) - 1;
+
+        $("#wise-search-form .topnav li").css({"width": wdth + "%", "margin-right": "1%" });
+        /*$.each( $("#wise-search-form .topnav li"), function (indx, itm) {
+            $(itm).css({
+                "max-width" : wdth + "%"
+            });
+        });*/
 
     }
 
