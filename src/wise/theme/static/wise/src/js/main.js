@@ -603,7 +603,7 @@ require(['jquery', 'slick'], function($, slick) {
             });
         });
 
-        $("#wise-search-form select").addClass("js-example-basic-single");
+        $("#wise-search-form select:not(.notselect)").addClass("js-example-basic-single");
 
         function recalculateMarineUnitArrow(){
             if (window.matchMedia("(max-width: 956px)").matches) {
@@ -784,6 +784,7 @@ require(['jquery', 'slick'], function($, slick) {
         if (window.matchMedia("(max-width: 967px)").matches) {
             w = false;
             daw = false;
+
         }
 
         var options = {
@@ -804,6 +805,32 @@ require(['jquery', 'slick'], function($, slick) {
             }
         });
 
+        if (window.matchMedia("(max-width: 967px)").matches){
+            function formatArticle (article) {
+                var el = $(article.element[0]);
+
+                return '<span style="font-size: 1.5rem; font-weight: bold;color: #337ab7">' + el.attr("data-maintitle")+ '</span> '+
+                    '<span style="color: #337ab7;font-size: 1.3rem;">('+el.attr("data-subtitle") +')</span>';
+            };
+
+            var moptions = {
+                placeholder: 'Select an option',
+                closeOnSelect: true,
+                dropdownAutoWidth : daw,
+                width: w,
+                theme: "flat",
+                minimumResultsForSearch: 20,
+                formatSelection: formatArticle,
+                formatResult: formatArticle
+            };
+
+            $("#mobile-select-article").select2(moptions);
+
+            $("#mobile-select-article").one("select2-selecting", function (ev) {
+               document.location.href =  ev.choice.id;
+
+            });
+        }
 
         $("#wise-search-form .extra-details .tab-panel").fadeOut('fast', function () {
             $.each( $("#wise-search-form .extra-details .extra-details-section"), function (indx, item){
@@ -821,6 +848,7 @@ require(['jquery', 'slick'], function($, slick) {
             });
 
         });
+
 
         //$("#wise-search-form .extra-details-select").trigger("click");
 
