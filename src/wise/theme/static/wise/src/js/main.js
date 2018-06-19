@@ -770,7 +770,7 @@ require(['jquery', 'slick'], function($, slick) {
             }
 
         });
-        var w = "80%";
+        var w = "auto";
         var daw = true;
         if (window.matchMedia("(max-width: 967px)").matches) {
             w = false;
@@ -785,6 +785,7 @@ require(['jquery', 'slick'], function($, slick) {
             width: w,
             theme: "flat",
             minimumResultsForSearch: 20,
+            containerCssClass : "extra-details-select",
         };
 
         $.each( $("#wise-search-form .extra-details-select") , function (idx, elem) {
