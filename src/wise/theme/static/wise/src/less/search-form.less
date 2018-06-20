@@ -795,6 +795,7 @@ span [name="marine.buttons.prev"]
 
 }
 
+//tablet
 @media (max-width: @screen-md-max){
   .wise-search-form-container > ul.topnav,
   #wise-search-form > ul.topnav {
@@ -814,7 +815,10 @@ span [name="marine.buttons.prev"]
   #wise-search-form dd {
     max-height: auto;
     max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+
 
   #marine-widget-top {
     display: block;
@@ -839,7 +843,10 @@ span [name="marine.buttons.prev"]
   }
 }
 
+// TABLET
 @media (max-width: @screen-md-min){
+
+
   #form-buttons-next-top {
     /*position: relative !important;*/
     margin-left: 0 !important;
@@ -925,4 +932,17 @@ span [name="marine.buttons.prev"]
       }
     }
   }
+
+  .extra-details {
+    padding-top: 0;
+
+    h4 {
+      padding-top: 0;
+    }
+
+    .extra-details-section {
+       margin-top: 0;
+    }
+  }
+
 }

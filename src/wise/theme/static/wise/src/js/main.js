@@ -824,7 +824,7 @@ require(['jquery', 'slick'], function($, slick) {
             });
         }
 
-        $("#wise-search-form .extra-details .tab-panel").fadeOut('fast', function () {
+        $("#wise-search-form .extra-details .tab-panel").fadeOut('slow', function () {
             $.each( $("#wise-search-form .extra-details .extra-details-section"), function (indx, item){
                 $($(item).find(".tab-panel")[0]).show();
             });
