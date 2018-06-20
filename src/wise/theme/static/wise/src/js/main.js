@@ -831,12 +831,14 @@ require(['jquery', 'slick'], function($, slick) {
         });
 
         $("#wise-search-form .extra-details-select").on("select2-selecting", function(ev) {
-            var sect = $(ev.target).parent();
+            var sect = $(ev.target).parentsUntil(".extra-details-section").parent();
             $.each( $(sect).find(".tab-panel") , function (idx, elem) {
                 if ($(elem).attr("id") !== ev.choice.id) {
                     $(elem).hide();
+                } else {
+                    $(elem).fadeIn();
                 }
-                $("#" + ev.choice.id).fadeIn();
+                //$("#" + ev.choice.id).fadeIn();
             });
 
         });
@@ -849,6 +851,7 @@ require(['jquery', 'slick'], function($, slick) {
     function setupTabs() {
         var t = $("ul.nav:not(.topnav) > li");
 
+        // top tabs width calculation
         if(t.length > 1) {
             var nrtabs = t.length;
 
