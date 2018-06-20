@@ -62,7 +62,12 @@ require(['jquery', 'slick'], function($, slick) {
         });
     }
 
+
+
+
     $(document).ready(function() {
+        $("#ajax-spinner").show();
+
         var $menu_items = $('.menu .navmenu-item > a');
 
         $menu_items.each(function(index, value) {
@@ -245,6 +250,10 @@ require(['jquery', 'slick'], function($, slick) {
 
         // };
 
+    });
+
+
+    $(window).load(function () {
         /*
         * ****************************************************
         * Page elements init
@@ -389,18 +398,18 @@ require(['jquery', 'slick'], function($, slick) {
 
                             // if already checked than collapse
                             //if(checked.length === 0) {
-                                chekspan.collapse({
-                                    toggle: true
-                                });
-                                chekspan.collapse({
-                                    toggle: true
-                                });
-                                $(field).find(".accordion-toggle").addClass("accordion-after");
+                            chekspan.collapse({
+                                toggle: true
+                            });
+                            chekspan.collapse({
+                                toggle: true
+                            });
+                            $(field).find(".accordion-toggle").addClass("accordion-after");
                             //} else {
-                                /*$(field).find(".controls").slideUp("fast");
-                                chekspan.collapse({
-                                    toggle: false
-                                });*/
+                            /*$(field).find(".controls").slideUp("fast");
+                            chekspan.collapse({
+                                toggle: false
+                            });*/
                             //}
 
                             chekspan.on("hidden.bs.collapse", function (ev) {
@@ -1304,7 +1313,9 @@ require(['jquery', 'slick'], function($, slick) {
             ev.preventDefault();
             //console.log(ev);
         });*/
-
+        $("#ajax-spinner").fadeOut("fast", function () {
+            $(".wise-search-form-container,#wise-search-form").fadeIn("slow");
+        });
 
 
     });
