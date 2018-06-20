@@ -244,1070 +244,1073 @@ require(['jquery', 'slick'], function($, slick) {
         });
 
         // };
-    });
+
+        /*
+        * ****************************************************
+        * Page elements init
+        * ****************************************************
+        * */
+
+        var exceptVal = ["all", "none", "invert", "apply"];
+
+        /*
+        * Vars and $ plugins
+        *
+        * */
+        $.randomString = function() {
+            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+            var string_length = 8;
+            var randomstring = '';
+            for (var i=0; i<string_length; i++) {
+                var rnum = Math.floor(Math.random() * chars.length);
+                randomstring += chars.substring(rnum,rnum+1);
+            }
+            return randomstring;
+        };
+
+        $.getMultipartData = function(frmName){
+            //Start multipart formatting
+            var initBoundary= $.randomString();
+            var strBoundary = "--" + initBoundary;
+            var strMultipartBody = "";
+            var strCRLF = "\r\n";
+
+            var iname = $(frmName).attr('id');
+
+            var formData = $(frmName).serializeArray();
+            //Create multipart for each element of the form
+
+            if(formData.length === 0){
+                return false;
+            }
+
+            $.each( formData ,function(indx, val){
+                strMultipartBody +=
+                    strBoundary
+                    + strCRLF
+                    + "Content-Disposition: form-data; name=\"" + val.name + "\""
+                    + strCRLF
+                    + strCRLF
+                    + val.value
+                    +strCRLF;
+            });
+
+            //End the body by delimiting it
+
+            strMultipartBody += strBoundary + "--" + strCRLF;
+
+            //Return boundary without -- and the multipart content
+            return [initBoundary,strMultipartBody];
+
+        };
+
+        var loading = false;
 
 
-    var exceptVal = ["all", "none", "invert", "apply"];
+        function initPageElems(){
+            /*
+            * Styling and hiding
+            *
+             */
+            function initStyling(){
+                $(".button-field").addClass("btn");
+                $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
-    function generateCheckboxes($fields){
-        var count = $fields.length;
-        $fields.each(function(indx, field){
+                $("#form-buttons-continue").hide("fast");
+            }
 
-            var cheks = $(field).find(".option");
-            var hasChecks = cheks.find("input[type='checkbox']").length > 0;
+            function generateCheckboxes($fields){
+                var count = $fields.length;
+                $fields.each(function(indx, field){
 
-            if(hasChecks){
-                var fieldId = $(field).attr("id");
-                var spAll = '<span class="controls" style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
-                    'padding-left: 0;position: relative;  ">' +
-                    '<span style="font-size: 0.8em; margin-left: 5px;">Select :</span><a class="" data-value="all"><label>' +
-                    '<span class="label">All</span></label></a>';
-                var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
-                var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
-                    '<a class="apply-filters"  data-value="apply"><label><span class="label" >Apply filters</span></label></a>'+
-                    '<span class="ui-autocomplete">' +
-                        '<span class=" search-icon" ></span>' +
-                        '<span style="position: relative;padding-top:1px;padding-bottom:1px;background: white;" class="search-span">' +
+                    var cheks = $(field).find(".option");
+                    var hasChecks = cheks.find("input[type='checkbox']").length > 0;
+
+                    // has checkboxes
+                    if(hasChecks){
+                        var fieldId = $(field).attr("id");
+                        var spAll = '<span class="controls" style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
+                            'padding-left: 0;position: relative;  ">' +
+                            '<span style="font-size: 0.8em; margin-left: 5px;">Select :</span><a class="" data-value="all"><label>' +
+                            '<span class="label">All</span></label></a>';
+                        var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
+                        var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
+                            '<a class="apply-filters"  data-value="apply"><label><span class="label" >Apply filters</span></label></a>'+
+                            '<span class="ui-autocomplete">' +
+                            '<span class=" search-icon" ></span>' +
+                            '<span style="position: relative;padding-top:1px;padding-bottom:1px;background: white;" class="search-span">' +
                             '<input class="ui-autocomplete-input" type="text" style="width: 80%;" />' +
-                    '<span class="clear-btn"><a class="fa fa-times"></a></span>' +
-                    '</span>' +
-                                        '</span>';
+                            '<span class="clear-btn"><a class="fa fa-times"></a></span>' +
+                            '</span>' +
+                            '</span>';
 
 
-                // each checkbox does auto submit
-                $("#" + fieldId).on("click", ".option", function (evO) {
-                    setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
-                        , 300);
-                });
-
-                // add "all" checkbox
-                var all = spAll + spClear + invertSel;
-                $(field).find("> label.horizontal").after(all);
-
-                //tooltips
-                cheks.each(function (idx, check) {
-                    var text = $(cheks[idx]).text();
-                    $(cheks[idx]).attr("title", text.trim());
-                });
-
-                if(cheks.length < 4) {
-                    $(field).find(".controls a").hide();
-                    $(field).find(".controls").html("").css("height" ,"1px").css("padding", 0);
-
-                } else {
-                    $(field).addClass("panel-group");
-
-                    var chekspan = $(field).find("> span:not(.controls)");
-                    chekspan.css("border-radius", 0);
-                    chekspan.addClass( fieldId + "-collapse");
-                    chekspan.addClass("collapse");
-                    var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
-
-                    chekspan.addClass("panel");
-                    chekspan.addClass("panel-default");
-
-                    var label = $(field).find(".horizontal");
-
-                    var alabel = "<a data-toggle='collapse' class='accordion-toggle' >" + label.text() + "</a>";
-                    label.html(alabel);
-
-                    label.addClass("panel-heading").addClass("panel-title");
-
-                    label.attr("data-toggle", "collapse");
-                    label.attr("data-target", "." + fieldId + "-collapse" );
-
-                    // if already checked than collapse
-                    if(checked.length === 0) {
-                        chekspan.collapse({
-                            toggle: true
+                        // each checkbox does auto submit
+                        $("#" + fieldId).on("click", ".option", function (evO) {
+                            setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
+                                , 300);
                         });
-                        chekspan.collapse({
-                            toggle: true
+
+                        // add "controls"
+                        var all = spAll + spClear + invertSel;
+                        $(field).find("> label.horizontal").after(all);
+
+                        //tooltips
+                        cheks.each(function (idx, check) {
+                            var text = $(cheks[idx]).text();
+                            $(cheks[idx]).attr("title", text.trim());
                         });
-                        $(field).find(".accordion-toggle").addClass("accordion-after");
-                    } else {
-                        $(field).find(".controls").slideUp("fast");
-                        chekspan.collapse({
-                            toggle: false
-                        });
-                    }
 
-                    chekspan.on("hidden.bs.collapse", function (ev) {
-                        chekspan.fadeOut("fast");
-                        $(field).find(".controls").slideUp("fast");
-                        $(field).css({"border-bottom" : "1px solid #ccc;"});
+                        if(cheks.length < 4) {
+                            $(field).find(".controls a").hide();
+                            $(field).find(".controls").html("").css("height" ,"1px").css("padding", 0);
 
-                    });
+                        } else {
+                            $(field).addClass("panel-group");
 
-                    chekspan.on("show.bs.collapse", function (ev) {
-                        // collapsed
-                        chekspan.fadeIn("fast");
-                        $(field).find(".controls").slideDown("fast");
-                        $(field).find("> span").css({"display" : "block"});
+                            var chekspan = $(field).find("> span:not(.controls)");
+                            chekspan.css("border-radius", 0);
+                            chekspan.addClass( fieldId + "-collapse");
+                            chekspan.addClass("collapse");
+                            var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
 
-                        $(field).find(".accordion-toggle").addClass("accordion-after");
+                            chekspan.addClass("panel");
+                            chekspan.addClass("panel-default");
 
-                    });
+                            var label = $(field).find(".horizontal");
 
-                    chekspan.on("hide.bs.collapse", function (ev) {
-                        // not collapsed
-                        setTimeout( function (){
-                            $(field).find(".accordion-toggle").removeClass("accordion-after");
-                        },600);
-                    });
+                            var alabel = "<a data-toggle='collapse' class='accordion-toggle' >" + label.text() + "</a>";
+                            label.html(alabel);
 
-                    // initialize autocomplete for more than 6 checkboxes
-                    if(cheks.length < 6) {
-                        $(field).find(".controls .ui-autocomplete").hide();
-                    } else {
+                            label.addClass("panel-heading").addClass("panel-title");
 
-                        $(field).find(".ui-autocomplete-input").autocomplete({
-                            minLength: 0,
-                            source: [],
-                            search: function( event, ui, dat ) {
-                                var cheks2 = $(field).find(".option .label:not(.horizontal) ");
+                            label.attr("data-toggle", "collapse");
+                            label.attr("data-target", "." + fieldId + "-collapse" );
 
-                                if( $(event.target).val() === "" ){
-                                    cheks2.parentsUntil(".option").parent().parent().find(".noresults").remove();
-                                    cheks2.parentsUntil(".option").parent().show();
-                                    return true;
-                                }
-                                cheks2.parentsUntil(".option").parent().show();
-
-                                var toSearch = $(event.target).val().toLowerCase()
-                                    /*.replace(/^\s+|\s+$/g, '_')*/
-                                    /*.replace(/_/g, "")*/
-                                    .replace(/\s/g, "_");
-
-                                var matcher = new RegExp( "^" +  $.ui.autocomplete.escapeRegex( toSearch ), "i" );
-                                var matcher2 = new RegExp( $.ui.autocomplete.escapeRegex( toSearch ), "i" );
-
-                                var temp = {};
-                                var checksLabels = $(field).find(".option .label:not(.horizontal) ").map(function (ind, item) {
-                                    temp[$(item).text().toLowerCase()] = $(item).text().toLowerCase()
-                                        .replace(/\s/g, "_")
-                                    //return temp;
-                                    return $(item).text().toLowerCase()
-                                    /*.replace(/^\s+|\s+$/g, '')*/
-                                    /*.replace(/_/g, "")*/
-                                    .replace(/\s/g, "_");
+                            // if already checked than collapse
+                            //if(checked.length === 0) {
+                                chekspan.collapse({
+                                    toggle: true
                                 });
+                                chekspan.collapse({
+                                    toggle: true
+                                });
+                                $(field).find(".accordion-toggle").addClass("accordion-after");
+                            //} else {
+                                /*$(field).find(".controls").slideUp("fast");
+                                chekspan.collapse({
+                                    toggle: false
+                                });*/
+                            //}
 
-                                var found = [];
-                                $.each(temp, function (indx, item) {
-                                    if(!matcher2.test( item )){
-                                        found.push(indx);
+                            chekspan.on("hidden.bs.collapse", function (ev) {
+                                chekspan.fadeOut("fast");
+                                $(field).find(".controls").slideUp("fast");
+                                $(field).css({"border-bottom" : "1px solid #ccc;"});
+
+                            });
+
+                            chekspan.on("show.bs.collapse", function (ev) {
+                                // collapsed
+                                chekspan.fadeIn("fast");
+                                $(field).find(".controls").slideDown("fast");
+                                $(field).find("> span").css({"display" : "block"});
+
+                                $(field).find(".accordion-toggle").addClass("accordion-after");
+
+                            });
+
+                            chekspan.on("hide.bs.collapse", function (ev) {
+                                // not collapsed
+                                setTimeout( function (){
+                                    $(field).find(".accordion-toggle").removeClass("accordion-after");
+                                },600);
+                            });
+
+                            // initialize autocomplete for more than 6 checkboxes
+                            if(cheks.length < 6) {
+                                $(field).find(".controls .ui-autocomplete").hide();
+                            } else {
+
+                                $(field).find(".ui-autocomplete-input").autocomplete({
+                                    minLength: 0,
+                                    source: [],
+                                    search: function( event, ui, dat ) {
+                                        var cheks2 = $(field).find(".option .label:not(.horizontal) ");
+
+                                        if( $(event.target).val() === "" ){
+                                            cheks2.parentsUntil(".option").parent().parent().find(".noresults").remove();
+                                            cheks2.parentsUntil(".option").parent().show();
+                                            return true;
+                                        }
+                                        cheks2.parentsUntil(".option").parent().show();
+
+                                        var toSearch = $(event.target).val().toLowerCase()
+                                        /*.replace(/^\s+|\s+$/g, '_')*/
+                                        /*.replace(/_/g, "")*/
+                                            .replace(/\s/g, "_");
+
+                                        var matcher = new RegExp( "^" +  $.ui.autocomplete.escapeRegex( toSearch ), "i" );
+                                        var matcher2 = new RegExp( $.ui.autocomplete.escapeRegex( toSearch ), "i" );
+
+                                        var temp = {};
+                                        var checksLabels = $(field).find(".option .label:not(.horizontal) ").map(function (ind, item) {
+                                            temp[$(item).text().toLowerCase()] = $(item).text().toLowerCase()
+                                                .replace(/\s/g, "_")
+                                            //return temp;
+                                            return $(item).text().toLowerCase()
+                                            /*.replace(/^\s+|\s+$/g, '')*/
+                                            /*.replace(/_/g, "")*/
+                                                .replace(/\s/g, "_");
+                                        });
+
+                                        var found = [];
+                                        $.each(temp, function (indx, item) {
+                                            if(!matcher2.test( item )){
+                                                found.push(indx);
+                                            }
+                                        });
+
+                                        var tohide = cheks2.filter(function (idx, elem) {
+                                            return found.indexOf( $(elem).text().toLowerCase()) !== -1;
+                                        });
+
+                                        var toshow =  cheks2.filter(function (idx, elem) {
+                                            return found.indexOf( $(elem).text().toLowerCase()) === -1;
+                                        });
+                                        $.each(toshow, function (ind, item) {
+                                            $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", true);
+                                        });
+
+                                        $.each(tohide, function (inx, item) {
+                                            $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
+                                            $(item).parentsUntil(".option").parent().find("input[type='checkbox']").prop("checked", false);
+                                            $(item).parentsUntil(".option").parent().find("input[type='checkbox']").removeAttr('checked');
+                                            $(item).parentsUntil(".option").parent().hide();
+                                        });
+
+                                        if(tohide.length === cheks2.length){
+
+                                            cheks2.parentsUntil(".option").parent().parent().append("<span class='noresults'>No results found</span>")
+                                        }
+
+                                    },
+                                    create: function (event, ui){
+                                        var that = this;
+
+                                        var removeBtn = $(this).parentsUntil(".ui-autocomplete").find(".clear-btn ");
+
+                                        removeBtn.on("click", null ,  that, function (ev) {
+                                            $(this).parentsUntil(".controls").find("input").val("");
+                                            $(this).parentsUntil(".controls").find("input").trigger("change");
+                                            $(ev.data).autocomplete("search","undefined");
+
+                                            //console.log();
+                                        });
                                     }
                                 });
-
-                                var tohide = cheks2.filter(function (idx, elem) {
-                                    return found.indexOf( $(elem).text().toLowerCase()) !== -1;
-                                });
-
-                                var toshow =  cheks2.filter(function (idx, elem) {
-                                    return found.indexOf( $(elem).text().toLowerCase()) === -1;
-                                });
-                                $.each(toshow, function (ind, item) {
-                                    $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", true);
-                                });
-
-                                $.each(tohide, function (inx, item) {
-                                    $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
-                                    $(item).parentsUntil(".option").parent().find("input[type='checkbox']").prop("checked", false);
-                                    $(item).parentsUntil(".option").parent().find("input[type='checkbox']").removeAttr('checked');
-                                    $(item).parentsUntil(".option").parent().hide();
-                                });
-
-                                if(tohide.length === cheks2.length){
-
-                                    cheks2.parentsUntil(".option").parent().parent().append("<span class='noresults'>No results found</span>")
-                                }
-
-                            },
-                            create: function (event, ui){
-                                var that = this;
-
-                                var removeBtn = $(this).parentsUntil(".ui-autocomplete").find(".clear-btn ");
-
-                                removeBtn.on("click", null ,  that, function (ev) {
-                                    $(this).parentsUntil(".controls").find("input").val("");
-                                    $(this).parentsUntil(".controls").find("input").trigger("change");
-                                    $(ev.data).autocomplete("search","undefined");
-
-                                    //console.log();
-                                });
                             }
-                        });
+
+                            /*$(field).find(".ui-autocomplete-input").on("focusin" , function (ev) {
+                                //$(ev.target).parent().find(".glyphicon").css("background", "#ffffe0");
+                            });
+
+                            $(field).find(".ui-autocomplete-input").on("focusout" , function (ev) {
+                                //$(ev.target).parent().find(".glyphicon").css("background", "white");
+                            });*/
+                            $(field).find(".search-icon").on("click" , function (ev) {
+                                $(ev.target).parent().find("input").trigger("focus");
+                            });
+                        }
+                    }
+                    if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
+
+                });
+            }
+
+            function addCheckboxHandlers($cont){
+                function checkboxHandlerAll(ev){
+                    ev.preventDefault();
+                    var par = $(this).parent().parent();
+                    var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+                    $.each(rest, function (idx, elemt) {
+                        if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
+                    });
+
+                    //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                }
+
+                function checkboxHandlerNone(ev){
+                    ev.preventDefault();
+                    $(this).prop("checked", false);
+                    var par = $(this).parent().parent();
+                    var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+                    $.each(rest, function (idx, elemt) {
+                        $(rest[idx]).prop("checked", false);
+                        //if( $(rest[idx]).val() !== "none")
+                    });
+
+                    //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                }
+
+                function checkboxHandlerInvert(ev){
+                    ev.preventDefault();
+                    $(this).prop("checked", false);
+
+                    var par = $(this).parent().parent();
+
+                    console.log($(this).parentsUntil(".field").parent());
+
+                    var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+                    var checked = rest.filter(function (ind, item) {
+                        return $(item).is(":checked");
+                    });
+
+                    var unchecked = rest.filter(function (ind, item) {
+                        return !$(item).is(":checked");
+                    });
+
+                    $.each(checked, function (idx, elemt) {
+                        $(checked[idx]).prop("checked", false);
+                    });
+
+                    $.each(unchecked, function (idx, elemt) {
+                        $(unchecked[idx]).prop("checked", true);
+                    });
+
+                    //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                }
+
+                $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
+                $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
+                $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
+                //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
+
+                $(".controls").one("click","a[data-value='apply']", function (ev) {
+                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                });
+
+            }
+
+            function filterInvalidCheckboxes(cbxs){
+                return cbxs.filter(function (idx, item) {
+                    return exceptVal.indexOf($(item).val()) === -1;
+                });
+            }
+
+            function addCheckboxLabelHandlers(){
+                var allch = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
+                // listener for click on the whole span
+                allch.on("click", ".option", function(ev){
+                    var checkboxV = $(this).find("input[type='checkbox']").val();
+                    if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
+                });
+            }
+
+            function attachSelect2(){
+                $(".wise-search-form-container select").each(function (ind, selectElement) {
+                    $(selectElement).addClass("js-example-basic-single");
+                    var lessOptions = $(selectElement).find("option").length < 10;
+
+                    var options = {
+                        placeholder: 'Select an option',
+                        closeOnSelect: true,
+                        dropdownAutoWidth : true,
+                        width: '100%',
+                        theme: "flat",
+                    };
+                    if(lessOptions) options.minimumResultsForSearch = Infinity;
+
+                    $(selectElement).select2(options);
+
+                    if($(selectElement).attr("id") === "form-widgets-marine_unit_id"){
+                        //console.log( $(selectElement) );
                     }
 
-                    /*$(field).find(".ui-autocomplete-input").on("focusin" , function (ev) {
-                        //$(ev.target).parent().find(".glyphicon").css("background", "#ffffe0");
-                    });
+                    //$(".wise-search-form-container #marineunitidsform [data-fieldname] .select2-container").hide();
 
-                    $(field).find(".ui-autocomplete-input").on("focusout" , function (ev) {
-                        //$(ev.target).parent().find(".glyphicon").css("background", "white");
+                    $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+                    /*$(selectElement).on("select2-loaded", function (ev) {
+                        console.log($(selectElement).attr("id") + " loaded");
                     });*/
-                    $(field).find(".search-icon").on("click" , function (ev) {
-                        $(ev.target).parent().find("input").trigger("focus");
+
+                    $(selectElement).on("select2-selecting", function(ev) {
+                        // what you would like to happen
+                        //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
+                        //var par = $(ev.target).parentsUntil(".subform").next();
+
+                        if( $(this).attr("id") === "form-widgets-article" ) {
+                            /*$(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");*/
+                        } else {
+                            //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
+                        }
+                        //$(this).parentsUntil(".form-right-side").nextUntil(".form-right-side").remove(":not('.formControls')");
+
+                        //par.remove(":not('.formControls')");
+
+                        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+                        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+                        $(".wise-search-form-container").find("[name='form.widgets.page']").remove();
+
+
+                        setTimeout( function (){
+
+                            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                        }, 300);
+
                     });
+                });
+
+                $("#wise-search-form select:not(.notselect)").addClass("js-example-basic-single");
+
+                function recalculateMarineUnitArrow(){
+                    if (window.matchMedia("(max-width: 956px)").matches) {
+                        /* if($("#marine-unit-trigger a").height() > 120 ){
+                             $(".select-article").css("margin-bottom", "10rem");
+                         }*/
+                    }
+
+                    /*$("#marine-unit-trigger .arrow-left, #marine-unit-trigger .arrow-right").css({
+                        //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
+                        "top": $("#marine-unit-trigger a").height()/2 + "px",
+                        //"transform" : "translate3d(0,-50%,0)"
+                    });*/
+
+                    $("#marine-unit-trigger .text-trigger").css({
+                        "margin-left" : "20" + "px" ,
+                    });
+
+                    var raLeft = $("#marine-unit-trigger .text-trigger").width()  + $("#marine-unit-trigger .arrow-left-container").width();
+
+                    if(raLeft > $("#marine-widget-top .select-article").width() ){
+                        raLeft = $("#marine-widget-top .select-article").width() - 20 ;
+                    }
+
+                    var todivide = $("#marine-unit-trigger .text-trigger").height() < 80 ? 2 : 2;
+                    var targetH = Math.floor( $("#marine-unit-trigger .text-trigger").height() / todivide ) ;
+
+
+                    $("#marine-unit-trigger .arrow-right").css({
+                        "left" : raLeft + "px",
+                        "top":  targetH + "px",
+                        "transform": "translate3d(0,-10px,0)"
+                    });
+
+                    $("#marine-unit-trigger .arrow-left").css({
+                        "top": targetH + "px",
+                        "transform": "translate3d(0,-10px,0)"
+                    });
+
+                    if( $(".text-trigger").height() > 40 && window.matchMedia("(max-width: 991px)").matches ){
+                        $(".text-trigger").css("max-width", "90%");
+                    }
+
+
+                    /*$("#marine-unit-trigger .arrow").css({
+                        //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
+                    });*/
+
+                    //$("#wise-search-form select").off("scroll");
+
+                    /*$(window).on("scroll" , function (ev){
+                        $(".select2-top-override-dropdown").css({
+                            "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
+                            "margin-top": "0px !important"
+                        });
+                    });*/
+
+                    /*$("#marine-unit-trigger").on("mouseover", function(){
+                        $("#marine-unit-trigger .arrow").css({
+                            "top" : $("#marine-unit-trigger .arrow").height() + 5 + "px",
+                        });
+                    });
+
+                    $("#marine-unit-trigger").on("mouseout", function(){
+                        $("#marine-unit-trigger .arrow").css({
+                            "top" : $("#marine-unit-trigger .arrow").height() + "px",
+                        });
+                    });*/
+
+
                 }
-            }
-            if (!--count) $(".wise-search-form-container, #wise-search-form").animate({"opacity" : 1}, 1000);
-
-        });
-    }
-
-    function checkboxHandlerAll(ev){
-        ev.preventDefault();
-        var par = $(this).parent().parent();
-        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
-
-        $.each(rest, function (idx, elemt) {
-            if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
-        });
-
-        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-    }
-
-    function checkboxHandlerNone(ev){
-        ev.preventDefault();
-        $(this).prop("checked", false);
-        var par = $(this).parent().parent();
-        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
-
-        $.each(rest, function (idx, elemt) {
-            $(rest[idx]).prop("checked", false);
-            //if( $(rest[idx]).val() !== "none")
-        });
-
-        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-    }
-
-    function checkboxHandlerInvert(ev){
-        ev.preventDefault();
-        $(this).prop("checked", false);
 
-        var par = $(this).parent().parent();
+                $("#wise-search-form select:not(.notselect)").each(function (ind, selectElement) {
+                    var options = {
+                        placeholder: 'Select an option',
+                        closeOnSelect: true,
+                        dropdownAutoWidth : false,
+                        width: 'auto',
+                        theme: "flat",
+                        minimumResultsForSearch: 20,
+                        allowClear: true,
+                        dropdownParent: "#marine-unit-trigger",
+                        dropdownAdapter: "AttachContainer",
 
-        console.log($(this).parentsUntil(".field").parent());
+                        containerCssClass : "select2-top-override",
+                        dropdownCssClass: "select2-top-override-dropdown",
+                        debug: true,
+                    };
 
-        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+                    $(selectElement).select2(options);
 
-        var checked = rest.filter(function (ind, item) {
-            return $(item).is(":checked");
-        });
+                    $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
+                        "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
 
-        var unchecked = rest.filter(function (ind, item) {
-            return !$(item).is(":checked");
-        });
+                    $(selectElement).on("select2-open", function() {
+                        var trh = $("#marine-unit-trigger").offset().top;
+                        //$(".select2-top-override-dropdown").css("margin-top", $("#marine-unit-trigger").height()/2 + "px" );
 
-        $.each(checked, function (idx, elemt) {
-            $(checked[idx]).prop("checked", false);
-        });
+                        $("#marine-unit-trigger .arrow").hide();
 
-        $.each(unchecked, function (idx, elemt) {
-            $(unchecked[idx]).prop("checked", true);
-        });
-
-        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-    }
+                        $(".select2-top-override-dropdown").css({
+                            "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
+                            "margin-top": "12" + "px !important"
+                        });
+                    });
 
-    function addCheckboxHandlers($cont){
-        $(".controls").on("click","a[data-value='all']", checkboxHandlerAll);
-        $(".controls").on("click", "a[data-value='none']", checkboxHandlerNone);
-        $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
-        //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
 
-        $(".controls").one("click","a[data-value='apply']", function (ev) {
-            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-        });
+                    $(selectElement).on("select2-selecting", function(ev) {
 
-    }
+                        $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
 
-    function filterInvalidCheckboxes(cbxs){
-        return cbxs.filter(function (idx, item) {
-            return exceptVal.indexOf($(item).val()) === -1;
-        });
-    }
+                        recalculateMarineUnitArrow();
 
-    function addCheckboxLabelHandlers(){
-        var allch = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
-        // listener for click on the whole span
-        allch.on("click", ".option", function(ev){
-            var checkboxV = $(this).find("input[type='checkbox']").val();
-            if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
-        });
-    }
+                        $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
 
-    function attachSelect2(){
-        $(".wise-search-form-container select").each(function (ind, selectElement) {
-            $(selectElement).addClass("js-example-basic-single");
-            var lessOptions = $(selectElement).find("option").length < 10;
+                        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
-            var options = {
-                placeholder: 'Select an option',
-                closeOnSelect: true,
-                dropdownAutoWidth : true,
-                width: '100%',
-                theme: "flat",
-            };
-            if(lessOptions) options.minimumResultsForSearch = Infinity;
 
-            $(selectElement).select2(options);
+                    });
 
-            if($(selectElement).attr("id") === "form-widgets-marine_unit_id"){
-                //console.log( $(selectElement) );
-            }
+                    $(selectElement).on("select2-close", function () {
+                        $("#marine-unit-trigger").css("background", "transparent");
+                        $("#marine-unit-trigger a").css("background", "transparent");
+                        $("#marine-unit-trigger .arrow").show();
+                    });
 
-            //$(".wise-search-form-container #marineunitidsform [data-fieldname] .select2-container").hide();
 
-            $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+                    /// Marine Unit id selector
+                    if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
 
-            /*$(selectElement).on("select2-loaded", function (ev) {
-                console.log($(selectElement).attr("id") + " loaded");
-            });*/
+                        // Select2 has been initialized
+                        var text = $('#wise-search-form  select [value="' + jQuery('#wise-search-form .select-article select').val() + '"]').text();
+                        $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
 
-            $(selectElement).on("select2-selecting", function(ev) {
-                // what you would like to happen
-                //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
-                //var par = $(ev.target).parentsUntil(".subform").next();
-
-                if( $(this).attr("id") === "form-widgets-article" ) {
-                    /*$(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");*/
-                } else {
-                    //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
-                }
-                //$(this).parentsUntil(".form-right-side").nextUntil(".form-right-side").remove(":not('.formControls')");
-
-                //par.remove(":not('.formControls')");
-
-                $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
-                $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
-                $(".wise-search-form-container").find("[name='form.widgets.page']").remove();
-
-
-                setTimeout( function (){
-
-                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-                }, 300);
-
-            });
-        });
-
-        $("#wise-search-form select:not(.notselect)").addClass("js-example-basic-single");
-
-        function recalculateMarineUnitArrow(){
-            if (window.matchMedia("(max-width: 956px)").matches) {
-               /* if($("#marine-unit-trigger a").height() > 120 ){
-                    $(".select-article").css("margin-bottom", "10rem");
-                }*/
-            }
-
-            /*$("#marine-unit-trigger .arrow-left, #marine-unit-trigger .arrow-right").css({
-                //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
-                "top": $("#marine-unit-trigger a").height()/2 + "px",
-                //"transform" : "translate3d(0,-50%,0)"
-            });*/
-
-            $("#marine-unit-trigger .text-trigger").css({
-               "margin-left" : "20" + "px" ,
-            });
-
-            var raLeft = $("#marine-unit-trigger .text-trigger").width()  + $("#marine-unit-trigger .arrow-left-container").width();
-
-            if(raLeft > $("#marine-widget-top .select-article").width() ){
-                raLeft = $("#marine-widget-top .select-article").width() - 20 ;
-            }
-
-            var todivide = $("#marine-unit-trigger .text-trigger").height() < 80 ? 2 : 2;
-            var targetH = Math.floor( $("#marine-unit-trigger .text-trigger").height() / todivide ) ;
-
-
-            $("#marine-unit-trigger .arrow-right").css({
-               "left" : raLeft + "px",
-                "top":  targetH + "px",
-                "transform": "translate3d(0,-10px,0)"
-            });
-
-            $("#marine-unit-trigger .arrow-left").css({
-                "top": targetH + "px",
-                "transform": "translate3d(0,-10px,0)"
-            });
-
-            if( $(".text-trigger").height() > 40 && window.matchMedia("(max-width: 991px)").matches ){
-                $(".text-trigger").css("max-width", "90%");
-            }
-
-
-            /*$("#marine-unit-trigger .arrow").css({
-                //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
-            });*/
-
-            //$("#wise-search-form select").off("scroll");
-
-            /*$(window).on("scroll" , function (ev){
-                $(".select2-top-override-dropdown").css({
-                    "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
-                    "margin-top": "0px !important"
-                });
-            });*/
-
-            /*$("#marine-unit-trigger").on("mouseover", function(){
-                $("#marine-unit-trigger .arrow").css({
-                    "top" : $("#marine-unit-trigger .arrow").height() + 5 + "px",
-                });
-            });
-
-            $("#marine-unit-trigger").on("mouseout", function(){
-                $("#marine-unit-trigger .arrow").css({
-                    "top" : $("#marine-unit-trigger .arrow").height() + "px",
-                });
-            });*/
-
-
-        }
-
-        $("#wise-search-form select:not(.notselect)").each(function (ind, selectElement) {
-            var options = {
-                placeholder: 'Select an option',
-                closeOnSelect: true,
-                dropdownAutoWidth : false,
-                width: 'auto',
-                theme: "flat",
-                minimumResultsForSearch: 20,
-                allowClear: true,
-                dropdownParent: "#marine-unit-trigger",
-                dropdownAdapter: "AttachContainer",
-
-                containerCssClass : "select2-top-override",
-                dropdownCssClass: "select2-top-override-dropdown",
-                debug: true,
-            };
-
-            $(selectElement).select2(options);
-
-            $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
-                "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
-
-            $(selectElement).on("select2-open", function() {
-                var trh = $("#marine-unit-trigger").offset().top;
-                //$(".select2-top-override-dropdown").css("margin-top", $("#marine-unit-trigger").height()/2 + "px" );
-
-                $("#marine-unit-trigger .arrow").hide();
-
-                $(".select2-top-override-dropdown").css({
-                    "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
-                    "margin-top": "12" + "px !important"
-                });
-            });
-
-
-            $(selectElement).on("select2-selecting", function(ev) {
-
-                $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
-
-                recalculateMarineUnitArrow();
-
-                $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
-
-                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-
-
-            });
-
-            $(selectElement).on("select2-close", function () {
-                $("#marine-unit-trigger").css("background", "transparent");
-                $("#marine-unit-trigger a").css("background", "transparent");
-                $("#marine-unit-trigger .arrow").show();
-            });
-
-
-            /// Marine Unit id selector
-            if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
-
-                // Select2 has been initialized
-                var text = $('#wise-search-form  select [value="' + jQuery('#wise-search-form .select-article select').val() + '"]').text();
-                $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
-
-                    '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
-                        '<div class="text-trigger">'+ text + "</div>" +
+                            '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
+                            '<div class="text-trigger">'+ text + "</div>" +
                             '<div class="arrow-left-container">' +
-                                '<div class="arrow-left">' +
-                                    '<div class="arrow-top"></div>' +
-                                    '<div class="arrow-bottom"></div>' +
-                                '</div>' +
+                            '<div class="arrow-left">' +
+                            '<div class="arrow-top"></div>' +
+                            '<div class="arrow-bottom"></div>' +
+                            '</div>' +
                             '</div>'+
 
                             '<div class="arrow-right-container" >' +
-                                '<div class="arrow-right">' +
-                                    '<div class="arrow-top"></div>' +
-                                    '<div class="arrow-bottom"></div>' +
-                                '</div>' +
+                            '<div class="arrow-right">' +
+                            '<div class="arrow-top"></div>' +
+                            '<div class="arrow-bottom"></div>' +
                             '</div>' +
-                        '</div>' +
-                    '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
 
 
-                '</div>');
+                            '</div>');
 
-                recalculateMarineUnitArrow();
+                        recalculateMarineUnitArrow();
 
-                $("#marine-unit-trigger").on("click", function () {
-                    if(loading) return false;
-                    $("#marine-unit-trigger").css("background", "rgb(238, 238, 238)");
-                    $("#marine-unit-trigger a").css("background", "rgb(238, 238, 238)");
+                        $("#marine-unit-trigger").on("click", function () {
+                            if(loading) return false;
+                            $("#marine-unit-trigger").css("background", "rgb(238, 238, 238)");
+                            $("#marine-unit-trigger a").css("background", "rgb(238, 238, 238)");
 
-                    $('#wise-search-form select:not(.notselect)').select2("open");
+                            $('#wise-search-form select:not(.notselect)').select2("open");
 
 
-                    //var top = $("#marine-unit-trigger a").offset().top;
-                    var trH = $("#marine-unit-trigger a").height();
+                            //var top = $("#marine-unit-trigger a").offset().top;
+                            var trH = $("#marine-unit-trigger a").height();
 
-                    $(".select2-top-override-dropdown").css("margin-top", trH/2 + "px" );
+                            $(".select2-top-override-dropdown").css("margin-top", trH/2 + "px" );
+
+                        });
+
+                    }
+
+                });
+                var w = "auto";
+                var daw = true;
+                if (window.matchMedia("(max-width: 967px)").matches) {
+                    w = false;
+                    daw = false;
+
+                }
+
+                var options = {
+                    placeholder: 'Select an option',
+                    closeOnSelect: true,
+                    dropdownAutoWidth : daw,
+                    width: w,
+                    theme: "flat",
+                    minimumResultsForSearch: 20,
+                    containerCssClass : "extra-details-select",
+                };
+
+                $.each( $("#wise-search-form .extra-details-select") , function (idx, elem) {
+                    if($(elem).find("option").length > 1){
+                        $(elem).select2(options);
+                    } else {
+                        $(elem).hide();
+                        //$(elem).after("<span>"+ $($(elem).find("option")[0]).attr("title") +"</span>");
+                    }
+                });
+
+                if (window.matchMedia("(max-width: 967px)").matches){
+                    function formatArticle (article) {
+                        var el = $(article.element[0]);
+
+                        return '<span style="font-size: 1.5rem; font-weight: bold;color: #337ab7">' + el.attr("data-maintitle")+ '</span> '+
+                            '<span style="color: #337ab7;font-size: 1.3rem;">('+el.attr("data-subtitle") +')</span>';
+                    };
+
+                    var moptions = {
+                        placeholder: 'Select an option',
+                        closeOnSelect: true,
+                        dropdownAutoWidth : daw,
+                        width: w,
+                        theme: "flat",
+                        minimumResultsForSearch: 20,
+                        formatSelection: formatArticle,
+                        formatResult: formatArticle
+                    };
+
+                    $("#mobile-select-article").select2(moptions);
+
+                    $("#mobile-select-article").one("select2-selecting", function (ev) {
+                        document.location.href =  ev.choice.id;
+
+                    });
+                }
+
+                $("#wise-search-form .extra-details .tab-panel").fadeOut('slow', function () {
+                    $.each( $("#wise-search-form .extra-details .extra-details-section"), function (indx, item){
+                        $($(item).find(".tab-panel")[0]).show();
+                    });
+                });
+
+                $("#wise-search-form .extra-details-select").on("select2-selecting", function(ev) {
+                    var sect = $(ev.target).parentsUntil(".extra-details-section").parent();
+                    $.each( $(sect).find(".tab-panel") , function (idx, elem) {
+                        if ($(elem).attr("id") !== ev.choice.id) {
+                            $(elem).hide();
+                        } else {
+                            $(elem).fadeIn();
+                        }
+                        //$("#" + ev.choice.id).fadeIn();
+                    });
 
                 });
 
+
+                //$("#wise-search-form .extra-details-select").trigger("click");
+
             }
 
-        });
-        var w = "auto";
-        var daw = true;
-        if (window.matchMedia("(max-width: 967px)").matches) {
-            w = false;
-            daw = false;
+            function setupTabs() {
+                var t = $("ul.nav:not(.topnav) > li");
 
-        }
+                // top tabs width calculation
+                if(t.length > 1) {
+                    var nrtabs = t.length;
 
-        var options = {
-            placeholder: 'Select an option',
-            closeOnSelect: true,
-            dropdownAutoWidth : daw,
-            width: w,
-            theme: "flat",
-            minimumResultsForSearch: 20,
-            containerCssClass : "extra-details-select",
-        };
+                    var tabLength = t.length === 2 ? 35 : Math.floor((100 - t.length) / t.length );
 
-        $.each( $("#wise-search-form .extra-details-select") , function (idx, elem) {
-            if($(elem).find("option").length > 1){
-                $(elem).select2(options);
-            } else {
-                $(elem).hide();
-                //$(elem).after("<span>"+ $($(elem).find("option")[0]).attr("title") +"</span>");
-            }
-        });
+                    t.css("width", tabLength + "%");
+                    var rest = 100 - tabLength*t.length;
 
-        if (window.matchMedia("(max-width: 967px)").matches){
-            function formatArticle (article) {
-                var el = $(article.element[0]);
+                    var totalL = $("ul.nav").width();
+                    var mrR = Math.floor( totalL /100 ) ;
 
-                return '<span style="font-size: 1.5rem; font-weight: bold;color: #337ab7">' + el.attr("data-maintitle")+ '</span> '+
-                    '<span style="color: #337ab7;font-size: 1.3rem;">('+el.attr("data-subtitle") +')</span>';
-            };
+                    $(t).css({
+                        "margin-left": 0,
+                        "margin-right" : mrR/2 + "px"
+                    });
 
-            var moptions = {
-                placeholder: 'Select an option',
-                closeOnSelect: true,
-                dropdownAutoWidth : daw,
-                width: w,
-                theme: "flat",
-                minimumResultsForSearch: 20,
-                formatSelection: formatArticle,
-                formatResult: formatArticle
-            };
-
-            $("#mobile-select-article").select2(moptions);
-
-            $("#mobile-select-article").one("select2-selecting", function (ev) {
-               document.location.href =  ev.choice.id;
-
-            });
-        }
-
-        $("#wise-search-form .extra-details .tab-panel").fadeOut('slow', function () {
-            $.each( $("#wise-search-form .extra-details .extra-details-section"), function (indx, item){
-                $($(item).find(".tab-panel")[0]).show();
-            });
-        });
-
-        $("#wise-search-form .extra-details-select").on("select2-selecting", function(ev) {
-            var sect = $(ev.target).parentsUntil(".extra-details-section").parent();
-            $.each( $(sect).find(".tab-panel") , function (idx, elem) {
-                if ($(elem).attr("id") !== ev.choice.id) {
-                    $(elem).hide();
                 } else {
-                    $(elem).fadeIn();
+                    $(t).css({"margin-left": 0});
                 }
-                //$("#" + ev.choice.id).fadeIn();
-            });
 
-        });
+                if ($("#tabs-wrapper ul").find("li").length === 0){
+                    if( $("#tabs-wrapper").find("ul").length ===  0 ){ //return true;
+                    }
+                    //if($("#tabs-wrapper").find("ul li").length === 0) $("#tabs-wrapper").hide();
+                }
 
+                $.each( $(".tabs-wrapper") , function (indx, item) {
+                    if($(item).find("ul").length ===  0){ return true;}
+                    //if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
+                });
 
-        //$("#wise-search-form .extra-details-select").trigger("click");
+                if( $("#tabs-wrapper ul li").length === 1 ){
+                    $("#tabContents").removeClass("tab-content");
+                    $("#tabs-wrapper ul").attr("class", "");
+                    $("#tabs-wrapper ul li").css({
+                        "background-color": "transparent",
+                        "float" : "none",
+                    });
+                    var lt = $("#tabs-wrapper ul li a").text();
+                    $("#tabs-wrapper ul li").append("<h4>" + lt + "</h4>");
+                    $("#tabs-wrapper ul li a").remove();
+                    $("#tabs-wrapper .tab-pane").removeClass("fade");
+                }
 
-    }
+                var nrTabs = $("#wise-search-form ul.topnav li").length;
 
-    function setupTabs() {
-        var t = $("ul.nav:not(.topnav) > li");
+                var wdth = (100/nrTabs) - 1;
 
-        // top tabs width calculation
-        if(t.length > 1) {
-            var nrtabs = t.length;
+                $("#wise-search-form .topnav li").css({"width": wdth + "%", "margin-right": "1%" });
+                /*$.each( $("#wise-search-form .topnav li"), function (indx, itm) {
+                    $(itm).css({
+                        "max-width" : wdth + "%"
+                    });
+                });*/
 
-            var tabLength = t.length === 2 ? 35 : Math.floor((100 - t.length) / t.length );
-
-            t.css("width", tabLength + "%");
-            var rest = 100 - tabLength*t.length;
-
-            var totalL = $("ul.nav").width();
-            var mrR = Math.floor( totalL /100 ) ;
-
-            $(t).css({
-                "margin-left": 0,
-                "margin-right" : mrR/2 + "px"
-            });
-
-        } else {
-            $(t).css({"margin-left": 0});
-        }
-
-        if ($("#tabs-wrapper ul").find("li").length === 0){
-            if( $("#tabs-wrapper").find("ul").length ===  0 ){ //return true;
             }
-            //if($("#tabs-wrapper").find("ul li").length === 0) $("#tabs-wrapper").hide();
+
+            function clickFirstTab(){
+                $("#tabs-wrapper ul li:first-child a").trigger('click');
+                $(".tabs-wrapper ul li:first-child a").trigger('click');
+            }
+
+            function marineBtnHandler(ev){
+                var direction = ev.data.direction;
+                var marinUidSelect = $(".wise-search-form-container #s2id_form-widgets-marine_unit_id");
+                var selectedV =  marinUidSelect.select2('data');
+
+                var nextEl  = $(selectedV.element[0]).next();
+                var prevEl = $(selectedV.element[0]).prev();
+
+                if(direction === "next"){
+                    var dir = nextEl.val();
+
+                } else if(direction === "prev"){
+                    var dir = prevEl.val();
+                }
+
+                // reset paging
+                $(".wise-search-form-container [name='form.widgets.page']").val(0);
+
+                $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
+                $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
+
+                //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+
+                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+
+            }
+
+            function setPaginationButtons(){
+                var prevButton = $(".center-section [name='form.buttons.prev']");
+
+                var nextButton = $(".center-section [name='form.buttons.next']");
+
+                prevButton.one("click", function (){
+                    if(loading) return false;
+
+                    $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
+                    $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
+                });
+
+                nextButton.one("click", function(){
+                    if(loading) return false;
+
+                    $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
+                    $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
+                });
+
+                var selected = $("#wise-search-form select:not(.notselect)").val();
+
+
+                var opts = $("#wise-search-form select:not(.notselect) option");
+
+                $("#marine-unit-nav").hide();
+                // ignore 1st option for "prev" button
+                if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[1]).val() ){
+
+                    var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
+                        ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
+                        '          </button>';
+                    $("#form-buttons-prev-top").append(topPrevBtn);
+
+                    $("#form-buttons-prev-top").on("click", null, { direction : "prev"} , marineBtnHandler);
+                    $("#form-buttons-prev-top").hide();
+                    $("#marine-unit-trigger .arrow-left-container").one("click", function(){
+                        $("#form-buttons-prev-top").trigger("click");
+                    });
+                } else {
+                    $("#marine-unit-trigger .arrow-left-container").hide();
+                    $(".text-trigger").css("margin-left", 0);
+                }
+
+                // ignore last option for "next" button
+                if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[opts.length-1]).val() ){
+                    var topNextBtn = '<button type="submit" ' +
+                        'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
+                        '            </button>';
+                    $("#form-buttons-next-top").append(topNextBtn);
+
+                    $("#form-buttons-next-top").on("click", null, { direction : "next"} , marineBtnHandler);
+                    $("#form-buttons-next-top").hide();
+                    $("#marine-unit-trigger .arrow-right-container").one("click",function(){
+                        $("#form-buttons-next-top").trigger("click")
+                    });
+                } else {
+
+                    $("#marine-unit-trigger .arrow-right-container").hide();
+                }
+            }
+
+            initStyling();
+
+            generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]") );
+
+            addCheckboxHandlers( $(".wise-search-form-container") );
+
+            addCheckboxLabelHandlers();
+
+            attachSelect2();
+
+            setupTabs();
+
+            clickFirstTab();
+
+            setPaginationButtons();
         }
 
-        $.each( $(".tabs-wrapper") , function (indx, item) {
-            if($(item).find("ul").length ===  0){ return true;}
-            //if($(item).find("ul li").length === 0) $(".tabs-wrapper").hide();
-        });
+        initPageElems();
 
-        if( $("#tabs-wrapper ul li").length === 1 ){
-            $("#tabContents").removeClass("tab-content");
-            $("#tabs-wrapper ul").attr("class", "");
-            $("#tabs-wrapper ul li").css({
-               "background-color": "transparent",
-               "float" : "none",
-            });
-            var lt = $("#tabs-wrapper ul li a").text();
-            $("#tabs-wrapper ul li").append("<h4>" + lt + "</h4>");
-            $("#tabs-wrapper ul li a").remove();
-            $("#tabs-wrapper .tab-pane").removeClass("fade");
-        }
+        /*$(window).on("resize", function () {
+            if (window.matchMedia("(max-width: 1024px)").matches) {
+                /!*var el = $("#form-buttons-next-top");
+                el.css("float","right");
+                $("#form-buttons-prev-top").after(el);*!/
 
-        var nrTabs = $("#wise-search-form ul.topnav li").length;
-
-        var wdth = (100/nrTabs) - 1;
-
-        $("#wise-search-form .topnav li").css({"width": wdth + "%", "margin-right": "1%" });
-        /*$.each( $("#wise-search-form .topnav li"), function (indx, itm) {
-            $(itm).css({
-                "max-width" : wdth + "%"
-            });
+                /!*$("#marine-widget-top > div").css("display", "block");
+                $("#marine-widget-top .field").css("display", "block");*!/
+            }
         });*/
 
-    }
+        var AJAX_MODE = true;
 
-    function clickFirstTab(){
-        $("#tabs-wrapper ul li:first-child a").trigger('click');
-        $(".tabs-wrapper ul li:first-child a").trigger('click');
-    }
+        window.WISE = {};
+        window.WISE.formData = $(".wise-search-form-container").clone(true);
 
-    function marineBtnHandler(ev){
-        var direction = ev.data.direction;
-        var marinUidSelect = $(".wise-search-form-container #s2id_form-widgets-marine_unit_id");
-        var selectedV =  marinUidSelect.select2('data');
+        // ajax form submission
+        $(".wise-search-form-container")
+            .unbind("click")
+            .on("click",".formControls #form-buttons-continue", function (ev){
+                if(!AJAX_MODE){
+                    return true;
+                }
+                ev.preventDefault();
+                var form =  $(".wise-search-form-container").find("form");
+                var url = form.attr("action");
 
-        var nextEl  = $(selectedV.element[0]).next();
-        var prevEl = $(selectedV.element[0]).prev();
+                var strContent = $.getMultipartData("#" + form.attr("id"));
 
-        if(direction === "next"){
-            var dir = nextEl.val();
+                $.ajax({
+                    type: "POST",
+                    contentType: 'multipart/form-data; boundary='+strContent[0],
+                    cache:false,
+                    data: strContent[1],
+                    dataType: "html",
+                    url: url,
+                    //processData:false,
+                    beforeSend: function(jqXHR, settings){
+                        $("#ajax-spinner").hide();
 
-        } else if(direction === "prev"){
-            var dir = prevEl.val();
-        }
+                        $("#wise-search-form .no-results").remove();
 
-        // reset paging
-        $(".wise-search-form-container [name='form.widgets.page']").val(0);
+                        var t = "<div id='wise-search-form-container-preloader' " +
+                            "></div>";
+                        var sp = $("#ajax-spinner").clone().attr("id", "ajax-spinner-form").css({
+                            "position": "absolute",
+                            "top" : "50%",
+                            "left" : "50%",
+                            "transform": "translate3d(-50%, -50%,0)"
+                        }).show();
 
-        $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
-        $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
-
-        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-
-        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-
-    }
-
-    function setPaginationButtons(){
-        var prevButton = $(".center-section [name='form.buttons.prev']");
-
-        var nextButton = $(".center-section [name='form.buttons.next']");
-
-        prevButton.one("click", function (){
-            if(loading) return false;
-
-            $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
-            $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
-        });
-
-        nextButton.one("click", function(){
-            if(loading) return false;
-
-            $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
-            $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
-        });
-
-        var selected = $("#wise-search-form select:not(.notselect)").val();
+                        $(".wise-search-form-container").append(t);
+                        $("#wise-search-form-container-preloader").append(sp);
 
 
-        var opts = $("#wise-search-form select:not(.notselect) option");
+                        $("#form-widgets-marine_unit_id").prop("disabled", true);
+                        //$("s2id_form-widgets-marine_unit_id").select2("enable",false);
+                        $("[name='form.buttons.prev']").prop("disabled" , true);
+                        $("[name='form.buttons.next']").prop("disabled" , true);
 
-        $("#marine-unit-nav").hide();
-        // ignore 1st option for "prev" button
-        if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[1]).val() ){
+                        $("[name='marine.buttons.prev']").prop("disabled" , true);
+                        $("[name='marine.buttons.next']").prop("disabled" , true);
 
-            var topPrevBtn = '<button type="submit" id="form-buttons-prev-top" name="marine.buttons.prev"' +
-                ' class="submit-widget button-field btn btn-default pagination-prev fa fa-angle-left" value="" button="">' +
-                '          </button>';
-            $("#form-buttons-prev-top").append(topPrevBtn);
+                        var cont = $("#marine-widget-top").next();
+                        cont.css("position", "relative");
+                        cont.prepend("<div id='wise-search-form-preloader' ></div>");
 
-            $("#form-buttons-prev-top").on("click", null, { direction : "prev"} , marineBtnHandler);
-            $("#form-buttons-prev-top").hide();
-            $("#marine-unit-trigger .arrow-left-container").one("click", function(){
-                $("#form-buttons-prev-top").trigger("click");
-            });
-        } else {
-            $("#marine-unit-trigger .arrow-left-container").hide();
-            $(".text-trigger").css("margin-left", 0);
-        }
+                        $("#wise-search-form-preloader")
+                            .append("<span style='position: absolute;" +
+                                "    display: block;" +
+                                "    left: 50%;" +
+                                " top: 10%;'></span>");
+                        $("#wise-search-form-preloader > span").append( $("#ajax-spinner").clone().attr("id","ajax-spinner-center" ).show());
 
-        // ignore last option for "next" button
-        if( $("#wise-search-form select:not(.notselect)").val() !== $(opts[opts.length-1]).val() ){
-            var topNextBtn = '<button type="submit" ' +
-                'id="form-buttons-next-top" name="marine.buttons.next" class="submit-widget button-field btn btn-default fa fa-angle-right" value="">' +
-                '            </button>';
-            $("#form-buttons-next-top").append(topNextBtn);
+                        $("#ajax-spinner-center").css({
+                            "position" : "fixed",
+                            //"top" : "50%",
+                            //"left" : "30%",
+                            // "transform" : "translateX(-50%)"
+                        });
 
-            $("#form-buttons-next-top").on("click", null, { direction : "next"} , marineBtnHandler);
-            $("#form-buttons-next-top").hide();
-            $("#marine-unit-trigger .arrow-right-container").one("click",function(){
-                    $("#form-buttons-next-top").trigger("click")
-            });
-        } else {
+                        //window.WISE.marineUnit = $("#wise-search-form select").val(  );
 
-            $("#marine-unit-trigger .arrow-right-container").hide();
-        }
-    }
+                        loading = true;
 
-    $.randomString = function() {
-        var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-        var string_length = 8;
-        var randomstring = '';
-        for (var i=0; i<string_length; i++) {
-            var rnum = Math.floor(Math.random() * chars.length);
-            randomstring += chars.substring(rnum,rnum+1);
-        }
-        return randomstring;
-    };
+                    },
+                    success:function (data, status, req) {
+                        $("#wise-search-form #wise-search-form-top").siblings().html("");
+                        $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
 
-    $.getMultipartData = function(frmName){
-        //Start multipart formatting
-        var initBoundary= $.randomString();
-        var strBoundary = "--" + initBoundary;
-        var strMultipartBody = "";
-        var strCRLF = "\r\n";
+                        $("#wise-search-form .topnav").next().remove();
 
-        var iname = $(frmName).attr('id');
+                        var $data = $(data);
 
-        var formData = $(frmName).serializeArray();
-        //Create multipart for each element of the form
+                        window.WISE.formData = $(data).find(".wise-search-form-container").clone(true);
 
-        if(formData.length === 0){
-            return false;
-        }
+                        var chtml = $data.find(".wise-search-form-container");
 
-        $.each( formData ,function(indx, val){
-            strMultipartBody +=
-                strBoundary
-                + strCRLF
-                + "Content-Disposition: form-data; name=\"" + val.name + "\""
-                + strCRLF
-                + strCRLF
-                + val.value
-                +strCRLF;
-        });
+                        var fhtml = chtml.html();
 
-        //End the body by delimiting it
+                        var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings();
 
-        strMultipartBody += strBoundary + "--" + strCRLF;
+                        $(".wise-search-form-container").html(fhtml);
 
-        //Return boundary without -- and the multipart content
-        return [initBoundary,strMultipartBody];
-
-    };
-
-    generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]") );
-
-    addCheckboxHandlers( $(".wise-search-form-container") );
-
-    addCheckboxLabelHandlers();
-
-    attachSelect2();
-
-    setupTabs();
-
-    clickFirstTab();
-
-    $(".button-field").addClass("btn");
-
-    var loading = false;
-
-    setPaginationButtons();
-
-    $(window).on("resize", function () {
-        if (window.matchMedia("(max-width: 1024px)").matches) {
-            /*var el = $("#form-buttons-next-top");
-            el.css("float","right");
-            $("#form-buttons-prev-top").after(el);*/
-
-            /*$("#marine-widget-top > div").css("display", "block");
-            $("#marine-widget-top .field").css("display", "block");*/
-        }
-    });
-
-    $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
-
-    $("#form-buttons-continue").hide("fast");
-
-    var AJAX_MODE = true;
-
-    window.WISE = {};
-    window.WISE.formData = $(".wise-search-form-container").clone(true);
-
-    // ajax form submission
-    $(".wise-search-form-container")
-        .unbind("click")
-        .on("click",".formControls #form-buttons-continue", function (ev){
-        if(!AJAX_MODE){
-            return true;
-        }
-        ev.preventDefault();
-        var form =  $(".wise-search-form-container").find("form");
-        var url = form.attr("action");
-
-        var strContent = $.getMultipartData("#" + form.attr("id"));
-
-        $.ajax({
-            type: "POST",
-            contentType: 'multipart/form-data; boundary='+strContent[0],
-            cache:false,
-            data: strContent[1],
-            dataType: "html",
-            url: url,
-            //processData:false,
-            beforeSend: function(jqXHR, settings){
-                $("#ajax-spinner").hide();
-
-                $("#wise-search-form .no-results").remove();
-
-                var t = "<div id='wise-search-form-container-preloader' " +
-                "></div>";
-                var sp = $("#ajax-spinner").clone().attr("id", "ajax-spinner-form").css({
-                    "position": "absolute",
-                    "top" : "50%",
-                    "left" : "50%",
-                    "transform": "translate3d(-50%, -50%,0)"
-                }).show();
-
-                $(".wise-search-form-container").append(t);
-                $("#wise-search-form-container-preloader").append(sp);
+                        if( $data.find("#wise-search-form .topnav").next().length > 0){
+                            $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
+                        }
 
 
-                $("#form-widgets-marine_unit_id").prop("disabled", true);
-                //$("s2id_form-widgets-marine_unit_id").select2("enable",false);
-                $("[name='form.buttons.prev']").prop("disabled" , true);
-                $("[name='form.buttons.next']").prop("disabled" , true);
+                        $("#wise-search-form #wise-search-form-top").siblings().remove();
+                        $("#wise-search-form #wise-search-form-top").after(centerContentD);
 
-                $("[name='marine.buttons.prev']").prop("disabled" , true);
-                $("[name='marine.buttons.next']").prop("disabled" , true);
+                        /*var res = $data.find("#wise-search-form");
 
-                var cont = $("#marine-widget-top").next();
-                cont.css("position", "relative");
-                cont.prepend("<div id='wise-search-form-preloader' ></div>");
+                        if(res.children().length === 1){
+                            if($(res[0]).attr("id") === "wise-search-form-top" ){
+                                $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
+                            }
 
-                $("#wise-search-form-preloader")
-                    .append("<span style='position: absolute;" +
-                        "    display: block;" +
-                        "    left: 50%;" +
-                        " top: 10%;'></span>");
-                $("#wise-search-form-preloader > span").append( $("#ajax-spinner").clone().attr("id","ajax-spinner-center" ).show());
+                        }*/
 
-                $("#ajax-spinner-center").css({
-                   "position" : "fixed",
-                   //"top" : "50%",
-                   //"left" : "30%",
-                   // "transform" : "translateX(-50%)"
+                        initPageElems();
+
+                        $("[name='form.buttons.prev']").prop("disabled" , false);
+                        $("[name='form.buttons.next']").prop("disabled" , false);
+
+                        $("[name='marine.buttons.prev']").prop("disabled" , false);
+                        $("[name='marine.buttons.next']").prop("disabled" , false);
+                    },
+                    complete:function(jqXHR, textStatus){
+                        if(textStatus === "success"){
+                            $(".wise-search-form-container").fadeIn("fast", function () {
+                                $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
+                            });
+                        }
+                        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+                        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+
+
+                        //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
+
+                        $("#wise-search-form #loader-placeholder").remove();
+
+                        $("#form-widgets-marine_unit_id").prop("disabled", false);
+
+                        //if($("#wise-search-form select").val() === "--NOVALUE--" ) $("#wise-search-form select").val(window.WISE.marineUnit).trigger("change.select2");
+                        if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
+                            // Select2 has been initialized
+
+                            if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
+                                $("#wise-search-form .select2-choice").css("width", "50%");
+                            } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
+                                $("#wise-search-form .select2-choice").css("width", "70%");
+                            }
+
+                        }
+
+                        if($("#wise-search-form-top").next().length === 0){
+                            $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
+                        }
+
+                        loading = false;
+                    },
+                    error:function (req, status, error) {
+                        if(window.WISE.formData.length > 0){
+                            var data = $($(window.WISE.formData)[0]).find(".field");
+                            $.each( data , function (indx, $field) {
+                                var chk = $($field).find(".option input[type='checkbox']:checked");
+                                if(chk.length > 0){
+                                    debugger;
+                                }
+
+                            });
+                        }
+
+                        $("#wise-search-form-top").find(".alert").remove();
+                        $("#wise-search-form-top").append('<div class="alert alert-danger alert-dismissible show" style="margin-top: 2rem;" role="alert">' +
+                            '  <strong>There was a error from the server.</strong> You should check in on some of those fields from the form.' +
+                            '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                            '    <span aria-hidden="true">&times;</span>' +
+                            '  </button>' +
+                            '</div>');
+
+                        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+                        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+                        $("#form-widgets-marine_unit_id").prop("disabled", false);
+
+                        $("#wise-search-form-container-preloader").remove();
+                        $("#wise-search-form-preloader").remove();
+
+                        $("#ajax-spinner-form").hide();
+
+                        $("[name='form.buttons.prev']").prop("disabled" , true);
+                        $("[name='form.buttons.next']").prop("disabled" , true);
+
+                        $("[name='marine.buttons.prev']").prop("disabled" , true);
+                        $("[name='marine.buttons.next']").prop("disabled" , true);
+
+
+                        loading = false;
+                    }
                 });
 
-                //window.WISE.marineUnit = $("#wise-search-form select").val(  );
+            });
 
-                loading = true;
-
-            },
-            success:function (data, status, req) {
-                $("#wise-search-form #wise-search-form-top").siblings().html("");
-                $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
-
-                $("#wise-search-form .topnav").next().remove();
-
-                var $data = $(data);
-
-                window.WISE.formData = $(data).find(".wise-search-form-container").clone(true);
-
-                var chtml = $data.find(".wise-search-form-container");
-
-                var fhtml = chtml.html();
-
-                var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings();
-
-                $(".wise-search-form-container").html(fhtml);
-
-                if( $data.find("#wise-search-form .topnav").next().length > 0){
-                    $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
-                }
-
-
-                $("#wise-search-form #wise-search-form-top").siblings().remove();
-                $("#wise-search-form #wise-search-form-top").after(centerContentD);
-
-                /*var res = $data.find("#wise-search-form");
-
-                debugger;
-                if(res.children().length === 1){
-                    if($(res[0]).attr("id") === "wise-search-form-top" ){
-                        $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
-                    }
-
-                }*/
-
-                // regenerate checkboxes widget
-                generateCheckboxes( $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]"));
-
-                addCheckboxHandlers( $(".wise-search-form-container") );
-
-                addCheckboxLabelHandlers();
-
-                //add class btn to all buttons
-                $(".button-field").addClass("btn");
-
-                attachSelect2();
-
-                setupTabs();
-
-                clickFirstTab();
-
-                // hide marineUnit ID from right form
-                $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
-
-                setPaginationButtons();
-
-                $("[name='form.buttons.prev']").prop("disabled" , false);
-                $("[name='form.buttons.next']").prop("disabled" , false);
-
-                $("[name='marine.buttons.prev']").prop("disabled" , false);
-                $("[name='marine.buttons.next']").prop("disabled" , false);
-            },
-            complete:function(jqXHR, textStatus){
-                if(textStatus === "success"){
-                    $(".wise-search-form-container").fadeIn("fast", function () {
-                        $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
-                    });
-                }
-                $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
-                $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
-
-
-                //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
-
-                $("#wise-search-form #loader-placeholder").remove();
-
-                $("#form-widgets-marine_unit_id").prop("disabled", false);
-
-                //console.log($("#wise-search-form select").val());
-
-                //if($("#wise-search-form select").val() === "--NOVALUE--" ) $("#wise-search-form select").val(window.WISE.marineUnit).trigger("change.select2");
-                if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
-                    // Select2 has been initialized
-
-                    if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
-                        $("#wise-search-form .select2-choice").css("width", "50%");
-                    } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
-                        $("#wise-search-form .select2-choice").css("width", "70%");
-                    }
-
-                }
-
-                if($("#wise-search-form-top").next().length === 0){
-                    $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
-                }
-
-                loading = false;
-                $("#form-buttons-continue").hide("fast");
-
-            },
-            error:function (req, status, error) {
-                if(window.WISE.formData.length > 0){
-                    var data = $($(window.WISE.formData)[0]).find(".field");
-                    $.each( data , function (indx, $field) {
-                       var chk = $($field).find(".option input[type='checkbox']:checked");
-                       if(chk.length > 0){
-                            debugger;
-                       }
-
-                    });
-                }
-
-                $("#wise-search-form-top").find(".alert").remove();
-                $("#wise-search-form-top").append('<div class="alert alert-danger alert-dismissible show" style="margin-top: 2rem;" role="alert">' +
-                    '  <strong>There was a error from the server.</strong> You should check in on some of those fields from the form.' +
-                    '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                    '    <span aria-hidden="true">&times;</span>' +
-                    '  </button>' +
-                    '</div>');
-
-                $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
-                $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
-                $("#form-widgets-marine_unit_id").prop("disabled", false);
-
-                $("#wise-search-form-container-preloader").remove();
-                $("#wise-search-form-preloader").remove();
-
-                $("#ajax-spinner-form").hide();
-
-                $("[name='form.buttons.prev']").prop("disabled" , true);
-                $("[name='form.buttons.next']").prop("disabled" , true);
-
-                $("[name='marine.buttons.prev']").prop("disabled" , true);
-                $("[name='marine.buttons.next']").prop("disabled" , true);
-
-
-                loading = false;
+        /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
+            if(!AJAX_MODE){
+                return true;
             }
-        });
+            ev.preventDefault();
+            //console.log(ev);
+        });*/
+
+
 
     });
 
 
-    /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
-        if(!AJAX_MODE){
-            return true;
-        }
-        ev.preventDefault();
-        //console.log(ev);
-    });*/
+
 
     return jQuery.noConflict();
 });
