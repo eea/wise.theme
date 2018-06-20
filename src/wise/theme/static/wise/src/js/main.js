@@ -249,11 +249,6 @@ require(['jquery', 'slick'], function($, slick) {
         });
 
         // };
-
-    });
-
-
-    $(window).load(function () {
         /*
         * ****************************************************
         * Page elements init
@@ -1305,6 +1300,12 @@ require(['jquery', 'slick'], function($, slick) {
                 });
 
             });
+
+    });
+
+
+    $(window).load(function () {
+
 
         /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
             if(!AJAX_MODE){
