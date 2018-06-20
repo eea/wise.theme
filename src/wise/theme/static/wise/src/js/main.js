@@ -66,6 +66,9 @@ require(['jquery', 'slick'], function($, slick) {
 
 
     $(document).ready(function() {
+        $("#wise-search-form").append('<div id="curtain" style="position: absolute; ' +
+            'width: 100%;height: 100%;background: rgba(255,255,255,0.6);top:0; left: 0; z-index: 1000"></div>');
+
         $("#ajax-spinner").show();
 
         var $menu_items = $('.menu .navmenu-item > a');
@@ -1301,6 +1304,15 @@ require(['jquery', 'slick'], function($, slick) {
 
             });
 
+
+        setTimeout(function () {
+            $("#ajax-spinner").hide("slow");
+            //$("#ajax-spinner").css("display", "none");
+            $(".wise-search-form-container,#wise-search-form").fadeIn("slow");
+            $("#wise-search-form #curtain").remove();
+        } ,1000);
+
+
     });
 
 
@@ -1314,9 +1326,8 @@ require(['jquery', 'slick'], function($, slick) {
             ev.preventDefault();
             //console.log(ev);
         });*/
-        $("#ajax-spinner").fadeOut("fast", function () {
-            $(".wise-search-form-container,#wise-search-form").fadeIn("slow");
-        });
+
+
 
 
     });
