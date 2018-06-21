@@ -545,20 +545,28 @@ require(['jquery', 'slick'], function($, slick) {
         function addCheckboxHandlers($cont){
             function checkboxHandlerAll(ev){
                 ev.preventDefault();
+
+
                 var par = $(this).parent().parent();
+
+                par.find(".apply-filters").show();
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 
                 $.each(rest, function (idx, elemt) {
                     if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
                 });
 
+
+
                 //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             }
 
             function checkboxHandlerNone(ev){
                 ev.preventDefault();
+
                 $(this).prop("checked", false);
                 var par = $(this).parent().parent();
+                par.find(".apply-filters").show();
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 
                 $.each(rest, function (idx, elemt) {
@@ -574,8 +582,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $(this).prop("checked", false);
 
                 var par = $(this).parent().parent();
-
-                console.log($(this).parentsUntil(".field").parent());
+                par.find(".apply-filters").show();
 
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 

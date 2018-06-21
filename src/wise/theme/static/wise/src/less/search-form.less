@@ -62,6 +62,18 @@
   }
 
 
+  .pagination-text {
+    display: block;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+    & > span {
+      color: #337ab7;
+      font-weight: 700;
+    }
+
+  }
+
   .panel-heading .accordion-toggle.accordion-after:after {
     /*content: "\e114";*/
     content: "\f107";
@@ -402,6 +414,7 @@
     }
 
     &.apply-filters {
+      display: none;
       .label {
         color: #0071b3;
       }
