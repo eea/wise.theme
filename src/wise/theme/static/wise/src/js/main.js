@@ -62,9 +62,6 @@ require(['jquery', 'slick'], function($, slick) {
         });
     }
 
-
-
-
     $(document).ready(function() {
         $("#wise-search-form").append('<div id="curtain" style="position: absolute; ' +
             'width: 100%;height: 100%;background: rgba(255,255,255,0.6);top:0; left: 0; z-index: 1000"></div>');
@@ -700,17 +697,31 @@ require(['jquery', 'slick'], function($, slick) {
                     var todivide = $("#marine-unit-trigger .text-trigger").height() < 80 ? 2 : 2;
                     var targetH = Math.floor( $("#marine-unit-trigger .text-trigger").height() / todivide ) ;
 
+                    if (window.matchMedia("(max-width: 967px)").matches) {
+                        $("#marine-unit-trigger .arrow-right").css({
+                            "left" : raLeft + "px",
+                            "top":  targetH + "px",
+                            "transform": "translate3d(0,-15px,0) scale(1.5)"
+                        });
 
-                    $("#marine-unit-trigger .arrow-right").css({
-                        "left" : raLeft + "px",
-                        "top":  targetH + "px",
-                        "transform": "translate3d(0,-10px,0)"
-                    });
+                        $("#marine-unit-trigger .arrow-left").css({
+                            "top": targetH + "px",
+                            "transform": "translate3d(0,-15px,0)  scale(1.5)"
+                        });
+                    } else {
+                        $("#marine-unit-trigger .arrow-right").css({
+                            "left" : raLeft + "px",
+                            "top":  targetH + "px",
+                            "transform": "translate3d(0,-10px,0)"
+                        });
 
-                    $("#marine-unit-trigger .arrow-left").css({
-                        "top": targetH + "px",
-                        "transform": "translate3d(0,-10px,0)"
-                    });
+                        $("#marine-unit-trigger .arrow-left").css({
+                            "top": targetH + "px",
+                            "transform": "translate3d(0,-10px,0)"
+                        });
+                    }
+
+
 
                     if( $(".text-trigger").height() > 40 && window.matchMedia("(max-width: 991px)").matches ){
                         $(".text-trigger").css("max-width", "90%");
