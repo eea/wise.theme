@@ -361,8 +361,15 @@ require(['jquery', 'slick'], function($, slick) {
 
                     // each checkbox does auto submit
                     $("#" + fieldId).on("click", ".option", function (evO) {
-                        setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
-                            , 300);
+                        
+                        if($(field).find(".apply-filters").is(":visible") ){
+                            //return false;
+                        } else {
+                            //TODO : check if apply-filters shown
+                            setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
+                                , 300);
+                        }
+
                     });
 
                     // add "controls"
@@ -627,7 +634,12 @@ require(['jquery', 'slick'], function($, slick) {
             // listener for click on the whole span
             allch.on("click", ".option", function(ev){
                 var checkboxV = $(this).find("input[type='checkbox']").val();
-                if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
+                 if($($(this).parentsUntil(".field")).find(".apply-filters").is(":visible") ){
+                     //return false;
+                 } else {
+                     if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
+                 }
+
             });
         }
 
@@ -1151,6 +1163,8 @@ require(['jquery', 'slick'], function($, slick) {
                 return true;
             }
             ev.preventDefault();
+
+
             var form =  $(".wise-search-form-container").find("form");
             var url = form.attr("action");
 
