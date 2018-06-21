@@ -249,10 +249,9 @@ require(['jquery', 'slick'], function($, slick) {
         });
 
         // };
-       
+
         setTimeout(function () {
             $("#ajax-spinner").hide("slow");
-            //$("#ajax-spinner").css("display", "none");
             $(".wise-search-form-container,#wise-search-form").fadeIn("slow");
             $("#wise-search-form #curtain").remove();
         } ,1000);
