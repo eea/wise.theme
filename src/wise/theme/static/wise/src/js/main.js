@@ -254,6 +254,7 @@ require(['jquery', 'slick'], function($, slick) {
             $("#ajax-spinner").hide("slow");
             $(".wise-search-form-container,#wise-search-form").fadeIn("slow");
             $("#wise-search-form #curtain").remove();
+            $("#ajax-spinner").hide();
         } ,1000);
 
 
@@ -320,6 +321,8 @@ require(['jquery', 'slick'], function($, slick) {
 
     var loading = false;
 
+    $("body").append( $("#ajax-spinner").clone(true).attr("id", "ajax-spinner2") );
+    $("#ajax-spinner").remove();
 
     function initPageElems(){
         /*
@@ -349,7 +352,7 @@ require(['jquery', 'slick'], function($, slick) {
                         '<span class="label">All</span></label></a>';
                     var spClear = '<a class="" data-value="none" ><label><span class="label">Clear all</span></label></a>';
                     var invertSel = '<a class="" data-value="invert"><label><span class="label">Invert selection</span></label></a>' +
-                        '<a class="apply-filters"  data-value="apply"><label><span class="label" >Apply filters</span></label></a>'+
+                        '<div class="btn btn-default apply-filters" data-value="apply"><span class="" >Apply filters</span></div>'+
                         '<span class="ui-autocomplete">' +
                         '<span class=" search-icon" ></span>' +
                         '<span style="position: relative;padding-top:1px;padding-bottom:1px;background: white;" class="search-span">' +
@@ -361,8 +364,8 @@ require(['jquery', 'slick'], function($, slick) {
 
                     // each checkbox does auto submit
                     $("#" + fieldId).on("click", ".option", function (evO) {
-                        
-                        if($(field).find(".apply-filters").is(":visible") ){
+                        $("#ajax-spinner2").hide();
+                        if( window.WISE.blocks.indexOf( $(this).parentsUntil(".field").parent().attr("id") ) !== -1  ){
                             //return false;
                         } else {
                             //TODO : check if apply-filters shown
@@ -553,8 +556,9 @@ require(['jquery', 'slick'], function($, slick) {
             function checkboxHandlerAll(ev){
                 ev.preventDefault();
 
-
                 var par = $(this).parent().parent();
+
+                window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
 
                 par.find(".apply-filters").show();
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
@@ -576,6 +580,8 @@ require(['jquery', 'slick'], function($, slick) {
                 par.find(".apply-filters").show();
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 
+                window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
+
                 $.each(rest, function (idx, elemt) {
                     $(rest[idx]).prop("checked", false);
                     //if( $(rest[idx]).val() !== "none")
@@ -590,6 +596,8 @@ require(['jquery', 'slick'], function($, slick) {
 
                 var par = $(this).parent().parent();
                 par.find(".apply-filters").show();
+
+                window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
 
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 
@@ -608,7 +616,6 @@ require(['jquery', 'slick'], function($, slick) {
                 $.each(unchecked, function (idx, elemt) {
                     $(unchecked[idx]).prop("checked", true);
                 });
-
                 //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             }
 
@@ -617,7 +624,7 @@ require(['jquery', 'slick'], function($, slick) {
             $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
             //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
 
-            $(".controls").one("click","a[data-value='apply']", function (ev) {
+            $(".controls").one("click",".apply-filters", function (ev) {
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             });
 
@@ -633,8 +640,9 @@ require(['jquery', 'slick'], function($, slick) {
             var allch = $(".wise-search-form-container, #wise-search-form").find("[data-fieldname]");
             // listener for click on the whole span
             allch.on("click", ".option", function(ev){
+                $("#ajax-spinner2").hide();
                 var checkboxV = $(this).find("input[type='checkbox']").val();
-                 if($($(this).parentsUntil(".field")).find(".apply-filters").is(":visible") ){
+                 if( window.WISE.blocks.indexOf( $(this).parentsUntil(".field").parent().attr("id") ) !== -1  ){
                      //return false;
                  } else {
                      if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
@@ -1154,6 +1162,7 @@ require(['jquery', 'slick'], function($, slick) {
 
     window.WISE = {};
     window.WISE.formData = $(".wise-search-form-container").clone(true);
+    window.WISE.blocks = [];
 
     // ajax form submission
     $(".wise-search-form-container")
@@ -1179,13 +1188,14 @@ require(['jquery', 'slick'], function($, slick) {
                 url: url,
                 //processData:false,
                 beforeSend: function(jqXHR, settings){
-                    $("#ajax-spinner").hide();
+                    window.WISE.blocks = [];
+                    //$("#ajax-spinner2").hide();
 
                     $("#wise-search-form .no-results").remove();
 
                     var t = "<div id='wise-search-form-container-preloader' " +
                         "></div>";
-                    var sp = $("#ajax-spinner").clone().attr("id", "ajax-spinner-form").css({
+                    var sp = $("#ajax-spinner2").clone().attr("id", "ajax-spinner-form").css({
                         "position": "absolute",
                         "top" : "50%",
                         "left" : "50%",
@@ -1204,16 +1214,22 @@ require(['jquery', 'slick'], function($, slick) {
                     $("[name='marine.buttons.prev']").prop("disabled" , true);
                     $("[name='marine.buttons.next']").prop("disabled" , true);
 
-                    var cont = $("#marine-widget-top").next();
-                    cont.css("position", "relative");
+                    if($("#marine-widget-top").length > 0){
+                        var cont = $("#marine-widget-top").next();
+                        cont.css("position", "relative");
+                    } else {
+                        var cont = $(".left-side-form");
+                    }
+
                     cont.prepend("<div id='wise-search-form-preloader' ></div>");
+
 
                     $("#wise-search-form-preloader")
                         .append("<span style='position: absolute;" +
                             "    display: block;" +
                             "    left: 50%;" +
                             " top: 10%;'></span>");
-                    $("#wise-search-form-preloader > span").append( $("#ajax-spinner").clone().attr("id","ajax-spinner-center" ).show());
+                    $("#wise-search-form-preloader > span").append( $("#ajax-spinner2").clone().attr("id","ajax-spinner-center" ).show());
 
                     $("#ajax-spinner-center").css({
                         "position" : "fixed",
