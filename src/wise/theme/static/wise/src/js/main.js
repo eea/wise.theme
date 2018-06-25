@@ -368,8 +368,9 @@ require(['jquery', 'slick'], function($) {
                             //return false;
                         } else {
                             //TODO : check if apply-filters shown
-                            setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
-                                , 300);
+                            setTimeout( function() {
+                                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
+                            }, 300);
                         }
 
                     });
@@ -855,7 +856,9 @@ require(['jquery', 'slick'], function($) {
                     $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
 
                         '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
-                        '<div class="text-trigger">'+ text + "</div>" +
+                        '<div class="text-trigger">'+ text +
+                        '<span class="fa fa-caret-down text-trigger-icon"></span>' +
+                        '</div>' +
                         '<div class="arrow-left-container">' +
                         '<div class="arrow-left">' +
                         '<div class="arrow-top"></div>' +
