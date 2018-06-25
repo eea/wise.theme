@@ -1,3 +1,5 @@
+/* eslint-env amd, browser */
+/* global requirejs, require, jQuery */
 requirejs.config({
     paths: {
         'slick': ['https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min'],
@@ -6,7 +8,7 @@ requirejs.config({
 
 });
 
-require(['jquery', 'slick'], function($, slick) {
+require(['jquery', 'slick'], function($) {
 
     function close_menu(container) {
         $(container).removeClass('open');
@@ -35,7 +37,7 @@ require(['jquery', 'slick'], function($, slick) {
         }
 
 
-    };
+    }
 
     function open_menu(container) {
         $(container).addClass('open');
@@ -48,7 +50,7 @@ require(['jquery', 'slick'], function($, slick) {
                     $('.navmenu-items').animate({
                         'opacity': 'show'
                     }, 30);
-                    $bgheight = $('body').height() - $('.menu > img').height()
+                    var $bgheight = $('body').height() - $('.menu > img').height();
                     $('.menu-bg').height($bgheight + 3);
                     $('.navmenu-items').css('display', 'flex');
                     $('.header-wave .menu-brand').animate({
@@ -70,11 +72,12 @@ require(['jquery', 'slick'], function($, slick) {
 
         var $menu_items = $('.menu .navmenu-item > a');
 
-        $menu_items.each(function(index, value) {
-            var $submenu_items = $(this).parent().find('.submenu-item');
+        $menu_items.each(function(_index, value) {
+            var $submenu_items = $(value).parent().find('.submenu-item');
 
-            if ($submenu_items.length === 0)
+            if ($submenu_items.length === 0) {
                 $(this).addClass('no-carret');
+            }
 
         });
 
@@ -83,7 +86,7 @@ require(['jquery', 'slick'], function($, slick) {
 
         if($portlet_p){
             $('.side-section .portlet-static-relevant-msfd-descriptors .portletItem p').each(function(item) {
-                var $strong = $(this).find('strong');
+                var $strong = $(item).find('strong');
 
                 if ($strong.length > 0) {
                     $(this).style.fontWeight = 'bold'
@@ -143,8 +146,8 @@ require(['jquery', 'slick'], function($, slick) {
                             dir = -1;
                         }
 
-                        $currentImg = $($hlSliderPhotos[current]);
-                        $nextImg = $($hlSliderPhotos[next]);
+                        var $currentImg = $($hlSliderPhotos[current]);
+                        var $nextImg = $($hlSliderPhotos[next]);
                         $nextImg.show();
 
                         var percent = dir * 100 + '%';
@@ -152,7 +155,7 @@ require(['jquery', 'slick'], function($, slick) {
                         $nextImg.css({
                             'display': 'block',
                             'transform': 'translate3d(' + percent + ', 0, 0)'
-                        })
+                        });
 
                         $({ 'percent': dir * 100 }).animate({
                             'percent': 0
@@ -183,14 +186,14 @@ require(['jquery', 'slick'], function($, slick) {
                     $hlSliderNext.click(function() { $hlSlider.slick('slickNext'); });
                     $hlSliderPrev.click(function() { $hlSlider.slick('slickPrev'); });
 
-                };
+                }
 
             }())
-        };
+        }
 
         $('.login i').on('click', function() {
             $(this).toggleClass('action-selected');
-            $('.search i').removeClass('action-selected')
+            $('.search i').removeClass('action-selected');
             $('.login-container ').animate({
                 'height': 'toggle'
             }, 200);
@@ -201,7 +204,7 @@ require(['jquery', 'slick'], function($, slick) {
 
         $('.search i').on('click', function() {
             $(this).toggleClass('action-selected');
-            $('.login i').removeClass('action-selected')
+            $('.login i').removeClass('action-selected');
             $('#portal-searchbox ').animate({
                 'height': 'toggle'
             }, 200);
@@ -212,8 +215,8 @@ require(['jquery', 'slick'], function($, slick) {
 
         if (window.matchMedia("(max-width: 800px)").matches) {
             var $mobile_submenu_trigger = $('<span/>', {
-                'class': 'mobile_submenu_trigger fa fa-caret-right pull-right',
-            })
+                'class': 'mobile_submenu_trigger fa fa-caret-right pull-right'
+            });
             if ($('.navmenu-item .submenu .submenu-item').length > 0) {
                 $('.navmenu-item .submenu .submenu-item').parent().parent().prepend($mobile_submenu_trigger)
             }
@@ -222,7 +225,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $(this).parent().find('.submenu').animate({
                     'height': 'toggle'
                 }, 200);
-            })
+            });
 
         }
 
@@ -363,7 +366,7 @@ require(['jquery', 'slick'], function($, slick) {
 
 
                     // each checkbox does auto submit
-                    $("#" + fieldId).on("click", ".option", function (evO) {
+                    $("#" + fieldId).on("click", ".option", function () {
                         $("#ajax-spinner2").hide();
                         if( window.WISE.blocks.indexOf( $(this).parentsUntil(".field").parent().attr("id") ) !== -1  ){
                             //return false;
@@ -380,7 +383,7 @@ require(['jquery', 'slick'], function($, slick) {
                     $(field).find("> label.horizontal").after(all);
 
                     //tooltips
-                    cheks.each(function (idx, check) {
+                    cheks.each(function (idx) {
                         var text = $(cheks[idx]).text();
                         $(cheks[idx]).attr("title", text.trim());
                     });
@@ -427,14 +430,14 @@ require(['jquery', 'slick'], function($, slick) {
                         });*/
                         //}
 
-                        chekspan.on("hidden.bs.collapse", function (ev) {
+                        chekspan.on("hidden.bs.collapse", function () {
                             chekspan.fadeOut("fast");
                             $(field).find(".controls").slideUp("fast");
                             $(field).css({"border-bottom" : "1px solid #ccc;"});
 
                         });
 
-                        chekspan.on("show.bs.collapse", function (ev) {
+                        chekspan.on("show.bs.collapse", function () {
                             // collapsed
                             chekspan.fadeIn("fast");
                             $(field).find(".controls").slideDown("fast");
@@ -444,7 +447,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                         });
 
-                        chekspan.on("hide.bs.collapse", function (ev) {
+                        chekspan.on("hide.bs.collapse", function () {
                             // not collapsed
                             setTimeout( function (){
                                 $(field).find(".accordion-toggle").removeClass("accordion-after");
@@ -459,7 +462,7 @@ require(['jquery', 'slick'], function($, slick) {
                             $(field).find(".ui-autocomplete-input").autocomplete({
                                 minLength: 0,
                                 source: [],
-                                search: function( event, ui, dat ) {
+                                search: function( event ) {
                                     var cheks2 = $(field).find(".option .label:not(.horizontal) ");
 
                                     if( $(event.target).val() === "" ){
@@ -480,7 +483,7 @@ require(['jquery', 'slick'], function($, slick) {
                                     var temp = {};
                                     var checksLabels = $(field).find(".option .label:not(.horizontal) ").map(function (ind, item) {
                                         temp[$(item).text().toLowerCase()] = $(item).text().toLowerCase()
-                                            .replace(/\s/g, "_")
+                                            .replace(/\s/g, "_");
                                         //return temp;
                                         return $(item).text().toLowerCase()
                                         /*.replace(/^\s+|\s+$/g, '')*/
@@ -519,7 +522,7 @@ require(['jquery', 'slick'], function($, slick) {
                                     }
 
                                 },
-                                create: function (event, ui){
+                                create: function (){
                                     var that = this;
 
                                     var removeBtn = $(this).parentsUntil(".ui-autocomplete").find(".clear-btn ");
@@ -552,7 +555,7 @@ require(['jquery', 'slick'], function($, slick) {
             });
         }
 
-        function addCheckboxHandlers($cont){
+        function addCheckboxHandlers(){
             function checkboxHandlerAll(ev){
                 ev.preventDefault();
 
@@ -563,7 +566,7 @@ require(['jquery', 'slick'], function($, slick) {
                 par.find(".apply-filters").show();
                 var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
 
-                $.each(rest, function (idx, elemt) {
+                $.each(rest, function (idx) {
                     if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
                 });
 
@@ -582,7 +585,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                 window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
 
-                $.each(rest, function (idx, elemt) {
+                $.each(rest, function (idx) {
                     $(rest[idx]).prop("checked", false);
                     //if( $(rest[idx]).val() !== "none")
                 });
@@ -609,11 +612,11 @@ require(['jquery', 'slick'], function($, slick) {
                     return !$(item).is(":checked");
                 });
 
-                $.each(checked, function (idx, elemt) {
+                $.each(checked, function (idx) {
                     $(checked[idx]).prop("checked", false);
                 });
 
-                $.each(unchecked, function (idx, elemt) {
+                $.each(unchecked, function (idx) {
                     $(unchecked[idx]).prop("checked", true);
                 });
                 //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
@@ -624,7 +627,7 @@ require(['jquery', 'slick'], function($, slick) {
             $(".controls").on("click", "a[data-value='invert']", checkboxHandlerInvert);
             //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
 
-            $(".controls").one("click",".apply-filters", function (ev) {
+            $(".controls").one("click",".apply-filters", function () {
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
             });
 
@@ -661,7 +664,7 @@ require(['jquery', 'slick'], function($, slick) {
                     closeOnSelect: true,
                     dropdownAutoWidth : true,
                     width: '100%',
-                    theme: "flat",
+                    theme: "flat"
                 };
                 if(lessOptions) options.minimumResultsForSearch = Infinity;
 
@@ -679,7 +682,7 @@ require(['jquery', 'slick'], function($, slick) {
                     console.log($(selectElement).attr("id") + " loaded");
                 });*/
 
-                $(selectElement).on("select2-selecting", function(ev) {
+                $(selectElement).on("select2-selecting", function() {
                     // what you would like to happen
                     //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
                     //var par = $(ev.target).parentsUntil(".subform").next();
@@ -722,7 +725,7 @@ require(['jquery', 'slick'], function($, slick) {
                 });*/
 
                 $("#marine-unit-trigger .text-trigger").css({
-                    "margin-left" : "20" + "px" ,
+                    "margin-left" : "20" + "px"
                 });
 
                 var raLeft = $("#marine-unit-trigger .text-trigger").width()  + $("#marine-unit-trigger .arrow-left-container").width();
@@ -807,7 +810,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                     containerCssClass : "select2-top-override",
                     dropdownCssClass: "select2-top-override-dropdown",
-                    debug: true,
+                    debug: true
                 };
 
                 $(selectElement).select2(options);
@@ -911,7 +914,7 @@ require(['jquery', 'slick'], function($, slick) {
                 width: w,
                 theme: "flat",
                 minimumResultsForSearch: 20,
-                containerCssClass : "extra-details-select",
+                containerCssClass : "extra-details-select"
             };
 
             $.each( $("#wise-search-form .extra-details-select") , function (idx, elem) {
@@ -929,7 +932,7 @@ require(['jquery', 'slick'], function($, slick) {
 
                     return '<span style="font-size: 1.5rem; font-weight: bold;color: #337ab7">' + el.attr("data-maintitle")+ '</span> '+
                         '<span style="color: #337ab7;font-size: 1.3rem;">('+el.attr("data-subtitle") +')</span>';
-                };
+                }
 
                 var moptions = {
                     placeholder: 'Select an option',
@@ -1014,7 +1017,7 @@ require(['jquery', 'slick'], function($, slick) {
                 $("#tabs-wrapper ul").attr("class", "");
                 $("#tabs-wrapper ul li").css({
                     "background-color": "transparent",
-                    "float" : "none",
+                    "float" : "none"
                 });
                 var lt = $("#tabs-wrapper ul li a").text();
                 $("#tabs-wrapper ul li").append("<h4>" + lt + "</h4>");
@@ -1218,7 +1221,7 @@ require(['jquery', 'slick'], function($, slick) {
                         var cont = $("#marine-widget-top").next();
                         cont.css("position", "relative");
                     } else {
-                        var cont = $(".left-side-form");
+                        cont = $(".left-side-form");
                     }
 
                     cont.prepend("<div id='wise-search-form-preloader' ></div>");
@@ -1232,7 +1235,7 @@ require(['jquery', 'slick'], function($, slick) {
                     $("#wise-search-form-preloader > span").append( $("#ajax-spinner2").clone().attr("id","ajax-spinner-center" ).show());
 
                     $("#ajax-spinner-center").css({
-                        "position" : "fixed",
+                        "position" : "fixed"
                         //"top" : "50%",
                         //"left" : "30%",
                         // "transform" : "translateX(-50%)"
@@ -1326,7 +1329,7 @@ require(['jquery', 'slick'], function($, slick) {
                         $.each( data , function (indx, $field) {
                             var chk = $($field).find(".option input[type='checkbox']:checked");
                             if(chk.length > 0){
-                                debugger;
+                                // TODO
                             }
 
                         });
