@@ -372,8 +372,9 @@ require(['jquery', 'slick'], function($) {
                             //return false;
                         } else {
                             //TODO : check if apply-filters shown
-                            setTimeout( $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
-                                , 300);
+                            setTimeout( function() {
+                                $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
+                            }, 300);
                         }
 
                     });
@@ -1382,8 +1383,4 @@ require(['jquery', 'slick'], function($) {
 
     });
 
-
-
-
-    return jQuery.noConflict();
 });
