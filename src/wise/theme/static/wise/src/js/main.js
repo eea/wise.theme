@@ -12,7 +12,6 @@ require(['jquery', 'slick'], function($) {
 
     function close_menu(container) {
         $(container).removeClass('open');
-
         if (window.matchMedia("(min-width: 800px)").matches) {
             $('.navmenu-items').animate({
                 'opacity': 'hide'
@@ -35,8 +34,6 @@ require(['jquery', 'slick'], function($) {
                 'height': 'hide'
             }, 200);
         }
-
-
     }
 
     function open_menu(container) {
@@ -67,7 +64,6 @@ require(['jquery', 'slick'], function($) {
     $(document).ready(function() {
         $("#wise-search-form").append('<div id="curtain" style="position: absolute; ' +
             'width: 100%;height: 100%;background: rgba(255,255,255,0.6);top:0; left: 0; z-index: 1000"></div>');
-
         $("#ajax-spinner").show();
 
         var $menu_items = $('.menu .navmenu-item > a');
@@ -1059,7 +1055,7 @@ require(['jquery', 'slick'], function($) {
             }
 
             // reset paging
-            $(".wise-search-form-container [name='form.widgets.page']").val(0);
+            $(".wise-search-form-container [name='form.widgets.page']").val("");
 
             $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
             $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
@@ -1368,7 +1364,6 @@ require(['jquery', 'slick'], function($) {
 
     $(window).load(function () {
 
-
         /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
             if(!AJAX_MODE){
                 return true;
@@ -1377,13 +1372,9 @@ require(['jquery', 'slick'], function($) {
             //console.log(ev);
         });*/
 
-
-
-
     });
 
 
-
-
-    return jQuery.noConflict();
+   // return {};
+   return jQuery.noConflict();
 });
