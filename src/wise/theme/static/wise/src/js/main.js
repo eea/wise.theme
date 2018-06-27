@@ -343,13 +343,13 @@ require(['jquery', 'slick'], function($) {
         function generateCheckboxes($fields){
             var count = $fields.length;
             $fields.each(function(indx, field){
-
-                var cheks = $(field).find(".option");
+                var $field = $(field);
+                var cheks = $field.find(".option");
                 var hasChecks = cheks.find("input[type='checkbox']").length > 0;
 
                 // has checkboxes
                 if(hasChecks){
-                    var fieldId = $(field).attr("id");
+                    var fieldId = $field.attr("id");
                     var spAll = '<span class="controls" style="display: inline-block;background-color: #ddd;padding-top: 2px;padding-bottom: 2px;' +
                         'padding-left: 0;position: relative;  ">' +
                         '<span style="font-size: 0.8em; margin-left: 5px;">Select :</span><a class="" data-value="all"><label>' +
@@ -382,7 +382,7 @@ require(['jquery', 'slick'], function($) {
 
                     // add "controls"
                     var all = spAll + spClear + invertSel;
-                    $(field).find("> label.horizontal").after(all);
+                    $field.find("> label.horizontal").after(all);
 
                     //tooltips
                     cheks.each(function (idx) {
@@ -391,22 +391,22 @@ require(['jquery', 'slick'], function($) {
                     });
 
                     if(cheks.length < 4) {
-                        $(field).find(".controls a").hide();
-                        $(field).find(".controls").html("").css("height" ,"1px").css("padding", 0);
+                        $field.find(".controls a").hide();
+                        $field.find(".controls").html("").css("height" ,"1px").css("padding", 0);
 
                     } else {
-                        $(field).addClass("panel-group");
+                        $field.addClass("panel-group");
 
-                        var chekspan = $(field).find("> span:not(.controls)");
+                        var chekspan = $field.find("> span:not(.controls)");
                         chekspan.css("border-radius", 0);
                         chekspan.addClass( fieldId + "-collapse");
                         chekspan.addClass("collapse");
-                        var checked = filterInvalidCheckboxes($(field).find(".option input[type='checkbox']:checked"));
+                        var checked = filterInvalidCheckboxes($field.find(".option input[type='checkbox']:checked"));
 
                         chekspan.addClass("panel");
                         chekspan.addClass("panel-default");
 
-                        var label = $(field).find(".horizontal");
+                        var label = $field.find(".horizontal");
 
                         var alabel = "<a data-toggle='collapse' class='accordion-toggle' >" + label.text() + "</a>";
                         label.html(alabel);
@@ -424,7 +424,7 @@ require(['jquery', 'slick'], function($) {
                         chekspan.collapse({
                             toggle: true
                         });
-                        $(field).find(".accordion-toggle").addClass("accordion-after");
+                        $field.find(".accordion-toggle").addClass("accordion-after");
                         //} else {
                         /*$(field).find(".controls").slideUp("fast");
                         chekspan.collapse({
@@ -434,45 +434,61 @@ require(['jquery', 'slick'], function($) {
 
                         chekspan.on("hidden.bs.collapse", function () {
                             chekspan.fadeOut("fast");
-                            $(field).find(".controls").slideUp("fast");
-                            $(field).css({"border-bottom" : "1px solid #ccc;"});
+                            $field.find(".controls").slideUp("fast");
+                            $field.css({"border-bottom" : "1px solid #ccc;"});
 
                         });
 
                         chekspan.on("show.bs.collapse", function () {
                             // collapsed
                             chekspan.fadeIn("fast");
-                            $(field).find(".controls").slideDown("fast");
-                            $(field).find("> span").css({"display" : "block"});
+                            $field.find(".controls").slideDown("fast");
+                            $field.find("> span").css({"display" : "block"});
 
-                            $(field).find(".accordion-toggle").addClass("accordion-after");
+                            $field.find(".accordion-toggle").addClass("accordion-after");
 
                         });
 
                         chekspan.on("hide.bs.collapse", function () {
                             // not collapsed
                             setTimeout( function (){
-                                $(field).find(".accordion-toggle").removeClass("accordion-after");
+                                $field.find(".accordion-toggle").removeClass("accordion-after");
                             },600);
                         });
 
                         // initialize autocomplete for more than 6 checkboxes
                         if(cheks.length < 6) {
-                            $(field).find(".controls .ui-autocomplete").hide();
+                            $field.find(".controls .ui-autocomplete").hide();
                         } else {
 
-                            $(field).find('.panel').append("<span class='noresults'>No results found</span>");
-                            $(field).find(".ui-autocomplete-input").autocomplete({
+                            // 96264 save checked items when having search input in case the user
+                            // goes back on the search
+                            chekspan.append("<span class='noresults hidden'>No results found</span>");
+                            chekspan.data('checked_items', []);
+                            var data = chekspan.data('checked_items');
+                            $.each($field.find('input:checked'), function(idx, el){
+                               data.push(el.id);
+                            });
+                            $field.find(".ui-autocomplete-input").autocomplete({
                                 minLength: 0,
                                 source: [],
                                 search: function( event ) {
-                                    var cheks2 = $(field).find(".option .label:not(.horizontal) ");
+                                    var cheks2 = $field.find(".option .label:not(.horizontal) ");
                                     var labels = cheks2.parentsUntil(".option").parent();
+                                    var inputs = labels.find('input');
                                     var options = labels.parent();
                                     var no_results = options.find(".noresults");
                                     if( $(event.target).val() === "" ){
                                         no_results.addClass('hidden');
                                         labels.removeClass('hidden');
+                                        var data = $field.find('.panel').data('checked_items');
+                                        if (data) {
+                                            $.each(inputs, function (idx, el) {
+                                                // 96264 in case we have an empty searchfield checked items
+                                                // saved in previous query
+                                                el.checked = data.indexOf(el.id) !== -1;
+                                            });
+                                        }
                                         return true;
                                     }
                                     labels.removeClass('hidden');
@@ -486,7 +502,7 @@ require(['jquery', 'slick'], function($) {
                                     var matcher2 = new RegExp( $.ui.autocomplete.escapeRegex( toSearch ), "i" );
 
                                     var temp = {};
-                                    var checksLabels = $(field).find(".option .label:not(.horizontal) ").map(function (ind, item) {
+                                    var checksLabels = $field.find(".option .label:not(.horizontal) ").map(function (ind, item) {
                                         temp[$(item).text().toLowerCase()] = $(item).text().toLowerCase()
                                             .replace(/\s/g, "_");
                                         //return temp;
@@ -552,7 +568,7 @@ require(['jquery', 'slick'], function($) {
                         $(field).find(".ui-autocomplete-input").on("focusout" , function (ev) {
                             //$(ev.target).parent().find(".glyphicon").css("background", "white");
                         });*/
-                        $(field).find(".search-icon").on("click" , function (ev) {
+                        $field.find(".search-icon").on("click" , function (ev) {
                             $(ev.target).parent().find("input").trigger("focus");
                         });
                     }
