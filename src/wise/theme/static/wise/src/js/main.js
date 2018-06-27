@@ -472,7 +472,7 @@ require(['jquery', 'slick'], function($) {
                                     var no_results = options.find(".noresults");
                                     if( $(event.target).val() === "" ){
                                         no_results.addClass('hidden');
-                                        labels.show();
+                                        labels.removeClass('hidden');
                                         return true;
                                     }
                                     labels.removeClass('hidden');
