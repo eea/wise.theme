@@ -9,9 +9,11 @@ requirejs.config({
 });
 
 require(['jquery', 'slick'], function($) {
+    // jQuery(document).ready(function($) {
 
     function close_menu(container) {
         $(container).removeClass('open');
+
         if (window.matchMedia("(min-width: 800px)").matches) {
             $('.navmenu-items').animate({
                 'opacity': 'hide'
@@ -34,6 +36,8 @@ require(['jquery', 'slick'], function($) {
                 'height': 'hide'
             }, 200);
         }
+
+
     }
 
     function open_menu(container) {
@@ -64,6 +68,7 @@ require(['jquery', 'slick'], function($) {
     $(document).ready(function() {
         $("#wise-search-form").append('<div id="curtain" style="position: absolute; ' +
             'width: 100%;height: 100%;background: rgba(255,255,255,0.6);top:0; left: 0; z-index: 1000"></div>');
+
         $("#ajax-spinner").show();
 
         var $menu_items = $('.menu .navmenu-item > a');
@@ -456,18 +461,21 @@ require(['jquery', 'slick'], function($) {
                             $(field).find(".controls .ui-autocomplete").hide();
                         } else {
 
+                            $(field).find('.panel').append("<span class='noresults'>No results found</span>");
                             $(field).find(".ui-autocomplete-input").autocomplete({
                                 minLength: 0,
                                 source: [],
                                 search: function( event ) {
                                     var cheks2 = $(field).find(".option .label:not(.horizontal) ");
-
+                                    var labels = cheks2.parentsUntil(".option").parent();
+                                    var options = labels.parent();
+                                    var no_results = options.find(".noresults");
                                     if( $(event.target).val() === "" ){
-                                        cheks2.parentsUntil(".option").parent().parent().find(".noresults").remove();
-                                        cheks2.parentsUntil(".option").parent().show();
+                                        no_results.addClass('hidden');
+                                        labels.show();
                                         return true;
                                     }
-                                    cheks2.parentsUntil(".option").parent().show();
+                                    labels.removeClass('hidden');
 
                                     var toSearch = $(event.target).val().toLowerCase()
                                     /*.replace(/^\s+|\s+$/g, '_')*/
@@ -510,12 +518,14 @@ require(['jquery', 'slick'], function($) {
                                         $(item).parentsUntil(".option").parent().find("[type='checkbox']").prop("checked", false);
                                         $(item).parentsUntil(".option").parent().find("input[type='checkbox']").prop("checked", false);
                                         $(item).parentsUntil(".option").parent().find("input[type='checkbox']").removeAttr('checked');
-                                        $(item).parentsUntil(".option").parent().hide();
+                                        $(item).parentsUntil(".option").parent().addClass('hidden');
                                     });
 
-                                    if(tohide.length === cheks2.length){
-
-                                        cheks2.parentsUntil(".option").parent().parent().append("<span class='noresults'>No results found</span>")
+                                    if(tohide.length === cheks2.length) {
+                                       no_results.removeClass('hidden');
+                                    }
+                                    else {
+                                        no_results.addClass('hidden');
                                     }
 
                                 },
@@ -1058,7 +1068,7 @@ require(['jquery', 'slick'], function($) {
             }
 
             // reset paging
-            $(".wise-search-form-container [name='form.widgets.page']").val("");
+            $(".wise-search-form-container [name='form.widgets.page']").val(0);
 
             $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
             $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
@@ -1367,6 +1377,7 @@ require(['jquery', 'slick'], function($) {
 
     $(window).load(function () {
 
+
         /*$(".wise-search-form-container").find("form").on("submit", function (ev) {
             if(!AJAX_MODE){
                 return true;
@@ -1375,9 +1386,9 @@ require(['jquery', 'slick'], function($) {
             //console.log(ev);
         });*/
 
+
+
+
     });
 
-
-   // return {};
-   return jQuery.noConflict();
 });
