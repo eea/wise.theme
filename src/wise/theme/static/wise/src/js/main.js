@@ -332,6 +332,11 @@
                 $("#form-buttons-continue").hide("fast");
             }
 
+            // move marine unit id below form title and pagination as seen on the
+            // other article tabs
+            var pagination = $('.pagination-text').eq(0);
+            $("#marine-widget-top").detach().insertAfter(pagination);
+
             function generateCheckboxes($fields){
                 var count = $fields.length;
                 $fields.each(function(indx, field){
