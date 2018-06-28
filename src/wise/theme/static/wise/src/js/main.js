@@ -1,5 +1,5 @@
-/* global window, document, define, jQuery, setInterval, clearInterval */
-(function(){
+/* global window, document, jQuery, setInterval, clearInterval */
+(function(window, document, $){
     /* eslint-env amd, browser */
 
         // jQuery(document).ready(function($) {
@@ -1388,7 +1388,7 @@
 
     //return jQuery.noConflict();
 
-}());
+}(window, document, jQuery));
 
 
 
