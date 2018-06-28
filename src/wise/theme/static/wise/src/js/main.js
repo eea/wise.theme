@@ -759,7 +759,6 @@
 
                     if (window.matchMedia("(max-width: 967px)").matches) {
                         $("#marine-unit-trigger .arrow-right").css({
-                            "left" : raLeft + "px",
                             "top":  targetH + "px",
                             "transform": "translate3d(0,-15px,0) scale(1.5)"
                         });
@@ -770,7 +769,6 @@
                         });
                     } else {
                         $("#marine-unit-trigger .arrow-right").css({
-                            "left" : raLeft + "px",
                             "top":  targetH + "px",
                             "transform": "translate3d(0,-10px,0)"
                         });
