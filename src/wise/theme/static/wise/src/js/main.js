@@ -334,8 +334,8 @@
 
             // move marine unit id below form title and pagination as seen on the
             // other article tabs
-            var pagination = $('.pagination-text').eq(0);
-            $("#marine-widget-top").detach().insertAfter(pagination);
+            var pagination = $('.prev-next-row').eq(0);
+            $("#marine-widget-top").detach().insertBefore(pagination);
 
             function generateCheckboxes($fields){
                 var count = $fields.length;
@@ -832,9 +832,9 @@
                     };
 
                     $(selectElement).select2(options);
-
-                    $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
-                        "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
+                    // david
+                    $(selectElement).parentsUntil(".field").parent().prepend(
+                        "<h4>Marine Unit ID: </h4>");
 
                     $(selectElement).on("select2-open", function() {
                         var trh = $("#marine-unit-trigger").offset().top;
@@ -876,26 +876,9 @@
                         var text = $('#wise-search-form  select [value="' + jQuery('#wise-search-form .select-article select').val() + '"]').text();
                         $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
 
-                            '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
                             '<div class="text-trigger">'+ text +
                                 '<span class="fa fa-caret-down text-trigger-icon"></span>' +
                             '</div>' +
-                            '<div class="arrow-left-container">' +
-                            '<div class="arrow-left">' +
-                            '<div class="arrow-top"></div>' +
-                            '<div class="arrow-bottom"></div>' +
-                            '</div>' +
-                            '</div>'+
-
-                            '<div class="arrow-right-container" >' +
-                            '<div class="arrow-right">' +
-                            '<div class="arrow-top"></div>' +
-                            '<div class="arrow-bottom"></div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-
 
                             '</div>');
 
