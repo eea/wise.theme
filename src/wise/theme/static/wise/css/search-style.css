@@ -1,3 +1,7 @@
+body * {
+    font-family: 'Open Sans',Verdana,Helvetica,Arial,sans-serif;
+}
+
 .site-marine .header-info a:hover,
 .site-marine .header-info a:focus {
   color: #dedede !important;
