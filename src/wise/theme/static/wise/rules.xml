@@ -12,7 +12,7 @@
     <theme href="header-template.html" />
     <replace css:content="a">
       <a>
-        <xsl:variable name="absolute" select="substring-after(current()/@href, 'http://192.168.0.125:5080/Plone')" />
+        <xsl:variable name="absolute" select="substring-after(current()/@href, '80/Plone')" />
         <xsl:attribute name='href'><xsl:copy-of select="$absolute" /></xsl:attribute>
         <!-- <xsl:copy&#45;of select="current()/@href" /> -->
         <xsl:value-of select="current()/text()" />

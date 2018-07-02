@@ -1,11 +1,8 @@
 @import "./bootstrap/variables.less";
 
 #marine-unit-trigger {
-  max-height: 8rem;
-  margin-bottom: 30px;
-  display: table-row;
+  display: inline-block;
   border-spacing: 2rem;
-
   max-width: 100%;
 
   &:hover {
@@ -59,13 +56,13 @@
   }
 
   .text-trigger {
-    display: block;
-    font-size: 1.5em;
-
+    display: inline-block;
+    font-size: 1em;
     text-decoration: none;
-    color: #444;
+    color: #337ab7;
+    padding: 0.2em 0.5em;
+    border: 1px solid #ddd;
     font-weight: bold;
-    padding-right: 3rem;
   }
 
   .text-trigger-icon {
@@ -79,14 +76,15 @@
     width: 10%;
     display: table-cell;
     position: absolute;
-    padding-left: 5px;
     top: 0;
+    right: 0;
     height: 100%;
 
     .arrow-right {
       width: auto;
       display: inline-block;
       position: absolute;
+      left: 3px;
 
       &:after {
         content: "\f053";
@@ -173,11 +171,13 @@
 .select2-top-override-dropdown {
   .select2-results {
     li {
-      font-size: 2rem;
+      font-size: 1.4rem;
       text-overflow: ellipsis;
       line-height: 1.5em;
-      height: 3em;       /* height is 2x line-height, so two lines will display */
+      min-height: 2.5em;
       overflow: hidden;
+      display: flex;
+      align-items: center;
 
       .select2-match {
 

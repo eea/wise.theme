@@ -332,6 +332,13 @@
                 $("#form-buttons-continue").hide("fast");
             }
 
+            // move marine unit id below form title and pagination as seen on the
+            // other article tabs
+            var pagination = $('.prev-next-row').eq(0);
+            if (pagination.length) {
+                $("#marine-widget-top").detach().insertBefore(pagination);
+            }
+
             function generateCheckboxes($fields){
                 var count = $fields.length;
                 $fields.each(function(indx, field){
@@ -726,90 +733,6 @@
 
                 $("#wise-search-form select:not(.notselect)").addClass("js-example-basic-single");
 
-                function recalculateMarineUnitArrow(){
-                    if (window.matchMedia("(max-width: 956px)").matches) {
-                        /* if($("#marine-unit-trigger a").height() > 120 ){
-                             $(".select-article").css("margin-bottom", "10rem");
-                         }*/
-                    }
-
-                    /*$("#marine-unit-trigger .arrow-left, #marine-unit-trigger .arrow-right").css({
-                        //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
-                        "top": $("#marine-unit-trigger a").height()/2 + "px",
-                        //"transform" : "translate3d(0,-50%,0)"
-                    });*/
-
-                    $("#marine-unit-trigger .text-trigger").css({
-                        "margin-left" : "20" + "px"
-                    });
-
-                    var raLeft = $("#marine-unit-trigger .text-trigger").width()  + $("#marine-unit-trigger .arrow-left-container").width();
-
-                    if(raLeft > $("#marine-widget-top .select-article").width() ){
-                        raLeft = $("#marine-widget-top .select-article").width() - 20 ;
-                    }
-
-                    var todivide = $("#marine-unit-trigger .text-trigger").height() < 80 ? 2 : 2;
-                    var targetH = Math.floor( $("#marine-unit-trigger .text-trigger").height() / todivide ) ;
-
-                    if (window.matchMedia("(max-width: 967px)").matches) {
-                        $("#marine-unit-trigger .arrow-right").css({
-                            "left" : raLeft + "px",
-                            "top":  targetH + "px",
-                            "transform": "translate3d(0,-15px,0) scale(1.5)"
-                        });
-
-                        $("#marine-unit-trigger .arrow-left").css({
-                            "top": targetH + "px",
-                            "transform": "translate3d(0,-15px,0)  scale(1.5)"
-                        });
-                    } else {
-                        $("#marine-unit-trigger .arrow-right").css({
-                            "left" : raLeft + "px",
-                            "top":  targetH + "px",
-                            "transform": "translate3d(0,-10px,0)"
-                        });
-
-                        $("#marine-unit-trigger .arrow-left").css({
-                            "top": targetH + "px",
-                            "transform": "translate3d(0,-10px,0)"
-                        });
-                    }
-
-
-
-                    if( $(".text-trigger").height() > 40 && window.matchMedia("(max-width: 991px)").matches ){
-                        $(".text-trigger").css("max-width", "90%");
-                    }
-
-
-                    /*$("#marine-unit-trigger .arrow").css({
-                        //"left": Math.floor( $("#marine-unit-trigger a").width() /2 ) + "px",
-                    });*/
-
-                    //$("#wise-search-form select").off("scroll");
-
-                    /*$(window).on("scroll" , function (ev){
-                        $(".select2-top-override-dropdown").css({
-                            "top": trh + $("#marine-unit-trigger").height() - $("#marine-unit-trigger .arrow").height() + "px",
-                            "margin-top": "0px !important"
-                        });
-                    });*/
-
-                    /*$("#marine-unit-trigger").on("mouseover", function(){
-                        $("#marine-unit-trigger .arrow").css({
-                            "top" : $("#marine-unit-trigger .arrow").height() + 5 + "px",
-                        });
-                    });
-
-                    $("#marine-unit-trigger").on("mouseout", function(){
-                        $("#marine-unit-trigger .arrow").css({
-                            "top" : $("#marine-unit-trigger .arrow").height() + "px",
-                        });
-                    });*/
-
-
-                }
 
                 $("#wise-search-form select:not(.notselect)").each(function (ind, selectElement) {
                     var options = {
@@ -829,9 +752,9 @@
                     };
 
                     $(selectElement).select2(options);
-
-                    $(selectElement).parentsUntil(".field").parent().prepend("<h4 style='display: block;color: #337ab7;" +
-                        "font-weight: 700;font-size: 90%;'> Marine Unit ID: </h4>");
+                    // david
+                    $(selectElement).parentsUntil(".field").parent().prepend(
+                        "<h4>Marine Unit ID: </h4>");
 
                     $(selectElement).on("select2-open", function() {
                         var trh = $("#marine-unit-trigger").offset().top;
@@ -850,7 +773,6 @@
 
                         $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
 
-                        recalculateMarineUnitArrow();
 
                         $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
 
@@ -873,30 +795,12 @@
                         var text = $('#wise-search-form  select [value="' + jQuery('#wise-search-form .select-article select').val() + '"]').text();
                         $('#wise-search-form select:not(.notselect)').parentsUntil(".field").before('<div id="marine-unit-trigger">' +
 
-                            '<div style="display: table-cell; width: auto;max-width: 80%;position:relative; ">' +
                             '<div class="text-trigger">'+ text +
                                 '<span class="fa fa-caret-down text-trigger-icon"></span>' +
                             '</div>' +
-                            '<div class="arrow-left-container">' +
-                            '<div class="arrow-left">' +
-                            '<div class="arrow-top"></div>' +
-                            '<div class="arrow-bottom"></div>' +
-                            '</div>' +
-                            '</div>'+
-
-                            '<div class="arrow-right-container" >' +
-                            '<div class="arrow-right">' +
-                            '<div class="arrow-top"></div>' +
-                            '<div class="arrow-bottom"></div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>' +
-
 
                             '</div>');
 
-                        recalculateMarineUnitArrow();
 
                         $("#marine-unit-trigger").on("click", function () {
                             if(loading) return false;
@@ -1384,9 +1288,6 @@
                 });
 
             });
-
-
-    //return jQuery.noConflict();
 
 }(window, document, jQuery));
 
