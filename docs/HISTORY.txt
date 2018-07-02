@@ -3,8 +3,10 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Change: optimize footer image for web
+  [ichim-david refs #96264]
 * Change: optimize header image for web
-  [ichim-david]
+  [ichim-david refs #96264]
 * Bug fix: Open maps viewer link in external window
   [iulianpetchesi #94706]
 * Bug fix: Add try/except in order to catch un-authorized access for the
