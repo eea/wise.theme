@@ -171,11 +171,13 @@
 .select2-top-override-dropdown {
   .select2-results {
     li {
-      font-size: 2rem;
+      font-size: 1.4rem;
       text-overflow: ellipsis;
       line-height: 1.5em;
-      height: 3em;       /* height is 2x line-height, so two lines will display */
+      min-height: 2.5em;
       overflow: hidden;
+      display: flex;
+      align-items: center;
 
       .select2-match {
 
