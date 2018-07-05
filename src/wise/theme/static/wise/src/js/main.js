@@ -650,9 +650,9 @@
                 //$(".controls .apply-filters").on("click", $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click") );
 
                 $(".controls").one("click",".apply-filters", function () {
+                    $(".wise-search-form-container [name='form.widgets.page']").val(0);
                     $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
                 });
-
             }
 
             function filterInvalidCheckboxes(cbxs){
@@ -670,6 +670,7 @@
                     if( window.WISE.blocks.indexOf( $(this).parentsUntil(".field").parent().attr("id") ) !== -1  ){
                         //return false;
                     } else {
+                        $(".wise-search-form-container [name='form.widgets.page']").val(0);
                         if( exceptVal.indexOf(checkboxV) === -1) $(ev.target).find("input[type='checkbox']").trigger('click');
                     }
 
@@ -733,7 +734,6 @@
 
                 $("#wise-search-form select:not(.notselect)").addClass("js-example-basic-single");
 
-
                 $("#wise-search-form select:not(.notselect)").each(function (ind, selectElement) {
                     var options = {
                         placeholder: 'Select an option',
@@ -753,8 +753,7 @@
 
                     $(selectElement).select2(options);
                     // david
-                    $(selectElement).parentsUntil(".field").parent().prepend(
-                        "<h4>Marine Unit ID: </h4>");
+                    $(selectElement).parentsUntil(".field").parent().prepend("<h4>Marine Unit ID: </h4>");
 
                     $(selectElement).on("select2-open", function() {
                         var trh = $("#marine-unit-trigger").offset().top;
@@ -768,12 +767,11 @@
                         });
                     });
 
-
                     $(selectElement).on("select2-selecting", function(ev) {
 
                         $("#wise-search-form #marine-unit-trigger a").text(ev.object.text);
 
-
+                        $(".wise-search-form-container [name='form.widgets.page']").val(0);
                         $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
 
                         $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
@@ -896,7 +894,6 @@
 
                 });
 
-
                 //$("#wise-search-form .extra-details-select").trigger("click");
 
             }
@@ -983,7 +980,7 @@
                 }
 
                 // reset paging
-                $(".wise-search-form-container [name='form.widgets.page']").val(0);
+                $(".wise-search-form-container [name='form.widgets.page']").remove();
 
                 $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(dir).trigger("change");
                 $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
