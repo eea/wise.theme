@@ -330,6 +330,8 @@
                 $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").parentsUntil(".field").parent().hide();
 
                 $("#form-buttons-continue").hide("fast");
+
+                $("#form-buttons-download").append('<i class="fa fa-download"></i>');
             }
 
             // move marine unit id below form title and pagination as seen on the
