@@ -1296,7 +1296,7 @@
 
             });
 
-return jQuery.noConflict();
+return $.noConflict();
 }(window, document, jQuery));
 
 
