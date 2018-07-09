@@ -1296,7 +1296,7 @@
 
             });
 
-$.noConflict();
+//$.noConflict();
 }(window, document, jQuery));
 
 
