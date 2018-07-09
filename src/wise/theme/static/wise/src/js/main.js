@@ -1296,6 +1296,7 @@
 
             });
 
+return jQuery.noConflict();
 }(window, document, jQuery));
 
 
