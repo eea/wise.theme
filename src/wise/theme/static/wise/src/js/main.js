@@ -377,13 +377,14 @@
 
                         // each checkbox does auto submit
                         $("#" + fieldId).on("click", ".option", function () {
+                            var self = this;
                             $("#ajax-spinner2").hide();
                             if( window.WISE.blocks.indexOf( $(this).parentsUntil(".field").parent().attr("id") ) !== -1  ){
                                 //return false;
                             } else {
                                 //TODO : check if apply-filters shown
                                 setTimeout( function() {
-                                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click")
+                                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click", {'button': self})
                                 }, 300);
                             }
 
@@ -661,7 +662,7 @@
 
                 $(".controls").one("click",".apply-filters", function () {
                     $(".wise-search-form-container [name='form.widgets.page']").val(0);
-                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                    $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click", {'button': this});
                 });
             }
 
@@ -715,28 +716,21 @@
                         console.log($(selectElement).attr("id") + " loaded");
                     });*/
 
-                    $(selectElement).on("select2-selecting", function() {
-                        // what you would like to happen
-                        //if($(this).val() !== ev.choice.id && ) $(ev.target).parentsUntil(".subform"); /*.remove()*/;
-                        //var par = $(ev.target).parentsUntil(".subform").next();
+                    $(selectElement).on("select2-selecting", function(ev) {
 
+                        // remove results following form-widgets-article select element
+                        // as we want to reset each facet to it's initial value if we change form
                         if( $(this).attr("id") === "form-widgets-article" ) {
-                            /*$(ev.target).parentsUntil(".form-right-side").parent().nextUntil(".form-right-side").remove(":not('.formControls')");*/
-                        } else {
-                            //$(this).parentsUntil("form").nextUntil(".form-right-side").remove();
+                            $(ev.target).closest(".form-right-side").next().remove();
                         }
-                        //$(this).parentsUntil(".form-right-side").nextUntil(".form-right-side").remove(":not('.formControls')");
-
-                        //par.remove(":not('.formControls')");
 
                         $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
                         $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
                         $(".wise-search-form-container").find("[name='form.widgets.page']").remove();
 
-
+                        var self = this;
                         setTimeout( function (){
-
-                            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                            $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click", {'select': self});
                         }, 300);
 
                     });
@@ -783,8 +777,7 @@
 
                         $(".wise-search-form-container [name='form.widgets.page']").val(0);
                         $(".wise-search-form-container #form-widgets-marine_unit_id").select2().val(ev.val).trigger("change");
-
-                        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+                        $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click", {'select': ev.target});
 
 
                     });
@@ -996,7 +989,6 @@
                 $(".wise-search-form-container #s2id_form-widgets-marine_unit_id").hide();
 
                 //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-
                 $(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
 
             }
@@ -1008,14 +1000,12 @@
 
                 prevButton.one("click", function (){
                     if(loading) return false;
-
                     $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.prev' value='Prev'>");
                     $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
                 });
 
                 nextButton.one("click", function(){
                     if(loading) return false;
-
                     $(".wise-search-form-container").find("form").append("<input type='hidden' name='form.buttons.next' value='Next'>");
                     $(".wise-search-form-container").find(".formControls #form-buttons-continue").trigger("click");
                 });
@@ -1110,6 +1100,36 @@
 
                 var form =  $(".wise-search-form-container").find("form");
                 var url = form.attr("action");
+
+                // empty facets below given facet where we had an interaction
+                // this way we reset the configurations below the given facet
+                // with which we interacted with
+                var called_from = arguments[1];
+                var called_from_button = called_from && called_from['button'];
+                var empty_next_inputs;
+                if (!called_from || called_from_button) {
+                    empty_next_inputs = function(el) {
+                        var panel_group, subform_parent, subform_children;
+                        panel_group = $(el).closest('.panel-group');
+                        subform_parent = panel_group.closest('.subform');
+                        subform_children = subform_parent.find('.subform');
+                        panel_group.nextAll('.panel-group').find('.panel').empty();
+                        if (subform_children.length) {
+                            subform_children.find('.panel').empty();
+                        }
+                    };
+                    if (called_from_button) {
+                        empty_next_inputs(called_from_button);
+                    }
+                    else {
+                        $(".ui-autocomplete-input").each(function(idx, el) {
+                            if (el.value) {
+                                empty_next_inputs(el);
+                                return false;
+                            }
+                        });
+                    }
+                }
 
                 var strContent = $.getMultipartData("#" + form.attr("id"));
 
@@ -1297,7 +1317,6 @@
             });
 
 }(window, document, jQuery));
-
 
 
 
