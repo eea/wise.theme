@@ -3321,15 +3321,18 @@
 
                 $("#form-buttons-continue").hide("fast");
 
-                var dBtn = $("#form-buttons-download").prop('outerHTML').replace("input","button")
-                    + ' <span style="margin-left:0.4rem;">Download as XLS</span>';
-                var btnForm = $("#form-buttons-download").parent();
+                if($("#form-buttons-download").length > 0){
+                    var dBtn = $("#form-buttons-download").prop('outerHTML').replace("input","button")
+                        + ' <span style="margin-left:0.4rem;">Download as XLS</span>';
+                    var btnForm = $("#form-buttons-download").parent();
 
-                $("#form-buttons-download").remove();
+                    $("#form-buttons-download").remove();
 
-                btnForm.append( $(dBtn) );
-                $("#form-buttons-download").val("&#xf019; Download as XLS");
-                $("#form-buttons-download").addClass("fa").addClass("fa-download");
+                    btnForm.append( $(dBtn) );
+                    $("#form-buttons-download").val("&#xf019; Download as XLS");
+                    $("#form-buttons-download").addClass("fa").addClass("fa-download");
+                }
+
             }
 
             // move marine unit id below form title and pagination as seen on the
