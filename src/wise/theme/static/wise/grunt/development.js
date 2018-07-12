@@ -8,31 +8,31 @@ module.exports = {
         sourceMapURL: './source.css.map'
       },
       files: {
-        '<%= path.static %>/css/main.css': '<%= path.src %>/less/*.less',
+        '<%= path.static %>/css/main.css': '<%= path.src %>/less/*.less'
       }
     }
   },
-  concat: {
-    scripts: {
-      src: [
-        '<%= path.src %>/js/**/*.js'
-      ],
-      dest: '<%= path.static %>/js/main.js'
-    }
-  },
-  // copy: {
+  // concat: {
   //   scripts: {
-  //     files: [
-  //       { expand: true,
-  //         cwd: '<%= path.src%>/js/',
-  //         src: [
-  //           'bootstrap.dropdown.js'
-  //         ],
-  //         dest: '<%= path.static %>/js/'
-  //       }
-  //     ]
+  //     src: [
+  //       '<%= path.src %>/js/**/*.js'
+  //     ],
+  //     dest: '<%= path.static %>/js/main.js'
   //   }
   // },
+  copy: {
+    scripts: {
+      files: [
+        { expand: true,
+          flatten: true,
+          src: [
+            '<%= path.src %>/js/*.js'
+          ],
+          dest: '<%= path.static %>/js/'
+        }
+      ]
+    }
+  },
   watch: {
     styles: {
       files: ['<%= path.src %>/less/**/*.less'],
@@ -43,7 +43,7 @@ module.exports = {
     },
     scripts: {
       files: ['<%= path.src %>/js/**/*.js'],
-      tasks: ['concat'],
+      tasks: ['copy'],
       options: {
         nospawn: true
       }
@@ -56,4 +56,4 @@ module.exports = {
       }
     }
   }
-}
+};
