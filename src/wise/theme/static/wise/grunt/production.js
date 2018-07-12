@@ -6,12 +6,15 @@ module.exports = {
         sourceMap: false
       },
       files: {
-        '<%= path.static %>/css/main.css': '<%= path.src %>/less/*.less',
+        '<%= path.static %>/css/main.css': '<%= path.src %>/less/*.less'
       }
     }
   },
   uglify: {
     scripts: {
+     options: {
+         sourceMap: true
+     },
       files: [{
         expand: true,
         cwd: '<%= path.static %>/js',
@@ -31,4 +34,4 @@ module.exports = {
       }
     }
   }
-}
+};

@@ -1,3 +1,4 @@
+// slick 1.8.1
 (function($) {
     'use strict';
     var Slick = window.Slick || {};

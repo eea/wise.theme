@@ -43,8 +43,6 @@
   background: rgba(255,255,255, 0.3);
 }
 
-
-
 .wise-search-form-container,
 #wise-search-form {
   opacity: 0;
@@ -754,10 +752,10 @@
   }
 }
 
-#form-buttons-next-row {
+.form-buttons-next-row {
   position: absolute;
   margin: 0;
-  top: 0px;
+  top: 0;
   right: 0;
   display: inline-block;
 
@@ -766,21 +764,15 @@
   }
 }
 
-#form-buttons-prev-row {
+.form-buttons-prev-row {
   position: absolute;
 
-  margin: 0;
-  margin-bottom: 5px;
+  margin: 0 0 5px;
 
   .label {
     padding: 0;
   }
 
-  #form-buttons-prev {
-    /*position: absolute;
-    left: 0;*/
-
-  }
 }
 
 .prev-next-row {
@@ -789,11 +781,8 @@
   position: relative;
   display: block;
   height: auto;
-  /*margin-bottom: 30px;*/
-  /*margin-top: 10px;*/
   padding-bottom: 20px;
   margin-top: 15px;
-  /*text-align: center;*/
 
   > span {
     display: block;
@@ -804,21 +793,6 @@
   }
 }
 
-span [name="form.buttons.prev"],
-span [name="form.buttons.next"],
-span [name="marine.buttons.next"],
-span [name="marine.buttons.prev"]
-{
-  border:none;
-  background: rgb(221, 221, 221);
-  cursor: pointer;
-  padding-left: 2rem;
-  padding-right: 2rem;
-
-  &[disabled]:hover {
-    background: #dddddd;
-  }
-}
 
 
 @media (min-width: @screen-md-max) and (max-width: @screen-lg-min){
