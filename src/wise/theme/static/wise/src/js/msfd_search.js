@@ -799,6 +799,232 @@
         setPaginationButtons();
     }
 
+
+    /*
+    * Form handlers
+    * */
+    function beforeSendForm(jqXHR, settings) {
+        window.WISE.blocks = [];
+        //$("#ajax-spinner2").hide();
+
+        $("#wise-search-form .no-results").remove();
+
+        var t = "<div id='wise-search-form-container-preloader' " +
+            "></div>";
+        var sp = $("#ajax-spinner2").clone().attr("id", "ajax-spinner-form").css({
+            "position": "absolute",
+            "top" : "50%",
+            "left" : "50%",
+            "transform": "translate3d(-50%, -50%,0)"
+        }).show();
+
+        $(".wise-search-form-container").append(t);
+        $("#wise-search-form-container-preloader").append(sp);
+
+
+        $("#form-widgets-marine_unit_id").prop("disabled", true);
+        //$("s2id_form-widgets-marine_unit_id").select2("enable",false);
+        $("[name='form.buttons.prev']").prop("disabled" , true);
+        $("[name='form.buttons.next']").prop("disabled" , true);
+
+        $("[name='marine.buttons.prev']").prop("disabled" , true);
+        $("[name='marine.buttons.next']").prop("disabled" , true);
+
+        if($("#marine-widget-top").length > 0){
+            var cont = $("#marine-widget-top").next();
+            cont.css("position", "relative");
+        } else {
+            cont = $(".left-side-form");
+        }
+
+        cont.prepend("<div id='wise-search-form-preloader' ></div>");
+
+
+        $("#wise-search-form-preloader")
+            .append("<span style='position: absolute;" +
+                "    display: block;" +
+                "    left: 50%;" +
+                " top: 10%;'></span>");
+        $("#wise-search-form-preloader > span").append( $("#ajax-spinner2").clone().attr("id","ajax-spinner-center" ).show());
+
+        $("#ajax-spinner-center").css({
+            "position" : "fixed"
+            //"top" : "50%",
+            //"left" : "30%",
+            // "transform" : "translateX(-50%)"
+        });
+
+        //window.WISE.marineUnit = $("#wise-search-form select").val(  );
+
+        loading = true;
+    }
+
+    function formSuccess(data, status, req) {
+        $("#wise-search-form #wise-search-form-top").siblings().html("");
+        $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
+
+        $("#wise-search-form .topnav").next().remove();
+
+        var $data = $(data);
+
+        window.WISE.formData = $(data).find(".wise-search-form-container").clone(true);
+
+        var chtml = $data.find(".wise-search-form-container");
+
+        var fhtml = chtml.html();
+
+        var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings();
+
+        $(".wise-search-form-container").html(fhtml);
+
+        if( $data.find("#wise-search-form .topnav").next().length > 0){
+            $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
+        }
+
+        $("#wise-search-form #wise-search-form-top").siblings().remove();
+        $("#wise-search-form #wise-search-form-top").after(centerContentD);
+
+        /*var res = $data.find("#wise-search-form");
+
+        if(res.children().length === 1){
+            if($(res[0]).attr("id") === "wise-search-form-top" ){
+                $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
+            }
+
+        }*/
+
+        initPageElems();
+
+        $("[name='form.buttons.prev']").prop("disabled" , false);
+        $("[name='form.buttons.next']").prop("disabled" , false);
+
+        $("[name='marine.buttons.prev']").prop("disabled" , false);
+        $("[name='marine.buttons.next']").prop("disabled" , false);
+    }
+
+    function formAjaxComplete(jqXHR, textStatus){
+        if(textStatus === "success"){
+            $(".wise-search-form-container").fadeIn("fast", function () {
+                $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
+            });
+        }
+        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+
+        //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
+
+        $("#wise-search-form #loader-placeholder").remove();
+
+        $("#form-widgets-marine_unit_id").prop("disabled", false);
+
+        //if($("#wise-search-form select").val() === "--NOVALUE--" ) $("#wise-search-form select").val(window.WISE.marineUnit).trigger("change.select2");
+        if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
+            // Select2 has been initialized
+
+            if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
+                $("#wise-search-form .select2-choice").css("width", "50%");
+            } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
+                $("#wise-search-form .select2-choice").css("width", "70%");
+            }
+
+        }
+
+        if($("#wise-search-form-top").next().length === 0){
+            $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
+        }
+
+        loading = false;
+    }
+
+    function formAjaxError(req, status, error){
+        if(window.WISE.formData.length > 0){
+            var data = $($(window.WISE.formData)[0]).find(".field");
+            $.each( data , function (indx, $field) {
+                var chk = $($field).find(".option input[type='checkbox']:checked");
+                if(chk.length > 0){
+                    // TODO
+                }
+
+            });
+        }
+
+        $("#wise-search-form-top").find(".alert").remove();
+        $("#wise-search-form-top").append('<div class="alert alert-danger alert-dismissible show" style="margin-top: 2rem;" role="alert">' +
+            '  <strong>There was a error from the server.</strong> You should check in on some of those fields from the form.' +
+            '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+            '    <span aria-hidden="true">&times;</span>' +
+            '  </button>' +
+            '</div>');
+
+        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
+        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
+        $("#form-widgets-marine_unit_id").prop("disabled", false);
+
+        $("#wise-search-form-container-preloader").remove();
+        $("#wise-search-form-preloader").remove();
+
+        $("#ajax-spinner-form").hide();
+
+        $("[name='form.buttons.prev']").prop("disabled" , true);
+        $("[name='form.buttons.next']").prop("disabled" , true);
+
+        $("[name='marine.buttons.prev']").prop("disabled" , true);
+        $("[name='marine.buttons.next']").prop("disabled" , true);
+
+        loading = false;
+    }
+
+    function continueHandler(){
+        var form =  $(".wise-search-form-container").find("form");
+        var url = form.attr("action");
+
+        // empty facets below given facet where we had an interaction
+        // this way we reset the configurations below the given facet
+        // with which we interacted with
+        var called_from = arguments[1];
+        var called_from_button = called_from && called_from['button'];
+        var empty_next_inputs;
+        if (!called_from || called_from_button) {
+            empty_next_inputs = function(el) {
+                var panel_group, subform_parent, subform_children;
+                panel_group = $(el).closest('.panel-group');
+                subform_parent = panel_group.closest('.subform');
+                subform_children = subform_parent.find('.subform');
+                panel_group.nextAll('.panel-group').find('.panel').empty();
+                if (subform_children.length) {
+                    subform_children.find('.panel').empty();
+                }
+            };
+            if (called_from_button) {
+                empty_next_inputs(called_from_button);
+            }
+            else {
+                $(".ui-autocomplete-input").each(function(idx, el) {
+                    if (el.value) {
+                        empty_next_inputs(el);
+                        return false;
+                    }
+                });
+            }
+        }
+
+        var strContent = $.getMultipartData("#" + form.attr("id"));
+
+        $.ajax({
+            type: "POST",
+            contentType: 'multipart/form-data; boundary='+strContent[0],
+            cache:false,
+            data: strContent[1],
+            dataType: "html",
+            url: url,
+            //processData:false,
+            beforeSend: beforeSendForm,
+            success:formSuccess,
+            complete:formAjaxComplete,
+            error:formAjaxError
+        });
+    }
+
     jQuery(document).ready(function($){
         initPageElems();
 
@@ -827,224 +1053,7 @@
                     return true;
                 }
                 ev.preventDefault();
-
-
-                var form =  $(".wise-search-form-container").find("form");
-                var url = form.attr("action");
-
-                // empty facets below given facet where we had an interaction
-                // this way we reset the configurations below the given facet
-                // with which we interacted with
-                var called_from = arguments[1];
-                var called_from_button = called_from && called_from['button'];
-                var empty_next_inputs;
-                if (!called_from || called_from_button) {
-                    empty_next_inputs = function(el) {
-                        var panel_group, subform_parent, subform_children;
-                        panel_group = $(el).closest('.panel-group');
-                        subform_parent = panel_group.closest('.subform');
-                        subform_children = subform_parent.find('.subform');
-                        panel_group.nextAll('.panel-group').find('.panel').empty();
-                        if (subform_children.length) {
-                            subform_children.find('.panel').empty();
-                        }
-                    };
-                    if (called_from_button) {
-                        empty_next_inputs(called_from_button);
-                    }
-                    else {
-                        $(".ui-autocomplete-input").each(function(idx, el) {
-                            if (el.value) {
-                                empty_next_inputs(el);
-                                return false;
-                            }
-                        });
-                    }
-                }
-
-                var strContent = $.getMultipartData("#" + form.attr("id"));
-
-                $.ajax({
-                    type: "POST",
-                    contentType: 'multipart/form-data; boundary='+strContent[0],
-                    cache:false,
-                    data: strContent[1],
-                    dataType: "html",
-                    url: url,
-                    //processData:false,
-                    beforeSend: function(jqXHR, settings){
-                        window.WISE.blocks = [];
-                        //$("#ajax-spinner2").hide();
-
-                        $("#wise-search-form .no-results").remove();
-
-                        var t = "<div id='wise-search-form-container-preloader' " +
-                            "></div>";
-                        var sp = $("#ajax-spinner2").clone().attr("id", "ajax-spinner-form").css({
-                            "position": "absolute",
-                            "top" : "50%",
-                            "left" : "50%",
-                            "transform": "translate3d(-50%, -50%,0)"
-                        }).show();
-
-                        $(".wise-search-form-container").append(t);
-                        $("#wise-search-form-container-preloader").append(sp);
-
-
-                        $("#form-widgets-marine_unit_id").prop("disabled", true);
-                        //$("s2id_form-widgets-marine_unit_id").select2("enable",false);
-                        $("[name='form.buttons.prev']").prop("disabled" , true);
-                        $("[name='form.buttons.next']").prop("disabled" , true);
-
-                        $("[name='marine.buttons.prev']").prop("disabled" , true);
-                        $("[name='marine.buttons.next']").prop("disabled" , true);
-
-                        if($("#marine-widget-top").length > 0){
-                            var cont = $("#marine-widget-top").next();
-                            cont.css("position", "relative");
-                        } else {
-                            cont = $(".left-side-form");
-                        }
-
-                        cont.prepend("<div id='wise-search-form-preloader' ></div>");
-
-
-                        $("#wise-search-form-preloader")
-                            .append("<span style='position: absolute;" +
-                                "    display: block;" +
-                                "    left: 50%;" +
-                                " top: 10%;'></span>");
-                        $("#wise-search-form-preloader > span").append( $("#ajax-spinner2").clone().attr("id","ajax-spinner-center" ).show());
-
-                        $("#ajax-spinner-center").css({
-                            "position" : "fixed"
-                            //"top" : "50%",
-                            //"left" : "30%",
-                            // "transform" : "translateX(-50%)"
-                        });
-
-                        //window.WISE.marineUnit = $("#wise-search-form select").val(  );
-
-                        loading = true;
-
-                    },
-                    success:function (data, status, req) {
-                        $("#wise-search-form #wise-search-form-top").siblings().html("");
-                        $("#wise-search-form #wise-search-form-top").siblings().fadeOut("fast");
-
-                        $("#wise-search-form .topnav").next().remove();
-
-                        var $data = $(data);
-
-                        window.WISE.formData = $(data).find(".wise-search-form-container").clone(true);
-
-                        var chtml = $data.find(".wise-search-form-container");
-
-                        var fhtml = chtml.html();
-
-                        var centerContentD = $data.find("#wise-search-form #wise-search-form-top").siblings();
-
-                        $(".wise-search-form-container").html(fhtml);
-
-                        if( $data.find("#wise-search-form .topnav").next().length > 0){
-                            $("#wise-search-form .topnav").after($data.find("#wise-search-form .topnav").next());
-                        }
-
-
-                        $("#wise-search-form #wise-search-form-top").siblings().remove();
-                        $("#wise-search-form #wise-search-form-top").after(centerContentD);
-
-                        /*var res = $data.find("#wise-search-form");
-
-                        if(res.children().length === 1){
-                            if($(res[0]).attr("id") === "wise-search-form-top" ){
-                                $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
-                            }
-
-                        }*/
-
-                        initPageElems();
-
-                        $("[name='form.buttons.prev']").prop("disabled" , false);
-                        $("[name='form.buttons.next']").prop("disabled" , false);
-
-                        $("[name='marine.buttons.prev']").prop("disabled" , false);
-                        $("[name='marine.buttons.next']").prop("disabled" , false);
-                    },
-                    complete:function(jqXHR, textStatus){
-                        if(textStatus === "success"){
-                            $(".wise-search-form-container").fadeIn("fast", function () {
-                                $("#wise-search-form #wise-search-form-top").siblings().fadeIn("fast");
-                            });
-                        }
-                        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
-                        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
-
-
-                        //$("s2id_form-widgets-marine_unit_id").select2().enable(true);
-
-                        $("#wise-search-form #loader-placeholder").remove();
-
-                        $("#form-widgets-marine_unit_id").prop("disabled", false);
-
-                        //if($("#wise-search-form select").val() === "--NOVALUE--" ) $("#wise-search-form select").val(window.WISE.marineUnit).trigger("change.select2");
-                        if ($('#wise-search-form select').hasClass("js-example-basic-single")) {
-                            // Select2 has been initialized
-
-                            if( ( $("#wise-search-form .select2-choice").width()/2 ) <= $("#wise-search-form #select2-chosen-3").width() ){
-                                $("#wise-search-form .select2-choice").css("width", "50%");
-                            } else if ( 2*( $("#wise-search-form .select2-choice").width()/3 ) <= $("#wise-search-form #select2-chosen-3").width() ) {
-                                $("#wise-search-form .select2-choice").css("width", "70%");
-                            }
-
-                        }
-
-                        if($("#wise-search-form-top").next().length === 0){
-                            $("#wise-search-form #wise-search-form-top").after("<span class='no-results'>No results found.</span>");
-                        }
-
-                        loading = false;
-                    },
-                    error:function (req, status, error) {
-                        if(window.WISE.formData.length > 0){
-                            var data = $($(window.WISE.formData)[0]).find(".field");
-                            $.each( data , function (indx, $field) {
-                                var chk = $($field).find(".option input[type='checkbox']:checked");
-                                if(chk.length > 0){
-                                    // TODO
-                                }
-
-                            });
-                        }
-
-                        $("#wise-search-form-top").find(".alert").remove();
-                        $("#wise-search-form-top").append('<div class="alert alert-danger alert-dismissible show" style="margin-top: 2rem;" role="alert">' +
-                            '  <strong>There was a error from the server.</strong> You should check in on some of those fields from the form.' +
-                            '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                            '    <span aria-hidden="true">&times;</span>' +
-                            '  </button>' +
-                            '</div>');
-
-                        $(".wise-search-form-container").find("[name='form.buttons.prev']").remove();
-                        $(".wise-search-form-container").find("[name='form.buttons.next']").remove();
-                        $("#form-widgets-marine_unit_id").prop("disabled", false);
-
-                        $("#wise-search-form-container-preloader").remove();
-                        $("#wise-search-form-preloader").remove();
-
-                        $("#ajax-spinner-form").hide();
-
-                        $("[name='form.buttons.prev']").prop("disabled" , true);
-                        $("[name='form.buttons.next']").prop("disabled" , true);
-
-                        $("[name='marine.buttons.prev']").prop("disabled" , true);
-                        $("[name='marine.buttons.next']").prop("disabled" , true);
-
-
-                        loading = false;
-                    }
-                });
-
+                continueHandler();
             });
 
     });
