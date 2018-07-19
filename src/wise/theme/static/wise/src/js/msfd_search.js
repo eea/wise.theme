@@ -317,73 +317,74 @@
         });
     }
 
+
+    function checkboxHandlerAll(ev){
+        ev.preventDefault();
+
+        var par = $(this).parent().parent();
+
+        window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
+
+        par.find(".apply-filters").show();
+        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+        $.each(rest, function (idx) {
+            if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
+        });
+
+
+
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+    }
+
+    function checkboxHandlerNone(ev){
+        ev.preventDefault();
+
+        $(this).prop("checked", false);
+        var par = $(this).parent().parent();
+        par.find(".apply-filters").show();
+        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+        window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
+
+        $.each(rest, function (idx) {
+            $(rest[idx]).prop("checked", false);
+            //if( $(rest[idx]).val() !== "none")
+        });
+
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+    }
+
+    function checkboxHandlerInvert(ev){
+        ev.preventDefault();
+        $(this).prop("checked", false);
+
+        var par = $(this).parent().parent();
+        par.find(".apply-filters").show();
+
+        window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
+
+        var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
+
+        var checked = rest.filter(function (ind, item) {
+            return $(item).is(":checked");
+        });
+
+        var unchecked = rest.filter(function (ind, item) {
+            return !$(item).is(":checked");
+        });
+
+        $.each(checked, function (idx) {
+            $(checked[idx]).prop("checked", false);
+        });
+
+        $.each(unchecked, function (idx) {
+            $(unchecked[idx]).prop("checked", true);
+        });
+        //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
+    }
+
     function addCheckboxHandlers(){
-        function checkboxHandlerAll(ev){
-            ev.preventDefault();
-
-            var par = $(this).parent().parent();
-
-            window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
-
-            par.find(".apply-filters").show();
-            var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
-
-            $.each(rest, function (idx) {
-                if($(rest[idx]).val() !== "all" && $(rest[idx]).val() !== "none") $(rest[idx]).prop("checked", true);
-            });
-
-
-
-            //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-        }
-
-        function checkboxHandlerNone(ev){
-            ev.preventDefault();
-
-            $(this).prop("checked", false);
-            var par = $(this).parent().parent();
-            par.find(".apply-filters").show();
-            var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
-
-            window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
-
-            $.each(rest, function (idx) {
-                $(rest[idx]).prop("checked", false);
-                //if( $(rest[idx]).val() !== "none")
-            });
-
-            //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-        }
-
-        function checkboxHandlerInvert(ev){
-            ev.preventDefault();
-            $(this).prop("checked", false);
-
-            var par = $(this).parent().parent();
-            par.find(".apply-filters").show();
-
-            window.WISE.blocks.push( $(this).parentsUntil(".field").parent().attr("id") );
-
-            var rest = filterInvalidCheckboxes($(par).find("[type='checkbox']"));
-
-            var checked = rest.filter(function (ind, item) {
-                return $(item).is(":checked");
-            });
-
-            var unchecked = rest.filter(function (ind, item) {
-                return !$(item).is(":checked");
-            });
-
-            $.each(checked, function (idx) {
-                $(checked[idx]).prop("checked", false);
-            });
-
-            $.each(unchecked, function (idx) {
-                $(unchecked[idx]).prop("checked", true);
-            });
-            //$(".wise-search-form-container .formControls #form-buttons-continue").trigger("click");
-        }
-
         var $controls = $(".controls");
         $controls.on("click","a[data-value='all']", checkboxHandlerAll);
         $controls.on("click", "a[data-value='none']", checkboxHandlerNone);
@@ -974,56 +975,7 @@
         loading = false;
     }
 
-    function continueHandler(){
-        var form =  $(".wise-search-form-container").find("form");
-        var url = form.attr("action");
 
-        // empty facets below given facet where we had an interaction
-        // this way we reset the configurations below the given facet
-        // with which we interacted with
-        var called_from = arguments[1];
-        var called_from_button = called_from && called_from['button'];
-        var empty_next_inputs;
-        if (!called_from || called_from_button) {
-            empty_next_inputs = function(el) {
-                var panel_group, subform_parent, subform_children;
-                panel_group = $(el).closest('.panel-group');
-                subform_parent = panel_group.closest('.subform');
-                subform_children = subform_parent.find('.subform');
-                panel_group.nextAll('.panel-group').find('.panel').empty();
-                if (subform_children.length) {
-                    subform_children.find('.panel').empty();
-                }
-            };
-            if (called_from_button) {
-                empty_next_inputs(called_from_button);
-            }
-            else {
-                $(".ui-autocomplete-input").each(function(idx, el) {
-                    if (el.value) {
-                        empty_next_inputs(el);
-                        return false;
-                    }
-                });
-            }
-        }
-
-        var strContent = $.getMultipartData("#" + form.attr("id"));
-
-        $.ajax({
-            type: "POST",
-            contentType: 'multipart/form-data; boundary='+strContent[0],
-            cache:false,
-            data: strContent[1],
-            dataType: "html",
-            url: url,
-            //processData:false,
-            beforeSend: beforeSendForm,
-            success:formSuccess,
-            complete:formAjaxComplete,
-            error:formAjaxError
-        });
-    }
 
     jQuery(document).ready(function($){
         initPageElems();
@@ -1053,7 +1005,56 @@
                     return true;
                 }
                 ev.preventDefault();
-                continueHandler();
+
+                var form =  $(".wise-search-form-container").find("form");
+                var url = form.attr("action");
+
+                // empty facets below given facet where we had an interaction
+                // this way we reset the configurations below the given facet
+                // with which we interacted with
+                var called_from = arguments[1];
+                var called_from_button = called_from && called_from['button'];
+                var empty_next_inputs;
+                if (!called_from || called_from_button) {
+                    empty_next_inputs = function(el) {
+                        var panel_group, subform_parent, subform_children;
+                        panel_group = $(el).closest('.panel-group');
+                        subform_parent = panel_group.closest('.subform');
+                        subform_children = subform_parent.find('.subform');
+                        panel_group.nextAll('.panel-group').find('.panel').empty();
+                        if (subform_children.length) {
+                            subform_children.find('.panel').empty();
+                        }
+                    };
+                    if (called_from_button) {
+                        empty_next_inputs(called_from_button);
+                    }
+                    else {
+                        $(".ui-autocomplete-input").each(function(idx, el) {
+                            if (el.value) {
+                                empty_next_inputs(el);
+                                return false;
+                            }
+                        });
+                    }
+                }
+
+                var strContent = $.getMultipartData("#" + form.attr("id"));
+
+                $.ajax({
+                    type: "POST",
+                    contentType: 'multipart/form-data; boundary='+strContent[0],
+                    cache:false,
+                    data: strContent[1],
+                    dataType: "html",
+                    url: url,
+                    //processData:false,
+                    beforeSend: beforeSendForm,
+                    success:formSuccess,
+                    complete:formAjaxComplete,
+                    error:formAjaxError
+                });
+
             });
 
     });
