@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" purge="False">
-  <javascript
+  <!--<javascript
     id="++theme++wise/js/msfd_search.js"
     cacheable="True" compression="safe" cookable="False"
     insert-after="faceted_edit.js"
-    enabled="True" expression="python: '@@msfd' in request.URL0"  inline="False"/>
+    enabled="True" expression="python: '@@msfd' in request.URL0"  inline="False"/>-->
 
   <javascript
     id="jquery.slick.js"
