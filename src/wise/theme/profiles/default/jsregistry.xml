@@ -1,15 +1,9 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" purge="False">
   <javascript
-    id="++theme++wise/js/msfd_search.js"
+    id="++theme++wise/js/jquery.slick.js"
     cacheable="True" compression="safe" cookable="False"
-    insert-after="faceted_edit.js"
-    enabled="True" expression="python: '@@msfd' in request.URL0"  inline="False"/>
-
-  <javascript
-    id="jquery.slick.js"
-    cacheable="True" compression="safe" cookable="False"
-    insert-after="++theme++wise/js/msfd_search.js"
+    insert-after="++resource++msfd_search.js"
     enabled="True" expression="python:context.default_page == 'marine-water'"  inline="False"/>
 
   <javascript
