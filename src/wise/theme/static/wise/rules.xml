@@ -12,9 +12,9 @@
     <theme href="header-template.html" />
     <replace css:content="a">
       <a>
-        <xsl:variable name="absolute" select="substring-after(current()/@href, '80/Plone')" />
-        <xsl:attribute name='href'><xsl:copy-of select="$absolute" /></xsl:attribute>
-        <!-- <xsl:copy&#45;of select="current()/@href" /> -->
+        <!-- <xsl:variable name="absolute" select="substring-after(current()/@href, '80/Plone')" />-->
+        <!--<xsl:attribute name='href'><xsl:copy-of select="$absolute" /></xsl:attribute>-->
+        <xsl:copy-of select="current()/@href" />
         <xsl:value-of select="current()/text()" />
       </a>
     </replace>
