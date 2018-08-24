@@ -5,8 +5,8 @@
                  search_input_id view/search_input_id;">
 
     <form id="searchGadget_form"
-          action="/indicator-catalogue"
-          tal:attributes="action string:/indicator-catalogue;
+          action="marine/data/indicator-catalogue"
+          tal:attributes="action string:marine/data/indicator-catalogue;
                           id string:${search_input_id}_form;">
         <div class="LSBox">
         <label class=""
