@@ -83,7 +83,3 @@ class NavigationViewlet(GlobalSectionsViewlet):
         image = scales.scale('image', scale='menu-icon')
 
         return image and image.absolute_url() or ''
-
-
-class SearchBoxViewlet(BaseSearchViewlet):
-    index = ViewPageTemplateFile('pt/searchbox.pt')
