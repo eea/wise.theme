@@ -17,6 +17,14 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="plone.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.SearchBoxViewlet"
+        layer="wise.theme.interfaces.IWiseThemeLayer"
+        permission="zope2.View"
+        />
+
 <!--     <browser:page
         name="topdb"
         for="*"

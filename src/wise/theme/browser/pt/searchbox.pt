@@ -1,0 +1,49 @@
+<!-- template override because we want to use the faceted navigation at /data-and-downloads for the search -->
+<div id="portal-searchbox"
+     i18n:domain="plone"
+     tal:define="navigation_root_url view/navigation_root_url;
+                 search_input_id view/search_input_id;">
+
+    <form id="searchGadget_form"
+          action="/indicator-catalogue"
+          tal:attributes="action string:/indicator-catalogue;
+                          id string:${search_input_id}_form;">
+        <div class="LSBox">
+        <label class=""
+               id="searchLabel"
+               tal:attributes="for search_input_id"
+               i18n:translate="text_search">Search:</label>
+
+        <input name="SearchableText"
+               type="text"
+               size="18"
+               value=""
+               title="Search Site"
+               placeholder="Search..."
+               accesskey="4"
+               i18n:attributes="title title_search_site;
+                                placeholder title_search_site"
+               tal:attributes="value request/form/SearchableText|nothing;
+                               id search_input_id"
+               class="searchField" />
+
+        <input class="searchButton"
+               type="submit"
+               value="Search"
+               i18n:attributes="value label_search;" />
+
+        <div class="LSResult" id="LSResult"><div class="LSShadow" id="LSShadow"></div></div>
+        </div>
+    </form>
+
+    <div id="portal-advanced-search"
+         class="hiddenStructure">
+        <a href="#"
+           tal:attributes="href string:/indicator-catalogue"
+           i18n:translate="label_advanced_search"
+           accesskey="5">
+            Advanced Search&hellip;
+        </a>
+    </div>
+
+</div>

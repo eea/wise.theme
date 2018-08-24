@@ -3,6 +3,8 @@ from plone import api
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
+from plone.app.layout.viewlets.common import \
+    SearchBoxViewlet as BaseSearchViewlet
 
 
 class CookiesViewlet(CookiePolicyViewlet):
@@ -81,3 +83,7 @@ class NavigationViewlet(GlobalSectionsViewlet):
         image = scales.scale('image', scale='menu-icon')
 
         return image and image.absolute_url() or ''
+
+
+class SearchBoxViewlet(BaseSearchViewlet):
+    index = ViewPageTemplateFile('pt/searchbox.pt')
