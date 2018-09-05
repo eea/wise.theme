@@ -34,3 +34,4 @@ report.html
 !.travis.yml
 !src/wise
 src/wise/theme/static/wise/node_modules
+*.pyc
