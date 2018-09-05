@@ -147,15 +147,16 @@
 
     <!-- Recreate the main content side with specially selected content -->
     <replace css:theme-children=".center-section">
-      <div id="wise-search-form">
+      <div id="content" style="margin:0; padding: 0;">
+        <div id="wise-search-form">
+          <xsl:for-each css:select="#wise-search-form-top">
+            <xsl:copy-of select="current()" ></xsl:copy-of>
+          </xsl:for-each>
 
-        <xsl:for-each css:select="#wise-search-form-top">
-          <xsl:copy-of select="current()" ></xsl:copy-of>
-        </xsl:for-each>
-
-        <xsl:for-each css:select="#wise-search-form .left-side-form">
-          <xsl:copy-of select="current()" ></xsl:copy-of>
-        </xsl:for-each>
+          <xsl:for-each css:select="#wise-search-form .left-side-form">
+            <xsl:copy-of select="current()" ></xsl:copy-of>
+          </xsl:for-each>
+        </div>
       </div>
     </replace>
 
