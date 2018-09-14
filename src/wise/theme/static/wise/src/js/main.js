@@ -138,7 +138,7 @@
                 }
             });
 
-            $(".center-section").prepend('<button class="btn btn-primary pull-right toggle-sidebar">Open sidebar</button>');
+            $(".center-section").prepend('<button class="btn btn-primary pull-right toggle-sidebar">Search filters</button>');
             $('.side-section').prepend('<button class="btn btn-danger close-sidebar">Close</button>');
 
             $('.toggle-sidebar').on('click', function() {
