@@ -132,7 +132,7 @@
 
   <!-- <xsl:template match="*//node()[contains(@class, 'left&#45;side&#45;form')]" > -->
   <!-- <xsl:template match="*//*[contains(@id, '#wise&#45;search&#45;form')]//node()[contains(@class, 'left&#45;side&#45;form')]" > -->
-  <xsl:template css:match=".left-side-form">
+  <xsl:template css:match="#wise-search-form .left-side-form">
     <xsl:for-each css:select=".field">
       <xsl:copy-of select="current()" ></xsl:copy-of>
     </xsl:for-each>
