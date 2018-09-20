@@ -127,7 +127,8 @@
 
   == MSFD-Search section ==
 
-  <!-- When copying content to right side, only do the fields and buttons -->
+  <!-- When copying content to right side, only copy the fields and buttons.
+       -->
   <xsl:template match="*//node()[contains(@class, 'left-side-form')]" >
     <xsl:for-each css:select=".field">
       <xsl:copy-of select="current()" ></xsl:copy-of>
@@ -142,17 +143,18 @@
 
   <rules css:if-content="#wise-search-form">
 
-    <!-- Copy everything to the right side -->
+    <!-- Copy everything to the right side. The content is that is copied
+         will be filtered by the xsl:template match-->
     <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
 
-    <!-- Recreate the main content side with specially selected content -->
+    <!-- Replace the main content side with the content that is suitable for
+         the left side -->
     <replace css:theme-children=".center-section">
       <div id="content" style="margin:0; padding: 0;">
         <div id="wise-search-form">
           <xsl:for-each css:select="#wise-search-form-top">
             <xsl:copy-of select="current()" ></xsl:copy-of>
           </xsl:for-each>
-
           <xsl:for-each css:select="#wise-search-form .left-side-form">
             <xsl:copy-of select="current()" ></xsl:copy-of>
           </xsl:for-each>
