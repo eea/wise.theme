@@ -127,8 +127,12 @@
 
   == MSFD-Search section ==
 
-  <!-- When copying content to right side, only do the fields and buttons -->
-  <xsl:template match="*//node()[contains(@class, 'left-side-form')]" >
+  <!-- When copying content to right side, only copy the fields and buttons.
+       -->
+
+  <!-- <xsl:template match="*//node()[contains(@class, 'left&#45;side&#45;form')]" > -->
+  <!-- <xsl:template match="*//*[contains(@id, '#wise&#45;search&#45;form')]//node()[contains(@class, 'left&#45;side&#45;form')]" > -->
+  <xsl:template css:match="#wise-search-form .left-side-form">
     <xsl:for-each css:select=".field">
       <xsl:copy-of select="current()" ></xsl:copy-of>
     </xsl:for-each>
@@ -142,17 +146,18 @@
 
   <rules css:if-content="#wise-search-form">
 
-    <!-- Copy everything to the right side -->
+    <!-- Copy everything to the right side. The content is that is copied
+         will be filtered by the xsl:template match-->
     <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
 
-    <!-- Recreate the main content side with specially selected content -->
+    <!-- Replace the main content side with the content that is suitable for
+         the left side -->
     <replace css:theme-children=".center-section">
       <div id="content" style="margin:0; padding: 0;">
         <div id="wise-search-form">
           <xsl:for-each css:select="#wise-search-form-top">
             <xsl:copy-of select="current()" ></xsl:copy-of>
           </xsl:for-each>
-
           <xsl:for-each css:select="#wise-search-form .left-side-form">
             <xsl:copy-of select="current()" ></xsl:copy-of>
           </xsl:for-each>
@@ -189,5 +194,11 @@
     css:content=".highlight-photos"
     href="/@@slides-frontpage"
     method="document" /> -->
+
+  <!-- add .fullwidth to .page-body -->
+  <prepend theme="//*[contains(@class, 'page-body')]" css:if-content="body.template-comp-national-descriptor">
+      <xsl:attribute name="class"><xsl:value-of select="//*[contains(@class, 'page-body')]/@class"/> fullwidth</xsl:attribute>
+  </prepend>
+
 
 </rules>
