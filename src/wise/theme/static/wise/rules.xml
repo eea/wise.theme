@@ -197,7 +197,10 @@
 
   <!-- add .fullwidth to .page-body -->
   <prepend theme="//*[contains(@class, 'page-body')]" css:if-content="body.template-comp-national-descriptor">
-      <xsl:attribute name="class"><xsl:value-of select="//*[contains(@class, 'page-body')]/@class"/> fullwidth</xsl:attribute>
+      <xsl:attribute name="class">
+        <xsl:value-of select="//*[contains(@class, 'page-body')]/@class"/>page-body fullwidth
+      </xsl:attribute>
+
   </prepend>
 
 
