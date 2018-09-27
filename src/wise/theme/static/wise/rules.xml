@@ -176,6 +176,8 @@
     <drop css:theme=".side-section" />
   </rules>
 
+  <append css:theme='body' css:content="noscript[data-diazo-image='true']" />
+  <append css:theme='body' css:content="script[data-diazo='matomo-analytics']" />
   <append css:theme='body' css:content="script[data-diazo='google-analytics']" />
   <append css:theme='body' css:content="script[data-diazo-keep='true']" />
 
