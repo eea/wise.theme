@@ -3,6 +3,8 @@ from plone import api
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
+from plone.app.layout.viewlets.common import \
+    SearchBoxViewlet as BaseSearchViewlet
 
 
 class CookiesViewlet(CookiePolicyViewlet):

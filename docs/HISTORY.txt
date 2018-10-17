@@ -3,6 +3,8 @@ Changelog
 
 1.0dev (unreleased)
 ------------------
+* Change: Added matomo rules in diazo
+  [iulianpetchesi refs #98870]
 * Change: optimize footer image for web
   [ichim-david refs #96264]
 * Change: optimize header image for web
