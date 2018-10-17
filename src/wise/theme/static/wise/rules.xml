@@ -169,7 +169,7 @@
     <replace css:theme-children=".side-section" css:content="#portal-column-one" />
   </rules>
 
-  <rules css:if-content=".template-msfd-start">
+  <rules css:if-content=".drop-right-column">
     <drop css:theme=".side-section" />
   </rules>
 
@@ -181,7 +181,6 @@
       <xsl:value-of select="//*[contains(@class, 'page-body')]/@class"/>page-body fullwidth
     </xsl:attribute>
   </prepend>
-
 
   <append css:theme='body' css:content="noscript[data-diazo-image='true']" />
   <append css:theme='body' css:content="script[data-diazo='matomo-analytics']" />
