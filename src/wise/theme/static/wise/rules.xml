@@ -62,7 +62,7 @@
     <replace css:content="#portal-column-content" css:theme-children=".landing-content"></replace>
   </rules>
 
-  <!-- For Marine section, use index.html -->
+  <!-- For Marine homepage section, use index.html -->
   <rules css:if-content=".marine-homepage" css:if-not-content=".ajax_load">
     <theme href="index.html" css:if-content="#visual-portal-wrapper" />
   </rules>
@@ -127,11 +127,8 @@
 
   == MSFD-Search section ==
 
-  <!-- When copying content to right side, only copy the fields and buttons.
-       -->
+  <!-- When copying content to right side, only copy the fields and buttons.  -->
 
-  <!-- <xsl:template match="*//node()[contains(@class, 'left&#45;side&#45;form')]" > -->
-  <!-- <xsl:template match="*//*[contains(@id, '#wise&#45;search&#45;form')]//node()[contains(@class, 'left&#45;side&#45;form')]" > -->
   <xsl:template css:match="#wise-search-form .left-side-form">
     <xsl:for-each css:select=".field">
       <xsl:copy-of select="current()" ></xsl:copy-of>
@@ -176,6 +173,16 @@
     <drop css:theme=".side-section" />
   </rules>
 
+  <!-- add .fullwidth to .page-body -->
+  <prepend
+    theme="//*[contains(@class, 'page-body')]"
+    css:if-content=".full-width">
+    <xsl:attribute name="class">
+      <xsl:value-of select="//*[contains(@class, 'page-body')]/@class"/>page-body fullwidth
+    </xsl:attribute>
+  </prepend>
+
+
   <append css:theme='body' css:content="noscript[data-diazo-image='true']" />
   <append css:theme='body' css:content="script[data-diazo='matomo-analytics']" />
   <append css:theme='body' css:content="script[data-diazo='google-analytics']" />
@@ -189,21 +196,5 @@
 
   <drop css:content=".searchSection" />
   <replace css:content="#portal-searchbox" css:theme=".search-container" />
-
- <!--  <replace
-    css:if-content=".marine-homepage"
-    css:theme=".highlight-photos"
-    css:content=".highlight-photos"
-    href="/@@slides-frontpage"
-    method="document" /> -->
-
-  <!-- add .fullwidth to .page-body -->
-  <prepend theme="//*[contains(@class, 'page-body')]" css:if-content="body.template-comp-national-descriptor">
-      <xsl:attribute name="class">
-        <xsl:value-of select="//*[contains(@class, 'page-body')]/@class"/>page-body fullwidth
-      </xsl:attribute>
-
-  </prepend>
-
 
 </rules>
