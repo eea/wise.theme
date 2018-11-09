@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-    $(".buton1").click(function(e) {
+    $(".autoTransl").click(function(e) {
         e.preventDefault();
         // debugger;
-        var text_div = $(this).parent('ul').parent('div').siblings('div');
+        var text_div = $(this).parent().parent('ul').parent('div').siblings('div');
         var text = text_div.children('.text').text();
         var buton = $(this);
         var target_languages = ['EN'];
@@ -73,10 +73,10 @@ $(document).ready(function(){
     $('.editTransl').click(function(e) {
       e.preventDefault();
 
-      var text_div = $(this).parent('ul').parent('div').siblings('div');
+      var text_div = $(this).parent().parent('ul').parent('div').siblings('div');
       var translation = text_div.children('.transl').text();
 
-      var form = $(this).parent('ul').parent('div').siblings('div').children('form');
+      var form = $(this).parent().parent('ul').parent('div').siblings('div').children('form');
       form[0].style.display = 'block';
       form[0].elements['new_transl'].value = translation;
 
