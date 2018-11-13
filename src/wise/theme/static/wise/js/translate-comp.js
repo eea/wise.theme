@@ -33,7 +33,8 @@ $(document).ready(function(){
                     success: function(translation) {
                         if (translation) {
                             //debugger;
-                            text_div.children('.transl').text(translation)
+                            //text_div.children('.transl').text(translation)
+                            location.reload();
                         }
                         else {
                             this.tryCount++;
@@ -71,32 +72,30 @@ $(document).ready(function(){
     });
 
     $('.editTransl').click(function(e) {
-      e.preventDefault();
+      //e.preventDefault();
 
       var text_div = $(this).parent().parent('ul').parent('div').siblings('div');
-      var translation = text_div.children('.transl').text();
+      var old_translation = text_div.children('.transl').text();
+      var orig_text = text_div.children('.text').text();
 
-      var form = $(this).parent().parent('ul').parent('div').siblings('div').children('form');
-      form[0].style.display = 'block';
-      form[0].elements['new_transl'].value = translation;
+      $('#transl-original-text').text(orig_text);
+      $('#transl-old-translation').text(old_translation);
+      $('#form-edit-translation')[0].elements['new_transl'].value = old_translation
 
     });
 
     $('.submitTransl').click(function(e) {
       e.preventDefault();
 
-      var text_div = $(this).parent().parent()
-      var orig_text = text_div.children('.text').text()
+      var orig_text = $(this).parent().parent().siblings('#transl-original-text').text()
+      
+      var form = $(this).parent().parent();
+      var translation = form[0].elements['new_transl'].value
 
       //debugger;
 
-      var form = $(this).parent();
-      var translation = form[0].elements['new_transl'].value
-
       $.ajax({
           form: form,
-          text_div: text_div,
-          translation: translation,
           type: 'POST',
           url: './translation-callback2',
           dataType: 'json',
@@ -106,14 +105,30 @@ $(document).ready(function(){
           },
           success: function(result) {
             //debugger;
-            form[0].style.display = 'none';
-            text_div.children('.transl').text(translation)
+            location.reload();
           },
           error: function(result) {
             alert('ERROR saving translation!');
           }
       });
+    });
 
+    $('.btn-translate-orig').click(function(e) {
+      //debugger;
+      $(this)[0].classList.add('active')
+      $(this).siblings('.btn-translate-transl')[0].classList.remove('active')
+
+      $(this).parent().siblings('.text')[0].classList.add('active')
+      $(this).parent().siblings('.transl')[0].classList.remove('active')
+    });
+
+    $('.btn-translate-transl').click(function(e) {
+      //debugger;
+      $(this)[0].classList.add('active')
+      $(this).siblings('.btn-translate-orig')[0].classList.remove('active')
+
+      $(this).parent().siblings('.text')[0].classList.remove('active')
+      $(this).parent().siblings('.transl')[0].classList.add('active')
     });
 
 });
