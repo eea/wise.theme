@@ -26,7 +26,7 @@ $(document).ready(function(){
                     type: "POST",
                     url: "./request-translation2",
                     tryCount : 0,
-                    retryLimit : 10,
+                    retryLimit : 20,
                     data: {
                         "from_annot": result.externalRefId,
                     },
