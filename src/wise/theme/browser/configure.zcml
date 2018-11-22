@@ -1,72 +1,66 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:cmf="http://namespaces.zope.org/cmf"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="wise.theme">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:cmf="http://namespaces.zope.org/cmf"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="wise.theme">
 
-    <browser:viewlet
-        name="tlspu.cookiepolicy"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        class=".viewlets.CookiesViewlet"
-        layer="wise.theme.interfaces.IWiseThemeLayer"
-        permission="zope2.View"
-        />
-
-    <browser:viewlet
-        name="plone.searchbox"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        layer="wise.theme.interfaces.IWiseThemeLayer"
-        permission="zope2.View"
-        class="plone.app.layout.viewlets.common.SearchBoxViewlet"
-        template="pt/searchbox.pt"
-        />
-
-<!--     <browser:page
-        name="topdb"
-        for="*"
-        class=".viewlets.GoToPDB"
-        permission="zope.Public"
-        /> -->
-
-    <browser:page
-        name="slides-frontpage"
-        for="*"
-        permission="zope.Public"
-        template="pt/slides.pt"
-        class=".misc.FrontpageSlidesView"
+  <browser:viewlet
+    name="tlspu.cookiepolicy"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+    class=".viewlets.CookiesViewlet"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    permission="zope2.View"
     />
 
-    <!-- The navigation menu override -->
-    <browser:viewlet
-        name="plone.global_sections"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".viewlets.NavigationViewlet"
-        permission="zope2.View"
-        layer="wise.theme.interfaces.IWiseThemeLayer"
-    />
-    <browser:page
-        name="external-template-head"
-        for="*"
-        template="pt/external-template-head.pt"
-        permission="zope2.View"
-    />
-    <browser:page
-        name="external-template-header"
-        for="*"
-        template="pt/external-template-header.pt"
-        permission="zope2.View"
-        class=".externaltemplates.ExternalTemplateHeader"
+  <browser:viewlet
+    name="plone.searchbox"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    permission="zope2.View"
+    class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+    template="pt/searchbox.pt"
     />
 
-    <browser:page
-        name="external-template-footer"
-        for="*"
-        template="pt/external-template-footer.pt"
-        permission="zope2.View"
+  <browser:page
+    name="slides-frontpage"
+    for="*"
+    permission="zope.Public"
+    template="pt/slides.pt"
+    class=".misc.FrontpageSlidesView"
     />
+
+  <!-- The navigation menu override -->
+  <browser:viewlet
+    name="plone.global_sections"
+    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    class=".viewlets.NavigationViewlet"
+    permission="zope2.View"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    />
+  <browser:page
+    name="external-template-head"
+    for="*"
+    template="pt/external-template-head.pt"
+    permission="zope2.View"
+    />
+  <browser:page
+    name="external-template-header"
+    for="*"
+    template="pt/external-template-header.pt"
+    permission="zope2.View"
+    class=".externaltemplates.ExternalTemplateHeader"
+    />
+
+  <browser:page
+    name="external-template-footer"
+    for="*"
+    template="pt/external-template-footer.pt"
+    permission="zope2.View"
+    />
+
 </configure>
