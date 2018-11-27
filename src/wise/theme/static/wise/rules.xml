@@ -106,7 +106,12 @@
 
   <copy attributes="href title" css:content="#portal-logo" css:theme=".brand a" />
 
-  <replace css:theme-children=".breadcrumbs" css:content="#portal-breadcrumbs" method="raw"/>
+  <rules css:if-not-content=".subsection-compliance-module">
+    <replace css:theme-children=".breadcrumbs" css:content="#portal-breadcrumbs" method="raw"/>
+  </rules>
+
+  <rules css:if-content=".subsection-compliance-module">
+  </rules>
 
   <drop css:content="#viewlet-above-content #portal-breadcrumbs" />
 
