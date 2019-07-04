@@ -9,6 +9,8 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="wise.theme">
 
+  <include file="overrides.zcml" />
+
   <browser:viewlet
     name="tlspu.cookiepolicy"
     manager="plone.app.layout.viewlets.interfaces.IBelowContent"
