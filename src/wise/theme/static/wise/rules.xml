@@ -94,6 +94,10 @@
   <drop css:content="head link[rel='apple-touch-icon']" />
   <drop css:theme="script[data-drop='true']" />
 
+  Sentry integration
+  <after theme-children="/html/body" content="//*[@id='sentry-config']" method="raw" />
+  <drop content="//*[@id='sentry']" method="raw" />
+
   <merge attributes="class" css:content="body" css:theme="body" />
   <copy attributes="id dir" css:content="body" css:theme="body" />
   <copy attributes="role" css:content="content" css:theme="contentspace" />
