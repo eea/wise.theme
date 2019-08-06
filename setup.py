@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 """Installer for the wise.theme package."""
 
-from setuptools import find_packages
-from setuptools import setup
-
+from setuptools import find_packages, setup
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -14,7 +12,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='wise.theme',
-    version='1.0a2',
+    version='2.0a1',
     description="WISE Theme",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers

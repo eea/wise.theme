@@ -43,7 +43,7 @@
 
   <plone:static
     name="wise"
-    directory="static/wise"
+    directory="static/wisev2"
     type="theme" />
 
 </configure>

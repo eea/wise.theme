@@ -9,60 +9,61 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="wise.theme">
 
-  <include file="overrides.zcml" />
-
-  <browser:viewlet
-    name="tlspu.cookiepolicy"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-    class=".viewlets.CookiesViewlet"
-    layer="wise.theme.interfaces.IWiseThemeLayer"
-    permission="zope2.View"
-    />
-
-  <browser:viewlet
-    name="plone.searchbox"
-    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-    layer="wise.theme.interfaces.IWiseThemeLayer"
-    permission="zope2.View"
-    class="plone.app.layout.viewlets.common.SearchBoxViewlet"
-    template="pt/searchbox.pt"
-    />
-
-  <browser:page
-    name="slides-frontpage"
-    for="*"
-    permission="zope.Public"
-    template="pt/slides.pt"
-    class=".misc.FrontpageSlidesView"
-    />
-
-  <!-- The navigation menu override -->
-  <browser:viewlet
-    name="plone.global_sections"
-    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-    class=".viewlets.NavigationViewlet"
-    permission="zope2.View"
-    layer="wise.theme.interfaces.IWiseThemeLayer"
-    />
-  <browser:page
-    name="external-template-head"
-    for="*"
-    template="pt/external-template-head.pt"
-    permission="zope2.View"
-    />
-  <browser:page
-    name="external-template-header"
-    for="*"
-    template="pt/external-template-header.pt"
-    permission="zope2.View"
-    class=".externaltemplates.ExternalTemplateHeader"
-    />
-
-  <browser:page
-    name="external-template-footer"
-    for="*"
-    template="pt/external-template-footer.pt"
-    permission="zope2.View"
-    />
+  Disabled for Plone5 new theme, will need to be enabled selectively, after testing
+  <!-- <include file="overrides.zcml" /> -->
+  <!--  -->
+  <!-- <browser:viewlet -->
+  <!--   name="tlspu.cookiepolicy" -->
+  <!--   manager="plone.app.layout.viewlets.interfaces.IBelowContent" -->
+  <!--   class=".viewlets.CookiesViewlet" -->
+  <!--   layer="wise.theme.interfaces.IWiseThemeLayer" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
+  <!--  -->
+  <!-- <browser:viewlet -->
+  <!--   name="plone.searchbox" -->
+  <!--   manager="plone.app.layout.viewlets.interfaces.IPortalHeader" -->
+  <!--   layer="wise.theme.interfaces.IWiseThemeLayer" -->
+  <!--   permission="zope2.View" -->
+  <!--   class="plone.app.layout.viewlets.common.SearchBoxViewlet" -->
+  <!--   template="pt/searchbox.pt" -->
+  <!--   /> -->
+  <!--  -->
+  <!-- <browser:page -->
+  <!--   name="slides&#45;frontpage" -->
+  <!--   for="*" -->
+  <!--   permission="zope.Public" -->
+  <!--   template="pt/slides.pt" -->
+  <!--   class=".misc.FrontpageSlidesView" -->
+  <!--   /> -->
+  <!--  -->
+  <!-- <!&#45;&#45; The navigation menu override &#45;&#45;> -->
+  <!-- <browser:viewlet -->
+  <!--   name="plone.global_sections" -->
+  <!--   manager="plone.app.layout.viewlets.interfaces.IPortalHeader" -->
+  <!--   class=".viewlets.NavigationViewlet" -->
+  <!--   permission="zope2.View" -->
+  <!--   layer="wise.theme.interfaces.IWiseThemeLayer" -->
+  <!--   /> -->
+  <!-- <browser:page -->
+  <!--   name="external&#45;template&#45;head" -->
+  <!--   for="*" -->
+  <!--   template="pt/external&#45;template&#45;head.pt" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
+  <!-- <browser:page -->
+  <!--   name="external&#45;template&#45;header" -->
+  <!--   for="*" -->
+  <!--   template="pt/external&#45;template&#45;header.pt" -->
+  <!--   permission="zope2.View" -->
+  <!--   class=".externaltemplates.ExternalTemplateHeader" -->
+  <!--   /> -->
+  <!--  -->
+  <!-- <browser:page -->
+  <!--   name="external&#45;template&#45;footer" -->
+  <!--   for="*" -->
+  <!--   template="pt/external&#45;template&#45;footer.pt" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
 
 </configure>
