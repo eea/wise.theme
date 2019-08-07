@@ -9,7 +9,23 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="wise.theme">
 
-  Disabled for Plone5 new theme, will need to be enabled selectively, after testing
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="wise.theme.interfaces.IWiseThemeLayer"
+      />
+
+  <!-- Publish static files -->
+  <plone:static
+      name="wise.theme"
+      type="plone"
+      directory="static"
+      />
+
+
+  <!-- Disabled for Plone5 new theme, will need to be enabled selectively, after testing -->
+
   <!-- <include file="overrides.zcml" /> -->
   <!--  -->
   <!-- <browser:viewlet -->

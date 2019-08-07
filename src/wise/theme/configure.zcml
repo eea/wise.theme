@@ -1,49 +1,42 @@
 <configure
-  xmlns="http://namespaces.zope.org/zope"
-  xmlns:plone="http://namespaces.plone.org/plone"
-  xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-  xmlns:i18n="http://namespaces.zope.org/i18n"
-  i18n_domain="wise.theme">
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="wise.theme">
 
   <i18n:registerTranslations directory="locales" />
 
-  <!-- <includeDependencies package="." /> -->
-
-  <include package="plone.resource" file="meta.zcml"/>
-  <include package="z3c.jbot" file="meta.zcml" />
-  <include package='plone.app.theming' />
+  <includeDependencies package="." />
 
   <include package=".browser" />
 
-  <browser:jbot
-    directory="overrides"
-    layer="wise.theme.interfaces.IWiseThemeLayer"
-    />
+  <plone:static
+      directory="theme"
+      type="theme"
+      name="wise-theme"
+      />
 
   <genericsetup:registerProfile
-    name="default"
-    title="wise.theme"
-    directory="profiles/default"
-    description="Installs the Plone theme package wise.theme."
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-    />
+      name="default"
+      title="Plone Theme: WISE Theme"
+      directory="profiles/default"
+      description="Installs the Plone theme package wise.theme."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
 
   <genericsetup:registerProfile
-    name="uninstall"
-    title="wise.theme (uninstall)"
-    directory="profiles/uninstall"
-    description="Uninstalls the Plone theme package wise.theme."
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-    />
+      name="uninstall"
+      title="Uninstall: Plone Theme: WISE Theme"
+      directory="profiles/uninstall"
+      description="Uninstalls the Plone theme package wise.theme."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
 
   <utility
-    factory=".setuphandlers.HiddenProfiles"
-    name="wise.theme-hiddenprofiles" />
-
-  <plone:static
-    name="wise"
-    directory="static/wisev2"
-    type="theme" />
+      factory=".setuphandlers.HiddenProfiles"
+      name="wise.theme-hiddenprofiles" />
 
 </configure>

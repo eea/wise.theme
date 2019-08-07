@@ -1,0 +1,5 @@
+recursive-include wise *
+include docs/*
+global-exclude *pyc
+
+global-include *.mo

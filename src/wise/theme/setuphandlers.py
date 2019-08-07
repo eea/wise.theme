@@ -2,6 +2,7 @@
 from Products.CMFPlone.interfaces import INonInstallable
 from zope.interface import implementer
 
+
 @implementer(INonInstallable)
 class HiddenProfiles(object):
 
@@ -10,3 +11,13 @@ class HiddenProfiles(object):
         return [
             'wise.theme:uninstall',
         ]
+
+
+def post_install(context):
+    """Post install script"""
+    # Do something at the end of the installation of this package.
+
+
+def uninstall(context):
+    """Uninstall script"""
+    # Do something at the end of the uninstallation of this package.
