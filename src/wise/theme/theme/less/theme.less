@@ -3,6 +3,7 @@
 // ### PLONE IMPORTS ###
 
 @barceloneta_path: "barceloneta/less";
+@wise_path: "custom/less";
 
 //*// Core variables and mixins
 @import "@{barceloneta_path}/fonts.plone.less";
@@ -90,4 +91,15 @@
 // ### END OF UTILS ###
 
 // include our custom css/less
-@import "custom.less";
+// @import "custom.less";
+
+
+// ### CUSTOM WISE IMPORTS ###
+
+@import "@{wise_path}/variables.wise.less";
+@import "@{wise_path}/base.wise.less";
+@import "@{wise_path}/breadcrumb.wise.less";
+@import "@{wise_path}/menu.wise.less";
+@import "@{wise_path}/header.wise.less";
+@import "@{wise_path}/slider.wise.less";
+@import "@{wise_path}/footer.wise.less";

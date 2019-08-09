@@ -37,6 +37,11 @@
   <!-- full-width breadcrumb -->
   <replace css:content="#viewlet-above-content" css:theme="#above-content" />
 
+  <!--hide breadcrumb on homepage-->
+  <rules css:if-content=".section-front-page">
+    <drop css:content="#viewlet-above-content"/>
+  </rules>
+
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">
 

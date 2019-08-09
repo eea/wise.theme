@@ -22,20 +22,6 @@ Installation
     ``bin/buildout``
 
 
-Development
-------------
-
-`` npm install ``
-
-For development mode, run:
-
-`` grunt watch ``
-
-For production mode, run:
-
-`` grunt ``
-
-
 Contribute
 ----------
 

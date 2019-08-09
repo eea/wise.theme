@@ -33,5 +33,5 @@ report.html
 !.gitkeep
 !.travis.yml
 !src/wise
-/node_modules
 *.pyc
+src/wise/theme/theme/node_modules
