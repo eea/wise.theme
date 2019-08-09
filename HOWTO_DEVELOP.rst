@@ -13,11 +13,11 @@ After executing these commands you can run grunt to watch for any less changes::
 
 This will make sure that the many .less files are compiled to .css on the fly and then served up from the theme.
 
-For development mode, run:
+For development mode, run::
 
     $ grunt development
 
-For production mode, run:
+For production mode, run::
 
     $ grunt production
 
