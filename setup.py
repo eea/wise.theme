@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 """Installer for the wise.theme package."""
 
-import os
-
 from setuptools import find_packages, setup
 
 long_description = '\n\n'.join([
-    open('README.rst').read(),
+    open('README.md').read(),
     open('CONTRIBUTORS.rst').read(),
     open('CHANGES.rst').read(),
 ])
@@ -32,9 +30,9 @@ setup(
     author_email='krisztina.elekes@eaudeweb.ro',
     url='https://github.com/eea/wise.theme',
     license='GPL version 2',
-    packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src', exclude=['ez_setup']),
     namespace_packages=['wise'],
-    # package_dir={'': 'src'},
+    package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
     install_requires=[
