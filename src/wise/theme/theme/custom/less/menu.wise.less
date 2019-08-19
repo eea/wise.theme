@@ -1,1 +1,258 @@
-//*// MENU //*//
+//*// SITE NAV //*//
+
+.plone-nav {
+  margin-bottom: 0;
+  padding-left: 0;
+  &:extend(.clearfix all);
+  > li {
+    position: relative;
+    display: block;
+
+    > a {
+      position: relative;
+      display: block;
+      padding: 0.5em 1em 1em 1em;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  > li:last-child {
+    > a {
+      padding-right: 0;
+    }
+  }
+}
+
+.plone-navbar {
+  .clearfix();
+  position: relative;
+  // Prevent floats from breaking the navbar
+  &:extend(.clearfix all);
+
+}
+
+.plone-navbar-header {
+  .clearfix(); //without extend
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    // float: left;
+  }
+}
+
+.plone-navbar-collapse {
+  overflow-x: visible;
+  // padding-right: @plone-sitenav-padding-horizontal;
+  // padding-left:  @plone-sitenav-padding-horizontal;
+  // border-top: 1px solid transparent;
+  // box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+  &:extend(.clearfix all);
+  -webkit-overflow-scrolling: touch;
+
+  display: none;
+  &.in {
+    overflow-y: auto;
+    display: block;
+  }
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    // width: auto;
+    // border-top: 0;
+    // box-shadow: none;
+
+    &.plone-collapse {
+      display: block !important;
+      height: auto !important;
+      padding-bottom: 0; // Override default setting
+      overflow: visible !important;
+    }
+
+    &.in {
+      overflow-y: visible;
+    }
+
+    // Undo the collapse side padding for navbars with containers to ensure
+    // alignment of right-aligned contents.
+    .navbar-fixed-top &,
+    .navbar-static-top &,
+    .navbar-fixed-bottom & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.plone-navbar-toggle {
+  z-index: 1; //just in case
+  position: relative;
+  float: right;
+  margin-top:  6px;
+  margin-bottom: 3px;
+  padding: 6px 10px;
+
+  background-color: transparent;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid white;
+  border-radius: @plone-border-radius-base;
+
+  // We remove the `outline` here, but later compensate by attaching `:hover`
+  // styles to `:focus`.
+  &:focus {
+    outline: 0;
+  }
+  // &:hover {
+  // 	background-color: darken(@plone-sitenav-link-hover-bg, 15%);
+  // 	border-color: darken(@plone-sitenav-link-hover-bg, 25%);
+  // }
+
+
+  // Menu (That option with a word, witch is language-dependant, is to ensure a higher tap ratio on the menu)
+  .icon-bar:after {
+  	content:"Menu";
+  	position: relative;
+  	color: #fff;
+  }
+  .icon-bar + .icon-bar:after {content: '';}
+  //end menu icon-bar
+
+  @media (min-width: @plone-grid-float-breakpoint) {
+    display: none;
+  }
+}
+
+.plone-navbar-nav {
+  // margin: -1px -@plone-sitenav-padding-horizontal -1px;
+
+  > li > a {
+    color: @blue;
+  }
+  > .selected > a {
+    &,
+    &:hover,
+    &:focus {
+      color: @darker-blue;
+    }
+  }
+
+
+  // Uncollapse the nav
+  @media (min-width: @plone-grid-float-breakpoint) {
+    float: left;
+
+    > li {
+      > .submenu {
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        border-radius: 7px;
+        position: absolute !important;
+        left: 0;
+        top: 2.5em;
+        min-width: 18em;
+        display: none;
+        > li {
+          padding: 1em;
+          > a {
+            color: @blue;
+          }
+          li {
+            a {
+              font-size: 15px;
+              font-weight: 300;
+            }
+          }
+        }
+        > li:not(:last-child) {
+          border-bottom: 1px solid #ededed;
+        }
+
+        .submenu {
+          display: block;
+        }
+      }
+
+      // submenu top arrow
+      >.submenu:before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 30px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #fff;
+        z-index: 2;
+      }
+      >.submenu:after {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: 28px;
+        width: 0;
+        height: 0;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+        border-bottom: 12px solid rgba(0,0,0, 0.05);
+        z-index: 1;
+      }
+      >.aligned-submenu {
+        right: 0;
+        left: auto;
+      }
+      >.aligned-submenu:before {
+        left: auto;
+        right: 30px;
+      }
+      >.aligned-submenu:after {
+        left: auto;
+        right: 28px;
+      }
+    }
+
+    li {
+      .submenu {
+        background-color: #fff;
+        position: relative;
+        text-align: left;
+
+        li:hover ul {
+          left: auto !important;
+        }
+
+        a {
+          color: @dark-blue;
+          min-width: auto;
+          padding: 8px 0;
+          &:hover {
+            background-color: transparent;
+            text-decoration: underline;
+            color: @orange;
+          }
+        }
+
+        .opener {
+          display: none;
+        }
+      }
+    }
+
+    > li:hover > .submenu {
+      display: block;
+    }
+
+    > li {
+      float: left;
+    }
+
+    &.navbar-right:last-child {
+      margin-right: -@plone-sitenav-padding-horizontal;
+    }
+  }
+}
+
+#mainnavigation-wrapper {
+  .container {
+    width: auto;
+  }
+}

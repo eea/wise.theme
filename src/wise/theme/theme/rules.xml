@@ -95,7 +95,20 @@
   </rules>
 
   <!-- Content header -->
-  <replace css:theme="#portal-top" css:content-children="#portal-top" />
+  <!-- <replace css:theme="#portal-top" css:content-children="#portal-top" /> -->
+
+  <!-- Global Search box -->
+  <copy attributes="action method" css:content="#portal-searchbox form" css:theme=".search-modal form" />
+
+  <replace css:theme="#portal-anontools" css:content-children="#portal-anontools" />
+
+  <!-- login modal -->
+  <copy attributes="class href data-pat-plone-modal" css:content="#personaltools-login" css:theme=".login-link"/>
+
+  <!-- hide login icon for logged in users -->
+  <rules if-not="$is_anon">
+    <drop css:theme=".login-link" />
+  </rules>
 
   <!-- Footer -->
   <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" />

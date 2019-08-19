@@ -22,11 +22,16 @@ module.exports = function(grunt) {
 
   // Tasks
   grunt.registerTask('development', [
-    'less:development'
+    'less:development',
+    // 'concat',
+    'copy'
   ]);
 
   grunt.registerTask('production', [
-    'less:production'
+    'less:production',
+    // 'concat',
+     'copy',
+    'uglify',
   ]);
 
   grunt.registerTask('default', [

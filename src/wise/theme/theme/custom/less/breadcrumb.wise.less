@@ -1,1 +1,36 @@
 //*// BREADCRUMBS //*//
+
+.plone-breadcrumb {
+  margin-top: 0;
+  background-color: transparent;
+
+  ol {
+    padding: 0.5em 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 14px;
+
+    li {
+      font-weight: 400;
+      a {
+        color: #fff;
+      }
+    }
+    li:last-child {
+      padding-right: 0;
+    }
+    li + li:before  {
+      content: "/";
+      border: none;
+      top: 0;
+    }
+    li + li:after {
+      border: none;
+    }
+  }
+}
+
+#breadcrumbs-current {
+  color: #dfdede;
+}

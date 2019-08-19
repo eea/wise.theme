@@ -7,12 +7,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="icon" type="image/x-icon" href="images/marine_favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="images/marine_favicon.ico">
-    <link rel="apple-touch-icon" href="images/marine_favicon-57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/marine_favicon-114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/marine_favicon-72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/marine_favicon-144.png">
+    <link rel="icon" type="image/x-icon" href="static/images/marine_favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/marine_favicon.ico">
+    <link rel="apple-touch-icon" href="static/images/marine_favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="static/images/marine_favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="static/images/marine_favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="static/images/marine_favicon-144.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
 
     <meta name="application-name" content="WISE Marine"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
@@ -23,7 +25,63 @@
     <section id="portal-toolbar">
     </section>
     <div class="outer-wrapper">
+
       <header id="content-header" role="banner">
+        <div class="container">
+          <header id="portal-top">
+            <div class="header-container">
+
+              <div class="left-logo-section">
+                <div class="logo-wrapper">
+                  <div class="site-logo">
+                    <a href="/">
+                      <img src="static/images/marine-logo.png"/>
+                    </a>
+                  </div>
+                  <span class="logo-text">
+                    Marine Information System for Europe
+                  </span>
+                </div>
+              </div>
+
+              <div class="right-actions-section">
+                <div class="navigation-wrapper">
+
+                  <div class="top-actions">
+                    <div class="search-wrapper">
+                      <i class="fa fa-search search-icon"></i>
+                      <div class="search-modal">
+                        <form>
+                          <input type="text" placeholder="Search all site ..."/>
+                          <span></span>
+                          <button class="search-submit"
+                                  aria-label="Search">
+                                  Search
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+
+                    <div class="user-wrapper">
+                      <a class="login-link"><i class="fa fa-user fa-user-circle-o"></i></a>
+                    </div>
+                  </div>
+
+                  <div id="mainnavigation-wrapper">
+                    <div id="mainnavigation">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </header>
+        </div>
+      </header>
+
+
+      <!-- <header id="content-header" role="banner">
         <div class="container">
           <header id="portal-top">
           </header>
@@ -34,17 +92,14 @@
       <div id="mainnavigation-wrapper">
         <div id="mainnavigation">
         </div>
-      </div>
+      </div> -->
 
       <div id="above-content-wrapper">
-          <div id="above-content">
-          </div>
+        <div id="above-content">
+        </div>
       </div>
+
       <div class="container">
-
-        <!-- DELETE ME: -->
-        <h1 class="custom-theme-marker">Custom Plone theme based on Baceloneta</h1>
-
         <div class="row">
           <aside id="global_statusmessage"></aside>
         </div>
@@ -57,9 +112,12 @@
           </div>
         </main><!--/row-->
       </div><!--/container-->
+
     </div> <!--/outer-wrapper -->
+
     <footer id="portal-footer-wrapper" role="contentinfo">
       <div class="container" id="portal-footer"></div>
     </footer>
+
   </body>
 </html>

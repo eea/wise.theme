@@ -14,8 +14,31 @@ module.exports = {
           }
       },
       files: {
-        'less/theme-compiled.css': 'less/theme.local.less',
+        'static/css/theme-compiled.css': 'less/theme.local.less',
       }
+    }
+  },
+
+  copy: {
+    scripts: {
+        files: [
+            { expand: true,
+                flatten: true,
+                src: [
+                    'js/*.js'
+                ],
+                dest: 'static/js/'
+            }
+        ]
+    }
+  },
+
+  concat: {
+    scripts: {
+      src: [
+        'js/*.js'
+      ],
+      dest: 'static/js/theme-compiled.js'
     }
   },
 
@@ -27,6 +50,14 @@ module.exports = {
           'custom/less/*.less'
       ],
       tasks: ['less:development'],
+      options: {
+        nospawn: true
+      }
+    },
+    scripts: {
+      files: ['js/**/*.js'],
+      // tasks: ['concat'],
+      tasks: ['copy'],
       options: {
         nospawn: true
       }

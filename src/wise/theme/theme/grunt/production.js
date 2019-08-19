@@ -7,7 +7,7 @@ module.exports = {
         sourceMap: false
       },
       files: {
-          'less/theme-compiled.css': 'less/theme.local.less',
+          'static/css/theme-compiled.css': 'less/theme.local.less',
       }
     }
   },
@@ -24,5 +24,25 @@ module.exports = {
       dist: {
           src: 'less/*.css'
       }
+  },
+
+  concat: {
+    scripts: {
+      src: [
+        'js/**/*.js'
+      ],
+      dest: 'static/js/theme-compiled.js'
+    }
+  },
+
+  uglify: {
+    scripts: {
+      files: [{
+        expand: true,
+        cwd: 'static/js',
+        src: '**/*.js',
+        dest: 'static/js'
+      }]
+    }
   }
 };
