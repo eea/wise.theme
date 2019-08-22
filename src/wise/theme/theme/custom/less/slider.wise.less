@@ -1,1 +1,156 @@
 //* // SLIDER //*//
+
+.home-slider {
+  position: relative;
+  margin-bottom:2em;
+}
+
+.slider {
+  position: relative;
+}
+
+.slider-image-wrapper {
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 1em;
+  transform: translate(-50%,-50%);
+  height: auto;
+  margin: 0 auto;
+  min-height: 163px;
+  max-width: 1170px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.slider-title {
+  background-color: @dark-blue;
+  color: #fff;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.slider-title,
+.slider-description {
+  min-height: 163px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-image {
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+.slider-layer {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Arrows */
+
+.slider-arrows {
+  position: absolute;
+  top: -18px;
+  right: 0;
+}
+
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+  display: inline-block;
+  border-radius: 0;
+
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: @dark-blue;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  color: transparent;
+  outline: none;
+  background: @darker-blue;
+}
+
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+  opacity: 1;
+}
+
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: FontAwesome;
+  font-size: 20px;
+  line-height: 1;
+
+  opacity: .75;
+  color: white;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  margin-right: 2px;
+}
+
+[dir='rtl'] .slick-prev {
+  right: -25px;
+  left: auto;
+}
+
+.slick-prev:before {
+  content: '\f053';
+}
+
+[dir='rtl'] .slick-prev:before {
+  content: '\f053';
+}
+
+[dir='rtl'] .slick-next {
+  right: auto;
+  left: -25px;
+}
+
+.slick-next:before {
+  content: '\f054';
+}
+
+[dir='rtl'] .slick-next:before {
+  content: '\f054';
+}

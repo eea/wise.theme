@@ -41,6 +41,11 @@
   position: absolute;
   right: 1em;
   bottom: 0.5em;
+
+  img {
+    width: 139px;
+    height: 105px;
+  }
 }
 
 .bottom-nav {
@@ -93,5 +98,26 @@
 .footer-logo-item {
   img {
     margin-right: 2em;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .site-info-wrapper {
+    padding: 2em 0;
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f2f2f2;
+  }
+  .footer-content p,
+  .footer-logos-wrapper,
+  .bottom-nav {
+    text-align: center;
+  }
+
+  .eu-systems-wrapper {
+    float: none;
+  }
+
+  .footer-logos {
+    margin: 0 auto;
   }
 }

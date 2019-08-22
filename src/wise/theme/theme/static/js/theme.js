@@ -1,1 +1,0 @@
-$(document).ready(function(){$(".search-icon").click(function(){$(".search-modal").fadeToggle("fast")});var a=$("#portal-top"),b=$("#portal-globalnav"),c=b.children("li"),d=a.width();c.mouseenter(function(){var a=$(this),b=a.children(".submenu"),c=b.width();if(b.length>0)var e=b.offset().left;d-(c+e)<0&&b.addClass("aligned-submenu")})});

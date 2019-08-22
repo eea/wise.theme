@@ -28,21 +28,19 @@ module.exports = {
 
   concat: {
     scripts: {
-      src: [
-        'js/**/*.js'
-      ],
-      dest: 'static/js/theme-compiled.js'
+      files: {
+        'static/js/theme-compiled.js': [
+          'js/**/*.js',
+        ],
+      }
     }
   },
 
   uglify: {
     scripts: {
-      files: [{
-        expand: true,
-        cwd: 'static/js',
-        src: '**/*.js',
-        dest: 'static/js'
-      }]
+      files: {
+        'static/js/theme-compiled.js': ['static/js/theme-compiled.js']
+      }
     }
   }
 };

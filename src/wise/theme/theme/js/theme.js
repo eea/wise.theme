@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-  // HEADER
-
   // top search modal
   $('.search-icon').click(function() {
     $('.search-modal').fadeToggle('fast');
@@ -26,5 +24,19 @@ $(document).ready(function() {
     }
   });
 
+  // Homepage slider
+  if ($('.slider').slick) {
+    $('.slider').slick({
+      infinite: true,
+      speed: 700,
+      // autoplay:true,
+      // autoplaySpeed: 2000,
+      arrows: true,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    });
+
+    $('.slick-arrow').appendTo('.slider-arrows');
+  };
 
 });

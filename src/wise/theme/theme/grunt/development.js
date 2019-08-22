@@ -19,26 +19,27 @@ module.exports = {
     }
   },
 
-  copy: {
-    scripts: {
-        files: [
-            { expand: true,
-                flatten: true,
-                src: [
-                    'js/*.js'
-                ],
-                dest: 'static/js/'
-            }
-        ]
-    }
-  },
+  // copy: {
+  //   scripts: {
+  //       files: [
+  //           { expand: true,
+  //               flatten: true,
+  //               src: [
+  //                   'js/*.js'
+  //               ],
+  //               dest: 'static/js/'
+  //           }
+  //       ]
+  //   }
+  // },
 
   concat: {
     scripts: {
-      src: [
-        'js/*.js'
-      ],
-      dest: 'static/js/theme-compiled.js'
+      files: {
+        'static/js/theme-compiled.js': [
+          'js/**/*.js',
+        ],
+      }
     }
   },
 
@@ -56,8 +57,8 @@ module.exports = {
     },
     scripts: {
       files: ['js/**/*.js'],
-      // tasks: ['concat'],
-      tasks: ['copy'],
+      tasks: ['concat'],
+      // tasks: ['copy'],
       options: {
         nospawn: true
       }
