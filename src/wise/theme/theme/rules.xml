@@ -42,6 +42,11 @@
     <drop css:content="#viewlet-above-content"/>
   </rules>
 
+  <rules css:if-not-content=".section-front-page">
+    <theme href="page.html" />
+  </rules>
+
+
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">
 
