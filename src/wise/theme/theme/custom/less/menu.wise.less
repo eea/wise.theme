@@ -1,67 +1,14 @@
 //*// SITE NAV //*//
 
-.plone-nav {
-  margin-bottom: 0;
-  padding-left: 0;
-  &:extend(.clearfix all);
-  > li {
-    position: relative;
-    display: block;
-
-    > a {
-      position: relative;
-      display: block;
-      padding: 0.5em 1em 1em 1em;
-      &:hover,
-      &:focus {
-        text-decoration: none;
-      }
-    }
-  }
-
-  > li:last-child {
-    > a {
-      padding-right: 0;
-    }
-  }
-}
-
-.plone-navbar {
-  .clearfix();
-  position: relative;
-  // Prevent floats from breaking the navbar
-  &:extend(.clearfix all);
-
-}
-
-.plone-navbar-header {
-  .clearfix(); //without extend
-
-  @media (min-width: @plone-grid-float-breakpoint) {
-    // float: left;
+#mainnavigation-wrapper {
+  .container {
+    width: auto;
   }
 }
 
 .plone-navbar-collapse {
-  overflow-x: visible;
-  // padding-right: @plone-sitenav-padding-horizontal;
-  // padding-left:  @plone-sitenav-padding-horizontal;
-  // border-top: 1px solid transparent;
-  // box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
-  &:extend(.clearfix all);
-  -webkit-overflow-scrolling: touch;
-
-  display: none;
-  &.in {
-    overflow-y: auto;
-    display: block;
-  }
 
   @media (min-width: @plone-grid-float-breakpoint) {
-    // width: auto;
-    // border-top: 0;
-    // box-shadow: none;
-
     &.plone-collapse {
       display: block !important;
       height: auto !important;
@@ -72,62 +19,128 @@
     &.in {
       overflow-y: visible;
     }
+  }
+}
 
-    // Undo the collapse side padding for navbars with containers to ensure
-    // alignment of right-aligned contents.
-    .navbar-fixed-top &,
-    .navbar-static-top &,
-    .navbar-fixed-bottom & {
-      padding-left: 0;
+ul.plone-nav {
+  margin-bottom: 0;
+  padding-left: 0;
+
+  li {
+    .submenu {
+      position: relative;
+    }
+  }
+
+  > li {
+    position: relative;
+    display: block;
+    float: left;
+    > a {
+      display: block;
+      color: @blue;
+      padding: 0.5em 1em 1em 1em;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    > .submenu {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      text-align: left;
+      border-radius: 7px;
+      position: absolute;
+      left: 0;
+      top: 2.5em;
+      min-width: 18em;
+      display: none;
+
+      li:hover ul {
+        left: auto !important;
+      }
+
+      > li {
+        padding: 1em;
+        li {
+          a {
+            font-size: 15px;
+            font-weight: 300;
+          }
+        }
+      }
+      > li:not(:last-child) {
+        border-bottom: 1px solid #ededed;
+      }
+
+      a {
+        color: @blue;
+        min-width: auto;
+        padding: 8px 0;
+
+        &:hover {
+          background-color: transparent;
+          text-decoration: underline;
+          color: @orange;
+        }
+      }
+
+      .opener {
+        display: none;
+      }
+
+      .submenu {
+        display: block;
+      }
+    }
+
+    // submenu top arrow
+    >.submenu:before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 30px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #fff;
+      z-index: 2;
+    }
+    >.submenu:after {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 28px;
+      width: 0;
+      height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 12px solid rgba(0,0,0, 0.05);
+      z-index: 1;
+    }
+    >.aligned-submenu {
+      right: 0;
+      left: auto;
+    }
+    >.aligned-submenu:before {
+      left: auto;
+      right: 30px;
+    }
+    >.aligned-submenu:after {
+      left: auto;
+      right: 28px;
+    }
+
+  }
+
+  > li:last-child {
+    > a {
       padding-right: 0;
     }
   }
-}
 
-.plone-navbar-toggle {
-  z-index: 1; //just in case
-  position: relative;
-  float: right;
-  margin-top:  6px;
-  margin-bottom: 3px;
-  padding: 6px 10px;
-
-  background-color: transparent;
-  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-  border: 1px solid white;
-  border-radius: @plone-border-radius-base;
-
-  // We remove the `outline` here, but later compensate by attaching `:hover`
-  // styles to `:focus`.
-  &:focus {
-    outline: 0;
-  }
-  // &:hover {
-  // 	background-color: darken(@plone-sitenav-link-hover-bg, 15%);
-  // 	border-color: darken(@plone-sitenav-link-hover-bg, 25%);
-  // }
-
-
-  // Menu (That option with a word, witch is language-dependant, is to ensure a higher tap ratio on the menu)
-  .icon-bar:after {
-  	content:"Menu";
-  	position: relative;
-  	color: #fff;
-  }
-  .icon-bar + .icon-bar:after {content: '';}
-  //end menu icon-bar
-
-  @media (min-width: @plone-grid-float-breakpoint) {
-    display: none;
-  }
-}
-
-.plone-navbar-nav {
-  // margin: -1px -@plone-sitenav-padding-horizontal -1px;
-
-  > li > a {
-    color: @blue;
-  }
   > .selected > a {
     &,
     &:hover,
@@ -135,124 +148,136 @@
       color: @darker-blue;
     }
   }
+}
 
 
-  // Uncollapse the nav
-  @media (min-width: @plone-grid-float-breakpoint) {
-    float: left;
+// mobile icon
+.plone-navbar-toggle {
+  z-index: 1;
+  position: relative;
+  margin-top:  6px;
+  margin-bottom: 3px;
+  padding: 8px 10px;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #ddd;
+  border-radius: @plone-border-radius-base;
+  display: none;
 
-    > li {
-      > .submenu {
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-        border-radius: 7px;
-        position: absolute !important;
-        left: 0;
-        top: 2.5em;
-        min-width: 18em;
+  &:focus {
+    outline: 0;
+  }
+
+  .icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background: #888;
+  }
+  .icon-bar+.icon-bar {
+    margin-top: 4px;
+  }
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+
+  .plone-navbar-toggle {
+    display: block;
+  }
+
+  .plone-navbar-collapse {
+    background-color: @blue;
+    padding: 0 15px;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: fixed;
+    padding-right: 15px;
+    padding-left:  15px;
+    width: 305px;
+    right: 0;
+    top: 96px;
+    z-index: 100;
+    height: 95vh;
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    visibility: hidden;
+  }
+
+  .plone-navbar-collapse.in {
+    display: block;
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    visibility: visible;
+
+    .plone-navbar-nav {
+      display: block;
+      background-color: @blue;
+      margin: 0 -15px 0 !important;
+
+      > li {
+        float: none;
+      }
+
+      li:hover > .submenu {
         display: none;
-        > li {
-          padding: 1em;
-          > a {
-            color: @blue;
-          }
-          li {
-            a {
-              font-size: 15px;
-              font-weight: 300;
-            }
-          }
+      }
+
+      >li:not(:first-child) {
+        >a {
+          border-top: 1px solid #fff;
         }
-        > li:not(:last-child) {
-          border-bottom: 1px solid #ededed;
+      }
+
+      li {
+        >a {
+          color: #fff;
+          padding: 0.8em 0.5em;
         }
 
         .submenu {
-          display: block;
-        }
-      }
-
-      // submenu top arrow
-      >.submenu:before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: 30px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid #fff;
-        z-index: 2;
-      }
-      >.submenu:after {
-        content: '';
-        position: absolute;
-        top: -12px;
-        left: 28px;
-        width: 0;
-        height: 0;
-        border-left: 12px solid transparent;
-        border-right: 12px solid transparent;
-        border-bottom: 12px solid rgba(0,0,0, 0.05);
-        z-index: 1;
-      }
-      >.aligned-submenu {
-        right: 0;
-        left: auto;
-      }
-      >.aligned-submenu:before {
-        left: auto;
-        right: 30px;
-      }
-      >.aligned-submenu:after {
-        left: auto;
-        right: 28px;
-      }
-    }
-
-    li {
-      .submenu {
-        background-color: #fff;
-        position: relative;
-        text-align: left;
-
-        li:hover ul {
-          left: auto !important;
-        }
-
-        a {
-          color: @dark-blue;
+          display: none;
+          background-color: #f8f8f8;
+          box-shadow: none;
+          border-radius: 0;
+          position: relative;
+          left: auto;
+          top: auto;
           min-width: auto;
-          padding: 8px 0;
-          &:hover {
-            background-color: transparent;
-            text-decoration: underline;
-            color: @orange;
+
+          li {
+            float: none;
+            padding: 0;
+            > a {
+              color: @text-color;
+              font-size: 13px;
+              padding: 0.5em;
+            }
+            .opener {
+              display: none;
+            }
           }
         }
 
         .opener {
-          display: none;
+          display: block;
+          margin-right: 0;
+
+          .caret {
+            border-top: 8px solid #fff;
+            border-bottom: 0;
+          }
         }
       }
     }
-
-    > li:hover > .submenu {
-      display: block;
-    }
-
-    > li {
-      float: left;
-    }
-
-    &.navbar-right:last-child {
-      margin-right: -@plone-sitenav-padding-horizontal;
-    }
-  }
-}
-
-#mainnavigation-wrapper {
-  .container {
-    width: auto;
   }
 }

@@ -1,14 +1,13 @@
 $(document).ready(function() {
 
   // top search modal
-
-  $('.search-icon').click(function(e){
+  $('.search-icon').click(function(e) {
     $('.search-modal').fadeToggle('fast');
      e.stopPropagation();
   });
 
-  $('.search-modal').click(function(e){
-      e.stopPropagation();
+  $('.search-modal').click(function(e) {
+    e.stopPropagation();
   });
 
   // Align submenu to the right if overflows the main navigation menu
@@ -48,6 +47,6 @@ $(document).ready(function() {
 });
 
 
-$(document).click(function(){
+$(document).click(function() {
   $('.search-modal').hide();
 });
