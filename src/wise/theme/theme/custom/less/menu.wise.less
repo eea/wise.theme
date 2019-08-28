@@ -8,18 +8,18 @@
 
 .plone-navbar-collapse {
 
-  @media (min-width: @plone-grid-float-breakpoint) {
-    &.plone-collapse {
-      display: block !important;
-      height: auto !important;
-      padding-bottom: 0; // Override default setting
-      overflow: visible !important;
-    }
-
-    &.in {
-      overflow-y: visible;
-    }
+  &.plone-collapse {
+    display: block;
+    height: auto;
+    padding-bottom: 0; // Override default setting
+    overflow: visible;
   }
+
+  &.in {
+    overflow-y: visible;
+  }
+  // @media (min-width: @plone-grid-float-breakpoint) {
+  // }
 }
 
 ul.plone-nav {
@@ -34,8 +34,8 @@ ul.plone-nav {
 
   > li {
     position: relative;
-    display: block;
-    float: left;
+    display: inline-block;
+    // float: left;
     > a {
       display: block;
       color: @blue;
@@ -155,9 +155,8 @@ ul.plone-nav {
 .plone-navbar-toggle {
   z-index: 1;
   position: relative;
-  margin-top:  6px;
-  margin-bottom: 3px;
-  padding: 8px 10px;
+  margin: 0;
+  padding: 8px;
   background-color: transparent;
   background-image: none;
   border: 1px solid #ddd;
@@ -179,13 +178,72 @@ ul.plone-nav {
     margin-top: 4px;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: transparent;
   }
 }
 
 
-@media screen and (max-width: 800px) {
+// Collapsed mobile menu
+
+.collapse-nav {
+  padding: 0.5em !important;
+
+  .container {
+    padding: 0;
+  }
+
+  .site-logo img {
+    width: 80px;
+  }
+
+  .logo-text {
+    font-size: 12px;
+    width: 135px;
+    line-height: 15px;
+  }
+
+  .top-actions {
+    display: flex;
+    justify-content: space-between;
+
+    .fa {
+      color: #fff;
+      font-size: 17px;
+    }
+  }
+
+  .user-wrapper {
+    margin-top: 1em;
+  }
+
+  .search-icon {
+    display: none;
+  }
+
+  .search-modal {
+    display: block !important;
+    background-color: transparent;
+    position: relative;
+    padding: 0.5em 0;
+    top: auto;
+    width: auto;
+
+    input {
+      width: 70%;
+      float: left;
+      margin-right: 2%;
+    }
+
+    .search-submit {
+      display: none;
+    }
+
+    .submit-mobile-only {
+      display: block;
+    }
+  }
 
   .plone-navbar-toggle {
     display: block;
@@ -193,15 +251,14 @@ ul.plone-nav {
 
   .plone-navbar-collapse {
     background-color: @blue;
-    padding: 0 15px;
     overflow-x: auto;
     overflow-y: auto;
     position: fixed;
     padding-right: 15px;
     padding-left:  15px;
-    width: 305px;
+    width: 320px;
     right: 0;
-    top: 96px;
+    top: 54px;
     z-index: 100;
     height: 95vh;
     -webkit-transform: translateX(100%);
@@ -225,7 +282,7 @@ ul.plone-nav {
       margin: 0 -15px 0 !important;
 
       > li {
-        float: none;
+        display: block;
       }
 
       li:hover > .submenu {
@@ -241,7 +298,7 @@ ul.plone-nav {
       li {
         >a {
           color: #fff;
-          padding: 0.8em 0.5em;
+          padding: 13px 15px;
         }
 
         .submenu {
@@ -271,13 +328,39 @@ ul.plone-nav {
         .opener {
           display: block;
           margin-right: 0;
+          background: transparent;
+          border: 1px solid #fff;
+          border-radius: 4px;
+          float: right;
+          text-align: center;
+          width: 32px;
+          height: 32px;
+          margin-top: -6.4px;
+          margin-right: 0;
 
           .caret {
             border-top: 8px solid #fff;
             border-bottom: 0;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 0;
+            margin-bottom: 0.2em;
+            vertical-align: bottom;
+            border-right: 0.5em solid transparent;
+            border-left: 0.5em solid transparent;
           }
         }
       }
+      .menu-open {
+        display: block!important;
+      }
     }
   }
+}
+
+#edit-zone .plone-toolbar-logo,
+.plone-toolbar-expanded #edit-zone .plone-toolbar-logo {
+  bottom: 0;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
 }

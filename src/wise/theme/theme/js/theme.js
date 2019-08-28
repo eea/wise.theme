@@ -1,16 +1,23 @@
-$(document).ready(function() {
 
-  // top search modal
-  $('.search-icon').click(function(e) {
-    $('.search-modal').fadeToggle('fast');
-     e.stopPropagation();
-  });
+// Collapse navigation and move search section
+// when it's running out of space in the header
+function autoCollapseNavigation() {
+  var $header = $('#content-header');
+  var $navbar = $('.navbar-nav');
+  var $searchSubmitButton = $('.search-submit');
 
-  $('.search-modal').click(function(e) {
-    e.stopPropagation();
-  });
+  $header.removeClass('collapse-nav');
+  // $searchSubmitButton.text('Search');
 
-  // Align submenu to the right if overflows the main navigation menu
+  if ($navbar.innerHeight() > 55) {
+    $header.addClass('collapse-nav');
+    // $searchSubmitButton.text('');
+  }
+}
+
+// Align submenu to the right
+// if overflows the main navigation menu
+function alignNavSubmenu() {
   var $header = $('#portal-top');
   var $nav = $('#portal-globalnav');
   var $navItems = $nav.children('li');
@@ -28,14 +35,18 @@ $(document).ready(function() {
       $submenu.addClass('aligned-submenu');
     }
   });
+}
+
+
+$(document).ready(function() {
 
   // Homepage slider
   if ($('.slider').slick) {
     $('.slider').slick({
       infinite: true,
       speed: 700,
-      // autoplay:true,
-      // autoplaySpeed: 2000,
+      autoplay:true,
+      autoplaySpeed: 4000,
       arrows: true,
       slidesToShow: 1,
       slidesToScroll: 1
@@ -43,6 +54,33 @@ $(document).ready(function() {
 
     $('.slick-arrow').appendTo('.slider-arrows');
   };
+
+  // Top search modal
+  $('.search-icon').click(function(e) {
+    $('.search-modal').fadeToggle('fast');
+     e.stopPropagation();
+  });
+
+  $('.search-modal').click(function(e) {
+    e.stopPropagation();
+  });
+
+  // Move search and login to navbar container
+  $('.top-actions').prependTo('.navbar-collapse');
+
+
+  autoCollapseNavigation();
+  alignNavSubmenu();
+
+  var resizeTimer;
+  $(window).on('resize',function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(doneResizing, 100);
+  });
+
+  function doneResizing() {
+    autoCollapseNavigation();
+  }
 
 });
 

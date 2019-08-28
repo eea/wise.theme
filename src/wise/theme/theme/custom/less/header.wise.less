@@ -58,6 +58,27 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.submit-mobile-only {
+  display: none;
+  margin-top: 0;
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+
+  &:before {
+    content: '\f002';
+    font-family: FontAwesome;
+    font-size: 17px;
+  }
+  &:hover {
+    background-color: transparent;
+    color: #fff;
+  }
+}
+
 .search-submit {
   width: 100%;
   display: block;
