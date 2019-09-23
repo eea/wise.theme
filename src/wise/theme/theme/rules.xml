@@ -61,11 +61,11 @@
       <!-- <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p> -->
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-xs-12 col-sm-12">
           <xsl:apply-templates css:select="#content" />
         </div>
-      </div>
+      </div> -->
       <footer class="row">
         <div class="col-xs-12 col-sm-12">
           <xsl:copy-of css:select="#viewlet-below-content" />
