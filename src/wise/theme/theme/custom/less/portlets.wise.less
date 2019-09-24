@@ -1,30 +1,30 @@
 //*// PORTLETS //*//
 
 .portlet {
-	// border: @plone-portlet-border;
-	margin-bottom: 20px;
-	border-radius: 7px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  border-radius: 7px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
 
   > :first-child {border-radius: 7px 7px 0 0;}
-	> :last-child {border-radius: 0 0 7px 7px;}
+  > :last-child {border-radius: 0 0 7px 7px;}
 
   .portletHeader {
-		// font-weight: @plone-font-weight-bold;
-		font-size: @plone-font-size-large;
-		padding: 13px 15px;
-		color: @plone-portlet-header-color;
-	}
+    font-family: PoppinsSemiB;
+    font-size: 24px;
+    line-height: 24px;
+    padding: 25px;
+    color: @darker-blue;
+  }
 
   &.portletCalendar .portletHeader {
-		text-align: center;
-		position: relative;
-		.calendarPrevious,
+    text-align: center;
+    position: relative;
+    .calendarPrevious,
     .calendarNext {
-      width:30px;
-      height:30px;
+      width: 30px;
+      height: 30px;
       padding: 0 1px 2px;
-      border-radius:50%;
+      border-radius: 50%;
       position: absolute;
       display: inline-block;
       left: 5px;
@@ -33,24 +33,23 @@
       line-height: 28px;
       font-weight: @plone-font-weight-light;
     }
-		.calendarPrevious:hover,
+    .calendarPrevious:hover,
     .calendarNext:hover {
       background: @plone-portlet-content-bg;
       text-decoration: none;
     }
-		.calendarNext {
+    .calendarNext {
       right: 5px;
       left: inherit;
     }
-	}
+  }
 
-  .portletContent {
+	.portletContent {
 		background-color: #fff;
 		& > *, & > div:not(.portalMessage) { //all but ul and tables and portalMessage
-			padding: 10px 15px;
+			padding: 10px 25px;
 			margin: 0;
-			font-weight: @plone-font-weight-regular;
-			color: @plone-gray;
+			font-size: 14px;
 		}
 		> ul {
 			padding: 0;
@@ -63,12 +62,14 @@
 				  position: relative;
 				  z-index: 1;
 				}
-        a:before {
-          content: "" !important;
-          width: auto !important;
-          height: auto !important;
-          margin-right: 0 !important;
-        }
+				a:before {
+					content: "" !important;
+					width: auto !important;
+					height: auto !important;
+					margin-right: 0 !important;
+					font-family: inherit !important;
+					display: inline !important;
+				}
 				> a {border-top: @plone-portlet-border;}
 				&:first-child > a {border-top: 0;}
 				// & a:before {
@@ -76,23 +77,59 @@
 				// 	color: lighten(@plone-portlet-list-bullet, 15%);
 				// }
 			}
-			ul {padding-left:15px; list-style: none;
+			ul {
+				padding-left:15px;
+				list-style: none;
 			}
-			.portletItemDetails {display: block; z-index: 0; padding: 0 15px 10px 30px; font-weight:@plone-font-weight-light; position: relative; margin-top:-26px; font-size: @plone-font-size-small; color: @plone-portlet-list-small-text;}
+			.portletItemDetails {
+				display: block;
+				z-index: 0;
+				padding: 0 15px 10px 30px;
+				font-weight:@plone-font-weight-light;
+				position: relative;
+				margin-top:-26px;
+				font-size: @plone-font-size-small;
+				color: @plone-portlet-list-small-text;
+			}
+
 			li:hover {background: @plone-portlet-list-hover-bg;
 				a:before {color: @plone-portlet-list-bullet;}
 			}
 		}
-		table {width: 100%; text-align: center; text-align: middle; border-collapse: collapse; border-spacing: 0;
-			tr {line-height: 30px; }
-			thead {background: @plone-portlet-footer-bg; border-bottom: @plone-portlet-border;
-				th {color: @plone-gray-light; font-weight: @plone-font-weight-light; height: 40px; text-align: center;}
+
+		table {
+			width: 100%;
+			text-align: center;
+			text-align: middle;
+			border-collapse: collapse;
+			border-spacing: 0;
+
+			tr { line-height: 30px; }
+			thead {
+				background: @plone-portlet-footer-bg;
+				border-bottom: @plone-portlet-border;
+				th {
+					color: @plone-gray-light;
+					font-weight: @plone-font-weight-light;
+					height: 40px;
+					text-align: center;
+				}
 			}
 			td {}
-			td > * {border-radius: 50%; display: inline-block; width: 20px; height: 20px; line-height: 20px;}
+			td > * {
+				border-radius: 50%;
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				line-height: 20px;
+			}
 			.cal_has_events {
 				position: relative;
-				a:hover {background: @plone-portlet-event-bullet; text-decoration: none; box-shadow: 0 0 0 5px @plone-portlet-event-bullet;}
+				a:hover {
+					background: @plone-portlet-event-bullet;
+					text-decoration: none;
+					box-shadow: 0 0 0 5px @plone-portlet-event-bullet;
+				}
 				a:after {
 					content: "•";
 					position: absolute;
@@ -112,7 +149,10 @@
 				&.cal_has_events > a:hover {color: darken(@plone-link-color,15%);}
 				&.cal_has_events > a:hover:after {color: @plone-portlet-list-bullet;}
 			}
-			.today > * {background: @plone-portlet-contrast-bg; font-weight: 500; box-shadow: 0 0 0 5px @plone-portlet-contrast-bg;} //using shadow to expand background is because then table is only 20px per cell and not 30px
+			.today > * {
+				background: @plone-portlet-contrast-bg;
+				font-weight: 500;
+				box-shadow: 0 0 0 5px @plone-portlet-contrast-bg;} //using shadow to expand background is because then table is only 20px per cell and not 30px
 			tbody tr:first-child td > * {margin-top: 10px;}
 			tbody tr:last-child td > * {margin-bottom: 10px;}
 		}
@@ -130,6 +170,13 @@
 		font-size: @plone-font-size-small;
 		font-weight: @plone-font-weight-regular;
 		box-shadow: inset 0 10px 10px -10px rgba(0,0,0,.05);
+	}
+}
+
+.portlet.portletStaticText {
+	background-color: #faf8f5;
+	.portletContent {
+		background-color: #faf8f5;
 	}
 }
 
@@ -151,6 +198,9 @@
 	.portletContent {
 		border-top: 0;
     border-radius: 7px;
+		> ul li a {
+			font-size: 16px;
+		}
 		> ul > li > a {
       display: block;
 			font-weight: normal;
@@ -159,6 +209,7 @@
 		> ul > li > ul {
       a {
         color: @darker-blue;
+				font-weight: 300;
         &:before {
           content: '\f054' !important;
 					// content: '\203A' !important;
@@ -167,7 +218,9 @@
         }
       }
     }
-		> ul ul {padding-left: 0;}
+		> ul ul {
+			padding-left: 0;
+		}
 		.navTreeCurrentNode > a {
       background-color: #f7f3ef;
       color: #5a4939;
@@ -179,7 +232,6 @@
         text-decoration: none;
       }
     }
-
 	}
 }
 
@@ -187,7 +239,10 @@
 #install-products .configlets,
 #activated-products .configlets,
 #broken-products .configlets {
-	li {padding: @plone-padding-base-horizontal; border-top: 1px dotted @plone-table-border-color;}
+	li {
+		padding: @plone-padding-base-horizontal;
+		border-top: 1px dotted @plone-table-border-color;
+	}
 	li:first-child {border-top: 0;}
 	h3, p {margin: 0;}
 	.portletContent:last-child {margin-bottom: 0;}
@@ -195,15 +250,13 @@
 }
 
 
-//*// Search
-// See forms: input + submit (manual)
-
-
 //*// Manage portlets
 .managedPortletActions {
 	float:right;
 	margin-top: -@plone-padding-base-vertical;
-	form {display: inline-block;}
+	form {
+		display: inline-block;
+	}
 }
 .managedPortlet {
 	.portlet;
