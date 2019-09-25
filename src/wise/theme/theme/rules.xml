@@ -46,6 +46,17 @@
     <theme href="page.html" />
   </rules>
 
+  <!-- page lead image -->
+  <rules css:if-content=".leadImage" css:if-not-content=".section-news">
+    <after css:content="#viewlet-above-content">
+      <div class="page-main-image-wrapper">
+        <div class="page-main-image">
+          <div class="lead-image"/>
+        </div>
+      </div>
+    </after>
+  </rules>
+
 
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">

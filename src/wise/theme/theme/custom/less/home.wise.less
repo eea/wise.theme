@@ -117,7 +117,18 @@
   }
 }
 
-// Graph area
+// Graph/Map area
+
+.map-wrapper {
+  display: flex;
+  justify-content: center;
+  // height: 511px;
+  overflow: hidden;
+  > img {
+    width: 100%;
+   flex: none; /* keep aspect ratio */
+  }
+}
 
 .graph-data-wrapper {
   margin-top: 3em;
@@ -143,18 +154,18 @@
   color: @blue;
 }
 
-@media only screen and (max-width: 1200px) {
-  .box-container {
-    height: 320px;
-    margin-bottom: 30px;
-  }
-}
-
-@media only screen and (max-width: 992px) {
-  .box-container {
-    height: 100%;
-  }
-}
+// @media only screen and (max-width: 1200px) {
+//   .box-container {
+//     height: 320px;
+//     margin-bottom: 30px;
+//   }
+// }
+//
+// @media only screen and (max-width: 992px) {
+//   .box-container {
+//     height: 100%;
+//   }
+// }
 
 
 @media only screen and (max-width: 850px) {
