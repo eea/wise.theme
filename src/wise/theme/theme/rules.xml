@@ -47,7 +47,7 @@
   </rules>
 
   <!-- page lead image -->
-  <rules css:if-content=".leadImage" css:if-not-content=".section-news">
+  <rules css:if-content=".leadImage">
     <after css:content="#portal-breadcrumbs">
       <div class="page-main-image-wrapper">
         <div class="page-main-image">
