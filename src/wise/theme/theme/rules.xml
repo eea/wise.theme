@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rules xmlns="http://namespaces.plone.org/diazo"
-       xmlns:css="http://namespaces.plone.org/diazo/css"
-       xmlns:xhtml="http://www.w3.org/1999/xhtml"
-       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-       xmlns:xi="http://www.w3.org/2001/XInclude">
+  xmlns:css="http://namespaces.plone.org/diazo/css"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xi="http://www.w3.org/2001/XInclude">
 
   <theme href="index.html" />
   <notheme css:if-not-content="#visual-portal-wrapper" />
@@ -47,15 +47,15 @@
   </rules>
 
   <!-- page lead image -->
-  <rules css:if-content=".leadImage">
-    <after css:content="#portal-breadcrumbs">
-      <div class="page-main-image-wrapper">
-        <div class="page-main-image">
-          <div class="lead-image"/>
-        </div>
-      </div>
-    </after>
-  </rules>
+  <!-- <rules css:if&#45;content=".leadImage"> -->
+  <!--   <after css:content="#portal&#45;breadcrumbs"> -->
+  <!--     <div class="page&#45;main&#45;image&#45;wrapper"> -->
+  <!--       <div class="page&#45;main&#45;image"> -->
+  <!--         <div class="lead&#45;image" /> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </after> -->
+  <!-- </rules> -->
 
 
   <!-- Central column -->
@@ -91,22 +91,22 @@
   <!-- Left column -->
   <rules css:if-content="#portal-column-one">
     <replace css:theme="#column1-container">
-        <div id="sidebar" class="col-xs-6 col-sm-4 sidebar-offcanvas">
-          <aside id="portal-column-one">
-              <xsl:copy-of css:select="#portal-column-one > *" />
-          </aside>
-        </div>
+      <div id="sidebar" class="col-xs-6 col-sm-4 sidebar-offcanvas">
+        <aside id="portal-column-one">
+          <xsl:copy-of css:select="#portal-column-one > *" />
+        </aside>
+      </div>
     </replace>
   </rules>
 
   <!-- Right column -->
   <rules css:if-content="#portal-column-two">
     <replace css:theme="#column2-container">
-        <div id="sidebar" class="col-xs-6 col-sm-4 sidebar-offcanvas" role="complementary">
-          <aside id="portal-column-two">
-              <xsl:copy-of css:select="#portal-column-two > *" />
-          </aside>
-        </div>
+      <div id="sidebar" class="col-xs-6 col-sm-4 sidebar-offcanvas" role="complementary">
+        <aside id="portal-column-two">
+          <xsl:copy-of css:select="#portal-column-two > *" />
+        </aside>
+      </div>
     </replace>
   </rules>
 

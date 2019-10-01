@@ -1,0 +1,7 @@
+<div class="leadImageOverride" tal:condition="view/available">
+  <div class="page-main-image-wrapper">
+    <div class="page-main-image" tal:define="url string:${context/@@plone_context_state/object_url}/@@images/image">
+      <div class="lead-image" tal:attributes="style string:background-image:url('${url}')"/>
+    </div>
+  </div>
+</div>
