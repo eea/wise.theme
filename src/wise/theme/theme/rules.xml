@@ -47,16 +47,12 @@
   </rules>
 
   <!-- page lead image -->
-  <!-- <rules css:if&#45;content=".leadImage"> -->
-  <!--   <after css:content="#portal&#45;breadcrumbs"> -->
-  <!--     <div class="page&#45;main&#45;image&#45;wrapper"> -->
-  <!--       <div class="page&#45;main&#45;image"> -->
-  <!--         <div class="lead&#45;image" /> -->
-  <!--       </div> -->
-  <!--     </div> -->
-  <!--   </after> -->
-  <!-- </rules> -->
-
+  <rules css:if-content=".leadImageOverride">
+    <after css:content="#portal-breadcrumbs">
+      <xsl:copy-of select="//div[@class='leadImageOverride']" />
+    </after>
+    <drop content="//div[@class='leadImageOverride']" />
+  </rules>
 
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">

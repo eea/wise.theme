@@ -82,10 +82,6 @@ $(document).ready(function() {
     autoCollapseNavigation();
   }
 
-  // set background image for page lead image
-  var imageSRC = $('.newsImageContainer a').attr('href');
-  $('.lead-image').css('background-image', 'url(' + imageSRC + ')');
-
 });
 
 
