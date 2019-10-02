@@ -40,21 +40,6 @@ function alignNavSubmenu() {
 
 $(document).ready(function() {
 
-  // Homepage slider
-  if ($('.slider').slick) {
-    $('.slider').slick({
-      infinite: true,
-      speed: 700,
-      autoplay:true,
-      autoplaySpeed: 4000,
-      arrows: true,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    });
-
-    $('.slick-arrow').appendTo('.slider-arrows');
-  };
-
   // Top search modal
   $('.search-icon').click(function(e) {
     $('.search-modal').fadeToggle('fast');

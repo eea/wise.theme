@@ -25,7 +25,7 @@
     <!-- CSS -->
     <after css:theme-children="head" css:content="head link" />
     <!-- Script -->
-    <after css:theme-children="body" css:content="head script" />
+    <after css:theme-children="head" css:content="head script" />
   </rules>
 
   <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
@@ -53,6 +53,12 @@
     </after>
     <drop content="//div[@class='leadImageOverride']" />
   </rules>
+
+  <!-- home page slider -->
+  <replace css:theme-children="#home-slider"
+           css:content-children="#content-core"
+           href="/homepage-slider?ajax_load=1"
+           css:if-content=".section-front-page" />
 
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">
