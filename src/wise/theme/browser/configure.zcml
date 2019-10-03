@@ -19,7 +19,7 @@
   <browser:viewlet
     for="wise.theme.interfaces.IHomepage"
     name="wise.frontpage.slideshow"
-    manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+    manager="plone.app.layout.viewlets.interfaces.IAboveContent"
     class=".viewlets.SlidesViewlet"
     permission="zope.Public"
     />

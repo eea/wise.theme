@@ -38,9 +38,9 @@
   <replace css:content="#viewlet-above-content" css:theme="#above-content" />
 
   <!--hide breadcrumb on homepage-->
-  <rules css:if-content=".section-front-page">
+  <!-- <rules css:if-content=".section-front-page">
     <drop css:content="#viewlet-above-content"/>
-  </rules>
+  </rules> -->
 
   <rules css:if-not-content=".section-front-page">
     <theme href="page.html" />
