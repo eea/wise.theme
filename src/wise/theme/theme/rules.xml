@@ -57,8 +57,9 @@
   <!-- home page slider -->
   <replace css:theme-children="#home-slider"
            css:content-children="#content-core"
-           href="/homepage-slider?ajax_load=1"
            css:if-content=".section-front-page" />
+
+           href="/homepage-slide-images?ajax_load=1"
 
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">

@@ -1,31 +1,23 @@
-<html xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal">
-<body>
-
-<metal:ad define-macro="slideshow"
-          tal:define="view context/@@easyslideshow_view;
-                      slideshowfolderid slideshowfolderid|string:slideshow-folder;
-                      images python:view.getImages(slideshowfolderid);">
+<tal:def tal:define="images view/getImages;">
   <tal:cond tal:condition="images">
 
     <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script>
 
-    <tal:block tal:replace='structure string:&lt;script type="text/javascript" charset="utf-8"&gt;'></tal:block>
-    <tal:translate i18n:translate="">
-    var $ = jQuery;
-    $(document).ready(function(){
-          $('.pics').cycle({
-              fx: 'fade',
-              pauseOnHover: true,
-              timeout: 4000,
-              speed: 500,
-              swipe: true,
-              prev: '#prev',
-              next: '#next'
-          });
+    <script>
+      // <![CDATA[
+      jQuery(document).ready(function(){
+      $('.pics').cycle({
+      fx: 'fade',
+      pauseOnHover: true,
+      timeout: 4000,
+      speed: 500,
+      swipe: true,
+      prev: '#prev',
+      next: '#next'
       });
-    </tal:translate>
-    <tal:block tal:replace='structure string:&lt;/script&gt;'></tal:block>
+      });
+      // ]]>
+    </script>
 
     <div class="slider-container">
       <div id="slideshow" class="pics" data-cycle-slides=".slideContainer">
@@ -62,21 +54,19 @@
               <div class="slider-image-wrapper">
                 <div class="slider-image"
                   tal:attributes="style string:background-image:url('${url}')"></div>
-                </div>
-              </a>
-            </div>
-          </tal:rep>
-        </div>
-
-        <div class="slider-actions">
-          <div>
-            <a id="prev" class="slide-prev slide-arrow" href="#"></a>
-            <a id="next" class="slide-next slide-arrow" href="#"></a>
+              </div>
+            </a>
           </div>
+        </tal:rep>
+      </div>
+
+      <div class="slider-actions">
+        <div>
+          <a id="prev" class="slide-prev slide-arrow" href="#"></a>
+          <a id="next" class="slide-next slide-arrow" href="#"></a>
         </div>
+      </div>
     </div>
 
   </tal:cond>
-</metal:ad>
-</body>
-</html>
+</tal:def>
