@@ -1,4 +1,4 @@
-from plone.api import content  # , portal
+from plone.api import content, portal
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -19,8 +19,10 @@ class SlidesViewlet(ViewletBase):
     #         return ''
 
     def getImages(self):
+        site = portal.get()
+        base = '/'.join(site.getPhysicalPath())
 
-        path = {'query': 'homepage-slide-images', 'depth': 1}
+        path = {'query': base + '/homepage-slide-images', 'depth': 1}
         results = content.find(
             path=path, portal_type='Image', sort_on='getObjPositionInParent')
 
