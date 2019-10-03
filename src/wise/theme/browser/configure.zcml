@@ -23,6 +23,39 @@
       directory="static"
       />
 
+  <browser:page
+      for="*"
+      name="easyslideshow_view"
+      class=".slideshowview.SlideshowView"
+      permission="zope.Public"
+      allowed_interface=".interfaces.IEasySlideshowView"
+      />
+
+  <browser:page
+      for="*"
+      name="slideshow_tool"
+      class=".slideshowview.SlideshowTool"
+      allowed_attributes="enabled
+                          disabled
+                          enable
+                          disable"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      for="*"
+      name="slideshow_macros"
+      template="pt/slideshow_macros.pt"
+      permission="zope.Public"
+      />
+
+  <browser:page
+      for="*"
+      name="slideshow_folder_view"
+      template="pt/slideshow_folder_view.pt"
+      permission="zope.Public"
+      />
+
 
   <!-- Disabled for Plone5 new theme, will need to be enabled selectively, after testing -->
 

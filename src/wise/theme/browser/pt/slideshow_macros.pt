@@ -1,0 +1,82 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal">
+<body>
+
+<metal:ad define-macro="slideshow"
+          tal:define="view context/@@easyslideshow_view;
+                      slideshowfolderid slideshowfolderid|string:slideshow-folder;
+                      images python:view.getImages(slideshowfolderid);">
+  <tal:cond tal:condition="images">
+
+    <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script>
+
+    <tal:block tal:replace='structure string:&lt;script type="text/javascript" charset="utf-8"&gt;'></tal:block>
+    <tal:translate i18n:translate="">
+    var $ = jQuery;
+    $(document).ready(function(){
+          $('.pics').cycle({
+              fx: 'fade',
+              pauseOnHover: true,
+              timeout: 4000,
+              speed: 500,
+              swipe: true,
+              prev: '#prev',
+              next: '#next'
+          });
+      });
+    </tal:translate>
+    <tal:block tal:replace='structure string:&lt;/script&gt;'></tal:block>
+
+    <div class="slider-container">
+      <div id="slideshow" class="pics" data-cycle-slides=".slideContainer">
+
+        <tal:rep repeat="image images">
+          <div class="slideContainer"
+            tal:define="title image/Title;
+            description image/Description;
+            url image/getURL;
+            obj image/getObject;">
+
+            <div class="slider-caption row"
+              i18n:translate="">
+
+              <div class="slider-title">
+                <div tal:content="title"
+                  i18n:name="slide_title">
+                  Welcome to WISE - MARINE
+                </div>
+              </div>
+
+              <div class="slider-description">
+                <p tal:content="description"
+                  i18n:name="slide_description">
+                  WISE - Marine is a gateway to information on European marine
+                  in support of ocean governance and ecosystem based management.
+                </p>
+              </div>
+            </div>
+
+            <div class="slider-layer"></div>
+
+            <a href="#">
+              <div class="slider-image-wrapper">
+                <div class="slider-image"
+                  tal:attributes="style string:background-image:url('${url}')"></div>
+                </div>
+              </a>
+            </div>
+          </tal:rep>
+        </div>
+
+        <div class="slider-actions">
+          <div>
+            <a id="prev" class="slide-prev slide-arrow" href="#"></a>
+            <a id="next" class="slide-next slide-arrow" href="#"></a>
+          </div>
+        </div>
+    </div>
+
+  </tal:cond>
+</metal:ad>
+</body>
+</html>
