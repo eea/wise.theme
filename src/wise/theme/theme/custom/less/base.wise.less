@@ -6,6 +6,7 @@ body {
   height: 100vh!important;
   display: flex;
   flex-direction: column;
+  font-family: @base-font;
 }
 
 .outer-wrapper {
@@ -18,12 +19,17 @@ body {
 
 h1 {
   color: @darker-blue;
-  font-family: PoppinsSemiB;
+  font-family: @poppins-font;
+  font-weight: 600;
 }
 
 p {
-  font-weight: 300;
+  font-weight: 400;
   color: #000;
+}
+
+a {
+  color: @link-color;
 }
 
 a:hover, a:focus {

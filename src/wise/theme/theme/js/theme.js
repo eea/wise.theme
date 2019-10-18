@@ -7,11 +7,8 @@ function autoCollapseNavigation() {
   var $searchSubmitButton = $('.search-submit');
 
   $header.removeClass('collapse-nav');
-  // $searchSubmitButton.text('Search');
-
-  if ($navbar.innerHeight() > 55) {
+  if ($navbar.innerHeight() > 80) {
     $header.addClass('collapse-nav');
-    // $searchSubmitButton.text('');
   }
 }
 
@@ -53,6 +50,18 @@ $(document).ready(function() {
   // Move search and login to navbar container
   $('.top-actions').prependTo('.navbar-collapse');
 
+  var $nav = $('#portal-globalnav>li>a');
+  $nav.each(function(i, v) {
+    var words = $(this).text();
+    var wordsCount = words.split(' ').length;
+    $(v).contents().eq(0).wrap('<span class="nav-text"/>');
+    if (wordsCount > 2) {
+      var txt = $(this).find('.nav-text');
+      var html = txt.html().split(" ");
+      html = html.slice(0,2).join(" ") + "<br>" + " " + html.slice(2).join(" ");
+      txt.html(html);
+    }
+  });
 
   autoCollapseNavigation();
   alignNavSubmenu();

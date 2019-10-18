@@ -33,10 +33,13 @@ ul.plone-nav {
   > li {
     position: relative;
     display: inline-block;
+    vertical-align: text-top;
+    text-align: right;
     > a {
-      display: block;
+      display: flex;
       color: @blue;
-      padding: 0.5em 0.8em 1em 0.8em;
+      padding: 0.8em 1em 1em 1em;
+      font-weight: 500;
       &:hover,
       &:focus {
         text-decoration: none;
@@ -50,8 +53,8 @@ ul.plone-nav {
       border-radius: 7px;
       position: absolute;
       left: 0;
-      top: 2.5em;
-      min-width: 18em;
+      top: 4em;
+      min-width: 20em;
       display: none;
 
       li:hover ul {
@@ -62,8 +65,9 @@ ul.plone-nav {
         padding: 1em;
         li {
           a {
-            font-size: 15px;
-            font-weight: 300;
+            font-size: 14px;
+            color: @darker-blue;
+            font-weight: 400;
           }
         }
       }
@@ -75,6 +79,7 @@ ul.plone-nav {
         color: @blue;
         min-width: auto;
         padding: 8px 0;
+        font-weight: 500;
 
         &:hover {
           background-color: transparent;
@@ -130,6 +135,10 @@ ul.plone-nav {
       right: 28px;
     }
 
+  }
+
+  > li:hover {
+    > a {color: @darker-blue;}
   }
 
   > li:last-child {
@@ -197,22 +206,31 @@ ul.plone-nav {
 
   .logo-text {
     font-size: 12px;
-    width: 135px;
+    width: 145px;
     line-height: 15px;
   }
 
   .top-actions {
-    display: flex;
-    justify-content: space-between;
+    display: block;
+    position: relative;
+    right: auto;
+    top: auto;
 
     .fa {
       color: #fff;
       font-size: 17px;
     }
+
+    .user-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 1em;
+    }
   }
 
-  .user-wrapper {
-    margin-top: 1em;
+  .nav-text br {
+    display: none;
   }
 
   .search-icon {
@@ -256,7 +274,7 @@ ul.plone-nav {
     width: 320px;
     right: 0;
     top: 54px;
-    z-index: 100;
+    z-index: 9999;
     height: 95vh;
     -webkit-transform: translateX(100%);
     -ms-transform: translateX(100%);
@@ -296,6 +314,8 @@ ul.plone-nav {
         >a {
           color: #fff;
           padding: 13px 15px;
+          display: block;
+          text-align: left;
         }
 
         .submenu {
@@ -353,6 +373,11 @@ ul.plone-nav {
         display: block!important;
       }
     }
+  }
+
+  ul.plone-nav > li > .submenu:before {
+    // border-color: transparent;
+    display: none;
   }
 }
 

@@ -54,12 +54,9 @@
     <drop content="//div[@class='leadImageOverride']" />
   </rules>
 
-  <!-- home page slider -->
-  <!-- <replace css:theme-children="#home-slider"
-           css:content-children="#content-core"
-           css:if-content=".section-front-page" /> -->
-
-           href="/homepage-slide-images?ajax_load=1"
+  <rules css:if-content=".site-Plone" css:if-not-content=".section-front-page">
+    <drop css:content=".slider-container"/>
+  </rules>
 
   <!-- Central column -->
   <replace css:theme="#content-container" method="raw">
