@@ -1,20 +1,37 @@
 //*// PAGE BANNER //*//
-.page-main-image-wrapper {
-  margin-bottom: 300px;
-  .page-main-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
-    height: 300px;
-    z-index: -1;
 
-    .lead-image {
+.leadImageOverride {
+  margin-bottom: 270px;
+}
+
+.leadimage-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  height: 300px;
+  z-index: -1;
+
+  .leadimage-wrapper {
+    height: 300px;
+
+    .leadimage {
       height: 100%;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: left center;
     }
+  }
+
+  .leadimage-caption {
+    position: relative;
+    bottom: 1.5em;
+  }
+
+  .caption-description {
+    color: #fff;
+    font-size: 11px;
+    opacity: 0.8;
   }
 }
