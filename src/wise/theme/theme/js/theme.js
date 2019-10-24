@@ -7,7 +7,7 @@ function autoCollapseNavigation() {
   var $searchSubmitButton = $('.search-submit');
 
   $header.removeClass('collapse-nav');
-  if ($navbar.innerHeight() > 80) {
+  if ($navbar.innerHeight() > 90) {
     $header.addClass('collapse-nav');
   }
 }

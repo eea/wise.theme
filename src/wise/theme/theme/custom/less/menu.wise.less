@@ -38,7 +38,7 @@ ul.plone-nav {
     > a {
       display: flex;
       color: @blue;
-      padding: 0.8em 1em 1em 1em;
+      padding: 0.8em 1em 1.5em 1em;
       font-weight: 500;
       &:hover,
       &:focus {
@@ -53,7 +53,7 @@ ul.plone-nav {
       border-radius: 7px;
       position: absolute;
       left: 0;
-      top: 4em;
+      top: 4.2em;
       min-width: 20em;
       display: none;
 
@@ -62,17 +62,57 @@ ul.plone-nav {
       }
 
       > li {
-        padding: 1em;
+        > a {
+          padding: 2rem;
+          border-bottom: 1px solid #ededed;
+
+          &:hover {
+            background-color: @darker-blue;
+            color: #fff;
+          }
+        }
+
         li {
           a {
             font-size: 14px;
             color: @darker-blue;
             font-weight: 400;
+            padding: 0.3rem 2rem;
+
+            &:hover {
+              background-color: transparent;
+              text-decoration: underline;
+              color: @orange;
+            }
           }
         }
       }
-      > li:not(:last-child) {
-        border-bottom: 1px solid #ededed;
+
+      > li:last-child {
+        a {
+          border-bottom: none;
+        }
+        .submenu {
+          border-bottom: none;
+        }
+      }
+
+      > li:first-child {
+        a {
+          border-top: none;
+          border-top-right-radius: 7px;
+          border-top-left-radius: 7px;
+        }
+      }
+
+      > li:last-child {
+        a:not(:only-child) {
+          border-bottom: 1px solid #ededed;
+        }
+        a:only-child {
+          border-bottom-right-radius: 7px;
+          border-bottom-left-radius: 7px;
+        }
       }
 
       a {
@@ -80,12 +120,6 @@ ul.plone-nav {
         min-width: auto;
         padding: 8px 0;
         font-weight: 500;
-
-        &:hover {
-          background-color: transparent;
-          text-decoration: underline;
-          color: @orange;
-        }
       }
 
       .opener {
@@ -94,6 +128,12 @@ ul.plone-nav {
 
       .submenu {
         display: block;
+        background-color: transparent;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #ededed;
+         > li {
+           float: none;
+         }
       }
     }
 
@@ -194,11 +234,7 @@ ul.plone-nav {
 // Collapsed mobile menu
 
 .collapse-nav {
-  padding: 0.5em !important;
-
-  .container {
-    padding: 0;
-  }
+  padding: 0.5em 0 !important;
 
   .site-logo img {
     width: 80px;
@@ -333,26 +369,39 @@ ul.plone-nav {
             padding: 0;
             > a {
               color: @text-color;
-              font-size: 13px;
-              padding: 0.5em;
+              font-size: 14px;
+
+              &:hover {
+                background-color: transparent;
+                color: @orange;
+              }
             }
             .opener {
               display: none;
             }
           }
+
+          .submenu {
+            > li {
+              a {
+                font-size: 12px;
+                padding: 13px;
+              }
+            }
+          }
         }
 
         .opener {
-          display: block;
+          display: inline-block;
           margin-right: 0;
           background: transparent;
-          border: 1px solid #fff;
+          border-color: transparent;
           border-radius: 4px;
           float: right;
           text-align: center;
           width: 32px;
           height: 32px;
-          margin-top: -6.4px;
+          margin-top: 0;
           margin-right: 0;
 
           .caret {
@@ -363,7 +412,7 @@ ul.plone-nav {
             height: 0;
             margin-left: 0;
             margin-bottom: 0.2em;
-            vertical-align: bottom;
+            vertical-align: middle;
             border-right: 0.5em solid transparent;
             border-left: 0.5em solid transparent;
           }
