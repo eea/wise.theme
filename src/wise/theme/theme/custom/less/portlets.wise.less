@@ -74,7 +74,9 @@
 					font-family: inherit !important;
 					display: inline !important;
 				}
-				> a {border-top: @plone-portlet-border;}
+				> a {
+          border-top: @plone-portlet-border;
+        }
 				&:first-child > a {border-top: 0;}
 				// & a:before {
 				// 	content:"•"; position: absolute; font-size: @plone-font-size-h3+1; margin-top: -9px; left: 15px;
@@ -207,16 +209,14 @@
 		}
 		> ul > li > a {
       display: block;
-			font-weight: normal;
+			font-weight: 500;
 			&:before {content: ""; }
 		}
 		> ul > li > ul {
       a {
         color: @darker-blue;
-				font-weight: 300;
         &:before {
           content: '\f054' !important;
-					// content: '\203A' !important;
           font-family: FontAwesome !important;
 					font-size: 11px !important;
         }
@@ -251,6 +251,11 @@
 	h3, p {margin: 0;}
 	.portletContent:last-child {margin-bottom: 0;}
 	.pull-right {margin: 0 0 @plone-padding-base-horizontal @plone-padding-base-horizontal;}
+}
+
+
+.portletSiteSetup ul ul li a:before {
+  margin-top: 3px !important;
 }
 
 
