@@ -60,11 +60,9 @@
         </tal:rep>
       </div>
 
-      <div class="slider-actions">
-        <div>
-          <a id="prev" class="slide-prev slide-arrow" href="#"></a>
-          <a id="next" class="slide-next slide-arrow" href="#"></a>
-        </div>
+      <div class="container slider-actions">
+        <a id="prev" class="slide-prev slide-arrow" href="#"></a>
+        <a id="next" class="slide-next slide-arrow" href="#"></a>
       </div>
     </div>
 
