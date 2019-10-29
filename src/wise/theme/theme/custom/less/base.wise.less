@@ -6,7 +6,7 @@ body {
   height: 100vh!important;
   display: flex;
   flex-direction: column;
-  font-family: @base-font;
+  font-family: 'Roboto';
 }
 
 .outer-wrapper {
@@ -17,11 +17,12 @@ body {
   text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins";
   color: @darker-blue;
-  font-family: @poppins-font;
-  font-weight: 600;
+  font-weight: 600;  
 }
+
 
 p {
   font-weight: 400;
@@ -35,4 +36,8 @@ a {
 a:hover, a:focus {
   color: @darker-blue;
   text-decoration: none;
+}
+
+iframe {
+  border: none;
 }
