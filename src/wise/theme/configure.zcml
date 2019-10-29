@@ -17,6 +17,16 @@
     name="wise-theme"
     />
 
+  <plone:behavior
+    name="wise.external-links"
+    title="External Links"
+    description="Adds RichText behavior"
+    provides=".interfaces.IExternalLinks"
+    factory=".behavior.ExternalLinks"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".interfaces.IExternalLinks"
+    />
+
   <genericsetup:registerProfile
     name="default"
     title="Plone Theme: WISE Theme"
