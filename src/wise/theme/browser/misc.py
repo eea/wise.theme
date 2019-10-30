@@ -25,5 +25,5 @@ class FrontpageSlidesView (BrowserView):
         return image.absolute_url()
 
 class FullWidth(BrowserView):
-    def isFullWidth(self):
+    def is_full_width(self):
         return IFullWidthLayout.providedBy(self.context)

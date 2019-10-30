@@ -45,6 +45,14 @@
     />
 
   <browser:page
+    name="view"
+    class=".misc.FullWidth"
+    permission="zope2.View"
+    template="pt/fullwidth-template.pt"
+    for="wise.theme.interfaces.IFullWidthLayout"
+    />
+
+  <browser:page
     name="fullwidth-view"
     class=".misc.FullWidth"
     template="pt/fullwidth-template.pt"
