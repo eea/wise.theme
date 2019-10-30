@@ -7,6 +7,8 @@
       <div class="leadimage"
            tal:attributes="style string:background-image:url('${url}')">
      </div>
+     <div class="image-layer"></div>
+     <h1 class="leadimage-title" tal:content="context/Title"></h1>
     </div>
     <div class="leadimage-caption">
       <div class="container">

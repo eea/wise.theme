@@ -1,26 +1,25 @@
 //*// PAGE BANNER //*//
 
-.leadImageOverride {
-  margin-bottom: 330px;
-}
+.leadimage-view {
 
-.leadimage-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  height: 360px;
-  z-index: -1;
+  .leadImageOverride {
+    position: relative;
+  }
+
+  .leadimage-container {
+    overflow: hidden;
+    height: 400px;
+  }
 
   .leadimage-wrapper {
-    height: 360px;
+    height: 400px;
 
     .leadimage {
       height: 100%;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: left center;
+      background-color: rgba(0,0,0,0.8);
     }
   }
 
@@ -33,5 +32,27 @@
     color: #fff;
     font-size: 11px;
     opacity: 0.8;
+    text-shadow: 1px 1px 1px #000;
+  }
+
+  .leadimage-title {
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+    max-width: 800px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .image-layer {
+    background-color: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
