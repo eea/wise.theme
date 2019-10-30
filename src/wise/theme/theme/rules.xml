@@ -56,8 +56,7 @@
 
     <prepend theme="/html/body">
       <xsl:attribute name="class">
-        <xsl:value-of select="/html/body/@class"/> leadimage-view
-      </xsl:attribute>
+        <xsl:value-of select="/html/body/@class"/> leadimage-view</xsl:attribute>
     </prepend>
   </rules>
 
