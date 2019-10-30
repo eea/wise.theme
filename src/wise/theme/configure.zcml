@@ -50,5 +50,6 @@
     name="wise.theme-hiddenprofiles" />
 
   <interface interface=".interfaces.IHomepage" />
+  <interface interface=".interfaces.IFullWidthLayout" />
 
 </configure>

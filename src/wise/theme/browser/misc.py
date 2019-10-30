@@ -1,4 +1,5 @@
 from plone.api import content, portal
+from ..interfaces import IFullWidthLayout
 from Products.Five.browser import BrowserView
 
 
@@ -22,3 +23,7 @@ class FrontpageSlidesView (BrowserView):
 
     def getImageUrl(self, image):
         return image.absolute_url()
+
+class FullWidth(BrowserView):
+    def isFullWidth(self):
+        return IFullWidthLayout.providedBy(self.context)

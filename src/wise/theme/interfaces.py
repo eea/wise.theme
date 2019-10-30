@@ -17,6 +17,10 @@ class IHomepage(Interface):
     """ Marker interface for the context object that is the homepage
     """
 
+class IFullWidthLayout(Interface):
+    """ Marker interface
+    """
+
 @provider(IFormFieldProvider)
 class IExternalLinks(model.Schema):
     """ External links interface with RichText schema

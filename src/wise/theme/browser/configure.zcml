@@ -15,7 +15,7 @@
     type="plone"
     directory="static"
     />
-  
+
   <browser:viewlet
     for="..interfaces.IExternalLinks"
     name="internal_related_content"
@@ -25,7 +25,7 @@
     template="pt/internal_related_content_viewlet.pt"
     permission="zope2.View"
     />
-  
+
   <browser:viewlet
     for="..interfaces.IExternalLinks"
     name="external_links_viewlet"
@@ -35,13 +35,21 @@
     template="pt/external_links_viewlet.pt"
     permission="zope2.View"
     />
-  
+
   <browser:viewlet
     for="wise.theme.interfaces.IHomepage"
     name="wise.frontpage.slideshow"
     manager="plone.app.layout.viewlets.interfaces.IAboveContent"
     class=".viewlets.SlidesViewlet"
     permission="zope.Public"
+    />
+
+  <browser:page
+    name="fullwidth-view"
+    class=".misc.FullWidth"
+    template="pt/fullwidth-template.pt"
+    permission="zope2.View"
+    for="wise.theme.interfaces.IFullWidthLayout"
     />
 
   <!--  -->
