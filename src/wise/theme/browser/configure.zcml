@@ -44,26 +44,27 @@
     permission="zope.Public"
     />
 
-  <browser:page
-    name="view"
-    class=".misc.FullWidth"
-    permission="zope2.View"
-    template="pt/fullwidth-template.pt"
-    for="wise.theme.interfaces.IFullWidthLayout"
-    />
+  <configure package="plone.app.contenttypes.browser">
+    <browser:page
+      name="fullpage_view"
+      for="plone.app.contenttypes.interfaces.IDocument"
+      template="templates/document.pt"
+      layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
+      permission="zope2.View"
+      menu="plone_displayviews"
+      title="Fullpage width view"
+      />
+  </configure>
 
   <browser:page
-    name="fullwidth-view"
-    class=".misc.FullWidth"
-    template="pt/fullwidth-template.pt"
-    permission="zope2.View"
-    for="wise.theme.interfaces.IFullWidthLayout"
+    permission="cmf.ManagePortal"
+    name="gopdb"
+    for="*"
+    class=".misc.GoPDB"
     />
 
   <!--  -->
   <!-- layer="wise.theme.interfaces.IWiseThemeLayer" -->
-
-
   <!-- <browser:page -->
     <!--   for="*" -->
     <!--   name="easyslideshow_view" -->

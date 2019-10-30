@@ -18,15 +18,6 @@
     />
 
   <plone:behavior
-    name="wise.full-width-layout"
-    title="Full Width Layout"
-    description="Adds Full Width behavior"
-    for="plone.dexterity.interfaces.IDexterityContent"
-    marker=".interfaces.IFullWidthLayout"
-    provides=".interfaces.IFullWidthLayout"
-    />
-
-  <plone:behavior
     name="wise.external-links"
     title="External Links"
     description="Adds External Links fields"
