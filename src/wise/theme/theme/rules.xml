@@ -52,6 +52,13 @@
       <xsl:copy-of select="//div[@class='leadImageOverride']" />
     </after>
     <drop content="//div[@class='leadImageOverride']" />
+    <drop css:content=".documentFirstHeading" />
+
+    <prepend theme="/html/body">
+      <xsl:attribute name="class">
+        <xsl:value-of select="/html/body/@class"/> leadimage-view
+      </xsl:attribute>
+    </prepend>
   </rules>
 
   <rules css:if-content=".site-Plone" css:if-not-content=".section-front-page">
