@@ -20,7 +20,7 @@
   <plone:behavior
     name="wise.external-links"
     title="External Links"
-    description="Adds RichText behavior"
+    description="Adds External Links fields"
     provides=".interfaces.IExternalLinks"
     factory=".behavior.ExternalLinks"
     for="plone.dexterity.interfaces.IDexterityContent"
