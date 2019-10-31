@@ -44,6 +44,16 @@
     permission="zope.Public"
     />
 
+  <browser:page
+    name="tilelisting_view"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    template="pt/tilelisting.pt"
+    layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
+    permission="zope2.View"
+    menu="plone_displayviews"
+    title="Tile Listing View"
+  />
+  
   <configure package="plone.app.contenttypes.browser">
     <browser:page
       name="fullpage_view"
@@ -52,7 +62,7 @@
       layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
       permission="zope2.View"
       menu="plone_displayviews"
-      title="Fullpage width view"
+      title="Fullpage Width View"
       />
   </configure>
 
