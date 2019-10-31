@@ -13,12 +13,13 @@
         <div class="col-xs-12 col-md-4"
              tal:repeat="folder python: context.listFolderContents(contentFilter={'portal_type' : 'Folder'})">
           <div class="tile-listing-wrapper">
-            <div class="tile-listing-image">
-              <img tal:condition="folder/image"
-                tal:attributes="src python: folder.absolute_url() + '/@@images/image/preview'"/>
-              </div>
-              <h4 class="title" tal:content="folder/title">Title</h4>
-              <p class="summary" tal:content="folder/Description">Summary</p>
+            <div tal:condition="folder/image"
+                 class="tile-listing-image"
+                 tal:define="url python: folder.absolute_url() + '/@@images/image/preview'"
+                 tal:attributes="style string:background-image:url('${url}')">
+            </div>
+            <h4 class="title" tal:content="folder/title">Title</h4>
+            <p class="summary" tal:content="folder/Description">Summary</p>
           </div>
         </div>
       </div>
