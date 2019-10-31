@@ -65,13 +65,7 @@
 
   <!--  -->
   <!-- layer="wise.theme.interfaces.IWiseThemeLayer" -->
-  <!-- <browser:page -->
-    <!--   for="*" -->
-    <!--   name="easyslideshow_view" -->
-    <!--   class=".slideshowview.SlideshowView" -->
-    <!--   permission="zope.Public" -->
-    <!--   /> -->
-  <!--  -->
+
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
   <!-- <include package="z3c.jbot" file="meta.zcml" /> -->
 
@@ -79,21 +73,6 @@
     <!--   directory="overrides" -->
     <!--   layer="wise.theme.interfaces.IWiseThemeLayer" -->
     <!--   /> -->
-
-  <!-- <browser:page -->
-    <!--     for="*" -->
-    <!--     name="slideshow_macros" -->
-    <!--     template="pt/slideshow_macros.pt" -->
-    <!--     permission="zope.Public" -->
-    <!--     /> -->
-  <!--  -->
-  <!-- <browser:page -->
-    <!--     for="*" -->
-    <!--     name="slideshow_folder_view" -->
-    <!--     template="pt/slideshow_folder_view.pt" -->
-    <!--     permission="zope.Public" -->
-    <!--     /> -->
-  <!--  -->
 
   <!-- Disabled for Plone5 new theme, will need to be enabled selectively, after testing -->
 
@@ -115,15 +94,7 @@
     <!--   class="plone.app.layout.viewlets.common.SearchBoxViewlet" -->
     <!--   template="pt/searchbox.pt" -->
     <!--   /> -->
-  <!--  -->
-  <!-- <browser:page -->
-    <!--   name="slides&#45;frontpage" -->
-    <!--   for="*" -->
-    <!--   permission="zope.Public" -->
-    <!--   template="pt/slides.pt" -->
-    <!--   class=".misc.FrontpageSlidesView" -->
-    <!--   /> -->
-  <!--  -->
+
   <!-- <!&#45;&#45; The navigation menu override &#45;&#45;> -->
   <!-- <browser:viewlet -->
     <!--   name="plone.global_sections" -->
