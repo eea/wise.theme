@@ -11,9 +11,8 @@
     <metal:content-core define-macro="content-core">
       <div class="row">
         <div class ="col-xs-12 col-md-4" 
-                  tal:repeat="folder context/listFolderContents">
-          <h4 class="title" tal:content="folder/title" 
-              tal:condition="python: folder.Type() == 'Folder'"></h4>
+                  tal:repeat="folder python: context.listFolderContents(portal_type='Folder')">
+          <h4 class="title" tal:content="folder/title"></h4>
             <img tal:condition="folder/image" 
                   tal:attributes="src python: folder.absolute_url() + '/@@images/image/preview'"/>
             <div class="summary" tal:content="folder/Description">Summary</div>
