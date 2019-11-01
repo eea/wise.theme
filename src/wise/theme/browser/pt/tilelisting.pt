@@ -6,7 +6,7 @@
   metal:use-macro="context/main_template/macros/master"
   i18n:domain="plone"
   >
-
+  
   <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
       <div class="row">
@@ -15,18 +15,21 @@
               folder python: 
               context.listFolderContents(contentFilter={'portal_type' : 'Folder'})">
           <div tal:define="summary_id python: 'summary_' + folder.title.lower().replace(' ', '_');
-                            url python: folder.absolute_url() + '/@@images/image/preview'">
+                            url python: folder.absolute_url() + '/@@images/image/'">
             <a class="pat-plone-modal title"
                 tal:attributes="href python: '#' + summary_id" 
                 tal:content="folder/title"></a>
             <div class="tile-listing-wrapper">
               <div tal:condition="folder/image"
                   class="tile-listing-image"
-                  tal:attributes="style string:background-image:url('${url}')">
+                  tal:attributes="
+                    style string:background-image:url('${python: url + '/preview'}')">
               </div>
               <div tal:attributes="id summary_id"
                     style="display: none">
-                <p tal:content="folder/Description">Summary</p>  
+                <a tal:attributes="href folder/absolute_url" tal:content="folder/title">Title(link)</a>
+                <p tal:content="folder/Description">Summary</p>
+                <img tal:attributes="href python: url + '/large'"/>
               </div>
             </div>
           </div>
@@ -35,4 +38,3 @@
     </metal:content-core>
   </metal:content-core>
 </html>
-
