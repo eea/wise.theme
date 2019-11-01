@@ -1,3 +1,4 @@
+// Tile listing view
 .tile-listing-wrapper {
   text-align: center;
 
@@ -15,5 +16,53 @@
 
   .summary {
     font-size: 14px;
+  }
+}
+
+
+.image-caption {
+  font-style: italic;
+  font-size: 14px;
+  margin: 0.5em 0;
+  color: @gray !important;
+}
+
+
+// Internal and external links 'portlets'/boxes
+#relatedItemBox {
+  display: none;
+}
+
+.internal-related-content {
+  float: left;
+  ul {
+    padding-left: 0;
+  }
+  li {
+    display: block;
+  }
+}
+
+.external-links {
+  float: right;
+
+  p::before {
+    content: '\f0da';
+    font-family: FontAwesome;
+    padding-right: 0.5rem;
+  }
+}
+
+.internal-related-content,
+.external-links {
+  border-top: 3px solid #e3edf7;
+  margin-top: 1.5em;
+}
+
+// Fullwidth view
+.template-fullpage_view {
+  .container {
+    width: 100% !important;
+    padding: 0 2em;
   }
 }
