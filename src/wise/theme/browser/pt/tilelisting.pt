@@ -11,18 +11,26 @@
     <metal:content-core define-macro="content-core">
       <div class="row">
         <div class="col-xs-12 col-md-4"
-             tal:repeat="folder python: context.listFolderContents(contentFilter={'portal_type' : 'Folder'})">
-          <div class="tile-listing-wrapper">
+             tal:repeat="
+              folder python: 
+              context.listFolderContents(contentFilter={'portal_type' : 'Folder'})">
+          <a class="pat-plone-modal title" 
+              tal:attributes="href python: '#summary_' + folder.title.lower().replace(' ', '_')" 
+              tal:content="folder/title"></a>
+          <div class="tile-listing-wrapper"
+                tal:define="url python: folder.absolute_url() + '/@@images/image/preview'">
             <div tal:condition="folder/image"
                  class="tile-listing-image"
-                 tal:define="url python: folder.absolute_url() + '/@@images/image/preview'"
                  tal:attributes="style string:background-image:url('${url}')">
             </div>
-            <h4 class="title" tal:content="folder/title">Title</h4>
-            <p class="summary" tal:content="folder/Description">Summary</p>
+          </div>
+          <div tal:attributes="id python: 'summary_' + folder.title.lower()"
+                style="display: none">
+            <p tal:content="folder/Description">Summary</p>  
           </div>
         </div>
       </div>
     </metal:content-core>
   </metal:content-core>
 </html>
+
