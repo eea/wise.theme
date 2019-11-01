@@ -14,19 +14,21 @@
              tal:repeat="
               folder python: 
               context.listFolderContents(contentFilter={'portal_type' : 'Folder'})">
-          <a class="pat-plone-modal title" 
-              tal:attributes="href python: '#summary_' + folder.title.lower().replace(' ', '_')" 
-              tal:content="folder/title"></a>
-          <div class="tile-listing-wrapper"
-                tal:define="url python: folder.absolute_url() + '/@@images/image/preview'">
-            <div tal:condition="folder/image"
-                 class="tile-listing-image"
-                 tal:attributes="style string:background-image:url('${url}')">
+          <div tal:define="summary_id python: 'summary_' + folder.title.lower().replace(' ', '_');
+                            url python: folder.absolute_url() + '/@@images/image/preview'">
+            <a class="pat-plone-modal title"
+                tal:attributes="href python: '#' + summary_id" 
+                tal:content="folder/title"></a>
+            <div class="tile-listing-wrapper">
+              <div tal:condition="folder/image"
+                  class="tile-listing-image"
+                  tal:attributes="style string:background-image:url('${url}')">
+              </div>
+              <div tal:attributes="id summary_id"
+                    style="display: none">
+                <p tal:content="folder/Description">Summary</p>  
+              </div>
             </div>
-          </div>
-          <div tal:attributes="id python: 'summary_' + folder.title.lower()"
-                style="display: none">
-            <p tal:content="folder/Description">Summary</p>  
           </div>
         </div>
       </div>
