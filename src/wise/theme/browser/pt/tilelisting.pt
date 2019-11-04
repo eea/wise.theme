@@ -10,40 +10,39 @@
     <metal:content-core define-macro="content-core">
       <div class="row">
         <div class="col-xs-12 col-md-4"
-             tal:repeat="
-              folder python:
-              context.listFolderContents(contentFilter={'portal_type' : 'Folder'})">
-          <div tal:define="summary_id python: 'summary_' + folder.title.lower().replace(' ', '_');
-                           url python: folder.absolute_url() + '/@@images/image'">
+             tal:repeat="item context/listFolderContents">
+          <tal:block
+              tal:define="summary_id python: 'summary_' + item.title.lower().replace(' ', '_');
+                          url python: item.absolute_url() + '/@@images/image'">
 
             <div class="tile-listing-wrapper">
               <a class="pat-plone-modal title"
-                tal:attributes="href python: '#' + summary_id">
-
-                <div tal:condition="folder/image"
-                  class="tile-image tile-listing-image"
-                  tal:attributes="style string:background-image:url('${url}')">
+                 tal:attributes="href python: '#' + summary_id">
+                <div tal:condition="item/image"
+                     class="tile-image tile-listing-image"
+                     tal:attributes="style string:background-image:url('${url}')">
                 </div>
-                <h4 tal:content="folder/title">Title</h4>
+                <h4 tal:content="item/title">Title</h4>
               </a>
             </div>
 
             <div tal:attributes="id summary_id"
                  style="display: none">
-              <h1 tal:content="folder/title">Title</h1>
+              <h1 tal:content="item/title">Title</h1>
               <div class="tile-listing-content">
-                <div tal:condition="folder/image"
-                  class="tile-image tile-modal-image"
-                  tal:attributes="style string:background-image:url('${url}')">
+                <div tal:condition="item/image"
+                     class="tile-image tile-modal-image"
+                     tal:attributes="style string:background-image:url('${url}')">
                 </div>
                 <div class="tile-desc">
-                  <p tal:content="folder/Description">Summary</p>
+                  <p tal:content="item/Description">Summary</p>
                   <a class="context"
-                     tal:attributes="href python: folder.absolute_url()">Learn more</a>
+                     tal:attributes="href python: item.absolute_url()">Read more</a>
                 </div>
               </div>
             </div>
-          </div>
+
+          </tal:block>
         </div>
       </div>
     </metal:content-core>
