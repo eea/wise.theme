@@ -40,7 +40,8 @@
                      tal:attributes="style string:background-image:url('${url}')">
                 </div>
                 <div class="tile-desc">
-                  <p tal:content="item/Description">Summary</p>
+                  <p tal:condition="item/text|nothing"
+                     tal:replace="structure item/text/output">Summary</p>
                   <a class="context"
                      tal:attributes="href python: item.absolute_url()">Read more</a>
                 </div>
