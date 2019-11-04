@@ -5,8 +5,10 @@
   .tile-listing-image {
     width: 80%;
     height: 100px;
+    max-width: 150px;
     border-radius: 7px;
     margin: 0 auto;
+    margin-bottom: 1em;
   }
 }
 
@@ -16,7 +18,9 @@
 }
 
 .tile-desc {
-  margin-left: 2.5em;
+  p {
+    color: @darker-blue;
+  }
 
   .context {
     margin-top: 2em;
@@ -34,6 +38,7 @@
 .tile-modal-image {
   width: 500px;
   height: 300px;
+  margin-right: 2em;
 }
 
 .summary {
