@@ -25,7 +25,7 @@
     <!-- CSS -->
     <after css:theme-children="head" css:content="head link" />
     <!-- Script -->
-    <after css:theme-children="head" css:content="head script" />
+    <after css:theme-children="body" css:content="head script" />
   </rules>
 
   <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
@@ -64,7 +64,7 @@
     <drop css:content=".slider-container"/>
   </rules>
 
-  <rules css:if-content=".template-tilelisting_view"> 
+  <rules css:if-content=".template-tilelisting_view">
     <replace css:theme="#content-container" method="raw">
       <xsl:variable name="central">
         <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-12</xsl:if>
@@ -158,6 +158,10 @@
 
   <!-- Footer -->
   <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" />
+
+  <!-- body -->
+  <drop css:content="body script" />
+  <after css:theme-children="body" css:content="body script" method="raw" />
 
   <!-- Move inline scripts in content to end of body -->
   <drop css:content="body script" />

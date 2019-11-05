@@ -9,10 +9,19 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="wise.theme">
 
-  <browser:resource
+  <!-- <browser:resource -->
+    <!-- layer="wise.theme.interfaces.IWiseThemeLayer" -->
+    <!-- name="plone.app.jquerytools.form.nonrequire.js" -->
+    <!-- file="resources/plone.app.jquerytools.form.nonrequire.js" -->
+    <!-- /> -->
+
+  <browser:viewlet
+    name="plone.resourceregistries.styles"
+    manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+    class="Products.CMFPlone.resources.browser.styles.StylesView"
+    template="overrides/styles_viewlet_override.pt"
     layer="wise.theme.interfaces.IWiseThemeLayer"
-    name="plone.app.jquerytools.form.nonrequire.js"
-    file="resources/plone.app.jquerytools.form.nonrequire.js"
+    permission="zope2.View"
     />
 
 </configure>
