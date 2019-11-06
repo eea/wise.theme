@@ -14,8 +14,11 @@
     <link rel="apple-touch-icon" sizes="72x72" href="static/images/marine_favicon-72.png">
     <link rel="apple-touch-icon" sizes="144x144" href="static/images/marine_favicon-144.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700|Roboto:300,400,400i,500,700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"></noscript>
+
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700|Roboto:300,400,400i,500,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700|Roboto:300,400,400i,500,700&display=swap"></noscript>
 
     <meta name="application-name" content="WISE Marine"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
@@ -67,6 +70,11 @@
                     </div>
 
                     <div class="user-wrapper">
+                      <div class="user-actions">
+                        <i class="fa fa-user fa-user-circle-o user-icon"></i>
+                        <ul id="portal-personaltools">
+                        </ul>
+                      </div>
                       <a class="login-link"><i class="fa fa-user fa-user-circle-o"></i></a>
                     </div>
                   </div>

@@ -78,6 +78,11 @@ $(document).ready(function() {
     e.stopPropagation();
   });
 
+  $('.user-icon').click(function(e) {
+    $(this).siblings('#personal-bar-container').fadeToggle('fast');
+     e.stopPropagation();
+  });
+
   // Move search and login to navbar container
   $('.top-actions').prependTo('.navbar-collapse');
 
@@ -101,4 +106,5 @@ $(document).ready(function() {
 
 $(document).click(function() {
   $('.search-modal').hide();
+  $('.user-actions').find('#personal-bar-container').hide();
 });

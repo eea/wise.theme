@@ -2,7 +2,7 @@
 
 #content-header {
   padding-top: 1.5em;
-  padding-bottom: 0.5em; 
+  padding-bottom: 0.5em;
 }
 
 #portal-top {
@@ -43,10 +43,6 @@
 
 
 //* // top search section
-
-.user-wrapper a {
-  margin-left: 1.3em;
-}
 
 .search-icon {
   cursor: pointer;
@@ -97,5 +93,61 @@
   &:hover {
     background-color: @dark-blue;
     color: #fff;
+  }
+}
+
+
+//* // login and user actions
+
+.user-wrapper {
+  .fa-user {
+    margin-left: 1.2em;
+    cursor: pointer;
+  }
+}
+
+.user-actions {
+  position: relative;
+
+  ul {
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  #personal-bar-container {
+    position: absolute;
+    top: 2em;
+    right: 0;
+    background-color: #fff;
+    z-index: 9999;
+    border-radius: 7px;
+    min-width: 150px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+
+    li {
+      list-style-type: none;
+    }
+
+    >li.plone-toolbar-separator {
+      >a {
+        display: none;
+      }
+      li {
+        >span {
+          padding: 0.5em 0.8em;
+          display: block;
+          font-weight: 500;
+        }
+        a {
+          padding: 0 0.8em 0.5em 0.8em;
+          display: block;
+
+          &:hover {
+            color: @orange;
+          }
+        }
+      }
+    }
   }
 }

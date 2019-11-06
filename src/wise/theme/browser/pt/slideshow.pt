@@ -5,16 +5,16 @@
 
     <script>
       // <![CDATA[
-      jQuery(document).ready(function(){
-      $('.pics').cycle({
-      fx: 'fade',
-      pauseOnHover: true,
-      timeout: 4000,
-      speed: 500,
-      swipe: true,
-      prev: '#prev',
-      next: '#next'
-      });
+      jQuery(document).ready(function() {
+        $('.pics').cycle({
+        fx: 'fade',
+        pauseOnHover: true,
+        timeout: 4000,
+        speed: 500,
+        swipe: true,
+        prev: '#prev',
+        next: '#next'
+        });
       });
       // ]]>
     </script>
@@ -24,24 +24,20 @@
 
         <tal:rep repeat="image images">
           <div class="slideContainer"
-            tal:define="title image/Title;
-            description image/Description;
-            url image/getURL;
-            obj image/getObject;">
+               tal:define="title image/Title;
+               description image/Description;
+               url image/getURL;
+               obj image/getObject;">
 
-            <div class="slider-caption row"
-              i18n:translate="">
-
+            <div class="slider-caption row">
               <div class="slider-title">
-                <div tal:content="title"
-                  i18n:name="slide_title">
+                <div tal:content="title">
                   Welcome to WISE - MARINE
                 </div>
               </div>
 
               <div class="slider-description">
-                <p tal:content="description"
-                  i18n:name="slide_description">
+                <p tal:content="description">
                   WISE - Marine is a gateway to information on European marine
                   in support of ocean governance and ecosystem based management.
                 </p>
@@ -49,11 +45,11 @@
             </div>
 
             <div class="slider-layer"></div>
-
             <a href="#">
               <div class="slider-image-wrapper">
-                <div class="slider-image"
-                  tal:attributes="style string:background-image:url('${url}')"></div>
+                  <div class="slider-image lazyload"
+                       tal:attributes="style string:background-image:url('${url}')">
+                  </div>
               </div>
             </a>
           </div>

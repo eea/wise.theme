@@ -148,22 +148,21 @@
 
   <replace css:theme="#portal-anontools" css:content-children="#portal-anontools" />
 
-  <!-- login modal -->
-  <copy attributes="class href data-pat-plone-modal" css:content="#personaltools-login" css:theme=".login-link"/>
-
-  <!-- hide login icon for logged in users -->
+  <!-- login and user actions -->
   <rules if-not="$is_anon">
     <drop css:theme=".login-link" />
   </rules>
+  <copy attributes="class href data-pat-plone-modal" css:content="#personaltools-login" css:theme=".login-link"/>
+
+  <rules if="$is_anon">
+    <drop css:theme=".user-actions" />
+  </rules>
+  <replace css:theme="#portal-personaltools" css:content="#personal-bar-container" />
 
   <!-- Footer -->
   <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" />
 
   <!-- body -->
-  <drop css:content="body script" />
-  <after css:theme-children="body" css:content="body script" method="raw" />
-
-  <!-- Move inline scripts in content to end of body -->
   <drop css:content="body script" />
   <after css:theme-children="body" css:content="body script" method="raw" />
 
