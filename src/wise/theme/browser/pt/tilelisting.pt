@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-xs-12 col-md-4"
              tal:repeat="item context/listFolderContents">
-          <tal:block
+          <div class="tile-listing"
               tal:define="summary_id python: 'summary_' + item.title.lower().replace(' ', '_');
                           url python: item.absolute_url() + '/@@images/image'">
 
@@ -32,7 +32,8 @@
             </div>
 
             <div tal:attributes="id summary_id"
-                 style="display: none">
+                 style="display: none"
+                 class="tile-modal">
               <h1 tal:content="item/title">Title</h1>
               <div class="tile-listing-content">
                 <div tal:condition="item/image"
@@ -42,15 +43,45 @@
                 <div class="tile-desc">
                   <p tal:condition="item/text|nothing"
                      tal:replace="structure item/text/output">Summary</p>
-                  <a class="context"
-                     tal:attributes="href python: item.absolute_url()">Read more</a>
                 </div>
+              </div>
+              <div class="formControls">
+                <input class="modal-btn standalone"
+                       type="submit"
+                       value="Cancel" />
+                <a class="modal-btn context"
+                   tal:attributes="href python: item.absolute_url()">Read more</a>
               </div>
             </div>
 
-          </tal:block>
+          </div>
         </div>
       </div>
+
+      <script>
+        jQuery(document).ready(function() {
+          $('.pat-plone-modal').patPloneModal({
+            position: 'center middle',
+            content: '.tile-listing-content',
+            buttons: '.formControls > .modal-btn',
+            backdropOptions: {
+              closeOnEsc: true,
+              closeOnClick: true,
+            },
+            automaticallyAddButtonActions: false,
+            actionOptions: {
+              displayInModal: true,
+              reloadWindowOnClose: false
+            },
+            actions: {
+              '.standalone': {
+                modalFunction: 'hide',
+              }
+            }
+          });
+        });
+      </script>
+
     </metal:content-core>
   </metal:content-core>
 </html>
