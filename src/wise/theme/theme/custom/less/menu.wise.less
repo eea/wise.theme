@@ -7,7 +7,6 @@
 }
 
 .plone-navbar-collapse {
-
   &.plone-collapse {
     display: block;
     height: auto;
@@ -236,6 +235,10 @@ ul.plone-nav {
 .collapse-nav {
   padding: 0.5em 0 !important;
 
+  #mainnavigation-wrapper .container {
+    padding: 0;
+  }
+
   .site-logo img {
     width: 80px;
   }
@@ -247,10 +250,8 @@ ul.plone-nav {
   }
 
   .top-actions {
-    display: block;
+    display:flex;
     position: relative;
-    right: auto;
-    top: auto;
 
     .fa {
       color: #fff;
@@ -258,9 +259,6 @@ ul.plone-nav {
     }
 
     .user-wrapper {
-      position: absolute;
-      top: 0;
-      right: 0;
       margin-top: 1em;
     }
   }
@@ -280,6 +278,7 @@ ul.plone-nav {
     padding: 0.5em 0;
     top: auto;
     width: auto;
+    box-shadow: none;
 
     input {
       width: 70%;
@@ -292,7 +291,7 @@ ul.plone-nav {
     }
 
     .submit-mobile-only {
-      display: block;
+      display: inline-block;
     }
   }
 
@@ -310,7 +309,7 @@ ul.plone-nav {
     width: 320px;
     right: 0;
     top: 54px;
-    z-index: 9999;
+    z-index: 999;
     height: 95vh;
     -webkit-transform: translateX(100%);
     -ms-transform: translateX(100%);

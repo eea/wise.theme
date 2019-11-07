@@ -9,6 +9,10 @@ function autoCollapseNavigation() {
   $header.removeClass('collapse-nav');
   if ($navbar.innerHeight() > 90) {
     $header.addClass('collapse-nav');
+    // Move search and login to navbar container
+    $('.top-actions').prependTo('.navbar-collapse');
+  } else {
+    $('.top-actions').appendTo('.right-actions-section');
   }
 }
 
@@ -82,9 +86,6 @@ $(document).ready(function() {
     $(this).siblings('#personal-bar-container').fadeToggle('fast');
      e.stopPropagation();
   });
-
-  // Move search and login to navbar container
-  $('.top-actions').prependTo('.navbar-collapse');
 
   setTwoRowNavigation();
   autoCollapseNavigation();

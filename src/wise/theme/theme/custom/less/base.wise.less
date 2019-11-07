@@ -41,3 +41,80 @@ a:hover, a:focus {
 iframe {
   border: none;
 }
+
+//*// Containers
+
+@media (min-width: @screen-sm-min) {
+  .container {
+    width: @container-sm;
+  }
+}
+@media (min-width: @screen-md-min) {
+  .container {
+    width: @container-md;
+  }
+}
+@media (min-width: @screen-lg-min) {
+  .container {
+    width: 100%;
+    padding: 0 2em;
+    max-width: @container-lg;
+  }
+}
+
+// Small screen
+@media (min-width: @screen-sm-min) {
+  .plone-toolbar-top-default .container {
+    width: @container-sm;
+  }
+}
+@media(min-width: (@screen-sm-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: (@container-sm);
+  }
+}
+@media(min-width: (@screen-sm-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: (@container-sm);
+  }
+}
+
+// Medium screen
+@media (min-width: @screen-md-min) {
+  .plone-toolbar-top-default .container {
+    width: @container-md;
+  }
+}
+@media(min-width: (@screen-md-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: (@container-md);
+  }
+}
+@media(min-width: (@screen-md-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: (@container-md);
+  }
+}
+
+// Large screen
+@media (min-width: @screen-lg-min) {
+  .plone-toolbar-top-default .container {
+    width: 100%;
+    padding: 0 2em;
+    max-width: @container-lg;
+  }
+}
+@media(min-width: (@screen-lg-min + @plone-left-toolbar)) {
+  .plone-toolbar-left-default .container {
+    width: 100%;
+    padding: 0 2em;
+    max-width: @container-lg;
+  }
+}
+@media(min-width: (@screen-lg-min + @plone-left-toolbar-expanded)) {
+  .plone-toolbar-left-expanded .container {
+    width: 100%;
+    padding: 0 2em;
+    max-width: @container-lg;
+  }
+}

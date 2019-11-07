@@ -33,12 +33,14 @@
 
 .top-actions {
   display: flex;
-  position: absolute;
-  right: 1em;
-  top: -15px;
+  margin-top: 1.2em;
   .fa {
     color: @light-blue;
   }
+}
+
+.right-actions-section {
+  display: flex;
 }
 
 
@@ -51,7 +53,7 @@
 .search-modal {
   display: none;
   position: absolute;
-  top: 2em;
+  top: 3em;
   right: 0;
   padding: 1em;
   background-color: #fff;
@@ -63,10 +65,6 @@
 
 .submit-mobile-only {
   display: none;
-  margin-top: 0;
-  width: auto;
-  white-space: nowrap;
-  overflow: hidden;
   background-color: transparent;
   border: none;
   color: #fff;
@@ -116,12 +114,13 @@
 
   #personal-bar-container {
     position: absolute;
-    top: 2em;
+    top: 1.8em;
     right: 0;
     background-color: #fff;
-    z-index: 9999;
+    z-index: 999;
     border-radius: 7px;
-    min-width: 150px;
+    min-width: 170px;
+    max-width: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: none;
 
@@ -142,10 +141,16 @@
         a {
           padding: 0 0.8em 0.5em 0.8em;
           display: block;
-
-          &:hover {
-            color: @orange;
-          }
+          position: relative;
+        }
+        .icon-logout:before {
+          font-size: 12px;
+          line-height: 18px;
+          position: absolute;
+          top: 0;
+          right: 10px;
+          margin-top: 4px;
+          color: #c4183c;
         }
       }
     }
