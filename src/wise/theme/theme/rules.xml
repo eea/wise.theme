@@ -24,9 +24,18 @@
     <drop theme="/html/head/link[rel='stylesheet']" />
     <!-- CSS -->
     <after css:theme-children="head" css:content="head link" />
+  </rules>
+
+  <rules css:if-content="#portal-top" css:if-not-content=".template-tilelisting_view">
     <!-- Script -->
     <after css:theme-children="body" css:content="head script" />
   </rules>
+
+  <rules css:if-content=".template-tilelisting_view">
+    <!-- Script -->
+    <after css:theme-children="head" css:content="head script" />
+  </rules>
+
 
   <!-- Copy over the id/class attributes on the body tag. This is important for per-section styling -->
   <copy attributes="*" css:content="body" css:theme="body" />
@@ -163,8 +172,10 @@
   <replace css:theme-children="#portal-footer" css:content-children="#portal-footer-wrapper" />
 
   <!-- body -->
-  <drop css:content="body script" />
-  <after css:theme-children="body" css:content="body script" method="raw" />
+  <rules css:if-not-content=".template-tilelisting_view">
+    <drop css:content="body script" />
+    <after css:theme-children="body" css:content="body script" method="raw" />
+  </rules>
 
   <!-- toolbar -->
   <replace css:theme="#portal-toolbar" css:content-children="#edit-bar" css:if-not-content=".ajax_load" css:if-content=".userrole-authenticated" />

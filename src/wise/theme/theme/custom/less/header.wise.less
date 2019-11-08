@@ -34,9 +34,28 @@
 .top-actions {
   display: flex;
   margin-top: 1.3em;
-  .fa {
-    color: @light-blue;
+
+  .top-icon {
+    height: 23px;
+    width: 23px;
+    margin: 0 auto;
+    display: block;
+    background: url(../images/top-icons.svg) no-repeat;
   }
+
+  .search-icon {
+    background-position: 0 0;
+  }
+
+  .user-icon {
+    background-position: -25px 1px;
+    display: inline-block;
+    margin-left: 1em;
+    cursor: pointer;
+    position: relative;
+    bottom: 2px;
+  }
+
 }
 
 .right-actions-section {
@@ -97,12 +116,19 @@
 
 //* // login and user actions
 
-.user-wrapper {
-  .fa-user {
-    margin-left: 1.2em;
-    cursor: pointer;
-  }
+.user-wrapper > a {
+  height: 23px;
+  width: 23px;
+  margin: 0 auto;
+  margin-left: 1em;
+  display: block;
+  position: relative;
+  bottom: 2px;
+  background: url(../images/top-icons.svg) no-repeat;
+  background-position: -25px 1px;
+  display: inline-block;
 }
+
 
 .user-actions {
   position: relative;
