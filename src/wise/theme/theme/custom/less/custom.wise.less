@@ -18,10 +18,6 @@
   }
 }
 
-.pattern-modal-buttons a.modal-btn {
-  margin-left: 0.5em;
-}
-
 .tile-listing-content {
   position: relative;
   display: flex;
@@ -30,10 +26,6 @@
 .tile-desc {
   p {
     color: @darker-blue;
-  }
-
-  .context {
-    margin-top: 2em;
   }
 }
 
@@ -45,6 +37,35 @@
   background-position: left center;
 }
 
+.modal-title {
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.tile-modal .modal-title {
+  display: inline-block;
+}
+
+.tile-modal .close {
+  margin-top: -12px;
+  float: right;
+  font-size: 25px;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .2;
+  border: none;
+  background-color: transparent;
+  float: right;
+  font-family: "PoppinsSemiB";
+
+  &:hover {
+    box-shadow: none;
+    opacity: .5;
+  }
+}
+
 .tile-modal-image {
   min-width: 400px;
   height: 300px;
@@ -53,6 +74,29 @@
 
 .summary {
   font-size: 14px;
+}
+
+.tile-modal .modal-dialog {
+  top: 10%;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .tile-modal .modal-dialog {
+    max-width: 1170px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .tile-modal .modal-dialog {
+    max-width: 970px;
+  }
+}
+
+@media (min-width: 768px) {
+  .tile-modal .modal-dialog {
+    max-width: 750px;
+  }
 }
 
 
@@ -101,10 +145,6 @@
     width: 100% !important;
     max-width: 100%;
     padding: 0 2em;
-  }
-
-  .slider-actions {
-    padding: 0;
   }
 
   .site-info {
