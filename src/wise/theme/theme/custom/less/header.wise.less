@@ -40,7 +40,7 @@
     width: 23px;
     margin: 0 auto;
     display: block;
-    background: url(../images/top-icons.svg) no-repeat;
+    background: url(/++theme++wise-theme/static/images/top-icons.svg) no-repeat;
   }
 
   .search-icon {
@@ -89,8 +89,8 @@
   color: #fff;
 
   &:before {
-    content: '\f002';
-    font-family: FontAwesome;
+    content:"\e003";
+    font-family: 'Glyphicons Halflings';
     font-size: 17px;
   }
   &:hover {
@@ -124,7 +124,7 @@
   display: block;
   position: relative;
   bottom: 2px;
-  background: url(../images/top-icons.svg) no-repeat;
+  background: url(/++theme++wise-theme/static/images/top-icons.svg) no-repeat;
   background-position: -25px 1px;
   display: inline-block;
 }
@@ -180,5 +180,25 @@
         }
       }
     }
+  }
+}
+
+.sticky-header {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  transform: translate3d(0px, 0px, 0px);
+
+  .site-logo img {
+    width: 80px;
+  }
+  .logo-text {
+    font-size: 12px;
+    width: 145px;
+    line-height: 15px;
   }
 }

@@ -15,6 +15,7 @@ module.exports = {
       },
       files: {
         'static/css/theme-compiled.css': 'less/theme.local.less',
+        'static/css/critical.css': 'less/critical.less',
       }
     }
   },

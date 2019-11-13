@@ -14,6 +14,19 @@ function autoCollapseNavigation() {
   } else {
     $('.top-actions').appendTo('.right-actions-section');
   }
+
+  // sticky menu
+  $(function() {
+    var div = $('.collapse-nav');
+    $(window).scroll(function() {
+      var scroll = $(window).scrollTop();
+      if (scroll >= 100) {
+        div.addClass('sticky-header');
+      } else {
+        div.removeClass('sticky-header');
+      }
+    });
+  });
 }
 
 // Align submenu to the right
