@@ -56,7 +56,7 @@
                   <div class="modal-footer">
                     <button data-dismiss="modal">Close</button>
                     <a class="modal-btn context"
-                       tal:attributes="href python: item.absolute_url()">Read more</a>
+                       tal:attributes="href python: item.absolute_url()">Go to dashboard</a>
                   </div>
                 </div>
               </div>
