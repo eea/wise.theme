@@ -72,6 +72,11 @@ function displayImageCaption() {
   $img.each(function() {
     var $this = $(this);
     var imgWithSource = !$this.attr('title').match( /png|jpg/g );
+
+    $this.on('load', function() {
+      $this.siblings('p').css('width', $this.width());
+    });
+
     var imgClass = $this.attr('class');
 
     if (imgWithSource) {

@@ -99,12 +99,15 @@
   }
 }
 
+#content-core p img {
+  border: 10px solid #f1f6fb;
+  border-radius: 7px;
+}
 
 .image-caption {
-  font-style: italic;
-  font-size: 14px;
-  margin: 0.5em 0;
-  color: @gray !important;
+  font-size: 12px;
+  margin: 1.5em .5em;
+  clear: both;
 }
 
 
@@ -125,19 +128,19 @@
 
 .external-links {
   float: right;
-
-  p::before {
-    content:"\e250";
-    font-family: 'Glyphicons Halflings';
-    padding-right: 0.5rem;
-    font-size: 11px;
-  }
 }
 
 .internal-related-content,
 .external-links {
   border-top: 3px solid #e3edf7;
   margin-top: 1.5em;
+
+  a:before {
+    content:"\e250";
+    font-family: 'Glyphicons Halflings';
+    padding-right: 0.5rem;
+    font-size: 11px;
+  }
 }
 
 // Fullwidth view

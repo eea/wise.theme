@@ -3,7 +3,6 @@
     <h3>Recommended reading</h3>
     <ul>
         <li tal:repeat="related_item related_items">
-            <i class="fa fa-caret-right" aria-hidden="true"></i>
             <a tal:attributes="href python: related_item.to_path" tal:content="python: related_item.to_object.Title()"></a>
         </li>
     </ul>
