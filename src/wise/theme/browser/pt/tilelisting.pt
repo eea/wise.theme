@@ -21,44 +21,17 @@
                           url python: item.absolute_url() + '/@@images/image'">
 
             <div class="tile-listing-wrapper">
-              <a class="modal-title"
-                 data-toggle="modal"
-                 tal:attributes="data-target python: '#' + summary_id">
+              <a class="tile-btn"
+                tal:attributes="href python: item.absolute_url()">
                 <div tal:condition="item/image"
                      class="tile-image tile-listing-image"
                      tal:attributes="style string:background-image:url('${url}')">
                 </div>
                 <h4 tal:content="item/title">Title</h4>
               </a>
-            </div>
 
-            <div tal:attributes="id summary_id" class="modal fade tile-modal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title" tal:content="item/title" >Modal title</h2>
-                    <button class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">x</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="tile-listing-content">
-                      <div tal:condition="item/image"
-                           class="tile-image tile-modal-image"
-                           tal:attributes="style string:background-image:url('${url}')">
-                      </div>
-                      <div class="tile-desc">
-                        <p tal:condition="item/text|nothing"
-                           tal:replace="structure item/text/output">Summary</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button data-dismiss="modal">Close</button>
-                    <a class="modal-btn context"
-                       tal:attributes="href python: item.absolute_url()">Go to dashboard</a>
-                  </div>
-                </div>
+              <div class="tile-popover" tal:condition="item/Description">
+                <span class="summary" tal:content="item/Description"></span>
               </div>
             </div>
 
@@ -66,7 +39,6 @@
         </div>
       </div>
 
-      <script src="++theme++wise-theme/static/bs3/js/bootstrap.min.js"></script>
     </metal:content-core>
   </metal:content-core>
 </html>

@@ -7,6 +7,7 @@
 .tile-listing-wrapper {
   text-align: center;
   margin: 1.5em 0;
+  position: relative;
 
   .tile-listing-image {
     width: 80%;
@@ -16,88 +17,51 @@
     margin: 0 auto;
     margin-bottom: 1em;
   }
-}
 
-.tile-listing-content {
-  position: relative;
-  display: flex;
-}
-
-.tile-desc {
-  p {
-    color: @darker-blue;
+  .tile-image {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left center;
   }
 }
 
-.tile-image {
-  position: relative;
-  overflow: hidden;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left center;
-}
+.tile-popover {
+  display: none;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5em 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: @darker-blue;
+  border-radius: 7px;
+  min-width: 250px;
 
-.modal-title {
-  cursor: pointer;
-  &:hover {
-    text-decoration: none;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid #0000;
+    border-right: 8px solid #0000;
+    border-bottom: 8px solid @darker-blue;
+    z-index: 2;
+  }
+  .summary {
+    color: #fff;
+    font-size: 14px;
   }
 }
 
-.tile-modal .modal-title {
-  display: inline-block;
+.tile-btn:hover + .tile-popover {
+  display: block;
 }
 
-.tile-modal .close {
-  margin-top: -12px;
-  float: right;
-  font-size: 25px;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: .2;
-  border: none;
-  background-color: transparent;
-  float: right;
-  font-family: "PoppinsSemiB";
-
-  &:hover {
-    box-shadow: none;
-    opacity: .5;
-  }
-}
-
-.tile-modal-image {
-  min-width: 400px;
-  height: 300px;
-  margin-right: 2em;
-}
-
-.summary {
-  font-size: 14px;
-}
-
-.tile-modal .modal-dialog {
-  top: 10%;
-  width: 100%;
-}
-
-@media (min-width: 1200px) {
-  .tile-modal .modal-dialog {
-    max-width: 1170px !important;
-  }
-}
-
-@media (min-width: 992px) {
-  .tile-modal .modal-dialog {
-    max-width: 970px;
-  }
-}
-
-@media (min-width: 768px) {
-  .tile-modal .modal-dialog {
-    max-width: 750px;
-  }
-}
 
 #content-core p img {
   border: 10px solid #f1f6fb;
