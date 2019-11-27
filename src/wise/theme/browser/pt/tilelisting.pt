@@ -18,7 +18,7 @@
              tal:repeat="item context/listFolderContents">
           <div class="tile-listing"
               tal:define="summary_id python: 'summary_' + item.title.lower().replace(' ', '_');
-                          url python: item.absolute_url() + '/@@images/image'">
+                          url python: item.absolute_url() + '/@@images/image/preview'">
 
             <div class="tile-listing-wrapper">
               <a class="tile-btn"

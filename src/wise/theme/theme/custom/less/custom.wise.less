@@ -1,7 +1,7 @@
 // Tile listing view
 
 .tile-listing {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .tile-listing-wrapper {
@@ -10,9 +10,8 @@
   position: relative;
 
   .tile-listing-image {
-    width: 80%;
-    height: 100px;
-    max-width: 150px;
+    height: 150px;
+    width: 200px;
     border-radius: 7px;
     margin: 0 auto;
     margin-bottom: 1em;
@@ -30,7 +29,7 @@
 .tile-popover {
   display: none;
   position: absolute;
-  top: 150px;
+  top: 165px;
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5em 1em;
@@ -38,6 +37,7 @@
   background-color: @darker-blue;
   border-radius: 7px;
   min-width: 250px;
+  z-index: 9;
 
   &:before {
     content: '';
@@ -63,10 +63,10 @@
 }
 
 
-#content-core p img {
-  border: 10px solid #f1f6fb;
-  border-radius: 7px;
-}
+// #content-core p img {
+//   border: 10px solid #f1f6fb;
+//   border-radius: 7px;
+// }
 
 .image-caption {
   font-size: 12px;
