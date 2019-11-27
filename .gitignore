@@ -35,3 +35,4 @@ report.html
 !src/wise
 *.pyc
 src/wise/theme/theme/node_modules
+*~
