@@ -1,6 +1,7 @@
-<div class="col-xs-12 col-md-6 internal-related-content" tal:define="related_items python: context.relatedItems"
-    tal:condition="related_items">
-    <h3>Recommended reading</h3>
+<div class="col-xs-12 col-md-6 internal-related-content"
+     tal:define="related_items python: context.relatedItems"
+     tal:condition="related_items">
+    <h3>References</h3>
     <ul>
         <li tal:repeat="related_item related_items">
             <a tal:attributes="href python: related_item.to_path" tal:content="python: related_item.to_object.Title()"></a>
