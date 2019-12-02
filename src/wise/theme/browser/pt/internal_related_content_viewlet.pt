@@ -2,9 +2,14 @@
      tal:define="related_items python: context.relatedItems"
      tal:condition="related_items">
     <h3>References</h3>
-    <ul>
+    <ul tal:define="global number python: 0">
         <li tal:repeat="related_item related_items">
-            <a tal:attributes="href python: related_item.to_path" tal:content="python: related_item.to_object.Title()"></a>
+          <a tal:attributes="href python: related_item.to_path">
+            <tal:block tal:define="global number python: number + 1">
+              <span tal:content="python: str(number) + '.'"></span>
+            </tal:block>
+            <tal:cont tal:content="related_item/to_object/Title"></tal:cont>
+          </a>
         </li>
     </ul>
 </div>
