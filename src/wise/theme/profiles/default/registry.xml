@@ -24,4 +24,21 @@
 	      <element>template|+plone+static/components/tinymce-builded/js/tinymce/plugins/template</element>
 	    </value>
 	</record>
+
+  <record name="plone.other_settings" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" prefix="plone" field="other_settings">
+		<value>
+			{
+				"style_formats" : [
+					{
+						"title" : "Image border",
+						"inline" : "span",
+						"attributes" : {
+							"class": "image-border"
+						}
+					}],
+				"style_formats_merge": "True"
+			}
+		</value>
+	</record>
+
 </registry>

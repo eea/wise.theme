@@ -72,17 +72,13 @@ function displayImageCaption() {
   $img.each(function() {
     var $this = $(this);
     var imgWithSource = !$this.attr('title').match( /png|jpg/g );
-
-    $this.on('load', function() {
-      $this.siblings('p').css('width', $this.width());
-    });
-
     var imgClass = $this.attr('class');
 
     if (imgWithSource) {
       $this.wrap('<div class="image-wrapper" />');
       $this.after('<p class="image-caption">' + $(this).attr('title') + '</p>');
       $this.parent('.image-wrapper').addClass(imgClass);
+      $this.siblings('.image-caption').css('width', $this.width());
     }
   });
 }
@@ -108,7 +104,10 @@ $(document).ready(function() {
   setTwoRowNavigation();
   autoCollapseNavigation();
   alignNavSubmenu();
-  displayImageCaption();
+
+  $(window).on('load', function() {
+    displayImageCaption();
+  });
 
   var resizeTimer;
   $(window).on('resize',function() {
