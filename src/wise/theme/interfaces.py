@@ -31,3 +31,11 @@ class IExternalLinks(model.Schema):
 
     external_links = RichText(title=u"External Links", description=u'',
                               required=False)
+
+@provider(IFormFieldProvider)
+class IReferenceLinks(model.Schema):
+    """ Reference links interface with RichText schema
+    """
+
+    reference_links = RichText(title=u"Reference Links", description=u'',
+                              required=False)

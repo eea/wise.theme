@@ -27,6 +27,16 @@
     marker=".interfaces.IExternalLinks"
     />
 
+  <plone:behavior
+    name="wise.reference-links"
+    title="References"
+    description="Adds Reference Links field"
+    provides=".interfaces.IReferenceLinks"
+    factory=".behavior.ReferenceLinks"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".interfaces.IReferenceLinks"
+    />
+
   <genericsetup:registerProfile
     name="default"
     title="Plone Theme: WISE Theme"

@@ -30,21 +30,21 @@
 
   <browser:viewlet
     for="..interfaces.IExternalLinks"
-    name="internal_related_content"
-    page="*"
-    request="*"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-    template="pt/internal_related_content_viewlet.pt"
-    permission="zope2.View"
-    />
-
-  <browser:viewlet
-    for="..interfaces.IExternalLinks"
     name="external_links_viewlet"
     page="*"
     request="*"
     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
     template="pt/external_links_viewlet.pt"
+    permission="zope2.View"
+    />
+
+  <browser:viewlet
+    for="..interfaces.IReferenceLinks"
+    name="references_viewlet"
+    page="*"
+    request="*"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    template="pt/references_viewlet.pt"
     permission="zope2.View"
     />
 

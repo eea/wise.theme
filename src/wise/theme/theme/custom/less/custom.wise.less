@@ -67,37 +67,62 @@
 }
 
 // Internal and external links 'portlets'/boxes
-#relatedItemBox {
-  display: none;
-}
 
-.internal-related-content {
-  float: left;
-  ul {
-    padding-left: 0;
-  }
-  li {
-    display: block;
-  }
-}
-
-.external-links {
-  float: right;
-}
-
-.internal-related-content,
-.external-links {
+.bottom-links {
   border-top: 3px solid #e3edf7;
   margin-top: 1.5em;
-}
+  padding-left: 0;
 
-.external-links {
+  ol {
+    padding-left: 1em;
+    a {
+      padding: 0.2em 0;
+      display: inline-block;
+    }
+    a:before {
+      content:"";
+    }
+  }
+
+  ul {
+    padding-left: 0;
+    li {
+      list-style-type: none;
+      a {
+        padding: 0.2em 0;
+        display: inline-block;
+      }
+      a:before {
+        content:"\e250";
+        font-family: 'Glyphicons Halflings';
+        padding-right: 0.5rem;
+        font-size: 11px;
+      }
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    a {
+      padding: 0.2em 0;
+      display: inline-block;
+    }
+  }
+
   a:before {
     content:"\e250";
     font-family: 'Glyphicons Halflings';
     padding-right: 0.5rem;
     font-size: 11px;
   }
+}
+
+.reference-links {
+  float: left;
+}
+
+.external-links {
+  float: right;
 }
 
 // Fullwidth view
