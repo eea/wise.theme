@@ -9,32 +9,30 @@
   <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
 
-      <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
+      <div tal:condition="context/text|nothing"
+           tal:replace="structure context/text/output">
         <p>Folder description</p>
       </div>
 
-      <div class="row">
-        <div class="col-xs-12 col-md-4"
-             tal:repeat="item context/listFolderContents">
-          <div class="tile-listing"
-              tal:define="summary_id python: 'summary_' + item.title.lower().replace(' ', '_');
-                          url python: item.absolute_url() + '/@@images/image/preview'">
+      <div class="tile-listing">
+        <div class="row">
+          <div class="col-xs-12 col-md-4"
+               tal:repeat="item context/listFolderContents">
+            <div class="tile-listing-wrapper"
+                 tal:define="summary_id python: 'summary_' + item.title.lower().replace(' ', '_'); url python: item.absolute_url() + '/@@images/image/preview'">
+              <a class="tile-item-link"
+                 tal:attributes="href python: item.absolute_url()">
 
-            <div class="tile-listing-wrapper">
-              <a class="tile-btn"
-                tal:attributes="href python: item.absolute_url()">
                 <div tal:condition="item/image"
                      class="tile-image tile-listing-image"
                      tal:attributes="style string:background-image:url('${url}')">
                 </div>
-                <h4 tal:content="item/title">Title</h4>
+                <h4 class="tile-title" tal:content="item/title">Title</h4>
+                <p class="tile-summary"
+                   tal:condition="item/Description"
+                   tal:content="item/Description"></p>
               </a>
-
-              <div class="tile-popover" tal:condition="item/Description">
-                <span class="summary" tal:content="item/Description"></span>
-              </div>
             </div>
-
           </div>
         </div>
       </div>
