@@ -94,7 +94,7 @@
       }
       a:before {
         content:"\e250";
-        font-family: 'Glyphicons Halflings';
+        font-family: @icon-font-family;
         padding-right: 0.5rem;
         font-size: 11px;
       }
@@ -111,7 +111,7 @@
 
   a:before {
     content:"\e250";
-    font-family: 'Glyphicons Halflings';
+    font-family: @icon-font-family;
     padding-right: 0.5rem;
     font-size: 11px;
   }
@@ -144,4 +144,39 @@
 
 .template-tilelisting_view #sidebar {
   display: none;
+}
+
+// Read more
+.collapse-wrapper,
+.collapse-wrapper td {
+  border: none;
+}
+
+.collapse-content {
+  display: none;
+}
+
+.read-more-btn {
+  cursor: pointer;
+  padding: 0.4em 0;
+  display: inline-block;
+  font-size: 14px;
+  color: #4c4c4c;
+
+  &:after {
+    font-family: @icon-font-family;
+    content:"\e259";
+    font-size: 11px;
+    margin-left: 3px;
+    margin-top: 2px;
+  }
+}
+.arrow-up {
+  &:after {
+    content:"\e260";
+  }
+}
+
+#main-container {
+  visibility: hidden;
 }
