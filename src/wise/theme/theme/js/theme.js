@@ -89,14 +89,20 @@ function collapsibleContent() {
       var $this = $(this);
       $this.closest('table').addClass('collapse-wrapper');
       $this.parent().siblings().wrapAll('<div class="collapse-content"/>');
+      var collapsibleContent = $this.parent().siblings('.collapse-content');
+
+      $('<div class="collapse-layer fadein"/>')
+      .prependTo(collapsibleContent);
 
       $this.click(function() {
         var $btn = $(this);
-        $btn.parent().siblings('.collapse-content').fadeToggle();
-        $btn.toggleClass('arrow-up');
-        $btn.text(function(a,b) {
-          return (b == "Read more" ? "Read less" : "Read more");
-        });
+        collapsibleContent.toggleClass('in')
+        .find('.collapse-layer').toggleClass('fadein');
+
+        $btn.toggleClass('arrow-up')
+          .text(function(a,b) {
+            return (b == "Read more" ? "Read less" : "Read more");
+          });
       });
     });
   }
