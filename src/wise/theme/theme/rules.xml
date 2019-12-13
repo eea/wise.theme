@@ -90,17 +90,17 @@
   </rules>
 
   <!-- Central column -->
-  <replace css:theme="#content-container" method="raw">
+  <rules css:if-not-content="#wise-search-form">
+    <replace css:theme="#content-container" method="raw">
+      <xsl:variable name="central">
+        <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-4</xsl:if>
+        <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-8</xsl:if>
+        <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-8</xsl:if>
+        <xsl:if test="not(//aside[@id='portal-column-one']) and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
+      </xsl:variable>
 
-    <xsl:variable name="central">
-      <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-4</xsl:if>
-      <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-8</xsl:if>
-      <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-8</xsl:if>
-      <xsl:if test="not(//aside[@id='portal-column-one']) and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
-    </xsl:variable>
-
-    <div class="{$central}">
-      <!-- <p class="pull-right visible-xs">
+      <div class="{$central}">
+        <!-- <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p> -->
       <div class="row">
@@ -115,6 +115,44 @@
       </footer>
     </div>
   </replace>
+
+  <drop css:theme=".msfd-search-wrapper"/>
+  </rules>
+
+  <!-- MSFD search -->
+  <!-- When copying content to right side, only copy the fields and buttons.  -->
+  <xsl:template css:match="#wise-search-form .left-side-form">
+    <xsl:for-each css:select=".field">
+      <xsl:copy-of select="current()" ></xsl:copy-of>
+    </xsl:for-each>
+    <xsl:for-each css:select=".formControls">
+      <xsl:copy-of select="current()" ></xsl:copy-of>
+    </xsl:for-each>
+  </xsl:template>
+
+  <!-- Remove the nav pills from the sidebar -->
+  <xsl:template css:match="#wise-search-form-top" ></xsl:template>
+
+  <rules css:if-content="#wise-search-form">
+    <!-- Copy everything to the right side. The content is that is copied
+         will be filtered by the xsl:template match-->
+    <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
+
+    <!-- Replace the main content side with the content that is suitable for
+         the left side -->
+    <replace css:theme-children=".center-section">
+      <div id="content">
+        <div id="wise-search-form">
+          <xsl:for-each css:select="#wise-search-form-top">
+            <xsl:copy-of select="current()" ></xsl:copy-of>
+          </xsl:for-each>
+          <xsl:for-each css:select="#wise-search-form .left-side-form">
+            <xsl:copy-of select="current()" ></xsl:copy-of>
+          </xsl:for-each>
+        </div>
+      </div>
+    </replace>
+  </rules>
 
   <!-- Alert message -->
   <replace css:theme-children="#global_statusmessage" css:content-children="#global_statusmessage" />
