@@ -29,22 +29,22 @@
     />
 
   <browser:viewlet
-    for="..interfaces.IExternalLinks"
-    name="external_links_viewlet"
-    page="*"
-    request="*"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-    template="pt/external_links_viewlet.pt"
-    permission="zope2.View"
-    />
-
-  <browser:viewlet
     for="..interfaces.IReferenceLinks"
     name="references_viewlet"
     page="*"
     request="*"
     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
     template="pt/references_viewlet.pt"
+    permission="zope2.View"
+    />
+
+  <browser:viewlet
+    for="..interfaces.IExternalLinks"
+    name="external_links_viewlet"
+    page="*"
+    request="*"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    template="pt/external_links_viewlet.pt"
     permission="zope2.View"
     />
 
