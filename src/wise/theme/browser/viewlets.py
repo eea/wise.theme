@@ -2,6 +2,7 @@ from plone.api import content, portal
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.namedfile.file import NamedBlobImage
 
 
 class SlidesViewlet(ViewletBase):
@@ -28,6 +29,21 @@ class SlidesViewlet(ViewletBase):
 
         return results
 
+class LeadImage(ViewletBase):
+    def lead_image(self):
+        """Return lead image information
+        """
+        image = getattr(self.context, 'image', None)
+        if image is None:
+            return None
+
+        if not isinstance(image, NamedBlobImage):
+            return None
+
+        url = '{0}/@@download/image/{1}'.format(
+            self.context.absolute_url(), image.filename)
+        caption = getattr(self.context, 'image_caption', None)
+        return dict(url=url, caption=caption)
 
 # from AccessControl import Unauthorized
 # from plone import api

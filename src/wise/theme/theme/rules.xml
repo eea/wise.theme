@@ -48,17 +48,21 @@
   </rules>
 
   <!-- page lead image -->
-  <rules css:if-content=".leadImageOverride">
-    <after css:content="#portal-breadcrumbs">
+  <rules css:if-content=".leadimage-header">
+    <!-- <after css:content="#portal-breadcrumbs">
       <xsl:copy-of select="//div[@class='leadImageOverride']" />
     </after>
-    <drop content="//div[@class='leadImageOverride']" />
+    <drop content="//div[@class='leadImageOverride']" /> -->
     <drop css:content=".documentFirstHeading" />
 
     <prepend theme="/html/body">
       <xsl:attribute name="class">
         <xsl:value-of select="/html/body/@class"/> leadimage-view</xsl:attribute>
     </prepend>
+  </rules>
+
+  <rules css:if-content=".leadImageOverride">
+    <drop css:content=".leadImageOverride" />
   </rules>
 
   <rules css:if-content=".site-Plone" css:if-not-content=".section-front-page">
@@ -152,6 +156,7 @@
         </div>
       </div>
     </replace>
+
   </rules>
 
   <!-- Alert message -->

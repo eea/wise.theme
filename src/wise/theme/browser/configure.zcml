@@ -56,6 +56,15 @@
     permission="zope.Public"
     />
 
+  <browser:viewlet
+    name="lead_image"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+    class=".viewlets.LeadImage"
+    permission="zope.Public"
+    template="pt/lead-image.pt"
+    />
+
   <browser:page
     name="tilelisting_view"
     for="plone.app.contenttypes.interfaces.IFolder"
