@@ -128,6 +128,10 @@ $(document).ready(function() {
      e.stopPropagation();
   });
 
+  if ($('.bottom-links').length > 0) {
+    $('#viewlet-below-content').addClass('bottom-links-wrapper');
+  }
+
   setTwoRowNavigation();
   autoCollapseNavigation();
   alignNavSubmenu();

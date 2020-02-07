@@ -33,7 +33,7 @@
     name="references_viewlet"
     page="*"
     request="*"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
     template="pt/references_viewlet.pt"
     permission="zope2.View"
     />
@@ -43,7 +43,7 @@
     name="external_links_viewlet"
     page="*"
     request="*"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
     template="pt/external_links_viewlet.pt"
     permission="zope2.View"
     />

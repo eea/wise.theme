@@ -84,11 +84,11 @@
             <xsl:apply-templates css:select="#content" />
           </div>
         </div>
-        <footer class="row">
+        <div class="row">
           <div class="col-xs-12 col-sm-12">
             <xsl:copy-of css:select="#viewlet-below-content" />
           </div>
-        </footer>
+        </div>
       </div>
     </replace>
   </rules>
@@ -112,11 +112,11 @@
           <xsl:apply-templates css:select="#content" />
         </div>
       </div>
-      <footer class="row">
+      <div class="row">
         <div class="col-xs-12 col-sm-12">
           <xsl:copy-of css:select="#viewlet-below-content" />
         </div>
-      </footer>
+      </div>
     </div>
   </replace>
 
@@ -137,11 +137,20 @@
   <!-- Remove the nav pills from the sidebar -->
   <xsl:template css:match="#wise-search-form-top" ></xsl:template>
 
-  <rules css:if-content="#wise-search-form">
+  <!-- msfd start page -->
+  <rules css:if-content=".template-msfd-start">
+    <replace css:theme-children=".intro-text" css:content="#wise-search-form > *" />
+    <drop css:theme=".msfd-search-wrapper"/>
+  </rules>
+
+  <rules css:if-content="#wise-search-form" css:if-not-content=".template-msfd-start">
     <!-- Copy everything to the right side. The content is that is copied
          will be filtered by the xsl:template match-->
     <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
+    <drop css:theme=".msfd-landing-page"/>
+  </rules>
 
+  <rules css:if-content="#wise-search-form">
     <!-- Replace the main content side with the content that is suitable for
          the left side -->
     <replace css:theme-children=".center-section">
@@ -155,8 +164,16 @@
           </xsl:for-each>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <xsl:copy-of css:select="#viewlet-below-content" />
+        </div>
+      </div>
     </replace>
 
+    <!-- drop sidebars -->
+    <drop css:theme="#column1-container"/>
+    <drop css:theme="#column2-container"/>
   </rules>
 
   <!-- Alert message -->
