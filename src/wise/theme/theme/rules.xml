@@ -84,13 +84,11 @@
             <xsl:apply-templates css:select="#content" />
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-12">
-            <xsl:copy-of css:select="#viewlet-below-content" />
-          </div>
-        </div>
       </div>
     </replace>
+
+    <replace css:content="#viewlet-below-content" css:theme="#below-content" />
+
   </rules>
 
   <!-- Central column -->
@@ -112,14 +110,10 @@
           <xsl:apply-templates css:select="#content" />
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12">
-          <xsl:copy-of css:select="#viewlet-below-content" />
-        </div>
-      </div>
     </div>
   </replace>
 
+  <replace css:content="#viewlet-below-content" css:theme="#below-content" />
   <drop css:theme=".msfd-search-wrapper"/>
   </rules>
 
@@ -140,6 +134,7 @@
   <!-- msfd start page -->
   <rules css:if-content=".template-msfd-start">
     <replace css:theme-children=".intro-text" css:content="#wise-search-form > *" />
+    <replace css:content="#viewlet-below-content" css:theme="#below-content" />
     <drop css:theme=".msfd-search-wrapper"/>
   </rules>
 
@@ -148,6 +143,7 @@
          will be filtered by the xsl:template match-->
     <replace css:theme-children=".side-section" css:content="#wise-search-form > *" />
     <drop css:theme=".msfd-landing-page"/>
+    <drop css:theme="#viewlet-below-content"/>
   </rules>
 
   <rules css:if-content="#wise-search-form">
@@ -162,11 +158,6 @@
           <xsl:for-each css:select="#wise-search-form .left-side-form">
             <xsl:copy-of select="current()" ></xsl:copy-of>
           </xsl:for-each>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-sm-12">
-          <xsl:copy-of css:select="#viewlet-below-content" />
         </div>
       </div>
     </replace>
