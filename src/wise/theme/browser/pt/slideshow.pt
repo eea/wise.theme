@@ -56,7 +56,7 @@
         </tal:rep>
       </div>
 
-      <div class="container slider-actions">
+      <div class="container slider-actions" tal:condition="python: len(images) > 1">
         <a id="prev" class="slide-prev slide-arrow" href="#"></a>
         <a id="next" class="slide-next slide-arrow" href="#"></a>
       </div>
