@@ -1,7 +1,7 @@
 //*// CUSTOM HOME PAGE //*//
 
 .home-content {
-  background-color: #f4f4f4;
+  // background-color: #f4f4f4;
 
   h3 {
     font-size: 24px;
@@ -41,11 +41,34 @@
 
 .topic-wrapper {
   flex: 1 0 21%;
-  margin: 5px;
-  text-align: center;
+  margin: 5px 15px;
   padding: 15px;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0.94px 1.42px 5px;
+  -webkit-transition: box-shadow .2s ease-out;
+
+  &:hover{
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+   -webkit-transition: box-shadow .2s ease-in;
+  }
+
+  > a {
+    display: inline-block;
+  }
+
+  .topic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px;
+
+    .topic-title {
+      margin: 0;
+    }
+  }
 
   p {
+    margin-top: 1em;
     font-size: 14px;
     color: #666;
   }
@@ -67,11 +90,10 @@
 .map-wrapper {
   display: flex;
   justify-content: center;
-  // height: 511px;
   overflow: hidden;
   > img {
+    flex: none; /* keep aspect ratio */
     width: 100%;
-   flex: none; /* keep aspect ratio */
   }
 }
 
