@@ -47,6 +47,9 @@
     <theme href="page.html" />
   </rules>
 
+  <replace css:theme-children=".frontpage-banners" css:content-children=".rotating-banners-container" method="raw" />
+  <drop css:content-children=".rotating-banners-container" />
+
   <!-- page lead image -->
   <rules css:if-content=".leadimage-header">
     <!-- <after css:content="#portal-breadcrumbs">

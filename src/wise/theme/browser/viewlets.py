@@ -29,6 +29,22 @@ class SlidesViewlet(ViewletBase):
 
         return results
 
+class RotatingBannersView(ViewletBase):
+    """ BrowserView for frontpage rotating banners
+    """
+    def __call__(self):
+        return self.index()
+
+    def getBanners(self):
+        site = portal.get()
+        base = '/'.join(site.getPhysicalPath())
+
+        path = {'query': base + '/rotating-banners', 'depth': 1}
+        results = content.find(
+            path=path, portal_type='frontpage-banner', state='published')
+
+        return results
+
 class LeadImage(ViewletBase):
     def lead_image(self):
         """Return lead image information

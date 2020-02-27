@@ -1,0 +1,60 @@
+<tal:def tal:define="banners view/getBanners;">
+  <tal:cond tal:condition="banners">
+    <!-- <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script> -->
+
+    <script>
+      // <![CDATA[
+      jQuery(document).ready(function() {
+        $('.rotating-banners').cycle({
+        fx: 'fade',
+        pauseOnHover: true,
+        timeout: 4000,
+        speed: 500,
+        swipe: true,
+        prev: '#b-prev',
+        next: '#b-next'
+        });
+      });
+      // ]]>
+    </script>
+
+    <div class="rotating-banners-container">
+      <div id="slideshow" class="rotating-banners"
+           data-cycle-slides=".slideContainer">
+        <tal:rep repeat="banner banners">
+          <div class="slideContainer">
+            <div class="banner-wrapper">
+              <div class="banner-content">
+                <!-- <h3 tal:content="banner/Title">Title</h3> -->
+                <div tal:content="structure python: banner.getObject().text.output">
+                  Description
+                </div>
+              </div>
+
+              <div class="banner-graph-area"
+                   tal:define="image python: banner.getObject().image;
+                               iframe python: banner.getObject().embed_code">
+                <div class="banner-image-wrapper" tal:condition="image">
+                  <div class="banner-layer"></div>
+                  <div class="banner-image"
+                    tal:attributes="style string:background-image:url('${banner/getURL}/@@images/image/large')">
+                  </div>
+                </div>
+                <div class="iframe-wrapper" tal:condition="iframe">
+                  <div tal:omit-tag=""
+                       tal:content="structure iframe"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </tal:rep>
+      </div>
+
+      <div class="banner-actions">
+        <a id="b-prev" class="slide-prev slide-arrow" href="#"></a>
+        <a id="b-next" class="slide-next slide-arrow" href="#"></a>
+      </div>
+    </div>
+
+  </tal:cond>
+</tal:def>

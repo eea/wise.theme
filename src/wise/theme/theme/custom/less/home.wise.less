@@ -83,47 +83,97 @@
 
 // Graph/Map area
 
-.map-container {
-  padding: 3em 0;
+.frontpage-banners {
+  position: relative;
+  height: 370px;
+  margin-bottom: 1.8em;
+
+  .slideContainer {
+    height: 100%;
+  }
 }
 
-.map-wrapper {
+.banner-wrapper {
   display: flex;
-  justify-content: center;
+  height: 100%;
+}
+
+.banner-content {
+  background-color: #f2f2f2;
+  padding: 1em;
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.banner-graph-area {
   overflow: hidden;
-  > img {
-    flex: none; /* keep aspect ratio */
-    width: 100%;
+  flex: 1;
+
+  .banner-image {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
   }
 }
 
-.graph-data-wrapper {
-  margin-top: 3em;
-  h4 {
-    font-size: 27px;
-    font-family: "PoppinsSemiB";
-    color: #b6a02b;
+.iframe-wrapper {
+  height: 100%;
+  iframe {
+    height: 100%;
   }
 }
 
-.graph-data {
-  font-size: 30px;
-  font-family: 'RobotoB';
-  margin-top: 1.2em;
-  display: block;
+.banner-image-wrapper {
+  position: relative;
+  height: 100%;
 }
 
-.graph-data.data-first {
-  color: @dark-blue;
+.banner-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
 }
 
-.graph-data.data-second {
-  color: @blue;
+.banner-actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 10px;
+  z-index: 997;
+  text-align: right;
 }
 
 @media only screen and (max-width: 850px) {
   .topic-wrapper {
     flex: 1 0 41%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .frontpage-banners,
+  #slideshow {
+    height: auto;
+  }
+  .banner-image-wrapper, .iframe-wrapper, .banner-graph-area {
+    height: 350px;
+  }
+  .banner-wrapper {
+    display: block;
+    height: auto;
+  }
+  .banner-content {
+    width: 100%;
+  }
+  .banner-actions {
+    bottom: 10px;
   }
 }
 

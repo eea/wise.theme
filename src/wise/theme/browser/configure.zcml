@@ -57,6 +57,16 @@
     />
 
   <browser:viewlet
+    for="wise.theme.interfaces.IHomepage"
+    name="rotating_banners"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    class=".viewlets.RotatingBannersView"
+    permission="zope.Public"
+    template="pt/rotating-banners.pt"
+    />
+
+  <browser:viewlet
     name="lead_image"
     layer="wise.theme.interfaces.IWiseThemeLayer"
     manager="plone.app.layout.viewlets.interfaces.IAboveContent"

@@ -171,30 +171,16 @@
               </div>
             </div>
           </main>
-      </div>
+        </div>
       </div>
 
-      <div class="map-container">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 col-xs-12">
-              <div class="graph-data-wrapper">
-                <h4>Are Europe's seas healthy?</h4>
-                <span class="graph-data data-first">only 4%</span>
-                <p>Fusce vitae tempor elit. Cras consequat velit non convallis maximus.
-                  Ut ante felis, suscipit ac est ut, euismod scelerisque nisl.</p>
-                  <span class="graph-data data-second">80% status</span>
-                  <p>Fusce vitae tempor elit. Cras consequat velit non convallis maximus.</p>
-                </div>
-              </div>
-              <div class="col-md-8 col-xs-12">
-                <div class="map-wrapper">
-                  <img class="lazyload" data-src="++theme++wise-theme/static/images/marine_regions.png"/>
-                </div>
-              </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="frontpage-banners"></div>
           </div>
-      </div>
+        </div>
+
     </div> <!--/outer-wrapper -->
 
     <footer class="footer-wrapper">
@@ -275,21 +261,21 @@
       </div>
       </footer> -->
 
-  <script>
-    document.addEventListener('lazybeforeunveil', function(e) {
-      var bg = e.target.getAttribute('data-bg');
-      if (bg) {
-        e.target.style.backgroundImage = 'url(' + bg + ')';
-      }
-    });
-    (function(){
-      window.lazySizesConfig = window.lazySizesConfig || {};
-      window.lazySizesConfig.loadMode = 1;
-      window.lazySizesConfig.expand = 10;
-      window.lazySizesConfig.expFactor = 1.5;
-      window.lazySizesConfig = {loadHidden: false};
-    })();
-  </script>
-  <script src="++theme++wise-theme/static/js/lazysizes.min.js"></script>
+    <script>
+      document.addEventListener('lazybeforeunveil', function(e) {
+        var bg = e.target.getAttribute('data-bg');
+        if (bg) {
+          e.target.style.backgroundImage = 'url(' + bg + ')';
+        }
+      });
+      (function(){
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        window.lazySizesConfig.loadMode = 1;
+        window.lazySizesConfig.expand = 10;
+        window.lazySizesConfig.expFactor = 1.5;
+        window.lazySizesConfig = {loadHidden: false};
+      })();
+    </script>
+    <script src="++theme++wise-theme/static/js/lazysizes.min.js"></script>
   </body>
 </html>
