@@ -1,23 +1,14 @@
 from plone.api import content, portal
-from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.namedfile.file import NamedBlobImage
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+# from plone.app.layout.navigation.interfaces import INavigationRoot
 
 
 class SlidesViewlet(ViewletBase):
 
     render = ViewPageTemplateFile("pt/slideshow.pt")
-
-    # def render(self):
-    #     import pdb
-    #     pdb.set_trace()
-    #
-    #     if INavigationRoot.providedBy(self.context):
-    #         return self.index()
-    #
-    #     else:
-    #         return ''
 
     def getImages(self):
         site = portal.get()
@@ -29,9 +20,11 @@ class SlidesViewlet(ViewletBase):
 
         return results
 
+
 class RotatingBannersView(ViewletBase):
     """ BrowserView for frontpage rotating banners
     """
+
     def __call__(self):
         return self.index()
 
@@ -45,11 +38,13 @@ class RotatingBannersView(ViewletBase):
 
         return results
 
+
 class LeadImage(ViewletBase):
     def lead_image(self):
         """Return lead image information
         """
         image = getattr(self.context, 'image', None)
+
         if image is None:
             return None
 
@@ -59,7 +54,9 @@ class LeadImage(ViewletBase):
         url = '{0}/@@download/image/{1}'.format(
             self.context.absolute_url(), image.filename)
         caption = getattr(self.context, 'image_caption', None)
+
         return dict(url=url, caption=caption)
+
 
 # from AccessControl import Unauthorized
 # from plone import api

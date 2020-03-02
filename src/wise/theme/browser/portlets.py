@@ -5,10 +5,11 @@ from zope.component import adapter, getMultiAdapter  # , getUtilitiesFor
 from zope.interface import Interface, implementer
 from zope.publisher.interfaces.browser import IBrowserRequest, IBrowserView
 
+from Acquisition import Explicit, aq_acquire, aq_inner
 from plone.memoize.view import memoize
 from plone.portlets.interfaces import (IPortletManager,
                                        IPortletManagerRenderer,
-                                       IPortletRetriever)
+                                       IPortletRenderer, IPortletRetriever)
 from plone.portlets.manager import \
     PortletManagerRenderer as BasePortletManagerRenderer
 from plone.portlets.utils import hashPortletInfo
@@ -19,9 +20,18 @@ logger = logging.getLogger('wise.theme')
 
 @implementer(IPortletManagerRenderer)
 @adapter(Interface, IWiseThemeLayer, IBrowserView, IPortletManager)
-class PortletManagerRenderer(BasePortletManagerRenderer):
+class OverridePortletManagerRenderer(BasePortletManagerRenderer, Explicit):
     """ Override default portlet renderer, we want Navigation portlet first
     """
+
+    def _dataToPortlet(self, data):
+        """Helper method to get the correct IPortletRenderer for the given
+        data object.
+        """
+        portlet = getMultiAdapter((self.context, self.request, self.__parent__,
+                                   self.manager, data, ), IPortletRenderer)
+
+        return portlet
 
     @memoize
     def _lazyLoadPortlets(self, manager):
@@ -31,6 +41,12 @@ class PortletManagerRenderer(BasePortletManagerRenderer):
         portlets = retriever.getPortlets()
         portlets = [p for p in portlets if p['name'] == 'navigation'] + \
             [p for p in portlets if p['name'] != 'navigation']
+
+        # print("portlets", portlets)
+        #
+        # if portlets:
+        #     import pdb
+        #     pdb.set_trace()
 
         for p in self.filter(portlets):
             renderer = self._dataToPortlet(p['assignment'].data)
