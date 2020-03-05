@@ -109,6 +109,7 @@
     for="plone.app.contenttypes.interfaces.IFolder"
     template="pt/countryfactsheet_view.pt"
     layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
+    class=".countryfactsheets.CountryFactsheetView"
     permission="zope2.View"
   />
 
