@@ -37,15 +37,16 @@
         <div class="col-md-6">
           <div class="marine-number">
             <h4>Marine water per country</h4>
-            <span class="figure-number"
-              tal:content="context/marine_water_per_country | nothing">45%</span> of the total country area
+            <span class="figure-number">
+              <tal:rep tal:replace="python: int(context.marine_water_per_country or 0)">45%</tal:rep>%
+            </span> of the total country area
           </div>
         </div>
         <div class="col-md-6">
           <div class="marine-number">
             <h4>Marine water per capita</h4>
             <span class="figure-number"
-              tal:content="context/marine_water_per_capita | nothing">10</span> ha per capita
+              tal:content="python: int(context.marine_water_per_capita or 0)">10</span> ha per capita
           </div>
         </div>
       </div>
