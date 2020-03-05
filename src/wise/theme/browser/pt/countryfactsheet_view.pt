@@ -23,7 +23,7 @@
               <td tal:content="python:kv[0]">Region name</td>
               <td tal:content="python:view.format_nr(kv[1])">Quantity</td>
             </tr>
-            <tfoot>
+            <tfoot tal:condition="python: len(stats) > 1">
               <tr>
                 <td>TOTAL</td>
                 <td tal:content="python: view.format_nr(view.water_stats_total())">Quantity</td>
