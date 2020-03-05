@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title tal:content="view/title">ArcGIS API for JavaScript: Marine/Marine_waters</title>
+    <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+        <link href="https://js.arcgis.com/4.14/esri/css/main.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="https://js.arcgis.com/4.14/"></script>
+        <style>
+          html,
+          body,
+          #viewDiv {padding: 0;margin: 0;height: 98%;width: 100%;}
+        </style>
+        <script tal:content='string: var url = "${view/layerUrl}";'></script>
+        <script tal:content="string: var extent = ${view/get_extent};"></script>
+        <script type="text/javascript">
+          require([
+          "esri/Map",
+          "esri/views/MapView",
+          "esri/widgets/Home",
+          "esri/layers/MapImageLayer",
+          "esri/geometry/Extent",
+          "dojo/domReady!"
+          ], function(Map, MapView, Home, MapImageLayer, Extent) {
+                  var map = new Map();
+                  var view = new MapView({
+                    container: "viewDiv",
+                    map: map,
+                  });
+                  view.extent = new Extent(extent.extent);
+          // view.zoom = 13;
+                  var homeBtn = new Home({
+                      view: view
+                  });
+                  view.ui.add(homeBtn, "top-left");
+                  var layer = null,
+                  layerUrl = url,
+                  layer = new MapImageLayer(layerUrl, null);
+                  map.layers.add(layer);
+              });
+        </script>
+      </head>
+      <body>
+        <div id="viewDiv"></div>
+      </body>
+    </html>

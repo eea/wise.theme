@@ -24,7 +24,6 @@
       provides="plone.portlets.interfaces.IPortletManagerRenderer"
       />
 
-
   <adapter
       for="zope.interface.Interface wise.theme.interfaces.IWiseThemeLayer plone.app.portlets.browser.interfaces.IManageDashboardPortletsView plone.app.portlets.interfaces.IDashboard"
       factory="plone.app.portlets.browser.editmanager.DashboardEditPortletManagerRenderer"
@@ -105,6 +104,23 @@
     title="Tile Listing View"
   />
 
+  <browser:page
+    name="countryfactsheet_view"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    template="pt/countryfactsheet_view.pt"
+    layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    name="country_marine_waters_map"
+    class=".countryfactsheets.CountryMap"
+    for="plone.app.contenttypes.interfaces.IFolder"
+    template="pt/country_marine_waters_map.pt"
+    layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
+    permission="zope2.View"
+  />
+
   <configure package="plone.app.contenttypes.browser">
     <browser:page
       name="fullpage_view"
@@ -122,6 +138,14 @@
     name="gopdb"
     for="*"
     class=".misc.GoPDB"
+    />
+
+  <browser:page
+    name="vocabulary_inspector"
+    permission="cmf.ManagePortal"
+    for="*"
+    class=".misc.VocabularyInspector"
+    template="pt/vocab_inspector.pt"
     />
 
   <!--  -->

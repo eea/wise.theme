@@ -1,0 +1,90 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="plone">
+
+<metal:content-core fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+    <div class="container" id="country-factsheet">
+      <div class="row">
+        <div class="col-md-6">
+          <iframe src="./country_marine_waters_image"
+            id="country-maplet"
+            tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
+        </div>
+        <div class="col-md-6">
+          <h2>Marine waters in km<sup>2</sup></h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="marine-number">
+            <h4>Marine water per country</h4>
+            <span class="figure-number">45%</span> of the total country area
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="marine-number">
+            <h4>Marine water per capita</h4>
+            <span class="figure-number">10</span> ha per capita
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 country-authorities">
+          <div tal:condition="context/text|nothing"
+            tal:replace="structure context/text/output">
+          <p>Folder description</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window._tableaus = [];
+    </script>
+    <div tal:repeat="brain context/getFolderContents">
+      <tal:def define="section brain/getObject">
+        <h3 tal:content="section/Title"></h3>
+        <div class="container">
+          <div class="row">
+            <div class="col-3-md"
+              tal:condition="section/text|nothing"
+              tal:content="structure section/text/output">Slide text</div>
+            <div class="col-9-md">
+              <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
+            </div>
+          </div>
+        </div>
+        <script tal:content="string:window._tableaus.push('${section/tableau_url | nothing}')"></script>
+      </tal:def>
+    </div>
+
+  </div>
+
+  <script src="/++theme++wise-theme/static/js/tableau-2.3.0.js"></script>
+
+  <script>
+      //<![CDATA[
+      jQuery(document).ready(function() {
+      console.log(window._tableaus);
+
+      var id, containerDiv;
+
+      for(var i = 0; i < window._tableaus.length; i++) {
+      id = "vis-" + i;
+      containerDiv = document.getElementById(id);
+      new tableau.Viz(containerDiv, window._tableaus[i]);
+      }
+      });
+      //]]>
+  </script>
+
+</metal:content-core>
+  </metal:content-core>
+</html>
