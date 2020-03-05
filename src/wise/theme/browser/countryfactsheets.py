@@ -74,7 +74,7 @@ class CountryFactsheetView(BrowserView):
         return res
 
     def water_stats_total(self):
-        return sum([int(b[1]) for b in self.water_stats()])
+        return sum([Decimal(b[1]) for b in self.water_stats()])
 
 
 GET_EXTENT_URL = (
