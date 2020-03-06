@@ -4,12 +4,14 @@ from collections import namedtuple
 from decimal import Decimal
 
 import requests
+from lxml.etree import fromstring
 from pkg_resources import resource_filename
 from zope.component import getUtility
 from zope.i18n.locales import locales
 from zope.schema.interfaces import IVocabularyFactory
 
 from Products.Five.browser import BrowserView
+from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
 
 Stat = namedtuple('Stat', ['Country', 'Subregion', 'Area_km2', 'Type'])
 ConvWebsite = namedtuple('ConvWebsite', ['RSC', 'Web'])
@@ -50,7 +52,8 @@ class CountryFactsheetView(BrowserView):
     regions = {
         "BAL": "Baltic Sea",
         "ATL": "North-East Atlantic Ocean",
-        "ANS": "NE Atlantic: Greater North Sea, incl. Kattegat & English Channel",
+        "ANS": "NE Atlantic: Greater North Sea, incl. Kattegat & "
+        "English Channel",
         "ACS": "NE Atlantic: Celtic Seas",
         "ABI": "NE Atlantic: Bay of Biscay & Iberian Coast",
         "AMA": "NE Atlantic: Macaronesia",
@@ -105,11 +108,6 @@ class CountryFactsheetView(BrowserView):
         return res
 
     def authorities(self):
-        from wise.msfd.data import _get_report_filename_art7_2018
-        from wise.msfd.data import get_report_file_url
-        from wise.msfd.data import get_xml_report_data
-        from lxml.etree import fromstring
-
         res = []
         fname = _get_report_filename_art7_2018(self.context.country,
                                                None, None, None)
