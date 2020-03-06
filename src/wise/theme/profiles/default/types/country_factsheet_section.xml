@@ -2,7 +2,8 @@
 <object name="country_factsheet_section" meta_type="Dexterity FTI"
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Country Factsheet Section</property>
- <property name="description" i18n:translate="">None</property>
+ <property name="description"
+    i18n:translate="">An inner section storing a dashboard</property>
  <property name="icon_expr"></property>
  <property name="factory">country_factsheet_section</property>
  <property
@@ -37,6 +38,12 @@
       &lt;field name=&quot;tableau_url&quot; type=&quot;zope.schema.URI&quot;&gt;
         &lt;description/&gt;
         &lt;title&gt;Tableau URL&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name=&quot;dashboard_height&quot; type=&quot;zope.schema.TextLine&quot;&gt;
+        &lt;default&gt;630px&lt;/default&gt;
+        &lt;description&gt;Dashboard height, as a CSS height (ex: 400px)&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Dashboard height&lt;/title&gt;
       &lt;/field&gt;
       &lt;fieldset name=&quot;wise_metadata&quot; label=&quot;Wise Metadata&quot;/&gt;
     &lt;/schema&gt;

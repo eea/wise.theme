@@ -88,7 +88,7 @@
       window._tableaus = [];
     </script>
     <div tal:repeat="brain context/getFolderContents" class="country-dashboard-section row">
-      <tal:def define="section brain/getObject; url section/tableau_url | string:">
+      <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
         <h3 tal:content="section/Title"></h3>
         <div tal:condition="not: section/tableau_url">
         </div>
@@ -100,7 +100,7 @@
             <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
           </div>
         </tal:cond>
-        <script tal:content="string:window._tableaus.push('${url}')"></script>
+        <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
       </tal:def>
     </div>
 
@@ -113,14 +113,14 @@
       jQuery(document).ready(function() {
       console.log(window._tableaus);
 
-      var id, containerDiv, tabUrl;
+      var id, containerDiv, info;
 
       for(var i = 0; i < window._tableaus.length; i++) {
         id = "vis-" + i;
         containerDiv = document.getElementById(id);
-        tabUrl = window._tableaus[i];
-        if (tabUrl) {
-          new tableau.Viz(containerDiv, tabUrl, {height: '630px', width: '900px'});
+        info = window._tableaus[i];
+        if (info[0]) {
+          new tableau.Viz(containerDiv, info[0], {height: info[1] || '630px', width: '900px'});
         }
       }
       });
