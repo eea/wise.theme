@@ -9,7 +9,9 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <div id="country-factsheet" class="container">
+    <div class="col-md-9">
+      <div id="country-factsheet" class="container pat-autotoc"
+        data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
       <div class="row">
         <div class="col-md-6">
           <iframe src="./country_marine_waters_image"
@@ -105,6 +107,14 @@
     </div>
 
   </div>
+  </div>
+  <div class="col-md-3 toc-wrapper">
+    <div class="portlet">
+      <header class="portletHeader">On this page</header>
+      <div class="portletContent">
+        <div id="toc"> </div>
+      </div>
+    </div>
 
   <script src="/++theme++wise-theme/static/js/tableau-2.3.0.js"></script>
 
