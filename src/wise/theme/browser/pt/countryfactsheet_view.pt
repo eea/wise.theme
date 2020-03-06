@@ -9,7 +9,7 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <div class="container" id="country-factsheet">
+    <div id="country-factsheet" class="container">
       <div class="row">
         <div class="col-md-6">
           <iframe src="./country_marine_waters_image"
@@ -90,18 +90,16 @@
     <div tal:repeat="brain context/getFolderContents" class="country-dashboard-section row">
       <tal:def define="section brain/getObject; url section/tableau_url | string:">
         <h3 tal:content="section/Title"></h3>
-        <div class="container">
-          <div class="row" tal:condition="not: section/tableau_url">
-          </div>
-          <div class="row" tal:condition="section/tableau_url">
-            <div class="col-3-md"
-              tal:condition="section/text|nothing"
-              tal:content="structure section/text/output">Slide text</div>
-            <div class="col-9-md">
-              <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
-            </div>
-          </div>
+        <div tal:condition="not: section/tableau_url">
         </div>
+        <tal:cond tal:condition="section/tableau_url">
+          <div class="col-3-md"
+            tal:condition="section/text|nothing"
+            tal:content="structure section/text/output">Slide text</div>
+          <div class="col-9-md">
+            <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
+          </div>
+        </tal:cond>
         <script tal:content="string:window._tableaus.push('${url}')"></script>
       </tal:def>
     </div>
