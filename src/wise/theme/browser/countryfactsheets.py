@@ -11,6 +11,7 @@ from zope.i18n.locales import locales
 from zope.schema.interfaces import IVocabularyFactory
 
 from Products.Five.browser import BrowserView
+from wise.msfd import db, sql
 from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
 
 Stat = namedtuple('Stat', ['Country', 'Subregion', 'Area_km2', 'Type'])
@@ -107,12 +108,10 @@ class CountryFactsheetView(BrowserView):
 
         return res
 
-    def authorities(self):
+    def get_authorities_2018(self, fname):
         res = []
-        fname = _get_report_filename_art7_2018(self.context.country,
-                                               None, None, None)
-        # furl = get_report_file_url(fname)
         report_data = get_xml_report_data(fname)
+        # furl = get_report_file_url(fname)
         etree = fromstring(report_data)
         NSMAP = {"w": "http://water.eionet.europa.eu/schemas/dir200856ec"}
         auth_nodes = etree.xpath('//w:CompetentAuthority', namespaces=NSMAP)
@@ -122,7 +121,37 @@ class CountryFactsheetView(BrowserView):
                               namespaces=NSMAP)[0]
             href = node.xpath('w:URL/text()', namespaces=NSMAP)[0]
 
+            if not (href.startswith('http') or href.startswith('https')):
+                href = "https://{}".format(href)
+
             res.append(Website(name, href))
+
+        return res
+
+    @db.use_db_session('2012')
+    def get_authorities_2012(self):
+        count, recs = db.get_all_records(
+            [sql.t_MS_CompetentAuthorities],
+            sql.t_MS_CompetentAuthorities.c.C_CD == self.context.country)
+        res = []
+
+        for rec in recs:
+            url = rec.URL_CA
+
+            if not (url.startswith('http') or url.startswith('https')):
+                url = "https://{}".format(url)
+            res.append(Website(rec.CompetentAuthorityName, url))
+
+        return res
+
+    def authorities(self):
+        code = self.context.country
+        try:
+            fname = _get_report_filename_art7_2018(code, None, None, None)
+            res = self.get_authorities_2018(fname)
+            raise IndexError
+        except IndexError:
+            res = self.get_authorities_2012()
 
         return res
 
