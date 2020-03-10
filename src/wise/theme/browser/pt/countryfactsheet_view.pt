@@ -30,6 +30,7 @@
         </div>
         <div class="col-md-2">
           <div class="legend">
+            <strong>Legend:</strong><br/>
             <div tal:repeat="row view/legend">
               <img tal:attributes="src python:row[1]" />
               <span tal:content="python:row[0]">Title</span>
