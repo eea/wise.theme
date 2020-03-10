@@ -39,7 +39,7 @@
           map: map,
           container: "viewDiv",
           center: [-98, 40],
-          zoom: 4
+          zoom: 5
         });
 
         view.extent = new Extent(extent.extent);

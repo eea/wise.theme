@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-6">
           <h2>Marine waters in km<sup>2</sup></h2>
-          <table tal:define="stats view/water_stats">
+          <table tal:define="stats view/water_stats" class="marine-stats">
             <tr tal:repeat="kv view/water_stats">
               <td tal:content="python:kv[0]">Region name</td>
               <td tal:content="python:view.format_nr(kv[1])">Quantity</td>

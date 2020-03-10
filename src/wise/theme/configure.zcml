@@ -67,4 +67,9 @@
     name="wise_basemap_layers"
     />
 
+  <utility
+    component=".vocabulary.countries_vocabulary"
+    name="wise_countries_vocabulary"
+    />
+
 </configure>

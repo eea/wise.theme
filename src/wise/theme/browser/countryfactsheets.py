@@ -1,7 +1,9 @@
 import csv
 import json
+import logging
 from collections import namedtuple
 from decimal import Decimal
+from urllib2 import HTTPError
 
 import requests
 from lxml.etree import fromstring
@@ -14,6 +16,8 @@ from plone.memoize.view import memoize
 from Products.Five.browser import BrowserView
 from wise.msfd import db, sql
 from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
+
+logger = logging.getLogger('wise.theme')
 
 Stat = namedtuple('Stat', ['Country', 'Subregion', 'Area_km2', 'Type'])
 ConvWebsite = namedtuple('ConvWebsite', ['RSC', 'Web'])
@@ -153,6 +157,11 @@ class CountryFactsheetView(BrowserView):
             raise IndexError
         except IndexError:
             res = self.get_authorities_2012()
+        except HTTPError:
+            logger.exception("HTTPError in getting report for %s",
+                             self.context.country)
+
+            return []
 
         return res
 
