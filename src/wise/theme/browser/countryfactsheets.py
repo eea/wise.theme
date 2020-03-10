@@ -10,6 +10,7 @@ from zope.component import getUtility
 from zope.i18n.locales import locales
 from zope.schema.interfaces import IVocabularyFactory
 
+from plone.memoize.view import memoize
 from Products.Five.browser import BrowserView
 from wise.msfd import db, sql
 from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
@@ -166,29 +167,19 @@ class CountryFactsheetView(BrowserView):
         return ''
 
 
-GET_EXTENT_URL = (
-    "https://trial.discomap.eea.europa.eu/arcgis/rest/services/Marine/"
-    "Marine_waters/MapServer/0/query?where=Country%3D%27COUNTRYMARKER%27&text="
-    "&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&"
-    "spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&"
-    "returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&"
-    "geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly="
-    "false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&"
-    "returnZ=false&returnM=false&gdbVersion=&historicMoment=&"
-    "returnDistinctValues=false&resultOffset=&resultRecordCount=&"
-    "queryByDistance=&returnExtentOnly=true&datumTransformation=&"
-    "parameterValues=&rangeValues=&quantizationParameters=&featureEncoding="
-    "esriDefault&f=pjson"
-)
+GET_EXTENT_URL = ("""
+https://trial.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v3/MapServer/0/query?where=Country%3D%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=true&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
+""").strip()
 
 
 class CountryMap(BrowserView):
     layerUrl = "https://trial.discomap.eea.europa.eu/arcgis/rest/services/"\
-        "Marine/Marine_waters/MapServer"
+        "Marine/Marine_waters_v3/MapServer"
 
     def title(self):
         return "Country map for {}".format(self.context.country)
 
+    @memoize
     def get_extent(self):
         """ Get the extent for the context country
         """
@@ -197,3 +188,34 @@ class CountryMap(BrowserView):
         res = resp.json()
 
         return json.dumps(res)
+
+# <script type="text/javascript">
+#       // <![CDATA[
+#       require([
+#       "esri/Map",
+#       "esri/views/MapView",
+#       "esri/widgets/Home",
+#       "esri/layers/MapImageLayer",
+#       "esri/geometry/Extent",
+#       "esri/views/layers/support/FeatureFilter",
+#       "dojo/domReady!"
+#       ], function(Map, MapView, Home, MapImageLayer, Extent, FeatureFilter) {
+#               var map = new Map();
+#               var view = new MapView({
+#                 container: "viewDiv",
+#                 map: map,
+#               });
+#               view.extent = new Extent(extent.extent);
+#               view.filter = new FeatureFilter({
+#                 where: "Country = '${context/country}'",
+#               });
+#
+#               //var homeBtn = new Home({
+#               //view: view
+#               //});
+#               // view.ui.add(homeBtn, "top-left");
+#               var layer = new MapImageLayer('${view/layerUrl}', null);
+#               map.layers.add(layer);
+#           });
+#         // ]]>
+#       </script>

@@ -62,4 +62,9 @@
   <interface interface=".interfaces.IHomepage" />
   <interface interface=".interfaces.IFullWidthLayout" />
 
+  <utility
+    component=".vocabulary.layers_vocabulary"
+    name="wise_basemap_layers"
+    />
+
 </configure>

@@ -53,6 +53,12 @@
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Marine water per capita&lt;/title&gt;
       &lt;/field&gt;
+      &lt;field name=&quot;basemap_layer&quot; type=&quot;zope.schema.Choice&quot;&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Basemap layer&lt;/title&gt;
+        &lt;vocabulary&gt;wise_basemap_layers&lt;/vocabulary&gt;
+      &lt;/field&gt;
     &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property
