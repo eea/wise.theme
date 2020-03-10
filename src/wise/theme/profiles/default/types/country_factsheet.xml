@@ -41,7 +41,7 @@
       &lt;field name=&quot;country&quot; type=&quot;zope.schema.Choice&quot;&gt;
         &lt;description/&gt;
         &lt;title&gt;Country&lt;/title&gt;
-        &lt;vocabulary&gt;wise_search_member_states&lt;/vocabulary&gt;
+        &lt;vocabulary&gt;wise_countries_vocabulary&lt;/vocabulary&gt;
       &lt;/field&gt;
       &lt;field name=&quot;marine_water_per_country&quot; type=&quot;zope.schema.Float&quot;&gt;
         &lt;description&gt;Percentage of marine water per country. Only input the number&lt;/description&gt;
