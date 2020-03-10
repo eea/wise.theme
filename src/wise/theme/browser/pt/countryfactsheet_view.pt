@@ -52,59 +52,62 @@
               </tr>
             </tfoot>
           </table>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-6">
           <div class="marine-number">
             <h4>Marine water per country</h4>
             <span class="figure-number">
               <tal:rep tal:replace="python: int(context.marine_water_per_country or 0)">45%</tal:rep>%
               </span> of the total country area
             </div>
-          </div>
-          <div class="col-md-6">
+
             <div class="marine-number">
               <h4>Marine water per capita</h4>
               <span class="figure-number"
                 tal:content="python: int(context.marine_water_per_capita or 0)">10</span> ha per capita
               </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-12 country-authorities"
-              tal:define="conventions view/conventions; authorities view/authorities; msfd_website view/msfd_website">
-            <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-              Rich text here
-            </div>
-
-            <div tal:condition="conventions">
-              <div><span tal:content="view/country_name">Spain</span> is part of the following Regional Sea Conventions:</div>
-              <ul>
-                <li tal:repeat="conv conventions">
-                  <a href="" tal:attributes="href conv/Web" tal:content="conv/RSC">OSPAR</a>
-                </li>
-              </ul>
-            </div>
-
-            <div tal:condition="authorities">
-              <div>National Competent Authority(ies) for the MSFD implementation:</div>
-              <ul>
-                <li tal:repeat="auth authorities">
-                  <a href="" tal:attributes="href auth/href" tal:content="auth/name">OSPAR</a>
-                </li>
-              </ul>
-            </div>
-
-            <div tal:condition="msfd_website">
-              <a href="" tal:attributes="href msfd_website/URL">MSFD Website</a>
-              <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
-            </div>
-
-          </div>
         </div>
+      </div>
+
+      <!-- <div class="row"> -->
+      <!--   <div class="col&#45;md&#45;6"> -->
+      <!--   </div> -->
+      <!--   <div class="col&#45;md&#45;6"> -->
+      <!--   </div> -->
+      <!-- </div> -->
+
+      <div class="row">
+        <div class="col-md-12 country-authorities"
+          tal:define="conventions view/conventions; authorities view/authorities; msfd_website view/msfd_website">
+        <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
+          Rich text here
+        </div>
+
+        <div tal:condition="conventions">
+          <div><span tal:content="view/country_name">Spain</span> is part of the following Regional Sea Conventions:</div>
+          <ul>
+            <li tal:repeat="conv conventions">
+              <a href="" tal:attributes="href conv/Web" tal:content="conv/RSC">OSPAR</a>
+            </li>
+          </ul>
+        </div>
+
+        <div tal:condition="authorities">
+          <div>National Competent Authority(ies) for the MSFD implementation:</div>
+          <ul>
+            <li tal:repeat="auth authorities">
+              <a href="" tal:attributes="href auth/href" tal:content="auth/name">OSPAR</a>
+            </li>
+          </ul>
+        </div>
+
+        <div tal:condition="msfd_website">
+          <a href="" tal:attributes="href msfd_website/URL">MSFD Website</a>
+          <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
+        </div>
+
+      </div>
+    </div>
 
         <script>
           window._tableaus = [];
