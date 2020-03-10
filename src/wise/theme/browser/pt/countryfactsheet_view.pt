@@ -27,9 +27,17 @@
             The European Commission and European Environment Agency have no
             responsibility on this matter.
           </p>
-
         </div>
-        <div class="col-md-6">
+        <div class="col-md-2">
+          <div class="legend">
+            <div tal:repeat="row view/legend">
+              <img tal:attributes="src python:row[1]" />
+              <span tal:content="python:row[0]">Title</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
           <h2>Marine waters in km<sup>2</sup></h2>
           <table tal:define="stats view/water_stats" class="marine-stats">
             <tr tal:repeat="kv view/water_stats">

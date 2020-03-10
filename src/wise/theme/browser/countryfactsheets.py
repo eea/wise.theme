@@ -25,6 +25,44 @@ CountryConv = namedtuple('CountryConv', ['Country', 'RSCs'])
 MSFDWebsites = namedtuple('MSFDWebsites', ['Country', 'URL', 'Observations'])
 Website = namedtuple('Website', ['name', 'href'])
 
+GET_EXTENT_URL = ("""
+https://trial.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v3/MapServer/0/query?where=Country%3D%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=true&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
+""").strip()
+
+
+GET_LAYER_TYPES_URL = ("""
+http://trial.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v3/MapServer/0/query?where=Country+%3D+%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=Type&returnGeometry=false&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
+""")
+
+
+MARINE_WATERS_IMG = ("""
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADNJREFUOI1jYaAyYKGZgfv+v/hPqWFOjBKMtHPhqIGjBo4aOGrg0DDQiVGCEcVAmAClAADQeQUJaPdGswAAAABJRU5ErkJggg==
+""")
+TERRITORIAL_IMG = ("""
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADBJREFUOI1jYaAyYKGdgc9W/qfYNKlwRhq6cNTAUQNHDRw1cGgYKBXOiGogVIBSAAAt/gQ1i+f+5QAAAABJRU5ErkJggg==
+""")
+CONTINENTAL_SHELF_IMG = ("""
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAIdJREFUOI3t1MENgCAMBdA2YRA29MIYJIQN2aReRBAKSqs3e9NvHt+IGHh5zHfgRqTWIqJpb9SXLpVFvL1mXR7ahrOH7zCLmN+QBZexajpQg3WgFmMbajAWlGAuEbFfWYpNG2qwKfjvw0c521CCDbeNFBs29AHYczGvDtDnZ3YcfQWM499pZXbHQIiyFUf9UgAAAABJRU5ErkJggg==
+""")
+EXTENDED_IMG = ("""
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAINJREFUOI3t1MENgCAMBVCaMBUMZVdxKOaqFwlQStVWb/akfvP8JqQxvDzxO3Ajcms7QOQPhnsq7SOQx4znmFhD7eUrDDLUP5TBp1g3M+jAZtCJyQ0dmAxaMCoUUAKtmNrQgengfw5v5WJDC7Y8NlZs2RCTvBexu+Z5zc7V10C+C41zAFjwaJU8RE5tAAAAAElFTkSuQmCC
+""")
+FISHERIES_IMG = ("""
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGZgb7PGP5TathmKQZGFnQBcg2DOYh2Xh41cNTAUQNHDcRpICVlIqzoY0EXoBQAAAtECh/OdEtnAAAAAElFTkSuQmCC
+""")
+AREA_IMG = ("""
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADpJREFUOI1jYaAyYKGZgf8ZGP5TahgjAwMjC7oAuYbBHEQ7L48aOGrgqIGjBuI0kJIyEVb0saALUAoAtHoGU/jZDVYAAAAASUVORK5CYII=
+""")
+
+LEGEND = {
+    "Marine waters": MARINE_WATERS_IMG,
+    "Territorial waters": TERRITORIAL_IMG,
+    "Continental shelf": CONTINENTAL_SHELF_IMG,
+    "Extended continental shelf": EXTENDED_IMG,
+    "Fisheries Management Zone": FISHERIES_IMG,
+    "Area designated for hydrocarbon exploration and exploitation": AREA_IMG,
+}
+
 
 def parse_csv(path, klass):
     wf = resource_filename('wise.theme', path)
@@ -70,6 +108,11 @@ class CountryFactsheetView(BrowserView):
         "MAL": "Mediterranean: Aegean - Levantine Sea",
         "BLK": "Black Sea",
     }
+
+    def legend(self):
+        return [(k, v)
+                for (k, v) in LEGEND.items()
+                if k in self.layer_types()]
 
     def format_nr(self, nr):
         target_language = 'en'
@@ -158,6 +201,8 @@ class CountryFactsheetView(BrowserView):
         except IndexError:
             res = self.get_authorities_2012()
         except HTTPError:
+            import pdb
+            pdb.set_trace()
             logger.exception("HTTPError in getting report for %s",
                              self.context.country)
 
@@ -175,10 +220,58 @@ class CountryFactsheetView(BrowserView):
 
         return ''
 
+    @memoize
+    def layer_types(self):
+        """
+        """
+        url = GET_LAYER_TYPES_URL.replace('COUNTRYMARKER',
+                                          self.context.country)
+        resp = requests.get(url.strip())
+        try:
+            res = resp.json()
+        except:
+            logger.exception("Error in parsing response in url: %s", url)
+            return []
 
-GET_EXTENT_URL = ("""
-https://trial.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v3/MapServer/0/query?where=Country%3D%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=true&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
-""").strip()
+        return set([b['attributes']['Type'] for b in res['features']])
+
+        # response is like:
+        #
+        # {
+        #  "displayFieldName": "Country",
+        #  "fieldAliases": {
+        #   "Type": "Type"
+        #  },
+        #  "fields": [
+        #   {
+        #    "name": "Type",
+        #    "type": "esriFieldTypeString",
+        #    "alias": "Type",
+        #    "length": 100
+        #   }
+        #  ],
+        #  "features": [
+        #   {
+        #    "attributes": {
+        #     "Type": "Marine waters"
+        #    }
+        #   },
+        #   {
+        #    "attributes": {
+        #     "Type": "Marine waters"
+        #    }
+        #   },
+        #   {
+        #    "attributes": {
+        #     "Type": "Marine waters"
+        #    }
+        #   },
+        #   {
+        #    "attributes": {
+        #     "Type": "Land"
+        #    }
+        #   }
+        #  ]
 
 
 class CountryMap(BrowserView):
