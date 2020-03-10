@@ -13,7 +13,7 @@
       <div id="country-factsheet" class="container pat-autotoc"
         data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-7">
           <iframe src="./country_marine_waters_image"
             id="country-maplet"
             tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
@@ -28,7 +28,7 @@
             responsibility on this matter.
           </p>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
           <div class="legend">
             <strong>Legend:</strong><br/>
             <div tal:repeat="row view/legend">
