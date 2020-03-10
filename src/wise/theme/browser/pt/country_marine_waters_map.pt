@@ -31,7 +31,7 @@
         });
 
         const map = new Map({
-          basemap: '${context/basemap_layer}' || 'national-geographic', //"gray-vector",
+          basemap: '${context/basemap_layer}' || 'hybrid', //"gray-vector",
           layers: [layer]
         });
 
