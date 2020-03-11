@@ -102,7 +102,7 @@
         </div>
 
         <div tal:condition="msfd_website">
-          <a href="" tal:attributes="href msfd_website/URL">MSFD Website</a>
+          <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
           <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
         </div>
 
