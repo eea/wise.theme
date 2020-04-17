@@ -1,4 +1,4 @@
-<tal:def tal:define="images view/getImages;">
+<tal:def tal:define="images view/images;">
   <tal:cond tal:condition="images">
 
     <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script>

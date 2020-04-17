@@ -1,4 +1,4 @@
-<tal:def tal:define="banners view/getBanners;">
+<tal:def tal:define="banners view/banners">
   <tal:cond tal:condition="banners">
     <!-- <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script> -->
 

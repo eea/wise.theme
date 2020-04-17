@@ -80,9 +80,19 @@
     name="rotating_banners"
     manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
     layer="wise.theme.interfaces.IWiseThemeLayer"
-    class=".viewlets.RotatingBannersView"
+    class=".viewlets.RotatingBannersViewlet"
     permission="zope.Public"
     template="pt/rotating-banners.pt"
+    />
+
+  <browser:viewlet
+    for="wise.theme.interfaces.IHomepage"
+    name="frontpage_reports"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    class=".viewlets.FrontpageReportsViewlet"
+    permission="zope.Public"
+    template="pt/frontpage-reports.pt"
     />
 
   <browser:viewlet

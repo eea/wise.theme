@@ -47,8 +47,11 @@
     <theme href="page.html" />
   </rules>
 
-  <replace css:theme-children=".frontpage-banners" css:content-children=".rotating-banners-container" method="raw" />
+  <replace css:theme-children="#frontpage-banners" css:content-children=".rotating-banners-container" method="raw" />
   <drop css:content-children=".rotating-banners-container" />
+
+  <replace css:theme-children="#frontpage-reports" css:content-children=".frontpage-reports-container" method="raw" />
+  <drop css:content-children=".frontpage-reports-container" />
 
   <!-- page lead image -->
   <rules css:if-content=".leadimage-header">

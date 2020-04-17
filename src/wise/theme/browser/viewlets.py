@@ -10,7 +10,7 @@ class SlidesViewlet(ViewletBase):
 
     render = ViewPageTemplateFile("pt/slideshow.pt")
 
-    def getImages(self):
+    def images(self):
         site = portal.get()
         base = '/'.join(site.getPhysicalPath())
 
@@ -21,14 +21,11 @@ class SlidesViewlet(ViewletBase):
         return results
 
 
-class RotatingBannersView(ViewletBase):
+class RotatingBannersViewlet(ViewletBase):
     """ BrowserView for frontpage rotating banners
     """
 
-    def __call__(self):
-        return self.index()
-
-    def getBanners(self):
+    def banners(self):
         site = portal.get()
         base = '/'.join(site.getPhysicalPath())
 
@@ -37,6 +34,19 @@ class RotatingBannersView(ViewletBase):
             path=path, portal_type='frontpage-banner', state='published')
 
         return results
+
+
+class FrontpageReportsViewlet(ViewletBase):
+    """ BrowserView for frontpage rotating banners
+    """
+
+    def reports(self):
+        results = content.find(
+            portal_type='external_report', state='published',
+            sort_on="EffectiveDate", sort_order="descending"
+        )[:2]
+
+        return [b.getObject() for b in results]
 
 
 class LeadImage(ViewletBase):
