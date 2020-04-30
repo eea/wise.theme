@@ -39,3 +39,11 @@ class IReferenceLinks(model.Schema):
 
     reference_links = RichText(title=u"Reference Links", description=u'',
                               required=False)
+
+@provider(IFormFieldProvider)
+class IDisclaimer(model.Schema):
+    """ Disclaimer interface with RichText schema
+    """
+
+    disclaimer = RichText(title=u"Disclaimer", description=u'',
+                          required=False)

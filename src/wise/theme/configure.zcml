@@ -37,6 +37,16 @@
     marker=".interfaces.IReferenceLinks"
     />
 
+  <plone:behavior
+    name="wise.disclaimer"
+    title="Disclaimer"
+    description="Adds Disclaimer field"
+    provides=".interfaces.IDisclaimer"
+    factory=".behavior.Disclaimer"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker=".interfaces.IDisclaimer"
+    />
+
   <genericsetup:registerProfile
     name="default"
     title="Plone Theme: WISE Theme"

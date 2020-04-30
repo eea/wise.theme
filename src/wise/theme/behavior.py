@@ -1,5 +1,4 @@
-from .interfaces import IExternalLinks
-from .interfaces import IReferenceLinks
+from .interfaces import IDisclaimer, IExternalLinks, IReferenceLinks
 from plone.app.dexterity.behaviors.metadata import (DCFieldProperty,
                                                     MetadataBase)
 
@@ -14,3 +13,9 @@ class ReferenceLinks(MetadataBase):
     """
 
     reference_links = DCFieldProperty(IReferenceLinks['reference_links'])
+
+class Disclaimer(MetadataBase):
+    """ Disclaimer Behavior
+    """
+
+    disclaimer = DCFieldProperty(IDisclaimer['disclaimer'])
