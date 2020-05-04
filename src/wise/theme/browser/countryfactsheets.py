@@ -12,7 +12,7 @@ from zope.component import getUtility
 from zope.i18n.locales import locales
 from zope.schema.interfaces import IVocabularyFactory
 
-from plone.memoize.view import memoize
+from plone.memoize import ram
 from Products.Five.browser import BrowserView
 from wise.msfd import db, sql
 from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
@@ -25,14 +25,68 @@ CountryConv = namedtuple('CountryConv', ['Country', 'RSCs'])
 MSFDWebsites = namedtuple('MSFDWebsites', ['Country', 'URL', 'Observations'])
 Website = namedtuple('Website', ['name', 'href'])
 
+MAP_SERVER = "https://test.discomap.eea.europa.eu/arcgis/rest/services"
+MAP_USER = "Marine"
+MAP_SERVICE = "Marine_waters_v4"
+MAP_LAYER = "0"
+
+GET_EXTENT_PARAMS = {
+    'datumTransformation': '',
+    'f': 'pjson',
+    'featureEncoding': 'esriDefault',
+    'gdbVersion': '',
+    'geometry': '',
+    'geometryPrecision': '',
+    'geometryType': 'esriGeometryEnvelope',
+    'groupByFieldsForStatistics': '',
+    'having': '',
+    'historicMoment': '',
+    'inSR': '',
+    'maxAllowableOffset': '',
+    'objectIds': '',
+    'orderByFields': '',
+    'outFields': '',
+    'outSR': '',
+    'outStatistics': '',
+    'parameterValues': '',
+    'quantizationParameters': '',
+    'queryByDistance': '',
+    'rangeValues': '',
+    'relationParam': '',
+    'resultOffset': '',
+    'resultRecordCount': '',
+    'returnCountOnly': 'false',
+    'returnDistinctValues': 'false',
+    'returnExtentOnly': 'true',
+    'returnGeometry': 'true',
+    'returnIdsOnly': 'false',
+    'returnM': 'false',
+    'returnTrueCurves': 'false',
+    'returnZ': 'false',
+    'spatialRel': 'esriSpatialRelIntersects',
+    'text': '',
+    'time': '',
+    'where': 'Country%3D%27COUNTRYMARKER%27'
+}
+
+
+"""
+https://test.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v4/MapServer/0/query?where=COUNTRY+%3D+%27DK%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentsOnly=true&datumTransformation=&parameterValues=&rangeValues=&f=pjson
+"""
+
 GET_EXTENT_URL = ("""
-https://test.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v4/MapServer/0/query?where=Country%3D%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=true&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
-""").strip()
+{server}/{user}/{service}/MapServer/{layer}/query?{query}
+""").strip().format(server=MAP_SERVER, user=MAP_USER, service=MAP_SERVICE,
+                    layer=MAP_LAYER,
+                    query="&".join(
+                        ["%s=%s" % (k, v)
+                            for k, v in GET_EXTENT_PARAMS.items()]))
 
 
 GET_LAYER_TYPES_URL = ("""
-http://test.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v4/MapServer0/query?where=Country+%3D+%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=Type&returnGeometry=false&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
-""").strip()
+{server}/{user}/{service}/MapServer/{layer}/query?where=Country+%3D+%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=Type&returnGeometry=false&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
+""").strip().format(server=MAP_SERVER, user=MAP_USER, service=MAP_SERVICE,
+                    layer=MAP_LAYER)
 
 
 MARINE_WATERS_IMG = ("""
@@ -62,6 +116,10 @@ LEGEND = {
     "Fisheries Management Zone": FISHERIES_IMG,
     "Area designated for hydrocarbon exploration and exploitation": AREA_IMG,
 }
+
+
+# TODO: don't hardcode legend, use
+# https://test.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v4/MapServer/legend?f=pjson
 
 
 def parse_csv(path, klass):
@@ -157,7 +215,7 @@ class CountryFactsheetView(BrowserView):
         return res
 
     def get_authorities_2018(self, fname):
-        res = []
+        res = set()
         report_data = get_xml_report_data(fname)
         # furl = get_report_file_url(fname)
         etree = fromstring(report_data)
@@ -172,23 +230,23 @@ class CountryFactsheetView(BrowserView):
             if not (href.startswith('http') or href.startswith('https')):
                 href = "https://{}".format(href)
 
-            res.append(Website(name, href))
+            res.add(Website(name, href))
 
         return res
 
     @db.use_db_session('2012')
     def get_authorities_2012(self):
-        count, recs = db.get_all_records(
-            [sql.t_MS_CompetentAuthorities],
+        res = set()
+
+        count, recs = db.get_competent_auth_data(
             sql.t_MS_CompetentAuthorities.c.C_CD == self.context.country)
-        res = []
 
         for rec in recs:
             url = rec.URL_CA
 
             if not (url.startswith('http') or url.startswith('https')):
                 url = "https://{}".format(url)
-            res.append(Website(rec.CompetentAuthorityName, url))
+            res.add(Website(rec.CompetentAuthorityName, url))
 
         return res
 
@@ -201,8 +259,6 @@ class CountryFactsheetView(BrowserView):
         except IndexError:
             res = self.get_authorities_2012()
         except HTTPError:
-            import pdb
-            pdb.set_trace()
             logger.exception("HTTPError in getting report for %s",
                              self.context.country)
 
@@ -220,13 +276,14 @@ class CountryFactsheetView(BrowserView):
 
         return ''
 
-    @memoize
+    @ram.cache(lambda fun, self: self.context.getPhysicalPath())
     def layer_types(self):
         """
         """
         url = GET_LAYER_TYPES_URL.replace('COUNTRYMARKER',
                                           self.context.country)
         resp = requests.get(url.strip())
+
         try:
             res = resp.json()
         except:
@@ -275,20 +332,22 @@ class CountryFactsheetView(BrowserView):
 
 
 class CountryMap(BrowserView):
-    layerUrl = "https://trial.discomap.eea.europa.eu/arcgis/rest/services/"\
-        "Marine/Marine_waters_v3/MapServer"
+    layerUrl = "/".join([MAP_SERVER, MAP_USER, MAP_SERVICE]) + '/MapServer'
+    # "https://trial.discomap.eea.europa.eu/arcgis/rest/services/"\
+    #     "Marine/Marine_waters_v4/MapServer"
 
     def title(self):
         return "Country map for {}".format(self.context.country)
 
-    @memoize
+    @ram.cache(lambda fun, self: self.context.getPhysicalPath())
     def get_extent(self):
         """ Get the extent for the context country
         """
-        resp = requests.get(GET_EXTENT_URL.replace(
-            'COUNTRYMARKER', self.context.country))
+        url = GET_EXTENT_URL.replace('COUNTRYMARKER', self.context.country)
+        resp = requests.get(url)
         res = resp.json()
 
+        logger.error('Got response in query extent %r', res)
         return json.dumps(res)
 
 # <script type="text/javascript">

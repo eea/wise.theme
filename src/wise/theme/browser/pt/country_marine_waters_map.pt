@@ -12,49 +12,15 @@
       #viewDiv {padding: 0;margin: 0;height: 98%;width: 100%;}
     </style>
     <script type="text/javascript">
+      var focusCountry = '${context/country}';
+      var focusExtent = ${view/get_extent};
+      var focusMapLayer = '${context/basemap_layer}';
+      var layerUrl = '${view/layerUrl}';
+    </script>
+    <script type="text/javascript" src="++theme++wise-theme/js/countrymap.js"></script>
+
+    <script type="text/javascript">
       // <![CDATA[
-      require([
-      "esri/Map",
-      "esri/views/MapView",
-      "esri/widgets/Home",
-      "esri/layers/MapImageLayer",
-      "esri/geometry/Extent",
-      "esri/views/layers/support/FeatureFilter",
-      "esri/layers/FeatureLayer",
-      "dojo/domReady!"
-      ], function(Map, MapView, Home, MapImageLayer, Extent, FeatureFilter, FeatureLayer) {
-
-        let filterLayerView;
-        var extent = ${view/get_extent};
-        const layer = new FeatureLayer({
-          url: '${view/layerUrl}'
-        });
-
-        const map = new Map({
-          basemap: '${context/basemap_layer}' || 'hybrid', //"gray-vector",
-          layers: [layer]
-        });
-
-        const view = new MapView({
-          map: map,
-          container: "viewDiv",
-          center: [-98, 40],
-          zoom: 5
-        });
-
-        view.extent = new Extent(extent.extent);
-        view.filter = new FeatureFilter({
-          where: "Country = '${context/country}'",
-        });
-
-        view.whenLayerView(layer).then(function(layerView) {
-          filterLayerView = layerView;
-          layerView.filter = {
-            where: "Country = '${context/country}'"
-          };
-        });
-
-      });
       // ]]>
     </script>
   </head>
