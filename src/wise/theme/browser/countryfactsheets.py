@@ -28,7 +28,7 @@ Website = namedtuple('Website', ['name', 'href'])
 MAP_SERVER = "https://test.discomap.eea.europa.eu/arcgis/rest/services"
 MAP_USER = "Marine"
 MAP_SERVICE = "Marine_waters_v4"
-MAP_LAYER = "0"
+MAP_LAYER = 0
 
 GET_EXTENT_PARAMS = {
     'datumTransformation': '',
@@ -89,33 +89,33 @@ GET_LAYER_TYPES_URL = ("""
                     layer=MAP_LAYER)
 
 
-MARINE_WATERS_IMG = ("""
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADNJREFUOI1jYaAyYKGZgfv+v/hPqWFOjBKMtHPhqIGjBo4aOGrg0DDQiVGCEcVAmAClAADQeQUJaPdGswAAAABJRU5ErkJggg==
-""")
-TERRITORIAL_IMG = ("""
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADBJREFUOI1jYaAyYKGdgc9W/qfYNKlwRhq6cNTAUQNHDRw1cGgYKBXOiGogVIBSAAAt/gQ1i+f+5QAAAABJRU5ErkJggg==
-""")
-CONTINENTAL_SHELF_IMG = ("""
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAIdJREFUOI3t1MENgCAMBdA2YRA29MIYJIQN2aReRBAKSqs3e9NvHt+IGHh5zHfgRqTWIqJpb9SXLpVFvL1mXR7ahrOH7zCLmN+QBZexajpQg3WgFmMbajAWlGAuEbFfWYpNG2qwKfjvw0c521CCDbeNFBs29AHYczGvDtDnZ3YcfQWM499pZXbHQIiyFUf9UgAAAABJRU5ErkJggg==
-""")
-EXTENDED_IMG = ("""
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAINJREFUOI3t1MENgCAMBVCaMBUMZVdxKOaqFwlQStVWb/akfvP8JqQxvDzxO3Ajcms7QOQPhnsq7SOQx4znmFhD7eUrDDLUP5TBp1g3M+jAZtCJyQ0dmAxaMCoUUAKtmNrQgengfw5v5WJDC7Y8NlZs2RCTvBexu+Z5zc7V10C+C41zAFjwaJU8RE5tAAAAAElFTkSuQmCC
-""")
-FISHERIES_IMG = ("""
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGZgb7PGP5TathmKQZGFnQBcg2DOYh2Xh41cNTAUQNHDcRpICVlIqzoY0EXoBQAAAtECh/OdEtnAAAAAElFTkSuQmCC
-""")
-AREA_IMG = ("""
-data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADpJREFUOI1jYaAyYKGZgf8ZGP5TahgjAwMjC7oAuYbBHEQ7L48aOGrgqIGjBuI0kJIyEVb0saALUAoAtHoGU/jZDVYAAAAASUVORK5CYII=
-""")
-
-LEGEND = {
-    "Marine waters": MARINE_WATERS_IMG,
-    "Territorial waters": TERRITORIAL_IMG,
-    "Continental shelf": CONTINENTAL_SHELF_IMG,
-    "Extended continental shelf": EXTENDED_IMG,
-    "Fisheries Management Zone": FISHERIES_IMG,
-    "Area designated for hydrocarbon exploration and exploitation": AREA_IMG,
-}
+# MARINE_WATERS_IMG = ("""
+# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADNJREFUOI1jYaAyYKGZgfv+v/hPqWFOjBKMtHPhqIGjBo4aOGrg0DDQiVGCEcVAmAClAADQeQUJaPdGswAAAABJRU5ErkJggg==
+# """)
+# TERRITORIAL_IMG = ("""
+# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADBJREFUOI1jYaAyYKGdgc9W/qfYNKlwRhq6cNTAUQNHDRw1cGgYKBXOiGogVIBSAAAt/gQ1i+f+5QAAAABJRU5ErkJggg==
+# """)
+# CONTINENTAL_SHELF_IMG = ("""
+# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAIdJREFUOI3t1MENgCAMBdA2YRA29MIYJIQN2aReRBAKSqs3e9NvHt+IGHh5zHfgRqTWIqJpb9SXLpVFvL1mXR7ahrOH7zCLmN+QBZexajpQg3WgFmMbajAWlGAuEbFfWYpNG2qwKfjvw0c521CCDbeNFBs29AHYczGvDtDnZ3YcfQWM499pZXbHQIiyFUf9UgAAAABJRU5ErkJggg==
+# """)
+# EXTENDED_IMG = ("""
+# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAINJREFUOI3t1MENgCAMBVCaMBUMZVdxKOaqFwlQStVWb/akfvP8JqQxvDzxO3Ajcms7QOQPhnsq7SOQx4znmFhD7eUrDDLUP5TBp1g3M+jAZtCJyQ0dmAxaMCoUUAKtmNrQgengfw5v5WJDC7Y8NlZs2RCTvBexu+Z5zc7V10C+C41zAFjwaJU8RE5tAAAAAElFTkSuQmCC
+# """)
+# FISHERIES_IMG = ("""
+# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGZgb7PGP5TathmKQZGFnQBcg2DOYh2Xh41cNTAUQNHDcRpICVlIqzoY0EXoBQAAAtECh/OdEtnAAAAAElFTkSuQmCC
+# """)
+# AREA_IMG = ("""
+# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADpJREFUOI1jYaAyYKGZgf8ZGP5TahgjAwMjC7oAuYbBHEQ7L48aOGrgqIGjBuI0kJIyEVb0saALUAoAtHoGU/jZDVYAAAAASUVORK5CYII=
+# """)
+#
+# LEGEND = {
+#     "Marine waters": MARINE_WATERS_IMG,
+#     "Territorial waters": TERRITORIAL_IMG,
+#     "Continental shelf": CONTINENTAL_SHELF_IMG,
+#     "Extended continental shelf": EXTENDED_IMG,
+#     "Fisheries Management Zone": FISHERIES_IMG,
+#     "Area designated for hydrocarbon exploration and exploitation": AREA_IMG,
+# }
 
 
 # TODO: don't hardcode legend, use
@@ -169,8 +169,22 @@ class CountryFactsheetView(BrowserView):
 
     def legend(self):
         return [(k, v)
-                for (k, v) in LEGEND.items()
+                for (k, v) in self._api_legend().items()
                 if k in self.layer_types()]
+
+    @ram.cache(lambda fun, self: True)
+    def _api_legend(self):
+        url = "{server}/{user}/{service}/MapServer/legend?f=pjson".format(
+            server=MAP_SERVER, user=MAP_USER, service=MAP_SERVICE
+        )
+        resp = requests.get(url)
+        j = resp.json()
+        layer = [l for l in j['layers'] if l['layerId'] == MAP_LAYER][0]
+        res = {}
+        for item in layer['legend']:
+            res[item['label']] = "data:image/png;base64," + item['imageData']
+
+        return res
 
     def format_nr(self, nr):
         target_language = 'en'
@@ -349,34 +363,3 @@ class CountryMap(BrowserView):
 
         logger.error('Got response in query extent %r', res)
         return json.dumps(res)
-
-# <script type="text/javascript">
-#       // <![CDATA[
-#       require([
-#       "esri/Map",
-#       "esri/views/MapView",
-#       "esri/widgets/Home",
-#       "esri/layers/MapImageLayer",
-#       "esri/geometry/Extent",
-#       "esri/views/layers/support/FeatureFilter",
-#       "dojo/domReady!"
-#       ], function(Map, MapView, Home, MapImageLayer, Extent, FeatureFilter) {
-#               var map = new Map();
-#               var view = new MapView({
-#                 container: "viewDiv",
-#                 map: map,
-#               });
-#               view.extent = new Extent(extent.extent);
-#               view.filter = new FeatureFilter({
-#                 where: "Country = '${context/country}'",
-#               });
-#
-#               //var homeBtn = new Home({
-#               //view: view
-#               //});
-#               // view.ui.add(homeBtn, "top-left");
-#               var layer = new MapImageLayer('${view/layerUrl}', null);
-#               map.layers.add(layer);
-#           });
-#         // ]]>
-#       </script>
