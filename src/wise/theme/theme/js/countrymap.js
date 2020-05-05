@@ -36,42 +36,17 @@ require([
       where: "COUNTRY = '" + window.focusCountry + "'",
   };
 
-  view.when(
-    function() {
-      console.log('success');
-    },
-    function(error) {
-      console.log('error');
-    }
-  );
-
   view.whenLayerView(layer).then(function(layerView) {
     console.log('whenLayerView', layerView);
-    // setTimeout(function() {
-    //   console.log('setting filter');
-    // layerView.filter = {
-    //   where: "COUNTRY = '" + window.focusCountry + "'",
-    // };
-    // }, 1000);
-    // var layer = layerView.layer;
 
     layerView.filter = {
       where: "Country = '" + window.focusCountry + "'"
     };
-  //   var queryParams = layer.createQuery();
-  //
-  //   queryParams.where = "COUNTRY = '" + window.focusCountry + "'";
-  //   queryParams.outFields = ["Country"]
-  //   queryParams.returnGeometry = true;
-  //   console.log('quuert', queryParams);
-  //
-  // layerView.layer.queryFeatures(queryParams).then(function(results){
-  //   // prints the array of result graphics to the console
-  //   console.log('result', results);
-  // });
 
     layerView.watch("updating", function(val) {
       console.log('updating', val);
+
+      // view.goTo(response.extent);
 
       if (!val) {
         layerView.queryExtent().then(function(response) {
