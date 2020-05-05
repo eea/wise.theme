@@ -9,7 +9,7 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <div class="col-md-10 col-xs-8" >
+    <div class="col-md-12 col-xs-12" >
       <div id="country-factsheet" class="container pat-autotoc"
         data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
       <div class="row">
@@ -57,13 +57,13 @@
             <h4>Marine waters per country</h4>
             <span class="figure-number">
               <tal:rep tal:replace="python: int(context.marine_water_per_country or 0)">45%</tal:rep>%
-              </span> of the total country area
+              </span> of the total country area (land &amp; marine)
             </div>
 
             <div class="marine-number">
               <h4>Marine waters per capita</h4>
               <span class="figure-number"
-                tal:content="python: int(context.marine_water_per_capita or 0)">10</span> ha per capita
+                tal:content="context/marine_water_per_capita">10</span> ha per capita
               </div>
 
         </div>
@@ -131,14 +131,14 @@
 
       </div>
     </div>
-    <div class="col-md-2 col-xs-4 toc-wrapper">
-      <div class="portlet">
-        <header class="portletHeader">On this page</header>
-        <div class="portletContent">
-          <div id="toc"> </div>
-        </div>
-      </div>
-    </div>
+    <!-- <div class="col&#45;md&#45;2 col&#45;xs&#45;4 toc&#45;wrapper"> -->
+    <!--   <div class="portlet"> -->
+    <!--     <header class="portletHeader">On this page</header> -->
+    <!--     <div class="portletContent"> -->
+    <!--       <div id="toc"> </div> -->
+    <!--     </div> -->
+    <!--   </div> -->
+    <!-- </div> -->
 
     <script src="/++theme++wise-theme/static/js/tableau-2.3.0.js"></script>
 
