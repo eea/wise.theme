@@ -1,19 +1,27 @@
 //*// PORTLETS //*//
 
+
 .portlet {
   margin-bottom: 40px;
-  border-radius: 7px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  // border-radius: 7px;
+  // box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
 
   > :first-child {border-radius: 7px 7px 0 0;}
   > :last-child {border-radius: 0 0 7px 7px;}
 
   .portletHeader {
     font-family: 'PoppinsSemiB';
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 18px;
+    // line-height: 18px;
     padding: 25px 20px;
     color: @darker-blue;
+
+    a {
+      color: inherit;
+    }
+  }
+  .portletHeader.titleless {
+    padding: 0;
   }
 
   &.portletCalendar .portletHeader {
@@ -46,6 +54,7 @@
 
 	.portletContent {
 		background-color: #fff;
+    color: @text-color;
 		& > *, & > div:not(.portalMessage) { //all but ul and tables and portalMessage
 			padding: 10px 25px;
 			margin: 0;
@@ -182,15 +191,23 @@
 	}
 }
 
-.portlet.portletStaticText {
-	background-color: #faf8f5;
-	.portletContent {
-		background-color: #faf8f5;
-	}
-}
+// .portlet.portletStaticText {
+// 	background-color: #faf8f5;
+// 	.portletContent {
+// 		background-color: #faf8f5;
+// 	}
+// }
 
 
 //*// Navigation
+.portletNavigationTree {
+  border-left: 2px solid @darker-blue;
+  margin: 0 25px;
+
+  .portletHeader {
+    padding-top: 0;
+  }
+}
 .portletNavigationTree nav.portletContent > ul > li a {
   padding: 17px 20px;
   border-top: none;
@@ -208,11 +225,12 @@
 		border-top: 0;
     border-radius: 7px;
 		> ul li a {
-			font-size: 16px;
+			font-size: 15px;
+      color: #666;
 		}
 		> ul > li > a {
       display: block;
-      font-family: RobotoM;
+      font-family: "RobotoR";
 			&:before {content: ""; }
 		}
 		> ul > li > ul {
@@ -230,13 +248,14 @@
 		}
 		.navTreeCurrentNode > a {
       background-color: #f7f3ef;
-      color: #5a4939;
+      color: #000;
 		}
     a {
 			&:hover,
 			&:focus {
         background-color: #f7f3ef;
         text-decoration: none;
+        color: #000;
       }
     }
 	}
