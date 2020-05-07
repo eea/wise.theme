@@ -159,6 +159,15 @@
     template="pt/vocab_inspector.pt"
     />
 
+  <browser:page
+      for="*"
+      name="portal_tabs_view"
+      class=".navigation.CatalogNavigationTabs"
+      permission="zope.Public"
+      allowed_attributes="topLevelTabs"
+      layer="wise.theme.interfaces.IWiseThemeLayer"
+      />
+
   <!--  -->
   <!-- layer="wise.theme.interfaces.IWiseThemeLayer" -->
 
