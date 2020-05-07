@@ -82,4 +82,6 @@
     name="wise_countries_vocabulary"
     />
 
+  <adapter name="has_default_page" factory=".catalog.has_default_page" />
+
 </configure>
