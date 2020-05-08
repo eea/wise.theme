@@ -168,6 +168,13 @@
       layer="wise.theme.interfaces.IWiseThemeLayer"
       />
 
+  <browser:page
+      for="*"
+      name="bootstrap_countries"
+      class=".countryfactsheets.BootstrapCountrySection"
+      permission="cmf.ManagePortal"
+      />
+
   <!--  -->
   <!-- layer="wise.theme.interfaces.IWiseThemeLayer" -->
 
