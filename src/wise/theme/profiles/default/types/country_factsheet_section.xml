@@ -45,6 +45,11 @@
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Dashboard height&lt;/title&gt;
       &lt;/field&gt;
+      &lt;field name=&quot;text_above_dashboard&quot; type=&quot;plone.app.textfield.RichText&quot;&gt;
+        &lt;description/&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Text above dashboard&lt;/title&gt;
+      &lt;/field&gt;
       &lt;fieldset name=&quot;wise_metadata&quot; label=&quot;Wise Metadata&quot;/&gt;
     &lt;/schema&gt;
   &lt;/model&gt;</property>

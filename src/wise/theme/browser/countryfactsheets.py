@@ -1,4 +1,3 @@
-import csv
 import json
 import logging
 from collections import namedtuple
@@ -7,15 +6,17 @@ from urllib2 import HTTPError
 
 import requests
 from lxml.etree import fromstring
-from pkg_resources import resource_filename
 from zope.component import getUtility
 from zope.i18n.locales import locales
 from zope.schema.interfaces import IVocabularyFactory
 
+from plone.app.textfield.value import RichTextValue
+from plone.dexterity.utils import createContentInContainer as create
 from plone.memoize import ram
 from Products.Five.browser import BrowserView
 from wise.msfd import db, sql
 from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
+from wise.theme.browser.utils import parse_csv
 
 logger = logging.getLogger('wise.theme')
 
@@ -24,6 +25,14 @@ ConvWebsite = namedtuple('ConvWebsite', ['RSC', 'Web'])
 CountryConv = namedtuple('CountryConv', ['Country', 'RSCs'])
 MSFDWebsites = namedtuple('MSFDWebsites', ['Country', 'URL', 'Observations'])
 Website = namedtuple('Website', ['name', 'href'])
+
+STATS = parse_csv('data/Marine_waters_statistics.csv', Stat)
+CONVENTION_WEBSITES = parse_csv('data/convention_websites.csv', ConvWebsite)
+COUNTRY_CONVENTIONS = parse_csv('data/country_conventions.csv', CountryConv)
+MSFD_WEBSITES = parse_csv('data/MSFD_websites.csv', MSFDWebsites)
+MSFD_COUNTRIES = parse_csv('data/MSFD_countries.csv', dict)
+MSFD_COUNTRY_STATS = parse_csv('data/MSFD_countries_stats.csv', dict)
+
 
 MAP_SERVER = "https://test.discomap.eea.europa.eu/arcgis/rest/services"
 MAP_USER = "Marine"
@@ -87,60 +96,6 @@ GET_LAYER_TYPES_URL = ("""
 {server}/{user}/{service}/MapServer/{layer}/query?where=Country+%3D+%27COUNTRYMARKER%27&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=Type&returnGeometry=false&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=pjson
 """).strip().format(server=MAP_SERVER, user=MAP_USER, service=MAP_SERVICE,
                     layer=MAP_LAYER)
-
-
-# MARINE_WATERS_IMG = ("""
-# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADNJREFUOI1jYaAyYKGZgfv+v/hPqWFOjBKMtHPhqIGjBo4aOGrg0DDQiVGCEcVAmAClAADQeQUJaPdGswAAAABJRU5ErkJggg==
-# """)
-# TERRITORIAL_IMG = ("""
-# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADBJREFUOI1jYaAyYKGdgc9W/qfYNKlwRhq6cNTAUQNHDRw1cGgYKBXOiGogVIBSAAAt/gQ1i+f+5QAAAABJRU5ErkJggg==
-# """)
-# CONTINENTAL_SHELF_IMG = ("""
-# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAIdJREFUOI3t1MENgCAMBdA2YRA29MIYJIQN2aReRBAKSqs3e9NvHt+IGHh5zHfgRqTWIqJpb9SXLpVFvL1mXR7ahrOH7zCLmN+QBZexajpQg3WgFmMbajAWlGAuEbFfWYpNG2qwKfjvw0c521CCDbeNFBs29AHYczGvDtDnZ3YcfQWM499pZXbHQIiyFUf9UgAAAABJRU5ErkJggg==
-# """)
-# EXTENDED_IMG = ("""
-# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAINJREFUOI3t1MENgCAMBVCaMBUMZVdxKOaqFwlQStVWb/akfvP8JqQxvDzxO3Ajcms7QOQPhnsq7SOQx4znmFhD7eUrDDLUP5TBp1g3M+jAZtCJyQ0dmAxaMCoUUAKtmNrQgengfw5v5WJDC7Y8NlZs2RCTvBexu+Z5zc7V10C+C41zAFjwaJU8RE5tAAAAAElFTkSuQmCC
-# """)
-# FISHERIES_IMG = ("""
-# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADtJREFUOI1jYaAyYKGZgb7PGP5TathmKQZGFnQBcg2DOYh2Xh41cNTAUQNHDcRpICVlIqzoY0EXoBQAAAtECh/OdEtnAAAAAElFTkSuQmCC
-# """)
-# AREA_IMG = ("""
-# data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IB2cksfwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAADpJREFUOI1jYaAyYKGZgf8ZGP5TahgjAwMjC7oAuYbBHEQ7L48aOGrgqIGjBuI0kJIyEVb0saALUAoAtHoGU/jZDVYAAAAASUVORK5CYII=
-# """)
-#
-# LEGEND = {
-#     "Marine waters": MARINE_WATERS_IMG,
-#     "Territorial waters": TERRITORIAL_IMG,
-#     "Continental shelf": CONTINENTAL_SHELF_IMG,
-#     "Extended continental shelf": EXTENDED_IMG,
-#     "Fisheries Management Zone": FISHERIES_IMG,
-#     "Area designated for hydrocarbon exploration and exploitation": AREA_IMG,
-# }
-
-
-# TODO: don't hardcode legend, use
-# https://test.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_v4/MapServer/legend?f=pjson
-
-
-def parse_csv(path, klass):
-    wf = resource_filename('wise.theme', path)
-
-    reader = csv.reader(open(wf))
-    cols = reader.next()
-    stats = []
-
-    for line in reader:
-        d = dict(zip(cols, line))
-        s = klass(**d)
-        stats.append(s)
-
-    return stats
-
-
-STATS = parse_csv('data/Marine_waters_statistics.csv', Stat)
-CONVENTION_WEBSITES = parse_csv('data/convention_websites.csv', ConvWebsite)
-COUNTRY_CONVENTIONS = parse_csv('data/country_conventions.csv', CountryConv)
-MSFD_WEBSITES = parse_csv('data/MSFD_websites.csv', MSFDWebsites)
 
 
 class CountryFactsheetView(BrowserView):
@@ -363,3 +318,86 @@ class CountryMap(BrowserView):
 
         logger.error('Got response in query extent %r', res)
         return json.dumps(res)
+
+
+class BootstrapCountrySection(BrowserView):
+    """ Automatically create and bootstrap the countries
+    """
+
+    def countries(self):
+        res = {}
+
+        for rec in MSFD_COUNTRIES:
+            res[rec['Country']] = rec
+
+        for rec in MSFD_COUNTRY_STATS:
+            res[rec['Country']].update(rec)
+
+        util = getUtility(IVocabularyFactory, name="wise_search_member_states")
+        vocab = util(self.context)
+
+        for term in vocab:
+            res[term.token]['title'] = term.title
+
+        return res
+
+    def __call__(self):
+        parent = self.context
+
+        # info is like:
+        # {'% of the total country area': '10',
+        # 'Country': 'BE',
+        # 'Ecological and chemical status of transitional, coastal and territorial waters': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/WISE_SOW_Status_Marine_Country_profile/SWB_Status_Category_Country?P_Country=Belgium',
+        # 'Marine surface per capita': '0.03',
+        # 'Status of bathing waters in transitional and coastal sites': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/BathingWaterQuality_Marine_Country_profile/Country?P_Country=Belgium',
+        # 'Status of marine species and habitats': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/NatureDirectives_Marine_status_Pie/Pie?Country_param=BE',
+        # 'Status of the marine environment': 'https://tableau.discomap.eea.europa.eu/#/site/Wateronline/views/GESassessments_CountryProfiles/CountryProfiles?Country=Belgium',
+        # 'title': u'Belgium'
+        dashboards = [
+            'Status of the marine environment',
+            'Status of marine species and habitats',
+            'Ecological and chemical status of transitional, coastal and '
+            'territorial waters',
+            'Status of bathing waters in transitional and coastal sites',
+        ]
+        codes = {
+            'PL': 'Poland',
+            'MT': 'Malta',
+            'RO': 'Romania',
+        }
+        for code, info in sorted(self.countries().items(), key=lambda x: x[0]):
+            if not info.get('title'):
+                info['title'] = codes[info['Country']]
+
+            logger.info('Creating country: %s', code)
+
+            country_title = info['title']
+            country = create(parent,
+                             'country_factsheet',
+                             id=country_title,
+                             title=country_title)
+            country.country = code
+            country.marine_water_per_country = float(
+                info['% of the total country area'])
+            country.marine_water_per_capita = float(
+                info['Marine surface per capita'])
+            country.basemap_layer = 'osm'
+
+            for ds in dashboards:
+                fs = create(country,
+                            'country_factsheet_section',
+                            id=ds,
+                            title=ds)
+
+                fs.dashboard_height = '850px'
+                if ds == 'Status of marine species and habitats':
+                    fs.dashboard_height = '630px'
+
+                if 'http' in info[ds]:
+                    fs.tableau_url = info[ds]
+                else:
+                    fs.text = RichTextValue(
+                        info[ds].decode('utf-8'), 'text/plain', 'text/html')
+
+        logger.info('done')
+        return 'ok'

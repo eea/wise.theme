@@ -115,16 +115,21 @@
         <div tal:repeat="brain context/getFolderContents" class="country-dashboard-section row">
           <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
             <h3 tal:content="section/Title"></h3>
+
+            <div
+              tal:condition="section/text_above_dashboard|nothing"
+              tal:content="structure section/text_above_dashboard/output">Slide text</div>
+
             <div tal:condition="not: section/tableau_url">
             </div>
             <tal:cond tal:condition="section/tableau_url">
-              <div class="col-3-md"
-                tal:condition="section/text|nothing"
-                tal:content="structure section/text/output">Slide text</div>
-              <div class="col-9-md">
-                <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
-              </div>
+              <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
             </tal:cond>
+
+            <div
+              tal:condition="section/text|nothing"
+              tal:content="structure section/text/output">Slide text</div>
+
             <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
           </tal:def>
         </div>
