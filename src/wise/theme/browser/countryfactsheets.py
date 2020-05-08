@@ -368,7 +368,9 @@ class BootstrapCountrySection(BrowserView):
         for code, info in sorted(self.countries().items(), key=lambda x: x[0]):
             if not info.get('title'):
                 info['title'] = codes[info['Country']]
+
             logger.info('Creating country: %s', code)
+
             country_title = info['title']
             country = create(parent,
                              'country_factsheet',
@@ -397,4 +399,5 @@ class BootstrapCountrySection(BrowserView):
                     fs.text = RichTextValue(
                         info[ds].decode('utf-8'), 'text/plain', 'text/html')
 
+        logger.info('done')
         return 'ok'
