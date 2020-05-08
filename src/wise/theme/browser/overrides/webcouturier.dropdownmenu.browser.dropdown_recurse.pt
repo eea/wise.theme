@@ -26,7 +26,7 @@
                   class_selected  python:' selected active' if item_url in context.absolute_url() else None;
                   class_state     string: state-${node/normalized_review_state};
                   class_clickable python:' noClick' if not enable_parent_clickable and children else None;
-                  class_has_dp    python: children and not item.has_default_page and ' specialClass' or '';
+                  class_has_dp    python: children and not item.has_default_page and ' is-not-dp' or '';
     "
 
     class="${class_position}${class_dropdown}${class_selected}${class_has_dp}">
@@ -35,6 +35,9 @@
     <a class="clearfix${class_state}${class_has_dd}${class_clickable}"
        title="${node/Description}"
        href="${python:use_remote_url and item_remote_url or item_url}">
+       <span tal:condition="children" class="sm-opener">
+         <span class="sm-caret"></span>
+       </span>
       <span class="submenu_title">${node/Title}</span>
       <img tal:condition="python:item.getIcon and enable_images"
            src="${item_url}/@@images/image/${image_size}"
@@ -42,7 +45,7 @@
            class="submenu_image clearfix" />
       <span class="submenu_description"
             tal:condition="python:enable_desc and node['Description']">${node/Description}</span>
-      <span tal:condition="children" class="opener"><span class="caret"></span></span>
+      <!-- <span tal:condition="children" class="opener"><span class="caret"></span></span> -->
     </a>
 
     <ul tal:condition="python: len(children) > 0 and show_children"
@@ -55,4 +58,3 @@
 </tal:loop>
 </metal:main>
 </tal:master>
-

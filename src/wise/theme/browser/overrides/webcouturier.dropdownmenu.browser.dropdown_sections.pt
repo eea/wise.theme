@@ -33,7 +33,7 @@
                               class_children  python:' hasDropDown dropdown' if subitems else '';
                               class_selected  python:' selected active' if selected_tab==tid else '';
                               review_state    python:' state-' + tab.get('review_state') if tab.get('review_state', None) else None;
-                              class_has_dp    python: subitems and not tab['has_default_page'] and ' specialClass' or '';
+                              class_has_dp    python: subitems and not tab['has_default_page'] and ' is-not-dp' or '';
                 "
                   id="portaltab-${tid}"
                   class="${class_position}${class_children}${class_selected}${class_has_dp}">
@@ -68,4 +68,3 @@
   </nav>
 
 </tal:sections>
-

@@ -3,6 +3,7 @@
 #mainnavigation-wrapper {
   .container {
     width: auto;
+    padding: 0;
   }
 }
 
@@ -29,141 +30,143 @@ ul.plone-nav {
     }
   }
 
+  >li:before{
+    content: "";
+    height: 25px;
+    width: 1px;
+    background: #002d54;
+    position: absolute;
+    left: -0.5px;
+    top: 6px;
+  }
+
+  >li:first-child:before{
+    display: none;
+  }
+
   > li {
     position: relative;
     display: inline-block;
-    vertical-align: text-top;
+    // vertical-align: text-top;
     text-align: right;
+    margin-right: -4px;
     > a {
       display: flex;
-      color: @blue;
-      padding: 0.8em 1em 1.8em 1em;
-      font-family: "RobotoM";
+      color: @darker-blue;
+      padding: 0.5em 0.8em;
+      font-family: "PoppinsSemiB";
+      font-size: 15px;
       &:hover,
       &:focus {
         text-decoration: none;
       }
       .opener {
-        margin-left: 3px;
+        display: none;
       }
     }
 
     > .submenu {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 1px solid #f1f1f1;
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
       background-color: #fff;
       text-align: left;
-      border-radius: 7px;
       position: absolute;
       left: 0;
-      top: 4.2em;
-      min-width: 20em;
+      top: 36px;
+      min-width: 25em;
       display: none;
 
       li:hover ul {
         left: auto !important;
+        display: none;
       }
 
       > li {
+        border-bottom: 1px solid #bdbdbd;
+        margin: 0 15px;
+        width: auto;
+        float: none;
         > a {
-          padding: 2rem;
-          border-bottom: 1px solid #ededed;
+          padding: 2rem 10px;
 
           &:hover {
-            background-color: @darker-blue;
-            color: #fff;
-          }
-        }
-
-        li {
-          a {
-            font-size: 14px;
-            color: @darker-blue;
-            font-family: "RobotoR";
-            padding: 0.3rem 2rem;
-
-            &:hover {
-              background-color: transparent;
-              text-decoration: underline;
-              color: @orange;
-            }
+            background-color: transparent;
+            color:@blue;
           }
         }
       }
 
       > li:last-child {
-        a {
-          border-bottom: none;
-        }
+        border: none;
         .submenu {
           border-bottom: none;
         }
       }
 
-      > li:first-child {
-        a {
-          border-top: none;
-          border-top-right-radius: 7px;
-          border-top-left-radius: 7px;
-        }
-      }
-
-      > li:last-child {
-        a:not(:only-child) {
-          border-bottom: 1px solid #ededed;
-        }
-        a:only-child {
-          border-bottom-right-radius: 7px;
-          border-bottom-left-radius: 7px;
-        }
-      }
-
       a {
-        color: @blue;
+        font-family: "PoppinsR";
+        font-size: 14px;
+        color: @darker-blue;
         min-width: auto;
         padding: 8px 0;
-        font-family: "RobotoM";
       }
 
-      .opener {
-        display: none;
+      .sm-opener {
+        float: none;
+
+        .sm-caret::before {
+          content: '';
+          position: relative;
+          display: inline-block;
+          vertical-align: top;
+          border-style: solid;
+          border-width: 2px 2px 0 0;
+          top: 4px;
+          left: -5px;
+          height: 0.60em;
+          width: 0.60em;
+          transform: rotate(135deg);
+        }
       }
 
       .submenu {
-        display: block;
         background-color: transparent;
         padding: 0.8rem 0;
-        border-bottom: 1px solid #ededed;
+        padding-left: 1.7em;
+
          > li {
            float: none;
+
+           a {
+             font-size: 14px;
+             color: @darker-blue;
+             font-family: "PoppinsR";
+             padding: 0.3rem 2rem;
+
+             &:hover {
+               background-color: transparent;
+               color: #b3c0cb;
+               padding-left: 1.9em;
+             }
+           }
+
+           .submenu_title::before{
+              content: '';
+              position: relative;
+              display: inline-block;
+              vertical-align: top;
+              border-style: solid;
+              border-width: 2px 2px 0 0;
+              top: 6px;
+              left: -12px;
+              height: 0.60em;
+              width: 0.60em;
+              transform: rotate(45deg);
+           }
          }
       }
     }
 
-    // submenu top arrow
-    >.submenu:before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 30px;
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 10px solid #fff;
-      z-index: 2;
-    }
-    >.submenu:after {
-      content: '';
-      position: absolute;
-      top: -12px;
-      left: 28px;
-      width: 0;
-      height: 0;
-      border-left: 12px solid transparent;
-      border-right: 12px solid transparent;
-      border-bottom: 12px solid rgba(0,0,0, 0.05);
-      z-index: 1;
-    }
     >.aligned-submenu {
       right: 0;
       left: auto;
@@ -180,12 +183,9 @@ ul.plone-nav {
   }
 
   > li:hover {
-    > a {color: @darker-blue;}
-  }
-
-  > li:last-child {
     > a {
-      padding-right: 0;
+      color: @darker-blue;
+      background-color: #cdd6dd;
     }
   }
 
@@ -341,6 +341,16 @@ ul.plone-nav {
 
       > li {
         display: block;
+
+        >a {
+          color: #fff;
+        }
+      }
+
+      >li:hover {
+        a {
+          color: @darker-blue;
+        }
       }
 
       li:hover > .submenu {
@@ -355,8 +365,8 @@ ul.plone-nav {
 
       li {
         >a {
-          color: #fff;
-          padding: 13px 15px;
+          // color: #fff;
+          // padding: 13px 15px;
           display: block;
           text-align: left;
         }
@@ -380,7 +390,7 @@ ul.plone-nav {
 
               &:hover {
                 background-color: transparent;
-                color: @orange;
+                // color: @orange;
               }
             }
             .opener {
@@ -388,17 +398,26 @@ ul.plone-nav {
             }
           }
 
+          .submenu_title {
+            padding-left: 0;
+          }
+
           .submenu {
             > li {
               a {
                 font-size: 12px;
                 padding: 13px;
+
+                &:hover {
+                  color: #b3c0cb;
+                }
               }
             }
           }
         }
 
         .opener {
+          // display: none !important;
           display: inline-block;
           margin-right: 0;
           background: transparent;
@@ -425,14 +444,13 @@ ul.plone-nav {
           }
         }
       }
-      .menu-open {
-        display: block!important;
-      }
+      // .menu-open {
+      //   display: block!important;
+      // }
     }
   }
 
   ul.plone-nav > li > .submenu:before {
-    // border-color: transparent;
     display: none;
   }
 }

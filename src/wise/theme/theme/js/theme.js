@@ -7,12 +7,12 @@ function autoCollapseNavigation() {
   var $searchSubmitButton = $('.search-submit');
 
   $header.removeClass('collapse-nav');
-  if ($navbar.innerHeight() > 90) {
+  if ($navbar.innerHeight() > 65) {
     $header.addClass('collapse-nav');
     // Move search and login to navbar container
     $('.top-actions').prependTo('.navbar-collapse');
   } else {
-    $('.top-actions').appendTo('.right-actions-section');
+    $('.top-actions').prependTo('.right-actions-section');
   }
 
   // sticky menu
@@ -108,8 +108,24 @@ function collapsibleContent() {
   }
 }
 
+function openSubmenuOnClick() {
+  var $submenuItem = $('#portal-globalnav .submenu a');
+  $submenuItem.each(function() {
+    $(this).click(function(){
+      $(this).siblings('.dropdown-menu').toggle();
+    });
+  });
+}
+
 
 $(document).ready(function() {
+
+  // Main navigation menu:
+  // if item (folder) has not set a default page
+  // prevent default link behavior on click
+  $('.is-not-dp > a, #portal-globalnav>li>ul .hasDropDown').click(function(e) {
+    e.preventDefault();
+  });
 
   $('#main-container').css('visibility', 'visible');
 
@@ -132,10 +148,11 @@ $(document).ready(function() {
     $('#viewlet-below-content').addClass('bottom-links-wrapper');
   }
 
-  setTwoRowNavigation();
+  // setTwoRowNavigation();
   autoCollapseNavigation();
   alignNavSubmenu();
   collapsibleContent();
+  openSubmenuOnClick();
 
   $(window).on('load', function() {
     displayImageCaption();
