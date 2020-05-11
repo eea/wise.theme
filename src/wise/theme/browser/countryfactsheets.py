@@ -219,6 +219,7 @@ class CountryFactsheetView(BrowserView):
 
         return res
 
+    @ram.cache(lambda fun, self: self.context.country)
     def authorities(self):
         code = self.context.country
         try:
