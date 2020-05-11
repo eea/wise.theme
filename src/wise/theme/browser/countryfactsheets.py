@@ -129,11 +129,12 @@ class CountryFactsheetView(BrowserView):
                 for (k, v) in self._api_legend().items()
                 if k in self.layer_types()]
 
-    @ram.cache(lambda fun, self: True)
+    @ram.cache(lambda fun, self: self.context.country)
     def _api_legend(self):
         url = "{server}/{user}/{service}/MapServer/legend?f=pjson".format(
             server=MAP_SERVER, user=MAP_USER, service=MAP_SERVICE
         )
+        logger.info("Legend API call: %s", url)
         resp = requests.get(url)
         j = resp.json()
         layer = [l for l in j['layers'] if l['layerId'] == MAP_LAYER][0]
@@ -223,6 +224,7 @@ class CountryFactsheetView(BrowserView):
 
     @ram.cache(lambda fun, self: self.context.country)
     def authorities(self):
+        logger.info("Get authorities: %s", self.context.country)
         code = self.context.country
         try:
             fname = _get_report_filename_art7_2018(code, None, None, None)
@@ -238,6 +240,7 @@ class CountryFactsheetView(BrowserView):
 
         return res
 
+    @ram.cache(lambda fun, self: self.context.country)
     def country_name(self):
         util = getUtility(IVocabularyFactory, name="wise_search_member_states")
         vocab = util(self.context)
@@ -248,7 +251,7 @@ class CountryFactsheetView(BrowserView):
 
         return ''
 
-    @ram.cache(lambda fun, self: self.context.getPhysicalPath())
+    @ram.cache(lambda fun, self: self.context.country)
     def layer_types(self):
         """
         """
@@ -311,7 +314,7 @@ class CountryMap(BrowserView):
     def title(self):
         return "Country map for {}".format(self.context.country)
 
-    @ram.cache(lambda fun, self: self.context.getPhysicalPath())
+    @ram.cache(lambda fun, self: self.context.country)
     def get_extent(self):
         """ Get the extent for the context country
         """
