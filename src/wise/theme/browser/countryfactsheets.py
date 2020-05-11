@@ -8,11 +8,13 @@ import requests
 from lxml.etree import fromstring
 from zope.component import getUtility
 from zope.i18n.locales import locales
+from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer as create
 from plone.memoize import ram
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from wise.msfd import db, sql
 from wise.msfd.data import _get_report_filename_art7_2018, get_xml_report_data
@@ -355,11 +357,44 @@ class BootstrapCountrySection(BrowserView):
         # 'Status of the marine environment': 'https://tableau.discomap.eea.europa.eu/#/site/Wateronline/views/GESassessments_CountryProfiles/CountryProfiles?Country=Belgium',
         # 'title': u'Belgium'
         dashboards = [
-            'Status of the marine environment',
-            'Status of marine species and habitats',
-            'Ecological and chemical status of transitional, coastal and '
-            'territorial waters',
-            'Status of bathing waters in transitional and coastal sites',
+            ['Status of the marine environment',
+                """COUNTRY has assessed the environmental status of a number of
+                features per descriptor under the 2018 update of MSFD Article
+                8, which were reported electronically to the European
+                Commission. The following dashboard shows the marine waters'
+                area where, for those features, the Good Environmental Status
+                has been achieved, not yet achieved or is unknown or not
+                assessed."""],
+            ['Status of marine species and habitats', """The conservation
+            status of the habitats and species listed in the Habitats Directive
+            annexes has to be assessed and reported to the European Commission
+            under Article 17 every 6 years. The assessment is based on
+            information about the status and trends of species populations and
+            of habitats at the level of the biogeographical or marine region.
+            In the following dashboard, the assessments reported by COUNTRY are
+            presented, where they can be displayed as status or status and
+            trend."""],
+            ['Ecological and chemical status of transitional, coastal and '
+             'territorial waters',
+             """The ecological status of the water bodies is based on biological
+            quality elements and supported by physico-chemical and
+            hydromorphological quality elements. On the other hand, the good
+            chemical status is achieved when no concentrations of priority
+            substances exceed the relevant EQS established in the Environmental
+            Quality Standards Directive. The results reported by COUNTRY on the
+            first and second River Basin Management Plans are presented in the
+            dashboard below."""],
+            ['Status of bathing waters in transitional and coastal sites',
+             """The bathing waters sites are monitored under the Bathing Water
+            Directive in regards to the values of two microbiological
+            parameters (Intestinal enterococci and Escherichia coli) and the
+            results are reported on a yearly basis to the European Commission.
+            Where a bathing water is classified as 'poor', Member States should
+            take measures such as banning bathing or advising against it,
+            providing information to the public, and taking suitable corrective
+            actions. The dashboard displays the results reported by COUNTRY,
+            where in 2018 most of the bathing waters were excellent or good."""
+             ],
         ]
         codes = {
             'PL': 'Poland',
@@ -384,11 +419,15 @@ class BootstrapCountrySection(BrowserView):
                 info['Marine surface per capita'])
             country.basemap_layer = 'osm'
 
-            for ds in dashboards:
+            for (ds, text) in dashboards:
                 fs = create(country,
                             'country_factsheet_section',
                             id=ds,
                             title=ds)
+
+                fs.text_above_dashboard = RichTextValue(
+                    text.replace('\n', ' ').replace('COUNTRY', info['title']),
+                    'text/plain', 'text/html')
 
                 fs.dashboard_height = '850px'
                 if ds == 'Status of marine species and habitats':
@@ -401,4 +440,6 @@ class BootstrapCountrySection(BrowserView):
                         info[ds].decode('utf-8'), 'text/plain', 'text/html')
 
         logger.info('done')
+
+        alsoProvides(self.request, IDisableCSRFProtection)
         return 'ok'
