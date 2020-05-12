@@ -40,20 +40,20 @@ require([
       where: "Country = '" + window.focusCountry + "'"
     };
 
-    layerView.watch("updating", function(val) {
-      console.log('updating', val);
-
-      // view.goTo(response.extent);
-
-      if (!val) {
-        layerView.queryExtent().then(function(response) {
-          // go to the extent of all the graphics in the layer view
-          console.log('got extent', response.extent);
-          if (response.extent) view.goTo(response.extent);
-          // view.goTo(extent);
-        });
-      }
-    });
+    // layerView.watch("updating", function(val) {
+    //   console.log('updating', val);
+    //
+    //   // view.goTo(response.extent);
+    //
+    //   if (!val) {
+    //     layerView.queryExtent().then(function(response) {
+    //       // go to the extent of all the graphics in the layer view
+    //       console.log('got extent', response.extent);
+    //       if (response.extent) view.goTo(response.extent);
+    //       // view.goTo(extent);
+    //     });
+    //   }
+    // });
   });
 
 
