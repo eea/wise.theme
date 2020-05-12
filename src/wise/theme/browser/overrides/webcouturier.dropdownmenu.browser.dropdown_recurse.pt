@@ -38,7 +38,7 @@
        title="${node/Description}"
        href="${python:use_remote_url and item_remote_url or item_url}">
        <span tal:condition="children" class="sm-opener">
-         <span class="sm-caret"></span>
+         <span class="sm-caret sm-caret-up"></span>
        </span>
       <span class="submenu_title">${node/Title}</span>
       <img tal:condition="python:item.getIcon and enable_images"
