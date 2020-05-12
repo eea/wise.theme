@@ -27,6 +27,8 @@
                   class_state     string: state-${node/normalized_review_state};
                   class_clickable python:' noClick' if not enable_parent_clickable and children else None;
                   class_has_dp    python: children and not item.has_default_page and ' is-not-dp' or '';
+                  class_force_expand python: (item.has_default_page and children) and ' expand-dropdown' or ' ';
+                  class_two_columns python: len(children) > 10 and ' two-columns' or ' ';
     "
 
     class="${class_position}${class_dropdown}${class_selected}${class_has_dp}">
@@ -49,7 +51,7 @@
     </a>
 
     <ul tal:condition="python: len(children) > 0 and show_children"
-        class="${python:'submenu dropdown-menu navTree navTreeLevel'+str(level)}">
+      class="${python:'submenu dropdown-menu navTree navTreeLevel'+str(level)+class_force_expand+class_two_columns}" >
       <span tal:replace="structure python:view.recurse(children=children, level=level+1, bottomLevel=bottomLevel)" />
     </ul>
 

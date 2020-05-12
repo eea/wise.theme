@@ -119,11 +119,16 @@ function openSubmenuOnClick() {
 
 
 $(document).ready(function() {
+  // are dropdown, nu are default page: not clickable
+  // are dropdown, are default page: clickable
 
   // Main navigation menu:
   // if item (folder) has not set a default page
   // prevent default link behavior on click
   $('.is-not-dp > a, #portal-globalnav>li>ul .hasDropDown').click(function(e) {
+    if ($(this).siblings().hasClass('expand-dropdown')) {
+      return true;
+    }
     e.preventDefault();
   });
 

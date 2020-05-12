@@ -16,7 +16,7 @@
       var focusMapLayer = '${context/basemap_layer}';
       var layerUrl = '${view/layerUrl}';
     </script>
-    <script type="text/javascript" src="++theme++wise-theme/js/countrymap.js"></script>
+    <script type="text/javascript" src="++theme++wise-theme/static/countrymap.js"></script>
 
     <script type="text/javascript">
       // <![CDATA[

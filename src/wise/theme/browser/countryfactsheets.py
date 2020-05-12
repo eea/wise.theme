@@ -435,6 +435,8 @@ class BootstrapCountrySection(BrowserView):
                 fs.dashboard_height = '850px'
                 if ds == 'Status of marine species and habitats':
                     fs.dashboard_height = '630px'
+                if ds == 'Status of the marine environment':
+                    fs.dashboard_height = '630px'
 
                 if 'http' in info[ds]:
                     fs.tableau_url = info[ds]
