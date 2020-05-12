@@ -431,18 +431,18 @@ class BootstrapCountrySection(BrowserView):
                             id=ds,
                             title=ds)
 
-                fs.text_above_dashboard = RichTextValue(
-                    text.replace('\n', ' ').replace('COUNTRY', info['title']),
-                    'text/plain', 'text/html')
-
                 fs.dashboard_height = '850px'
                 if ds == 'Status of marine species and habitats':
                     fs.dashboard_height = '630px'
-                if ds == 'Status of the marine environment':
-                    fs.dashboard_height = '630px'
+                # if ds == 'Status of the marine environment':
+                #     fs.dashboard_height = '630px'
 
                 if 'http' in info[ds]:
                     fs.tableau_url = info[ds]
+                    fs.text_above_dashboard = RichTextValue(
+                        text.replace('\n', ' ').replace(
+                            'COUNTRY', info['title']),
+                        'text/plain', 'text/html')
                 else:
                     fs.text = RichTextValue(
                         info[ds].decode('utf-8'), 'text/plain', 'text/html')

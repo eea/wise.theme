@@ -10,9 +10,7 @@ require([
 ], function(Map, MapView, Home, MapImageLayer, Extent, FeatureFilter, FeatureLayer) {
 
   // let filterLayerView;
-  // let contextExtent = window.focusExtent;
-  // let extent = new Extent(contextExtent.extent);
-  // console.log('extent', extent);
+  let focusExtent = new Extent(window.focusExtent);
 
   let layer = new FeatureLayer({
     url: window.layerUrl
@@ -29,8 +27,7 @@ require([
   var view = new MapView({
     map: map,
     container: "viewDiv",
-    center: [-4, 40],
-    zoom: 5
+    extent: focusExtent
   });
   view.filter = {
       where: "COUNTRY = '" + window.focusCountry + "'",
