@@ -36,9 +36,12 @@ MSFD_COUNTRIES = parse_csv('data/MSFD_countries.csv', dict)
 MSFD_COUNTRY_STATS = parse_csv('data/MSFD_countries_stats.csv', dict)
 
 
-MAP_SERVER = "https://test.discomap.eea.europa.eu/arcgis/rest/services"
+# https://marine.discomap.eea.europa.eu/arcgis/rest/services/Marine/EU_Marine_waters/MapServer
+# "https://test.discomap.eea.europa.eu/arcgis/rest/services"
+# MAP_SERVICE = "Marine_waters_v4"
+MAP_SERVER = "https://marine.discomap.eea.europa.eu/arcgis/rest/services"
 MAP_USER = "Marine"
-MAP_SERVICE = "Marine_waters_v4"
+MAP_SERVICE = "EU_Marine_waters"
 MAP_LAYER = 0
 
 GET_EXTENT_PARAMS = {
