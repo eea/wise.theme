@@ -34,6 +34,8 @@ COUNTRY_CONVENTIONS = parse_csv('data/country_conventions.csv', CountryConv)
 MSFD_WEBSITES = parse_csv('data/MSFD_websites.csv', MSFDWebsites)
 MSFD_COUNTRIES = parse_csv('data/MSFD_countries.csv', dict)
 MSFD_COUNTRY_STATS = parse_csv('data/MSFD_countries_stats.csv', dict)
+MSFD_COUNTRY_MSP = {kv['Country']: kv['Link to MSP Country Profiles'] for kv in
+                    parse_csv('data/MSFD_countries_msp.csv', dict)}
 
 
 # https://marine.discomap.eea.europa.eu/arcgis/rest/services/Marine/EU_Marine_waters/MapServer
@@ -138,6 +140,9 @@ class CountryFactsheetView(BrowserView):
         return [(k, v)
                 for (k, v) in self._api_legend().items()
                 if k in self.layer_types()]
+
+    def msp_link(self):
+        return MSFD_COUNTRY_MSP[self.context.country]
 
     @ram.cache(lambda fun, self: self.context.country)
     def _api_legend(self):
@@ -445,7 +450,7 @@ class BootstrapCountrySection(BrowserView):
                 #     fs.dashboard_height = '630px'
 
                 if 'http' in info[ds]:
-                    fs.tableau_url = info[ds]
+                    fs.tableau_url = info[ds]   # + '&:toolbar=no'
                     fs.text_above_dashboard = RichTextValue(
                         text.replace('\n', ' ').replace(
                             'COUNTRY', info['title']),

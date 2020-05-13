@@ -101,6 +101,10 @@
           </ul>
         </div>
 
+        <div>
+          <a tal:attributes="href view/msp_link">Maritime Spatial Planning (MSP) Country Profile</a>
+        </div>
+
         <div tal:condition="msfd_website">
           <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
           <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
@@ -114,16 +118,14 @@
         </script>
         <div tal:repeat="brain context/getFolderContents" class="country-dashboard-section row">
           <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
-            <h3 tal:content="section/Title"></h3>
+            <h3 tal:content="section/Title" style="margin-bottom:1em"></h3>
 
             <div
               tal:condition="section/text_above_dashboard|nothing"
               tal:content="structure section/text_above_dashboard/output">Slide text</div>
 
-            <div tal:condition="not: section/tableau_url">
-            </div>
             <tal:cond tal:condition="section/tableau_url">
-              <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
+              <div style="margin-top: 2rem; margin-bottom: 2rem" tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
             </tal:cond>
 
             <div
@@ -159,7 +161,7 @@
           containerDiv = document.getElementById(id);
           info = window._tableaus[i];
           if (info[0]) {
-            new tableau.Viz(containerDiv, info[0], {height: info[1] || '630px', width: '900px'});
+            new tableau.Viz(containerDiv, info[0], {height: info[1] || '630px', width: '900px', hideToolbar: true});
           }
         }
         });
