@@ -101,13 +101,13 @@
           </ul>
         </div>
 
-        <div>
-          <a tal:attributes="href view/msp_link">Maritime Spatial Planning (MSP) Country Profile</a>
-        </div>
-
         <div tal:condition="msfd_website">
           <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
           <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
+        </div>
+
+        <div style="margin-top: 1em;">
+          <a tal:attributes="href view/msp_link">Maritime Spatial Planning (MSP) Country Profile</a>
         </div>
 
       </div>
