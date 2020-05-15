@@ -126,8 +126,60 @@ function openSubmenuOnClick() {
   });
 }
 
+// HOMEPAGE key messages section
+function keyMessagesTabFunctionality() {
+  var $tabNavItem = $('.fp-tabs li');
+
+  $tabNavItem.click(function() {
+    var $this = $(this);
+    var tab_id = $this.attr('data-tab');
+
+    $tabNavItem.removeClass('current');
+    $('.fp-tab-content').removeClass('current');
+
+    $this.addClass('current');
+    $("#" + tab_id).addClass('current');
+  })
+}
+
+function setKeyMessagesCardsHeight() {
+  // Get the heighest div and make equal height on every cards
+  var $cardBox = $('.tab-cards-wrapper');
+  var mainBoxMaxHeight = 0;
+
+  $cardBox.each(function() {
+    var $card = $(this).find('.tab-card-content');
+    $card.each(function() {
+      var $this = $(this);
+      mainBoxMaxHeight = ($this.outerHeight() > mainBoxMaxHeight) ? $this.outerHeight() : mainBoxMaxHeight;
+    });
+    $card.closest('.fp-tab-card').css('height', mainBoxMaxHeight);
+  });
+}
+
+function initKeyMessageSlider() {
+  var $tabSlider = $('.fp-tab-slider');
+  $tabSlider.each(function(index, element) {
+    var $slider = $(this);
+
+    $slider
+      .on('init', function () {
+        $('.spinner-wrapper').hide();
+      })
+      .slick({
+        dots: true,
+        speed: 300,
+        infinite: false,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      });
+  });
+
+}
+
 
 $(document).ready(function() {
+  var $window = $(window);
   // are dropdown, nu are default page: not clickable
   // are dropdown, are default page: clickable
 
@@ -168,18 +220,22 @@ $(document).ready(function() {
   collapsibleContent();
   openSubmenuOnClick();
 
-  $(window).on('load', function() {
+  $window.on('load', function() {
     displayImageCaption();
+    initKeyMessageSlider();
+    keyMessagesTabFunctionality();
+    setKeyMessagesCardsHeight();
   });
 
   var resizeTimer;
-  $(window).on('resize',function() {
+  $window.on('resize',function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(doneResizing, 100);
   });
 
   function doneResizing() {
     autoCollapseNavigation();
+    setKeyMessagesCardsHeight();
   }
 });
 

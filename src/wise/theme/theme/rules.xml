@@ -50,6 +50,9 @@
   <replace css:theme-children="#frontpage-banners" css:content-children=".rotating-banners-container" method="raw" />
   <drop css:content-children=".rotating-banners-container" />
 
+  <replace css:theme-children="#fp-key-messages" css:content-children=".fp-key-messages-container" method="raw" />
+  <drop css:content-children=".fp-key-messages-container" />
+
   <replace css:theme-children="#frontpage-reports" css:content-children=".frontpage-reports-container" method="raw" />
   <drop css:content-children=".frontpage-reports-container" />
 

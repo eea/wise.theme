@@ -96,6 +96,16 @@
     />
 
   <browser:viewlet
+    for="wise.theme.interfaces.IHomepage"
+    name="message_cards"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    class=".viewlets.FrontpageKeyMessagesViewlet"
+    permission="zope.Public"
+    template="pt/message-cards.pt"
+    />
+
+  <browser:viewlet
     name="lead_image"
     layer="wise.theme.interfaces.IWiseThemeLayer"
     manager="plone.app.layout.viewlets.interfaces.IAboveContent"

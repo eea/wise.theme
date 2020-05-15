@@ -35,9 +35,83 @@ class RotatingBannersViewlet(ViewletBase):
 
         return results
 
+class FrontpageKeyMessagesViewlet(ViewletBase):
+    """ BrowserView for frontpage key messages
+    """
+
+    def tabs(self):
+        site = portal.get()
+        base = '/'.join(site.getPhysicalPath())
+
+        path = {'query': base + '/key-messages', 'depth': 1}
+        sections = content.find(
+            path=path,
+            portal_type='Folder',
+            state='published',
+            sort_on='created',
+            sort_order='ascending'
+        )
+
+        klass = ['light-blue-color', 'cyan-color', 'blue-color']
+        klass_iterator = 0
+
+        tabs = []
+
+        for section in sections:
+            obj = section.getObject()
+            cards = []
+            folder_contents = obj.getFolderContents(
+                contentFilter={
+                    'portal_type': 'key_message_card',
+                    'state': 'published',
+                })
+
+            for card in folder_contents:
+                card = card.getObject()
+                image = self.image(card)
+                cards.append({
+                    'id': card.id,
+                    'name': card.title,
+                    'description': card.text,
+                    'url': card.remoteUrl,
+                    'image': image,
+                })
+
+            tab = {
+                'id': obj.id,
+                'name': obj.title,
+                'description': obj.description,
+                'url': obj.absolute_url(),
+                'color': ''
+                'cards': cards,
+            }
+
+            try:
+                tab['color'] = klass[klass_iterator]
+                klass_iterator+=1
+            except IndexError:
+                pass
+
+            tabs.append(tab)
+
+        return tabs
+
+    def image(self, obj):
+        image = getattr(obj, 'image', None)
+
+        if image is None:
+            return None
+
+        if not isinstance(image, NamedBlobImage):
+            return None
+
+        url = '{0}/@@images/image/large'.format(
+            obj.absolute_url(), image.filename)
+        return url
+
 
 class FrontpageReportsViewlet(ViewletBase):
-    """ BrowserView for frontpage rotating banners
+    """ BrowserView for frontpage reports viewlet
     """
 
     def reports(self):

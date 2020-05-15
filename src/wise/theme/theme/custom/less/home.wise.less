@@ -37,7 +37,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 1.5em;
-  margin-bottom: 2.7em;
+  margin-bottom: 1.5em;
 }
 
 .topic-wrapper {
@@ -286,4 +286,314 @@
       }
     }
   }
+}
+
+.fp-key-messages-wrapper {
+  background-color: #f7f3ef;
+  margin: 3em 0;
+  padding: 2em 0;
+  margin-top: 1.5em;
+  color: @darker-blue;
+
+  .light-blue-color,
+  .light-blue-color .fp-card-wrapper {
+    background-color: #59d3ff !important;
+  }
+
+  .cyan-color,
+  .cyan-color .fp-card-wrapper {
+    background-color: #2dd2b7 !important;
+  }
+
+  .blue-color,
+  .blue-color .fp-card-wrapper {
+    background-color: #1271e1 !important;
+  }
+
+  .fp-tab-slider {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+  }
+
+  .fp-tab-slider.slick-initialized {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .fp-tab-slider .tab-card-wrapper {
+    opacity: 0;
+    position: absolute;
+  }
+
+  .fp-tab-slider.slick-initialized .tab-card-wrapper {
+    opacity: 1;
+    position: relative;
+    transition: opacity 0.2s ease-in;
+  }
+
+  /* loading dots for slider */
+  .spinner-wrapper {
+    text-align: center;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f7f3ef;
+
+    .spinner {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+    }
+
+    .spinner > div {
+      width: 10px;
+      height: 10px;
+
+      background-color: @blue;
+
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .spinner .dot1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
+
+    .spinner .dot2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
+
+    @-webkit-keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+      }
+      40% {
+        -webkit-transform: scale(1.0);
+      }
+    }
+
+    @keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        } 40% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          } 70%{
+            background-color: @darker-blue;
+          }
+    }
+  }
+
+  .fp-tabs {
+    // margin: 0px;
+    padding: 0px;
+    text-align: center;
+    list-style: none;
+
+    .fp-tab-item {
+      background: none;
+      color: #222;
+      display: inline-block;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .fp-tab-item.current > .fp-tab-title {
+      font-family: "PoppinsB";
+      border-bottom: 2px solid @darker-blue;
+    }
+
+    .fp-tab-title {
+      font-family: "PoppinsSemiB";
+      font-size: 14px;
+      color: @darker-blue;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
+    }
+
+    .km-circle {
+      height: 60px;
+      width: 60px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: block;
+      margin: 5px auto;
+    }
+  }
+
+  .fp-tab-content {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .fp-tab-description {
+    font-family: "RobotoL";
+    font-size: 24px;
+    margin: 0.7em 0 0.5em 0;
+  }
+
+  .card-link {
+    position: absolute;
+    bottom: 1.3em;
+    right: 1.3em;
+    z-index: 3;
+
+    &:hover > .card-link-btn {
+      background-color: #fff;
+    }
+
+    .card-link-btn {
+      position: relative;
+      font-size: 11px;
+      background-color: @darker-blue;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: inline-block;
+    }
+
+    .card-link-btn:after, .card-link-btn:before {
+      content: "";
+      display: block;
+      position: absolute;
+    }
+
+    .card-link-btn:before {
+      top: 50%;
+      right: 1em;
+      width: 1em;
+      height: 1em;
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      -webkit-transform: translate(0, -0.5em) rotate(45deg);
+      transform: translate(0, -0.5em) rotate(45deg);
+      box-shadow: inset -0.2em 0.2em 0 0 #59d3ff;
+      border-radius: 0 0.15em 0 0;
+    }
+
+    .card-link-btn:after {
+      top: 50%;
+      right: 1em;
+      width: 1.3em;
+      height: 0.2em;
+      -webkit-transform: translate(0, -0.1em);
+      transform: translate(0, -0.1em);
+      background-color: #59d3ff;
+    }
+  }
+
+  .light-blue-color .card-link-btn:before {
+    box-shadow: inset -0.2em 0.2em 0 0 #59d3ff;
+  }
+
+  .cyan-color .card-link-btn:before {
+    box-shadow: inset -0.2em 0.2em 0 0 #2dd2b7;
+  }
+
+  .blue-color .card-link-btn:before {
+    box-shadow: inset -0.2em 0.2em 0 0 #1271e1;
+  }
+
+  .light-blue-color .card-link-btn:after {
+    background-color: #59d3ff;
+  }
+
+  .cyan-color .card-link-btn:after {
+    background-color: #2dd2b7;
+  }
+
+  .blue-color .card-link-btn:after {
+    background-color: #1271e1;
+  }
+
+  .fp-tab-content {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .fp-tab-content.current{
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .slick-initialized .slick-slide {
+    padding: 0;
+}
+
+  .slick-slide {
+    margin: 0 15px;
+  }
+  /* the parent */
+  .slick-list {
+    margin: 0 -15px;
+  }
+
+  .tab-card-wrapper {
+    .fp-tab-card {
+      min-height: 450px;
+      position: relative;
+
+      .fp-card-wrapper {
+        background-color: #59d3ff;
+        height: 100%;
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 1;
+        transition: 0.3s;
+      }
+
+      &:hover > .fp-card-wrapper {
+        background-color: rgba(0, 0, 0,.2) !important;
+        opacity: 0.3;
+      }
+    }
+
+    .tab-card-content {
+      padding: 1.3em;
+      font-family: "RobotoL";
+      font-size: 25px;
+    }
+
+    .fp-tab-card:hover > .card-image-wrapper {
+      display: block;
+    }
+
+    .card-image-wrapper {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .card-image {
+      background-size: cover;
+      height: 100%;
+      background-position: center;
+    }
+  }
+
+  .fb-slider-arrows {
+    margin-top: 50px;
+  }
+
 }
