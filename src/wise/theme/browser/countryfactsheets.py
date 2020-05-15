@@ -34,11 +34,23 @@ COUNTRY_CONVENTIONS = parse_csv('data/country_conventions.csv', CountryConv)
 MSFD_WEBSITES = parse_csv('data/MSFD_websites.csv', MSFDWebsites)
 MSFD_COUNTRIES = parse_csv('data/MSFD_countries.csv', dict)
 MSFD_COUNTRY_STATS = parse_csv('data/MSFD_countries_stats.csv', dict)
+MSFD_COUNTRY_MSP = {kv['Country']: kv['Link to MSP Country Profiles'] for kv in
+                    parse_csv('data/MSFD_countries_msp.csv', dict)}
 
 
-MAP_SERVER = "https://test.discomap.eea.europa.eu/arcgis/rest/services"
+# https://marine.discomap.eea.europa.eu/arcgis/rest/services/Marine/EU_Marine_waters/MapServer
+# "https://test.discomap.eea.europa.eu/arcgis/rest/services"
+# MAP_SERVICE = "Marine_waters_v4"
+# http://test.discomap.eea.europa.eu/arcgis/rest/services/Marine/Marine_waters_WM/MapServer
+
+# MAP_SERVER = "https://marine.discomap.eea.europa.eu/arcgis/rest/services"
+# MAP_USER = "Marine"
+# MAP_SERVICE = "EU_Marine_waters"
+# MAP_LAYER = 0
+
+MAP_SERVER = "http://test.discomap.eea.europa.eu/arcgis/rest/services"
 MAP_USER = "Marine"
-MAP_SERVICE = "Marine_waters_v4"
+MAP_SERVICE = "Marine_waters_WM"
 MAP_LAYER = 0
 
 GET_EXTENT_PARAMS = {
@@ -128,6 +140,9 @@ class CountryFactsheetView(BrowserView):
         return [(k, v)
                 for (k, v) in self._api_legend().items()
                 if k in self.layer_types()]
+
+    def msp_link(self):
+        return MSFD_COUNTRY_MSP[self.context.country]
 
     @ram.cache(lambda fun, self: self.context.country)
     def _api_legend(self):
@@ -428,18 +443,18 @@ class BootstrapCountrySection(BrowserView):
                             id=ds,
                             title=ds)
 
-                fs.text_above_dashboard = RichTextValue(
-                    text.replace('\n', ' ').replace('COUNTRY', info['title']),
-                    'text/plain', 'text/html')
-
                 fs.dashboard_height = '850px'
                 if ds == 'Status of marine species and habitats':
                     fs.dashboard_height = '630px'
-                if ds == 'Status of the marine environment':
-                    fs.dashboard_height = '630px'
+                # if ds == 'Status of the marine environment':
+                #     fs.dashboard_height = '630px'
 
                 if 'http' in info[ds]:
-                    fs.tableau_url = info[ds]
+                    fs.tableau_url = info[ds]   # + '&:toolbar=no'
+                    fs.text_above_dashboard = RichTextValue(
+                        text.replace('\n', ' ').replace(
+                            'COUNTRY', info['title']),
+                        'text/plain', 'text/html')
                 else:
                     fs.text = RichTextValue(
                         info[ds].decode('utf-8'), 'text/plain', 'text/html')

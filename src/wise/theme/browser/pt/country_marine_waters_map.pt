@@ -14,6 +14,7 @@
     <script type="text/javascript">
       var focusCountry = '${context/country}';
       var focusMapLayer = '${context/basemap_layer}';
+      var focusExtent = (${view/get_extent}).extent;
       var layerUrl = '${view/layerUrl}';
     </script>
     <script type="text/javascript" src="++theme++wise-theme/static/countrymap.js"></script>
