@@ -203,16 +203,14 @@ aside .portletHeader {
 aside.portletNavigationTree {
   border-left: 2px solid @darker-blue;
   margin-left: 20px;
-  // margin-right: 25px;
   padding-left: 15px;
 
   .portletHeader {
-    padding-top: 0;
-    padding-left: 10px;
+    padding: 0 0 10px 10px;
   }
 }
 .portletNavigationTree nav.portletContent > ul > li a {
-  padding: 10px;
+  padding: 7px 10px;
   border-top: none;
 }
 
@@ -250,17 +248,15 @@ aside.portletNavigationTree {
 			padding-left: 0;
 		}
 		.navTreeCurrentNode > a {
-      // background-color: #f7f3ef;
       font-family: "RobotoB";
-      color: #000;
+      color: @darker-blue;
 		}
     a {
 			&:hover,
 			&:focus {
-        // background-color: #f7f3ef;
         font-family: "RobotoB";
         text-decoration: none;
-        color: #000;
+        color: @darker-blue;
       }
     }
 	}

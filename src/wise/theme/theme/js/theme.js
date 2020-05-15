@@ -218,7 +218,7 @@ $(document).ready(function() {
   autoCollapseNavigation();
   alignNavSubmenu();
   collapsibleContent();
-  openSubmenuOnClick();
+  // openSubmenuOnClick();
 
   $window.on('load', function() {
     displayImageCaption();
