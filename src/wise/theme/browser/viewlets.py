@@ -35,6 +35,7 @@ class RotatingBannersViewlet(ViewletBase):
 
         return results
 
+
 class FrontpageKeyMessagesViewlet(ViewletBase):
     """ BrowserView for frontpage key messages
     """
@@ -82,13 +83,13 @@ class FrontpageKeyMessagesViewlet(ViewletBase):
                 'name': obj.title,
                 'description': obj.description,
                 'url': obj.absolute_url(),
-                'color': ''
+                'color': '',
                 'cards': cards,
             }
 
             try:
                 tab['color'] = klass[klass_iterator]
-                klass_iterator+=1
+                klass_iterator += 1
             except IndexError:
                 pass
 
