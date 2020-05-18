@@ -108,23 +108,23 @@ function collapsibleContent() {
   }
 }
 
-function openSubmenuOnClick() {
-  var $submenuItem = $('#portal-globalnav .submenu a');
-  $submenuItem.each(function() {
-    var $this = $(this);
-    if ($this.siblings().hasClass('expand-dropdown')) {
-      $this.find('.sm-caret').removeClass('sm-caret-up').addClass('sm-caret-down');
-    }
-
-    $this.click(function() {
-      var $a = $(this);
-      if (!$a.siblings().hasClass('expand-dropdown')) {
-        $a.find('.sm-caret').toggleClass('sm-caret-up sm-caret-down');
-      }
-      $a.siblings('.dropdown-menu').toggle();
-    });
-  });
-}
+// function openSubmenuOnClick() {
+//   var $submenuItem = $('#portal-globalnav a');
+//   $submenuItem.each(function() {
+//     var $this = $(this);
+//     // if ($this.siblings().hasClass('expand-dropdown')) {
+//     //   $this.find('.sm-caret').removeClass('sm-caret-up').addClass('sm-caret-down');
+//     // }
+//
+//     $this.click(function() {
+//       var $a = $(this);
+//       // if (!$a.siblings().hasClass('expand-dropdown')) {
+//       //   $a.find('.sm-caret').toggleClass('sm-caret-up sm-caret-down');
+//       // }
+//       $a.siblings('.dropdown-menu').toggle();
+//     });
+//   });
+// }
 
 // HOMEPAGE key messages section
 function keyMessagesTabFunctionality() {

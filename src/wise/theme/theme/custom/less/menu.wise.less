@@ -47,13 +47,12 @@ ul.plone-nav {
   > li {
     position: relative;
     display: inline-block;
-    // vertical-align: text-top;
     text-align: right;
     margin-right: -4px;
     > a {
       display: flex;
       color: @darker-blue;
-      padding: 0.5em 0.8em;
+      padding: 0.5em 0.9em;
       font-family: "PoppinsSemiB";
       font-size: 15px;
       &:hover,
@@ -74,11 +73,9 @@ ul.plone-nav {
       left: 0;
       top: 36px;
       min-width: 25em;
-      // display: none;
 
       li:hover ul {
         left: auto !important;
-        // display: none;
       }
 
       .is-not-dp > a {
@@ -90,11 +87,11 @@ ul.plone-nav {
 
       > li {
         border-bottom: 1px solid #dedede;
-        margin: 0 1em;
+        margin: 0 0.6em;
         width: auto;
         float: none;
         > a {
-          padding: 1.3em 0.5em;
+          padding: 1.3em 0.4em;
 
           &:hover {
             background-color: transparent;
@@ -102,7 +99,7 @@ ul.plone-nav {
           }
         }
         > .hasDropDown {
-          padding-bottom: 0.3em;
+          padding-bottom: 0;
         }
       }
 
@@ -129,7 +126,7 @@ ul.plone-nav {
 
       .submenu {
         background-color: transparent;
-        padding: 0.5em 0 0.5em 1.4em;
+        padding: 0.5em 0 0.5em 0.9em;
         display: block;
 
          > li {
@@ -322,6 +319,11 @@ ul.plone-nav {
       > li {
         display: block;
 
+        &:before {
+          height: 0;
+          width: 0;
+      }
+
         >a {
           color: #fff;
         }
@@ -330,6 +332,7 @@ ul.plone-nav {
       >li:hover {
         a {
           color: @darker-blue;
+          background-color: transparent;
         }
       }
 
@@ -345,8 +348,6 @@ ul.plone-nav {
 
       li {
         >a {
-          // color: #fff;
-          // padding: 13px 15px;
           display: block;
           text-align: left;
         }
@@ -370,7 +371,7 @@ ul.plone-nav {
 
               &:hover {
                 background-color: transparent;
-                // color: @orange;
+                color: #b3c0cb;
               }
             }
             .opener {
@@ -383,11 +384,10 @@ ul.plone-nav {
           }
 
           .submenu {
+            display: block !important;
             > li {
               a {
-                font-size: 12px;
-                padding: 13px;
-
+                font-size: 13px;
                 &:hover {
                   color: #b3c0cb;
                 }
@@ -424,9 +424,6 @@ ul.plone-nav {
           }
         }
       }
-      // .menu-open {
-      //   display: block!important;
-      // }
     }
   }
 
