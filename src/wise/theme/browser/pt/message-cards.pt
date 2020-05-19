@@ -43,7 +43,8 @@
 
                         <a href=""
                           tal:attributes="href card/url"
-                          class="card-link">
+                          class="card-link"
+                          target="_blank">
                           <span class="card-link-btn"></span>
                         </a>
                       </div> <!--  end of fp-tab-card -->

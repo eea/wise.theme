@@ -144,16 +144,16 @@ function keyMessagesTabFunctionality() {
 
 function setKeyMessagesCardsHeight() {
   // Get the heighest div and make equal height on every cards
-  var $cardBox = $('.tab-cards-wrapper');
-  var mainBoxMaxHeight = 0;
+  var $tab = $('.fp-tab-content');
+  var maxHeight = 0;
 
-  $cardBox.each(function() {
+  $tab.each(function() {
     var $card = $(this).find('.tab-card-content');
     $card.each(function() {
       var $this = $(this);
-      mainBoxMaxHeight = ($this.outerHeight() > mainBoxMaxHeight) ? $this.outerHeight() : mainBoxMaxHeight;
+      maxHeight = ($this.outerHeight() > maxHeight) ? $this.outerHeight() : maxHeight;
     });
-    $card.closest('.fp-tab-card').css('height', mainBoxMaxHeight);
+    $card.closest('.fp-tab-card').css('height', maxHeight);
   });
 }
 
@@ -172,6 +172,23 @@ function initKeyMessageSlider() {
         infinite: false,
         slidesToShow: 3,
         slidesToScroll: 3,
+        lazyLoad: 'progressive',
+        responsive: [
+        {
+          breakpoint: 1060,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          }
+        },
+        {
+          breakpoint: 650,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        },
+        ]
       });
   });
 
