@@ -51,7 +51,7 @@ def values_to_vocab(values):
 countries = """
 BE	BE	Belgium
 BG	BG	Bulgaria
-CY	CY	Cypres
+CY	CY	Cyprus
 DE	DE	Germany
 DK	DK	Denmark
 EE	EE	Estonia
