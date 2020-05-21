@@ -1,11 +1,11 @@
 //*// CUSTOM HOME PAGE //*//
 
-.home-content {
-  h3 {
-    font-size: 24px;
-    font-family: "PoppinsB";
-    color: @darker-blue;
-  }
+.fp-heading {
+  font-size: 27px;
+  font-family: "PoppinsExtraB";
+  color: @darker-blue;
+  margin-top: 0;
+  margin-bottom: 2em;
 }
 
 .highlight-area {
@@ -30,15 +30,29 @@
   }
 }
 
-.topics-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 1.5em 0;
+.home-content {
+  .fp-container:first-child {
+    margin-top: 2em;
+  }
+  .fp-container {
+    margin: 5em 0;
+  }
+
+  .fp-container:last-child {
+    margin-bottom: 2em;
+  }
 }
 
+
 .topic-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -2em;
+}
+
+.topic-box {
   flex: 1 0 10%;
-  margin: 0 1em;
+  margin: 0 2em;
 
   > a {
     display: inline-block;
@@ -46,11 +60,11 @@
 
   p {
     margin-top: 1em;
-    font-size: 13px;
+    font-size: 15px;
     color: #666;
   }
 
-  @media only screen and (max-width: 950px) {
+  @media only screen and (max-width: 980px) {
     flex: 0 50%;
     margin: 0;
     padding: 1em 2em;
@@ -78,7 +92,7 @@
   margin-top: 0.7em;
 }
 
-.topic-wrapper a:hover {
+.topic-box a:hover {
   cursor: pointer;
   .topic-title {
     color: #bec9d3;
@@ -89,13 +103,6 @@
 
 #frontpage-banners {
   position: relative;
-  // height: 340px;
-  // margin-bottom: 2.5em;
-  // color: #111131;
-  // max-width: 975px;
-  // width: 100%;
-  // margin-left: auto;
-  // margin-right: auto;
 
   .slideContainer {
     height: 100%;
@@ -114,9 +121,6 @@
   }
 
   .rotating-banners {
-    // border-radius: 7px;
-    // overflow: hidden;
-    // box-shadow: rgba(0, 0, 0, 0.2) 0.94px 1.42px 5px;
     height: 100% !important;
 
     .banner-wrapper {
@@ -221,88 +225,86 @@
 }
 
 
-.reports-container {
-  margin-bottom: 2em;
+.reports-wrapper {
+  .reports-description {
+    font-size: 25px;
+    font-family: "PoppinsL";
+    color: @darker-blue;
+  }
 
-  #frontpage-reports {
+  .reports {
+    display: flex;
+    margin: 0 -1.2em;
 
-    .reports-description {
-      font-size: 25px;
-      font-family: "PoppinsL";
-      color: @darker-blue;
-    }
+    .report-tile {
+      flex: 0 50%;
+      margin: 0 1.2em 1.5em 1.2em;
+      padding-bottom: 1em;
+      border-bottom: 1px solid @darker-blue;
 
-    .reports-title {
-      font-family: "PoppinsB";
-      margin-top: 0;
-      margin-bottom: 1em;
-    }
+      .report-tile-img {
+        height: 230px;
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 1em;
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left center;
+      }
 
-    .reports {
-      display: flex;
-      margin: 0 -1.2em;
-
-      .report-tile {
-        flex: 0 50%;
-        margin: 0 1.2em 1.5em 1.2em;
-        padding-bottom: 1em;
-        border-bottom: 1px solid @darker-blue;
-
-        .report-tile-img {
-          height: 230px;
-          width: 100%;
-          margin: 0 auto;
-          margin-bottom: 1em;
-          position: relative;
-          overflow: hidden;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: left center;
-        }
-
-        .report-tile-title {
-          min-height: 80px;
-          margin-bottom: 1.3em;
-          @media only screen and (max-width: 650px) {
-            min-height: auto;
-          }
-        }
-
-        .report-link {
-          font-family: "PoppinsSemiB";
-          font-size: 16px;
-          color: @darker-blue;
-          margin-top: 0.5em;
-          display: inline-block;
-
-          &:hover {
-            color: #b3c0cb;
-          }
-        }
-
-        .published-info {
-          color: @light-blue;
-          font-size:smaller;
-          margin-bottom: 0.8rem;
-        }
-        p {
-          font-size: small;
+      .report-tile-title {
+        min-height: 80px;
+        margin-bottom: 1.3em;
+        @media only screen and (max-width: 650px) {
+          min-height: auto;
         }
       }
-      @media only screen and (max-width: 650px) {
-        display: block;
+
+      .report-link {
+        font-family: "PoppinsSemiB";
+        font-size: 16px;
+        color: @darker-blue;
+        margin-top: 0.5em;
+        display: inline-block;
+
+        &:hover {
+          color: #b3c0cb;
+        }
       }
+
+      .published-info {
+        color: @light-blue;
+        font-size:smaller;
+        margin-bottom: 0.8rem;
+      }
+      p {
+        font-size: small;
+      }
+    }
+    @media only screen and (max-width: 650px) {
+      display: block;
     }
   }
 }
 
 
+
 .fp-key-messages-wrapper {
   background-color: #f7f3ef;
-  margin: 3.5em 0;
   padding: 2em 0;
-  // margin-top: 1.5em;
   color: @darker-blue;
+
+  .slick-initialized .slick-slide {
+    padding: 0;
+  }
+  .slick-slide {
+    margin: 0 15px;
+  }
+  .slick-list {
+    margin: 0 -15px;
+  }
 
   >.container {
     @media only screen and (max-width: 650px) {
@@ -349,68 +351,7 @@
     transition: opacity 0.2s ease-in;
   }
 
-  /* loading dots for slider */
-  .spinner-wrapper {
-    text-align: center;
-    position: absolute;
-    z-index: 3;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #f7f3ef;
-
-    .spinner {
-      position: absolute;
-      top: 25%;
-      left: 50%;
-    }
-
-    .spinner > div {
-      width: 10px;
-      height: 10px;
-
-      background-color: @blue;
-
-      border-radius: 100%;
-      display: inline-block;
-      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    }
-
-    .spinner .dot1 {
-      -webkit-animation-delay: -0.32s;
-      animation-delay: -0.32s;
-    }
-
-    .spinner .dot2 {
-      -webkit-animation-delay: -0.16s;
-      animation-delay: -0.16s;
-    }
-
-    @-webkit-keyframes sk-bouncedelay {
-      0%, 80%, 100% {
-        -webkit-transform: scale(0);
-      }
-      40% {
-        -webkit-transform: scale(1.0);
-      }
-    }
-
-    @keyframes sk-bouncedelay {
-      0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-        } 40% {
-          -webkit-transform: scale(1.0);
-          transform: scale(1.0);
-          } 70%{
-            background-color: @darker-blue;
-          }
-    }
-  }
-
-  .fp-tabs {
+  .fp-nav-tabs {
     padding: 0px;
     text-align: center;
     list-style: none;
@@ -436,7 +377,7 @@
       padding-bottom: 3px;
     }
 
-    .km-circle {
+    .nav-dot {
       height: 60px;
       width: 60px;
       background-color: #bbb;
@@ -451,6 +392,14 @@
     height: 0;
     overflow: hidden;
     position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    &.current {
+      height: auto;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
   }
 
   .fp-tab-description {
@@ -471,7 +420,6 @@
 
     &:hover > .card-link-btn {
       background-color: #fff;
-      box-shadow: 0px 0px 24px 4px #e6e6e6;
     }
 
     .card-link-btn {
@@ -484,7 +432,8 @@
       display: inline-block;
     }
 
-    .card-link-btn:after, .card-link-btn:before {
+    .card-link-btn:after,
+    .card-link-btn:before {
       content: "";
       display: block;
       position: absolute;
@@ -538,93 +487,133 @@
     background-color: #1271e1;
   }
 
-  .fp-tab-content {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+  .fp-tab-card {
+    min-height: 400px;
+    position: relative;
 
-  .fp-tab-content.current{
-    height: auto;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-
-  .slick-initialized .slick-slide {
-    padding: 0;
-}
-
-  .slick-slide {
-    margin: 0 15px;
-  }
-  /* the parent */
-  .slick-list {
-    margin: 0 -15px;
-  }
-
-  .tab-card-wrapper {
-    .fp-tab-card {
-      min-height: 430px;
-      position: relative;
-
-      @media only screen and (max-width: 1270px) {
-        min-height: 350px;
-      }
-
-      @media only screen and (max-width: 600px) {
-        min-height: auto;
-      }
-
-      .fp-card-wrapper {
-        background-color: #59d3ff;
-        height: 100%;
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 1;
-        transition: 0.3s;
-      }
-
-      &:hover > .fp-card-wrapper {
-        background-color: rgba(255, 255, 255, 0.3) !important;
-        opacity: 0.3;
-      }
+    @media only screen and (max-width: 1270px) {
+      min-height: 350px;
+    }
+    @media only screen and (max-width: 600px) {
+      min-height: auto;
     }
 
-    .tab-card-content {
-      padding: 1.3em;
-      font-family: "PoppinsL";
-      font-size: 26px;
-
-      @media only screen and (max-width: 1270px) {
-        font-size: 22px;
-      }
-
-      @media only screen and (max-width: 650px) {
-        font-size: 26px;
-      }
-    }
-
-    .fp-tab-card:hover > .card-image-wrapper {
-      display: block;
-    }
-
-    .card-image-wrapper {
+    .fp-card-wrapper {
+      background-color: #59d3ff;
       height: 100%;
+      z-index: 2;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 1;
+      opacity: 1;
+      transition: 0.3s;
     }
 
-    .card-image {
-      background-size: cover;
-      height: 100%;
-      background-position: center;
+    &:hover > .fp-card-wrapper {
+      opacity: 0.8;
+    }
+
+    &.light-blue-color:hover > .fp-card-wrapper {
+      background-color: rgba(89, 211, 255, 0.2) !important;
+    }
+    &.cyan-color:hover > .fp-card-wrapper {
+      background-color: rgba(45, 210, 183, 0.15) !important;
+    }
+    &.blue-color:hover > .fp-card-wrapper {
+      background-color: rgba(18, 113, 225, 0.1) !important;
+    }
+  }
+
+  .tab-card-content {
+    padding: 1.3em;
+    font-family: "PoppinsL";
+    font-size: 25px;
+
+    p {margin:0;}
+
+    @media only screen and (max-width: 1270px) {
+      font-size: 22px;
+    }
+
+    @media only screen and (max-width: 650px) {
+      font-size: 25px;
+    }
+  }
+
+  .card-image-wrapper {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .card-image {
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+  }
+
+  /* loading dots for slider */
+  .spinner-wrapper {
+    text-align: center;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f7f3ef;
+
+    .spinner {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+    }
+
+    .spinner > div {
+      width: 10px;
+      height: 10px;
+      background-color: @blue;
+      border-radius: 100%;
+      display: inline-block;
+      -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+      animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .spinner .dot1 {
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+    }
+
+    .spinner .dot2 {
+      -webkit-animation-delay: -0.16s;
+      animation-delay: -0.16s;
+    }
+
+    @-webkit-keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+      }
+      40% {
+        -webkit-transform: scale(1.0);
+      }
+    }
+
+    @keyframes sk-bouncedelay {
+      0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+      } 40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+      } 70%{
+        background-color: @darker-blue;
+      }
     }
   }
 }

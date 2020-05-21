@@ -128,7 +128,7 @@ function collapsibleContent() {
 
 // HOMEPAGE key messages section
 function keyMessagesTabFunctionality() {
-  var $tabNavItem = $('.fp-tabs li');
+  var $tabNavItem = $('.fp-nav-tabs li');
 
   $tabNavItem.click(function() {
     var $this = $(this);

@@ -1,44 +1,48 @@
 <div class="frontpage-reports-container">
-  <h3 class="reports-title">Latest publications and reports</h3>
-  <div class="row">
-    <div class="col-md-8 col-sm-12">
-      <div class="reports">
-        <div tal:repeat="report view/reports" class="report-tile">
-          <div tal:define="url string:${report/absolute_url}/@@images/image">
-            <div class="report-tile-img"
-              tal:attributes="style string:background-image:url('${url}')">
+  <div class="reports-wrapper"
+       tal:define="reports view/reports"
+       tal:condition="reports">
+
+    <h3 class="fp-heading">Latest publications and reports</h3>
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <div class="reports">
+          <div tal:repeat="report reports" class="report-tile">
+            <div tal:define="url string:${report/absolute_url}/@@images/image">
+              <div class="report-tile-img"
+                tal:attributes="style string:background-image:url('${url}')">
+              </div>
+              <!-- <img tal:attributes="src string:${report/absolute_url}/@@images/image/thumb" /> -->
             </div>
-            <!-- <img tal:attributes="src string:${report/absolute_url}/@@images/image/thumb" /> -->
-          </div>
-          <div class="report-tile-content">
-            <h3 class="report-tile-title" tal:content="report/Title">Title</h3>
-            <div>
-              <!-- <div class="published-info">Published on: <span tal:content="python: report.effective().Date()" >Effective</span></div> -->
-              <p tal:content="report/Description">
-                Description
-              </p>
-              <a href=""
-                 tal:attributes="href report/remoteUrl"
-                 class="report-link">
-                <img src="++theme++wise-theme/static/images/newspaper.svg"/>
-                Open Publication
-              </a>
+            <div class="report-tile-content">
+              <h3 class="report-tile-title" tal:content="report/Title">Title</h3>
+              <div>
+                <!-- <div class="published-info">Published on: <span tal:content="python: report.effective().Date()" >Effective</span></div> -->
+                <p tal:content="report/Description">
+                  Description
+                </p>
+                <a href=""
+                  tal:attributes="href report/remoteUrl"
+                  class="report-link">
+                  <img src="++theme++wise-theme/static/images/newspaper.svg"/>
+                  Open Publication
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-md-4 col-sm-12">
-      <div class="reports-description"
-           tal:repeat="report python: view.reports()[:1]">
+      <div class="col-md-4 col-sm-12">
+        <div class="reports-description"
+          tal:repeat="report python: view.reports()[:1]">
 
-        <div tal:condition="report/aq_parent/text|nothing"
-             tal:replace="structure report/aq_parent/text/output">
-          Report parent folder description
+          <div tal:condition="report/aq_parent/text|nothing"
+            tal:replace="structure report/aq_parent/text/output">
+            Report parent folder description
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>
