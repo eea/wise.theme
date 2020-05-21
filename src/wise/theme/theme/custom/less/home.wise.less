@@ -33,13 +33,12 @@
 .topics-container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  margin: 1.5em 0;
 }
 
 .topic-wrapper {
   flex: 1 0 10%;
-  margin: 0 1.8em;
+  margin: 0 1em;
 
   > a {
     display: inline-block;
@@ -47,16 +46,18 @@
 
   p {
     margin-top: 1em;
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
   }
 
-  @media only screen and (max-width: 1060px) {
-    flex: 1 0 41%;
+  @media only screen and (max-width: 950px) {
+    flex: 0 50%;
+    margin: 0;
+    padding: 1em 2em;
   }
 
-  @media only screen and (max-width: 650px) {
-    margin: 1em 2em;
+  @media only screen and (max-width: 480px) {
+    flex: 0 100%;
   }
 }
 
@@ -87,7 +88,7 @@
 // Graph/Map area
 
 #frontpage-banners {
-  // position: relative;
+  position: relative;
   // height: 340px;
   // margin-bottom: 2.5em;
   // color: #111131;
@@ -219,75 +220,96 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .topic-wrapper {
-    flex: 1 0 51%;
-  }
-}
 
 .reports-container {
-  height: 378px;
+  margin-bottom: 2em;
 
   #frontpage-reports {
-    height: 100%;
-    // border: 1px solid @darker-blue;
 
-    border-radius: 7px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0.94px 1.42px 5px;
-    -webkit-transition: box-shadow 0.2s ease-out;
+    .reports-description {
+      font-size: 25px;
+      font-family: "PoppinsL";
+      color: @darker-blue;
+    }
 
-    h4 {
-      background-color: @darker-blue;
-      color: white;
-      margin: 0;
-      padding: 0.6em;
-      font-size: medium;
-      border-radius: 7px 7px 0px 0px;
+    .reports-title {
+      font-family: "PoppinsB";
+      margin-top: 0;
+      margin-bottom: 1em;
     }
 
     .reports {
       display: flex;
-      flex-direction: column;
-      height: 336px;
+      margin: 0 -1.2em;
 
       .report-tile {
-        display: flex;
-        margin-bottom: 0.6rem;
-        border-top: 1px solid #f1f1f1;
-        height: 50%;
+        flex: 0 50%;
+        margin: 0 1.2em 1.5em 1.2em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid @darker-blue;
 
-        .left {
-          width: 200px;
-          margin: 1.6rem;
-          img {
-            border: 1px solid #CCC;
+        .report-tile-img {
+          height: 230px;
+          width: 100%;
+          margin: 0 auto;
+          margin-bottom: 1em;
+          position: relative;
+          overflow: hidden;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: left center;
+        }
+
+        .report-tile-title {
+          min-height: 80px;
+          margin-bottom: 1.3em;
+          @media only screen and (max-width: 650px) {
+            min-height: auto;
           }
         }
-        .right {
-          padding: 1rem;
-          h5 {
-            margin-bottom: 0;
-          }
-          .published-info {
-            color: @light-blue;
-            font-size:smaller;
-            margin-bottom: 0.8rem;
-          }
-          p {
-            font-size: small;
+
+        .report-link {
+          font-family: "PoppinsSemiB";
+          font-size: 16px;
+          color: @darker-blue;
+          margin-top: 0.5em;
+          display: inline-block;
+
+          &:hover {
+            color: #b3c0cb;
           }
         }
+
+        .published-info {
+          color: @light-blue;
+          font-size:smaller;
+          margin-bottom: 0.8rem;
+        }
+        p {
+          font-size: small;
+        }
+      }
+      @media only screen and (max-width: 650px) {
+        display: block;
       }
     }
   }
 }
 
+
 .fp-key-messages-wrapper {
   background-color: #f7f3ef;
-  margin: 3em 0;
+  margin: 3.5em 0;
   padding: 2em 0;
-  margin-top: 1.5em;
+  // margin-top: 1.5em;
   color: @darker-blue;
+
+  >.container {
+    @media only screen and (max-width: 650px) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
 
   .light-blue-color,
   .light-blue-color .fp-card-wrapper {
@@ -449,6 +471,7 @@
 
     &:hover > .card-link-btn {
       background-color: #fff;
+      box-shadow: 0px 0px 24px 4px #e6e6e6;
     }
 
     .card-link-btn {
