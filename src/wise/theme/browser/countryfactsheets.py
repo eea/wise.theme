@@ -48,9 +48,9 @@ MSFD_COUNTRY_MSP = {kv['Country']: kv['Link to MSP Country Profiles'] for kv in
 # MAP_SERVICE = "EU_Marine_waters"
 # MAP_LAYER = 0
 
-MAP_SERVER = "http://test.discomap.eea.europa.eu/arcgis/rest/services"
+MAP_SERVER = "https://marine.discomap.eea.europa.eu/arcgis/rest/services"
 MAP_USER = "Marine"
-MAP_SERVICE = "Marine_waters_WM"
+MAP_SERVICE = "Marine_waters_EU"
 MAP_LAYER = 0
 
 GET_EXTENT_PARAMS = {
