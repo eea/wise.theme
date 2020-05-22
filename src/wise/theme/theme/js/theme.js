@@ -17,11 +17,13 @@ function autoCollapseNavigation() {
 
   // sticky menu
   $(function() {
-    var div = $('.collapse-nav');
-    $(window).scroll(function() {
-      var scroll = $(window).scrollTop();
-      if (scroll >= 100) {
-        div.addClass('sticky-header');
+    var div = $('#portal-top');
+    var isNavCollapsed = $('.collapse-nav').length > 0;
+
+    $(window).on("scroll touchmove", function () {
+      if (isNavCollapsed) {
+        var scroll = $(window).scrollTop();
+        div.toggleClass('sticky-header', scroll >= 100);
       } else {
         div.removeClass('sticky-header');
       }
@@ -163,7 +165,7 @@ function initKeyMessageSlider() {
     var $slider = $(this);
 
     $slider
-      .on('init', function () {
+      .on('init', function() {
         $('.spinner-wrapper').hide();
       })
       .slick({
@@ -191,7 +193,6 @@ function initKeyMessageSlider() {
         ]
       });
   });
-
 }
 
 

@@ -1,8 +1,100 @@
 //* // HEADER //*//
+#content-header.fp-header {
+  padding: 0 !important;
+  position: relative;
+}
+
+.fp-header .sticky-header {
+  background-color: @darker-blue; // only for homepage
+}
+
+.fp-header.collapse-nav {
+  .plone-navbar-toggle {
+    border-color: #fff;
+
+    .icon-bar {
+      background-color: #fff;
+    }
+  }
+
+  .fp-header-wrapper {
+    top: 11px;
+  }
+
+  .left-logo-section {
+    display: inline-block;
+  }
+
+  .right-actions-section {
+    float: right;
+  }
+
+  .plone-navbar {
+    border:none;
+  }
+}
+
+.fp-header-wrapper {
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  top: 35px;
+
+  .header-container {
+    display: block;
+  }
+
+  .logo-text {
+    color: #fff;
+    font-family: "RobotoR";
+  }
+
+  .right-actions-section {
+    position: relative;
+
+    .top-actions {
+      position: absolute;
+      top: -45px;
+      right: 0;
+
+      .search-icon {
+        background-position: 0px -21px;
+      }
+      .user-icon {
+        background-position: -25px -21px;
+      }
+    }
+  }
+
+  .plone-navbar {
+    text-align: right;
+    border-top: 1px solid #fff;
+  }
+
+  ul.plone-nav {
+    float: right;
+    > li:before {
+      height: 36px;
+      top: 0;
+      left: 0px;
+      background: #fff;
+    }
+    > li {
+      float: left;
+      margin: 0;
+      > a {
+        color: #fff;
+      }
+      &:hover > a {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}
 
 #content-header {
   padding-top: 1.5em;
-  // padding-bottom: 0.5em;
 }
 
 #portal-top {
@@ -39,7 +131,6 @@
 .top-actions {
   display: flex;
   justify-content: flex-end;
-  // margin-top: 1.3em;
 
   .top-actions-wrapper {
     display: flex;
@@ -54,7 +145,7 @@
   }
 
   .search-icon {
-    background-position: 0 0;
+    background-position: 0px 1px;
   }
 
   .user-icon {
@@ -65,11 +156,6 @@
     position: relative;
     bottom: 2px;
   }
-
-}
-
-.right-actions-section {
-  // display: flex;
 }
 
 
@@ -82,14 +168,14 @@
 .search-modal {
   display: none;
   position: absolute;
-  top: 3em;
+  top: 2em;
   right: 0;
   padding: 1em;
   background-color: #fff;
   z-index: 999;
-  border-radius: 7px;
   width: 300px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .submit-mobile-only {
@@ -139,7 +225,6 @@
   display: inline-block;
 }
 
-
 .user-actions {
   position: relative;
 
@@ -150,14 +235,13 @@
 
   #personal-bar-container {
     position: absolute;
-    top: 1.8em;
+    top: 2em;
     right: 0;
     background-color: #fff;
     z-index: 999;
-    border-radius: 7px;
-    min-width: 170px;
-    max-width: auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 190px;
+    border: 1px solid #f1f1f1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: none;
 
     li {
@@ -194,7 +278,7 @@
 }
 
 .sticky-header {
-  position: fixed;
+  position: fixed !important;
   top: 0px;
   left: 0;
   right: 0;
@@ -202,6 +286,7 @@
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,.2);
   transform: translate3d(0px, 0px, 0px);
+  padding: 8px 15px;
 
   .site-logo img {
     width: 80px;

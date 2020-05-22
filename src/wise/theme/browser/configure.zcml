@@ -73,6 +73,7 @@
     manager="plone.app.layout.viewlets.interfaces.IAboveContent"
     class=".viewlets.SlidesViewlet"
     permission="zope.Public"
+    template="pt/slideshow.pt"
     />
 
   <browser:viewlet

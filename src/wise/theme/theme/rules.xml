@@ -56,6 +56,9 @@
   <replace css:theme-children="#frontpage-reports" css:content-children=".frontpage-reports-container" method="raw" />
   <drop css:content-children=".frontpage-reports-container" />
 
+  <replace css:theme-children="#frontpage-header-slide" css:content-children=".frontpage-header-slide-container" method="raw" />
+  <drop css:content-children=".frontpage-header-slide-container" />
+
   <!-- page lead image -->
   <rules css:if-content=".leadimage-header">
     <!-- <after css:content="#portal-breadcrumbs">
@@ -74,9 +77,9 @@
     <drop css:content=".leadImageOverride" />
   </rules>
 
-  <rules css:if-content=".site-Plone" css:if-not-content=".section-front-page">
+  <!-- <rules css:if-content=".site-Plone" css:if-not-content=".section-front-page">
     <drop css:content=".slider-container"/>
-  </rules>
+  </rules> -->
 
   <rules css:if-content=".template-tilelisting_view">
     <replace css:theme="#content-container" method="raw">
