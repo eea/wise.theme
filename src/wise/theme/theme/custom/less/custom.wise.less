@@ -90,15 +90,22 @@
     padding-left: 0;
     li {
       list-style-type: none;
-      a {
-        padding: 0.2em 0;
-        display: inline-block;
-      }
-      a:before {
+      padding: 0.2em 0 0.2em 0.85em;
+      &:before {
         content:"\e250";
         font-family: @icon-font-family;
-        padding-right: 0.5rem;
         font-size: 11px;
+        display: inline-block;
+        margin-left: -1.2em;
+        width: 1.2em;
+      }
+    }
+    >.has-link {
+      &:before {
+        color: @link-color;
+      }
+      &:hover:before {
+        color: @darker-blue;
       }
     }
   }
@@ -108,14 +115,13 @@
     a {
       padding: 0.2em 0;
       display: inline-block;
+      &:before {
+        content:"\e250";
+        font-family: @icon-font-family;
+        padding-right: 0.5rem;
+        font-size: 11px;
+      }
     }
-  }
-
-  a:before {
-    content:"\e250";
-    font-family: @icon-font-family;
-    padding-right: 0.5rem;
-    font-size: 11px;
   }
 }
 

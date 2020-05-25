@@ -103,3 +103,71 @@ body.template-login #content {
     }
   }
 }
+
+
+// Datatables: add missing styling for paginaion
+.dataTables_wrapper {
+  .dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+
+    ul.pagination {
+      margin: 2px 0;
+      white-space: nowrap;
+      justify-content: flex-end;
+      display: -ms-flexbox;
+      display: flex;
+      padding-left: 0;
+      list-style: none;
+      border-radius: 0.25rem;
+
+      li:before {
+        content: "";
+      }
+    }
+
+    .paginate_button a {
+      position: relative;
+      display: block;
+      padding: 0.5em 0.8em;
+      margin-left: -1px;
+      line-height: 1.25;
+      background-color: #fff;
+      border: 1px solid #dee2e6;
+      font-size: 16px;
+
+      &:hover {
+        z-index: 2;
+        color: #0056b3;
+        text-decoration: none;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+      }
+    }
+
+    .paginate_button.active a {
+      z-index: 1;
+      color: #fff;
+      background-color: @blue;
+      border-color: @dark-blue;
+    }
+
+    .paginate_button:first-child a {
+      margin-left: 0;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+
+    .paginate_button:last-child a {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .paginate_button.disabled a {
+      color: #a9a9a9;
+      background-color: #fff;
+      cursor: not-allowed;
+    }
+  }
+}

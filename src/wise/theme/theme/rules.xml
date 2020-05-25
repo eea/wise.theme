@@ -61,12 +61,7 @@
 
   <!-- page lead image -->
   <rules css:if-content=".leadimage-header">
-    <!-- <after css:content="#portal-breadcrumbs">
-      <xsl:copy-of select="//div[@class='leadImageOverride']" />
-    </after>
-    <drop content="//div[@class='leadImageOverride']" /> -->
     <drop css:content=".documentFirstHeading" />
-
     <prepend theme="/html/body">
       <xsl:attribute name="class">
         <xsl:value-of select="/html/body/@class"/> leadimage-view</xsl:attribute>

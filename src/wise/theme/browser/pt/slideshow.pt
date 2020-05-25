@@ -53,7 +53,7 @@
               <a href="#">
                 <div class="slider-image-wrapper">
                   <div class="slider-image lazyload"
-                    tal:attributes="style string:background-image:url('${url}')">
+                       tal:attributes="data-bg string: ${url}">
                   </div>
                 </div>
               </a>

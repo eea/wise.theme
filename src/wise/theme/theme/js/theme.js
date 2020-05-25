@@ -228,9 +228,19 @@ $(document).ready(function() {
      e.stopPropagation();
   });
 
-  if ($('.bottom-links').length > 0) {
-    $('#viewlet-below-content').addClass('bottom-links-wrapper');
-  }
+  $(function() {
+    var $bottomLinks = $('.bottom-links');
+    var linkItem = $bottomLinks.find('ul li');
+    if ($bottomLinks.length > 0) {
+      $bottomLinks.parent('#viewlet-below-content').addClass('bottom-links-wrapper');
+      linkItem.each(function(){
+        var $this = $(this);
+        if ($this.children('a').length > 0) {
+          $this.addClass('has-link');
+        }
+      });
+    }
+  });
 
   // setTwoRowNavigation();
   autoCollapseNavigation();

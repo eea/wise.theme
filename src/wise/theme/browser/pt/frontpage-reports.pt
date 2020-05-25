@@ -9,8 +9,8 @@
         <div class="reports">
           <div tal:repeat="report reports" class="report-tile">
             <div tal:define="url string:${report/absolute_url}/@@images/image">
-              <div class="report-tile-img"
-                tal:attributes="style string:background-image:url('${url}')">
+              <div class="report-tile-img lazyload"
+                   tal:attributes="data-bg string: ${url}">
               </div>
               <!-- <img tal:attributes="src string:${report/absolute_url}/@@images/image/thumb" /> -->
             </div>
@@ -29,7 +29,8 @@
                 <a href=""
                   tal:attributes="href report/remoteUrl"
                   class="open-report-link">
-                  <img src="++theme++wise-theme/static/images/newspaper.svg"/>
+                  <img class="lazyload"
+                       data-src="++theme++wise-theme/static/images/newspaper.svg"/>
                   Open Publication
                 </a>
               </div>
@@ -41,13 +42,13 @@
       <div class="col-md-4 col-sm-12">
         <div class="reports-description"
           tal:repeat="report python: view.reports()[:1]">
-
           <div tal:condition="report/aq_parent/text|nothing"
             tal:replace="structure report/aq_parent/text/output">
             Report parent folder description
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

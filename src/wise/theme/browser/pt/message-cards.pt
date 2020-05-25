@@ -39,8 +39,8 @@
                       </div>
 
                       <div class="card-image-wrapper">
-                        <div class="card-image"
-                          tal:attributes="style string:background-image:url('${card/image}')"></div>
+                        <div class="card-image lazyload"
+                          tal:attributes="data-bg string: ${card/image}"></div>
                         </div>
 
                         <a href=""
