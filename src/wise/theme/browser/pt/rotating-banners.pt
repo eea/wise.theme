@@ -1,10 +1,12 @@
 <tal:def tal:define="banners view/banners">
   <tal:cond tal:condition="banners">
-    <!-- <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script> -->
 
-    <script>
-      // <![CDATA[
-      jQuery(document).ready(function() {
+    <div class="rotating-banners-container">
+      <!-- <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script> -->
+
+      <!-- <script>
+        // <![CDATA[
+        jQuery(document).ready(function() {
         $('.rotating-banners').cycle({
         fx: 'fade',
         pauseOnHover: true,
@@ -14,11 +16,9 @@
         prev: '#b-prev',
         next: '#b-next'
         });
-      });
-      // ]]>
-    </script>
-
-    <div class="rotating-banners-container">
+        });
+        // ]]>
+      </script> -->
       <div id="slideshow" class="rotating-banners"
            data-cycle-slides=".slideContainer">
         <tal:rep repeat="banner banners">

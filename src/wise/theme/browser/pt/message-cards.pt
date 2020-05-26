@@ -1,14 +1,10 @@
 <div class="fp-key-messages-container">
   <tal:sections tal:define="fp_tabs view/tabs" tal:condition="fp_tabs">
-    <script type="text/javascript" src="++theme++wise-theme/static/js/slick.js"></script>
-
     <div class="fp-key-messages-wrapper">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-
             <h3 class="fp-heading">Key messages</h3>
-
             <div>
               <ul class="fp-nav-tabs">
                 <li tal:repeat="tab fp_tabs"
@@ -40,6 +36,7 @@
 
                       <div class="card-image-wrapper">
                         <div class="card-image lazyload"
+                          data-expand="-50"
                           tal:attributes="data-bg string: ${card/image}"></div>
                         </div>
 
