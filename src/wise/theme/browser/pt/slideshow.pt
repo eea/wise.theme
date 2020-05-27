@@ -2,27 +2,8 @@
     <tal:def tal:define="images view/images;">
     <tal:cond tal:condition="images">
 
-      <script src="++theme++wise-theme/static/js/jquery-cycle.js"></script>
-
-      <script>
-        // <![CDATA[
-        jQuery(document).ready(function() {
-        $('.pics').cycle({
-        fx: 'fade',
-        pauseOnHover: true,
-        timeout: 4000,
-        speed: 4000,
-        swipe: true,
-        prev: '#prev',
-        next: '#next'
-        });
-        });
-        // ]]>
-      </script>
-
       <div class="slider-container">
-        <div id="slideshow" class="pics" data-cycle-slides=".slideContainer">
-
+        <div id="slideshow">
           <tal:rep repeat="image images">
             <div class="slideContainer"
               tal:define="title image/Title;
@@ -61,9 +42,10 @@
           </tal:rep>
         </div>
 
-        <div class="container slider-actions" tal:condition="python: len(images) > 1">
-          <a id="prev" class="slide-prev slide-arrow" href="#"></a>
-          <a id="next" class="slide-next slide-arrow" href="#"></a>
+        <div class="container slider-actions"
+             tal:condition="python: len(images) > 1">
+          <a class="slide-prev" href="#"></a>
+          <a class="slide-next" href="#"></a>
         </div>
       </div>
 

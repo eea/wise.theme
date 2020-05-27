@@ -19,7 +19,7 @@
                 tal:attributes="href report/external_url"
                 target="_blank"
                 class="report-title-link">
-                <h3 class="report-tile-title" tal:content="report/Title">Title</h3>
+                <h4 class="report-tile-title" tal:content="report/Title">Title</h4>
               </a>
               <div>
                 <!-- <div class="published-info">Published on: <span tal:content="python: report.effective().Date()" >Effective</span></div> -->

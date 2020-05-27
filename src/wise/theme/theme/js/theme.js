@@ -195,6 +195,20 @@ function initKeyMessageSlider() {
   });
 }
 
+function initHomepageSlider() {
+  var $slider = $('#slideshow');
+  $slider
+    .slick({
+      infinite: true,
+      speed: 500,
+      fade: true,
+      slidesToShow: 1,
+      autoplay: true,
+      autoplaySpeed: 4000,
+      prevArrow: $('.slide-prev'),
+      nextArrow: $('.slide-next'),
+    });
+}
 
 $(document).ready(function() {
   var $window = $(window);
@@ -253,6 +267,7 @@ $(document).ready(function() {
     initKeyMessageSlider();
     keyMessagesTabFunctionality();
     setKeyMessagesCardsHeight();
+    initHomepageSlider();
   });
 
   var resizeTimer;
