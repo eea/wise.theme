@@ -9,133 +9,165 @@
 <metal:content-core fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-    <div class="col-md-12 col-xs-12" >
-      <div id="country-factsheet" class="container pat-autotoc"
-        data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
-      <div class="row">
-        <div class="col-md-6">
-          <iframe src="./country_marine_waters_image"
-            id="country-maplet"
-            tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
-          <p class="discreet-map-info">
-            This map draws on information provided by the Member State to
-            represent its marine waters, according to Article 3(1) of the Marine
-            Strategy Framework Directive (2008/56/EC). This map is for
-            illustrative purposes only and should not be considered as the
-            official boundary delimitation between neighboring countries.
-            Jurisdictional borders are the sole responsibility of Member States.
-            The European Commission and European Environment Agency have no
-            responsibility on this matter.
-          </p>
-        </div>
-        <div class="col-md-2">
-          <div class="legend">
-            <strong>Legend:</strong><br/>
-            <div tal:repeat="row view/legend">
-              <img tal:attributes="src python:row[1]" />
-              <span tal:content="python:row[0]">Title</span>
+    <div class="row">
+      <div class="col-md-12 col-xs-12" >
+        <div id="country-factsheet" class="container pat-autotoc"
+          data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
+          <div class="row">
+            <div class="col-md-6">
+              <iframe src="./country_marine_waters_image"
+                id="country-maplet"
+                tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
+                <p class="discreet-map-info">
+                  This map draws on information provided by the Member State to
+                  represent its marine waters, according to Article 3(1) of the Marine
+                  Strategy Framework Directive (2008/56/EC). This map is for
+                  illustrative purposes only and should not be considered as the
+                  official boundary delimitation between neighboring countries.
+                  Jurisdictional borders are the sole responsibility of Member States.
+                  The European Commission and European Environment Agency have no
+                  responsibility on this matter.
+                </p>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+
+                <div class="col-md-12">
+                  <h2 class="marine-title">Marine waters in km<sup>2</sup></h2>
+                  <table tal:define="stats view/water_stats" class="marine-stats">
+                    <tr tal:repeat="kv view/water_stats">
+                      <td tal:content="python:kv[0]">Region name</td>
+                      <td tal:content="python:view.format_nr(kv[1])">Quantity</td>
+                    </tr>
+                    <tfoot tal:condition="python: len(stats) > 1">
+                      <tr>
+                        <td>TOTAL</td>
+                        <td tal:content="python: view.format_nr(view.water_stats_total())">Quantity</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="marine-number">
+                    <h4>Marine waters per country</h4>
+                    <div class="figure-wrapper">
+                      <span class="figure-number">
+                        <tal:rep tal:replace="python: int(context.marine_water_per_country or 0)">45%</tal:rep>%
+                      </span>
+                      <span class="figure-content">
+                        of the total country area <br/> (land &amp; marine)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="marine-number">
+                    <h4>Marine waters per capita</h4>
+                    <div class="figure-wrapper">
+                      <span class="figure-number"
+                        tal:content="context/marine_water_per_capita">10</span>
+                        <span class="figure-content">
+                          <span>ha</span> <br/> per capita
+                        </span>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="legend">
+                    <strong>Legend:</strong><br/>
+                    <div tal:repeat="row view/legend">
+                      <img tal:attributes="src python:row[1]" />
+                      <span tal:content="python:row[0]">Title</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-4">
-          <h2>Marine waters in km<sup>2</sup></h2>
-          <table tal:define="stats view/water_stats" class="marine-stats">
-            <tr tal:repeat="kv view/water_stats">
-              <td tal:content="python:kv[0]">Region name</td>
-              <td tal:content="python:view.format_nr(kv[1])">Quantity</td>
-            </tr>
-            <tfoot tal:condition="python: len(stats) > 1">
-              <tr>
-                <td>TOTAL</td>
-                <td tal:content="python: view.format_nr(view.water_stats_total())">Quantity</td>
-              </tr>
-            </tfoot>
-          </table>
+              <!-- <div class="row"> -->
+              <!--   <div class="col&#45;md&#45;6"> -->
+              <!--   </div> -->
+              <!--   <div class="col&#45;md&#45;6"> -->
+              <!--   </div> -->
+              <!-- </div> -->
 
-          <div class="marine-number">
-            <h4>Marine waters per country</h4>
-            <span class="figure-number">
-              <tal:rep tal:replace="python: int(context.marine_water_per_country or 0)">45%</tal:rep>%
-              </span> of the total country area (land &amp; marine)
+          <div class="row">
+            <div class="col-md-12"
+              tal:define="conventions view/conventions; authorities view/authorities; msfd_website view/msfd_website">
+              <div class="country-authorities">
+                <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
+                  Rich text here
+                </div>
+
+                <div tal:condition="conventions">
+                  <div><span tal:content="view/country_name">Spain</span> is part of the following Regional Sea Conventions:</div>
+                  <ul>
+                    <li tal:repeat="conv conventions">
+                      <a href="" tal:attributes="href conv/Web" tal:content="conv/RSC">OSPAR</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div tal:condition="authorities">
+                  <div>National Competent Authority(ies) for the MSFD implementation:</div>
+                  <ul>
+                    <li tal:repeat="auth authorities">
+                      <a href="" tal:attributes="href auth/href" tal:content="auth/name">OSPAR</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div tal:condition="msfd_website">
+                  <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
+                  <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
+                </div>
+
+                <div style="margin-top: 1em;">
+                  <a tal:attributes="href view/msp_link">Maritime Spatial Planning (MSP) Country Profile</a>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <div class="marine-number">
-              <h4>Marine waters per capita</h4>
-              <span class="figure-number"
-                tal:content="context/marine_water_per_capita">10</span> ha per capita
+          <script>
+            window._tableaus = [];
+          </script>
+          <div tal:repeat="brain context/getFolderContents" class="country-dashboard-section row">
+            <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
+
+              <div class="col-md-12">
+                <h3 tal:content="section/Title"></h3>
+
+                <div class="dashboard-wrapper">
+                  <div class="row">
+                    <div class="col-md-5"
+                         tal:condition="section/text_above_dashboard|nothing">
+                      <div class="dashboard-text"
+                        tal:content="structure section/text_above_dashboard/output">Slide text
+                      </div>
+                    </div>
+                    <tal:cond tal:condition="section/tableau_url">
+                      <div class="col-md-7">
+                        <div tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
+                      </div>
+                    </tal:cond>
+                  </div>
+
+                  <div
+                    tal:condition="section/text|nothing"
+                    tal:content="structure section/text/output">Slide text</div>
+                </div>
               </div>
 
+              <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
+            </tal:def>
+          </div>
         </div>
-      </div>
-
-      <!-- <div class="row"> -->
-      <!--   <div class="col&#45;md&#45;6"> -->
-      <!--   </div> -->
-      <!--   <div class="col&#45;md&#45;6"> -->
-      <!--   </div> -->
-      <!-- </div> -->
-
-      <div class="row">
-        <div class="col-md-12 country-authorities"
-          tal:define="conventions view/conventions; authorities view/authorities; msfd_website view/msfd_website">
-        <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-          Rich text here
-        </div>
-
-        <div tal:condition="conventions">
-          <div><span tal:content="view/country_name">Spain</span> is part of the following Regional Sea Conventions:</div>
-          <ul>
-            <li tal:repeat="conv conventions">
-              <a href="" tal:attributes="href conv/Web" tal:content="conv/RSC">OSPAR</a>
-            </li>
-          </ul>
-        </div>
-
-        <div tal:condition="authorities">
-          <div>National Competent Authority(ies) for the MSFD implementation:</div>
-          <ul>
-            <li tal:repeat="auth authorities">
-              <a href="" tal:attributes="href auth/href" tal:content="auth/name">OSPAR</a>
-            </li>
-          </ul>
-        </div>
-
-        <div tal:condition="msfd_website">
-          <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
-          <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
-        </div>
-
-        <div style="margin-top: 1em;">
-          <a tal:attributes="href view/msp_link">Maritime Spatial Planning (MSP) Country Profile</a>
-        </div>
-
-      </div>
-    </div>
-
-        <script>
-          window._tableaus = [];
-        </script>
-        <div tal:repeat="brain context/getFolderContents" class="country-dashboard-section row">
-          <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
-            <h3 tal:content="section/Title" style="margin-bottom:1em"></h3>
-
-            <div
-              tal:condition="section/text_above_dashboard|nothing"
-              tal:content="structure section/text_above_dashboard/output">Slide text</div>
-
-            <tal:cond tal:condition="section/tableau_url">
-              <div style="margin-top: 2rem; margin-bottom: 2rem" tal:attributes="id string:vis-${repeat/brain/index}" class="factsheet-tableau-vis"></div>
-            </tal:cond>
-
-            <div
-              tal:condition="section/text|nothing"
-              tal:content="structure section/text/output">Slide text</div>
-
-            <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
-          </tal:def>
-        </div>
-
       </div>
     </div>
     <!-- <div class="col&#45;md&#45;2 col&#45;xs&#45;4 toc&#45;wrapper"> -->

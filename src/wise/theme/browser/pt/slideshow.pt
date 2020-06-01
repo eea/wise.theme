@@ -12,21 +12,23 @@
               obj image/getObject;">
 
               <div class="slider-caption container">
-                <div class="slider-title">
-                  <div tal:content="title">
-                    Welcome to WISE - MARINE
+                <div class="fp-wrapper">
+                  <div class="slider-title">
+                    <div tal:content="title">
+                      Welcome to WISE - MARINE
+                    </div>
                   </div>
-                </div>
 
-                <div class="slider-description">
-                  <p tal:content="description">
-                    WISE - Marine is a gateway to information on European marine
-                    in support of ocean governance and ecosystem based management.
-                  </p>
-                </div>
+                  <div class="slider-description">
+                    <p tal:content="description">
+                      WISE - Marine is a gateway to information on European marine
+                      in support of ocean governance and ecosystem based management.
+                    </p>
+                  </div>
 
-                <div class="slider-copyright" tal:condition="obj/Rights|nothing">
-                  <p tal:content="obj/Rights">Image copyright</p>
+                  <div class="slider-copyright" tal:condition="obj/Rights|nothing">
+                    <p tal:content="obj/Rights">Image copyright</p>
+                  </div>
                 </div>
               </div>
 

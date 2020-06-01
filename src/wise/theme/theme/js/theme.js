@@ -243,6 +243,28 @@ $(document).ready(function() {
   });
 
   $(function() {
+    var $navItem = $('#portal-globalnav>li');
+    var $frontPage = $('.section-front-page');
+    if (!$frontPage.length) {
+      $navItem.each(function() {
+        var $this = $(this);
+        $this.addClass('nav-separator');
+        $this
+        .mouseenter(function() {
+          $(this)
+          .removeClass('nav-separator')
+          .next().removeClass('nav-separator');
+        })
+        .mouseleave(function() {
+          $(this)
+          .addClass('nav-separator')
+          .next().addClass('nav-separator');
+        });
+      });
+    }
+  });
+
+  $(function() {
     var $bottomLinks = $('.bottom-links');
     var linkItem = $bottomLinks.find('ul li');
     if ($bottomLinks.length > 0) {

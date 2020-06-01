@@ -1,11 +1,13 @@
 //* // HEADER //*//
+
+// FrontPage header
 #content-header.fp-header {
   padding: 0 !important;
   position: relative;
 }
 
 .fp-header .sticky-header {
-  background-color: @darker-blue; // only for homepage
+  background-color: @darker-blue;
 }
 
 .fp-header.collapse-nav {
@@ -74,26 +76,31 @@
 
   ul.plone-nav {
     float: right;
-    > li:before {
-      height: 36px;
-      top: 0;
-      left: 0px;
-      background: #fff;
-    }
     > li {
       float: left;
       margin: 0;
+      &:before {
+        content: "";
+        width: 1px;
+        position: absolute;
+        height: 36px;
+        top: 0;
+        left: 0px;
+        background: #fff;
+      }
       > a {
         color: #fff;
       }
       &:hover > a {
         color: #fff;
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.3);
       }
     }
   }
 }
 
+
+// Page header
 #content-header {
   padding-top: 1.5em;
 }
@@ -126,7 +133,7 @@
   vertical-align: middle;
   margin-left: .5em;
   width: 100px;
-  line-height: 14px;
+  line-height: 15px;
 }
 
 .top-actions {

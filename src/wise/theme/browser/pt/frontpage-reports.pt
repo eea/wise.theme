@@ -1,5 +1,5 @@
 <div class="frontpage-reports-container">
-  <div class="reports-wrapper"
+  <div class="fp-wrapper reports-wrapper"
        tal:define="reports view/reports"
        tal:condition="reports">
 
