@@ -1,18 +1,21 @@
 // Tile listing view
 
 .tile-listing {
-  margin-top: 8rem;
+  margin-top: 3em;
 }
 
 .tile-listing-wrapper {
-  text-align: center;
-  padding: 1.5em;
+  padding: 1.5em 0;
   position: relative;
 
+  @media (max-width: 992px) {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
   .tile-listing-image {
-    height: 150px;
-    width: 200px;
-    border-radius: 7px;
+    height: 230px;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 1em;
   }
@@ -22,25 +25,21 @@
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center;
   }
 
-  .tile-item-link .tile-title {
-    color: @blue !important;
-  }
-
-  .tile-item-link:hover .tile-title,
-  .tile-item-link:hover .tile-summary {
-    color: @darker-blue !important;
+  .tile-item-link:hover .tile-title {
+    color: #b3c0cb;
   }
 
   .tile-title {
-    font-size: 21px;
+    min-height: 38px;
   }
 
   .tile-summary {
     font-size: 14px;
     color: #666 !important;
+    margin-top: 0.5em;
   }
 }
 
@@ -143,9 +142,9 @@
   }
 }
 
-.template-tilelisting_view #sidebar {
-  display: none;
-}
+// .template-tilelisting_view #sidebar {
+//   display: none;
+// }
 
 // Read more
 .collapse-wrapper {
