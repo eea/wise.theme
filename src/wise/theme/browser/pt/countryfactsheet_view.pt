@@ -16,6 +16,7 @@
           <div class="row">
             <div class="col-md-6">
               <iframe src="./country_marine_waters_image"
+                data-embed-group="esri"
                 id="country-maplet"
                 tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
                 <p class="discreet-map-info">
