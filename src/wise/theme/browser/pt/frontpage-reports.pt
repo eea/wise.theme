@@ -4,7 +4,7 @@
        tal:condition="reports">
 
     <h3 class="fp-heading">Latest publications and reports</h3>
-    <div class="row">
+    <div class="row" tal:on-error="nothing">
       <div class="col-md-8 col-sm-12">
         <div class="reports">
           <div tal:repeat="report reports" class="report-tile">
