@@ -1,6 +1,7 @@
 from zope.component import getMultiAdapter
 
 from plone.api import content, portal
+from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.app.layout.viewlets import ViewletBase
 from plone.namedfile.file import NamedBlobImage
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -41,8 +42,8 @@ class FrontpageKeyMessagesViewlet(ViewletBase):
     """
 
     def get_url(self, obj):
-        view = getMultiAdapter((obj, self.request), name="link_redirect_view")
-        return view.url()
+        url = replace_link_variables_by_paths(obj, obj.remoteUrl)
+        return url
 
     def tabs(self):
         site = portal.get()
