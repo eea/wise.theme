@@ -1,9 +1,9 @@
+from zope.component import getMultiAdapter
+
 from plone.api import content, portal
 from plone.app.layout.viewlets import ViewletBase
 from plone.namedfile.file import NamedBlobImage
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-# from plone.app.layout.navigation.interfaces import INavigationRoot
 
 
 class SlidesViewlet(ViewletBase):
@@ -40,6 +40,10 @@ class FrontpageKeyMessagesViewlet(ViewletBase):
     """ BrowserView for frontpage key messages
     """
 
+    def get_url(self, obj):
+        view = getMultiAdapter((obj, self.request), name="link_redirect_view")
+        return view.url()
+
     def tabs(self):
         site = portal.get()
         base = '/'.join(site.getPhysicalPath())
@@ -74,7 +78,7 @@ class FrontpageKeyMessagesViewlet(ViewletBase):
                     'id': card.id,
                     'name': card.title,
                     'description': card.text,
-                    'url': card.remoteUrl,
+                    'url': self.get_url(card),
                     'image': image,
                 })
 
