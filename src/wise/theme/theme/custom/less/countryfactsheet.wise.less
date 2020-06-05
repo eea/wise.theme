@@ -5,128 +5,309 @@
     padding: 0 2em;
   }
 
-  .site-info {
-    max-width: 600px;
+  #portal-breadcrumbs {
+    margin-bottom: 0;
+    position: relative;
+    z-index: 9;
   }
 
-  .map-wrapper > img {
-    max-width: 650px;
+  main#main-container {
+    margin-top: 0;
+  }
+
+  .plone-breadcrumb ol {
+    background-color: transparent;
+    color: @text-color;
+    padding: 1em;
+    padding-left: 0;
+    li {padding-right: 20px;}
+    a,li + li:before {color: inherit;left: -14px;}
+    a:hover, #breadcrumbs-current {color: #000;}
   }
 }
 
 #country-factsheet {
   padding: 0;
 
-  .discreet-map-info {
-    font-size:smaller;
-    color: #888;
-    margin-top:-3rem;
-    margin-bottom: 3rem;
-  }
+  .country-header-container {
+    background-color: #59d3ff;
+    margin: 0 -2em;
+    padding: 1em 2em;
+    color: @darker-blue;
+    position: relative;
+    top: -72px;
+    padding-top: 38px;
 
-  .marine-title {
-    margin-top: 0;
-    margin-bottom: 0.5em;
-    font-size: 33px;
-  }
-
-  #country-maplet {
-    width: 100%;
-    height: 400px;
-  }
-
-  .legend {
-    margin-top: 30px;
-    margin-bottom: 1.5em;
-  }
-
-  .marine-stats {
-    td {
-      padding: 0.5em;
+    .row {
+      margin: 0 -20px;
     }
-    tfoot td {
-      font-family: "RobotoB";
-    }
-  }
-
-  .dashboard-wrapper {
-    border: 1px solid #eee;
-    border-radius: 4px;
-    padding: 1.5em;
-  }
-
-  .dashboard-text {
-    background-color: #f5f5f5;
-    border-radius: 7px;
-    padding: 1em;
-    font-family: "RobotoL";
-    font-size: 18px;
-  }
-
-  .country-authorities {
-    background-color: #f2f2f2;
-    padding: 1em;
-    font-family: "RobotoL";
-    font-size: 18px;
-    color: @text-color;
-
-    ul {
-      list-style-position: inside;
-      padding-left: 0;
-      margin-top: 0.5em;
-      margin-bottom: 1em;
-    }
-  }
-
-  .marine-number {
-    border-radius: 4px;
-    border: 1px solid #e5e5e5;
-    padding: 1em;
-    margin-top: 30px;
-
-    h4 {
-      margin-top: 0;
-      font-size: 20px;
+    .ch-col {
+      padding: 0 20px;
     }
 
-    .figure-wrapper {
-      display: flex;
-      align-items: center;
-      background-color: #f5f5f5;
-      border-radius: 7px;
-      padding: 1em;
-
-      .figure-number {
-        color: #002d54;
-        font-family: "PoppinsB";
-        font-size: 330%;
-        margin-right: 0.2em;
-        color: @blue;
+    .country-data-wrapper {
+      margin: 0 -35px;
+      font-size: 15px;
+      .ch-col {
+        padding: 0 35px;
       }
 
-      .figure-content {
+      a {
+        display: inline-block;
+        padding-top: 0.5em;
+        color: inherit;
+        font-size: 14px;
         font-family: "PoppinsR";
-        font-size: 17px;
-
-        span {
-          font-family: "PoppinsB";
-          color: @blue;
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
   }
 
-  .country-dashboard-section {
-    margin-top: 3em;
+  h1 {
+    color: inherit;
+    margin: 1em 0;
+  }
+
+  h3 {
+    color: inherit;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+  }
+
+  .marine-data {
+    border-right: 1px solid @darker-blue;
+    min-height: 380px;
+  }
+
+  #country-maplet {
+    width: 100%;
+    height: 450px;
+  }
+
+  .marine-stats {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    margin-bottom: 1.5em;
+    font-family: "RobotoM";
+    padding-bottom: 2em;
+    border-bottom: 1px solid @darker-blue;
+    display: inline-block;
+    border-radius: 0;
+    td {
+      padding: 0.3em 0.7em;
+      padding-left: 0;
+      border: none;
+    }
+    tbody {
+     > tr:not(:last-child) {
+       border-bottom: 1px solid @darker-blue;
+     }
+    }
+    tfoot tr {
+      font-family: "RobotoB";
+      border-top: 1px solid @darker-blue;
+    }
+  }
+
+  .marine-number {
+    margin-bottom: 3.5em;
+    .figure-wrapper {
+      margin-top: 1.5em;
+      .figure-number {
+        font-family: "PoppinsB";
+        font-size: 55px;
+        line-height: 55px;
+      }
+      .figure-content {
+        font-family: "PoppinsR";
+        font-size: 14px;
+        display: block;
+        span {
+          font-family: "PoppinsB";
+        }
+      }
+    }
+  }
+
+  .country-conventions {
+    margin-bottom: 2em;
+
+    .dd-title {
+      padding-left: 1.3em;
+      cursor: pointer;
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        vertical-align: top;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        height: 0.50em;
+        width: 0.50em;
+      }
+      &.dd-caret-up:before {
+        top: 5px;
+        left: 0;
+        transform: rotate(45deg);
+      }
+      &.dd-caret-down:before {
+        top: 3px;
+        left: 4px;
+        transform: rotate(135deg);
+      }
+    }
+    .dd-content {
+      display: none;
+      >li {
+        list-style-type: square;
+      }
+    }
+  }
+
+  .map-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .legend {
+    font-family: "PoppinsR"
+  }
+  .legend-item {
+    margin-right: 0.5em;
+    > span {
+      position: relative;
+      top: 1px;
+      font-size: 14px;
+    }
+  }
+  .legend-title {
+    font-size: 22px;
+    margin-right: 0.5em;
+    display: inline-block;
+    position: relative;
+    top: 5px;
+  }
+
+  .discreet-map-info {
+    color: inherit;
+    font-size: 11px;
+    margin-bottom: 0;
+  }
+
+  .country-content, .documentByLine {
+    position: relative;
+    top: -40px;
+  }
+
+  .country-authorities {
+    background-color: @darker-blue;
+    font-family: "RobotoL";
+    font-size: 18px;
+    color: #fff;
+    margin: 0 -2em;
+    padding: 1em 2em;
+    position: relative;
+    top: -72px;
 
     h3 {
-      margin-bottom: 1em;
+      display: inline-block;
+      margin-right: 1.5em;
+      margin-bottom: 0;
     }
+
+    .listing-title-wrapper {
+      align-items: center;
+      display: flex;
+    }
+
+    .authority-title {
+      font-size: 15px;
+      position: relative;
+      font-family: "RobotoR";
+      padding-left: 1.5em;
+      &:before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        vertical-align: top;
+        border-style: solid;
+        border-width: 2px 2px 0 0;
+        height: 0.50em;
+        width: 0.50em;
+        top: 6px;
+        left: 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    .read-more {
+      cursor: pointer;
+      padding: 0 .5em;
+      border-radius: 15px;
+      display: inline-block;
+      font-size: 14px;
+      color: @darker-blue;
+      background-color: #fff;
+      font-family: "RobotoM";
+      font-weight: normal;
+      width: 90px;
+      text-align: center;
+      margin: 0 2em;
+    }
+
+    .dd-list {
+      display: none;
+      ul {
+        list-style-position: inside;
+        list-style-type: square;
+        padding-left: 1em;
+        margin-top: 1em;
+        margin-bottom: 0;
+        li a {
+          font-size: 15px;
+          color: inherit;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .section-title {
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .country-dashboard-section {
+    &:not(:last-child) {
+      margin-bottom: 3.5em;
+    }
+
     .container {
       padding: 0;
     }
+
+    .dashboard-wrapper {
+      width: 100%;
+      max-width: 1300px;
+      padding: 0 2em;
+      margin: 0 auto;
+      padding: 1.5em;
+    }
+
+    .dashboard-text {
+      font-family: "RobotoL";
+      font-size: 17px;
+    }
   }
 }
+
 
 .toc-wrapper {
   #toc {

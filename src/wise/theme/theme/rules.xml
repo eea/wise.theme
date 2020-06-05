@@ -76,6 +76,16 @@
     <drop css:content=".slider-container"/>
   </rules> -->
 
+  <rules css-if-content=".template-countryfactsheet_view">
+    <drop css:content=".documentFirstHeading" />
+
+    <drop css:content="#viewlet-below-content-title" />
+    <after css:content=".country-authorities">
+      <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
+    </after>
+
+  </rules>
+
   <rules css:if-content=".template-tilelisting_view">
     <replace css:theme="#content-container" method="raw">
       <xsl:variable name="central">
