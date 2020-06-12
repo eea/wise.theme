@@ -22,13 +22,14 @@ from wise.theme.browser.utils import parse_csv
 
 logger = logging.getLogger('wise.theme')
 
-Stat = namedtuple('Stat', ['Country', 'Subregion', 'Area_km2', 'Type'])
+Stat = namedtuple(
+    'Stat', ['Country', 'Marine_region', 'Area_km2'])     # , 'Type'
 ConvWebsite = namedtuple('ConvWebsite', ['RSC', 'Web'])
 CountryConv = namedtuple('CountryConv', ['Country', 'RSCs'])
 MSFDWebsites = namedtuple('MSFDWebsites', ['Country', 'URL', 'Observations'])
 Website = namedtuple('Website', ['name', 'href'])
 
-STATS = parse_csv('data/Marine_waters_statistics.csv', Stat)
+STATS = parse_csv('data/Marine_waters_statistics_region_included.csv', Stat)
 CONVENTION_WEBSITES = parse_csv('data/convention_websites.csv', ConvWebsite)
 COUNTRY_CONVENTIONS = parse_csv('data/country_conventions.csv', CountryConv)
 MSFD_WEBSITES = parse_csv('data/MSFD_websites.csv', MSFDWebsites)
@@ -175,8 +176,8 @@ class CountryFactsheetView(BrowserView):
 
         for stat in STATS:
             if stat.Country == code:
-                area_km2 = int(round(float(stat.Area_km2)));
-                res.append([self.regions[stat.Subregion], area_km2])
+                area_km2 = int(round(float(stat.Area_km2)))
+                res.append([getattr(stat, 'Marine_region'), area_km2])
 
         return res
 
