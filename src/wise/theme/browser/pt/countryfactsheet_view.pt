@@ -17,7 +17,8 @@
             <iframe src="./country_marine_waters_image"
               data-embed-group="esri"
               id="country-maplet"
-              tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
+              tal:attributes="src string:${context/absolute_url}/country_marine_waters_map;
+              data-embed-screenshot python: context.map_preview_image and context.absolute_url() + '/@@images/map_preview_image' or None"></iframe>
 
             <div class="map-info">
               <div class="legend">
