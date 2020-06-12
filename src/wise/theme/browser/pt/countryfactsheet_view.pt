@@ -77,7 +77,7 @@
                   <h3>Marine waters per country</h3>
                   <div class="figure-wrapper">
                     <span class="figure-number">
-                      <tal:rep tal:replace="python: int(context.marine_water_per_country or 0)">45%</tal:rep>%
+                      <tal:rep tal:replace="python: context.marine_water_per_country or 0">45%</tal:rep>%
                     </span>
                     <span class="figure-content">
                       of the total country area (land &amp; marine)
