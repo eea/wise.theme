@@ -76,7 +76,7 @@
     <drop css:content=".slider-container"/>
   </rules> -->
 
-  <rules css-if-content=".template-countryfactsheet_view">
+  <rules css:if-content=".template-countryfactsheet_view">
     <drop css:content=".documentFirstHeading" />
 
     <!-- drop lead image from country profile view -->
