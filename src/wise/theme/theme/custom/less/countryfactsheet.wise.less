@@ -8,18 +8,22 @@
   #portal-breadcrumbs {
     margin-bottom: 0;
     position: relative;
-    z-index: 9;
+    // z-index: 9;
   }
 
   main#main-container {
     margin-top: 0;
   }
 
+  .documentByLine {
+    margin: 1.5em 0;
+  }
+
   .plone-breadcrumb ol {
     background-color: transparent;
     color: @text-color;
-    padding: 1em;
     padding-left: 0;
+    padding-bottom: 0;
     li {padding-right: 20px;}
     a,li + li:before {color: inherit;left: -14px;}
     a:hover, #breadcrumbs-current {color: #000;}
@@ -32,11 +36,11 @@
   .country-header-container {
     background-color: #59d3ff;
     margin: 0 -2em;
-    padding: 1em 2em;
+    padding: 2em;
     color: @darker-blue;
-    position: relative;
-    top: -72px;
-    padding-top: 38px;
+    // position: relative;
+    // top: -72px;
+    // padding-top: 38px;
 
     .row {
       margin: 0 -20px;
@@ -47,6 +51,7 @@
 
     .country-data-wrapper {
       margin: 0 -35px;
+      margin-bottom: 3em;
       font-size: 15px;
       .ch-col {
         padding: 0 35px;
@@ -66,14 +71,16 @@
   }
 
   h1 {
-    color: inherit;
-    margin: 1em 0;
+    color: @darker-blue;
+    margin-bottom: 0.7em;
+    margin-top: 0;
   }
 
   h3 {
     color: inherit;
     margin-top: 0;
     margin-bottom: 0.5em;
+    line-height: 31px;
   }
 
   .marine-data {
@@ -135,49 +142,55 @@
   .country-conventions {
     margin-bottom: 2em;
 
-    .dd-title {
-      padding-left: 1.3em;
-      cursor: pointer;
-      position: relative;
-      &:before {
-        content: '';
-        position: absolute;
-        display: inline-block;
-        vertical-align: top;
-        border-style: solid;
-        border-width: 2px 2px 0 0;
-        height: 0.50em;
-        width: 0.50em;
-      }
-      &.dd-caret-up:before {
-        top: 5px;
-        left: 0;
-        transform: rotate(45deg);
-      }
-      &.dd-caret-down:before {
-        top: 3px;
-        left: 4px;
-        transform: rotate(135deg);
-      }
-    }
+    // .dd-title {
+    //   padding-left: 1.3em;
+    //   cursor: pointer;
+    //   position: relative;
+    //   &:before {
+    //     content: '';
+    //     position: absolute;
+    //     display: inline-block;
+    //     vertical-align: top;
+    //     border-style: solid;
+    //     border-width: 2px 2px 0 0;
+    //     height: 0.50em;
+    //     width: 0.50em;
+    //   }
+    //   &.dd-caret-up:before {
+    //     top: 5px;
+    //     left: 0;
+    //     transform: rotate(45deg);
+    //   }
+    //   &.dd-caret-down:before {
+    //     top: 3px;
+    //     left: 4px;
+    //     transform: rotate(135deg);
+    //   }
+    // }
     .dd-content {
-      display: none;
+      padding-left: 19px;
       >li {
         list-style-type: square;
+
+        a {
+          font-size: 18px;
+          font-family: "RobotoR";
+        }
       }
     }
   }
 
   .map-info {
-    display: flex;
-    align-items: center;
   }
 
   .legend {
-    font-family: "PoppinsR"
+    font-family: "PoppinsR";
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
   }
   .legend-item {
-    margin-right: 0.5em;
+    margin-left: 1em;
     > span {
       position: relative;
       top: 1px;
@@ -186,42 +199,46 @@
   }
   .legend-title {
     font-size: 22px;
-    margin-right: 0.5em;
-    display: inline-block;
-    position: relative;
-    top: 5px;
+    margin-bottom: 0;
   }
 
   .discreet-map-info {
     color: inherit;
     font-size: 11px;
     margin-bottom: 0;
-  }
-
-  .country-content, .documentByLine {
-    position: relative;
-    top: -40px;
+    text-align: justify;
   }
 
   .country-authorities {
     background-color: @darker-blue;
     font-family: "RobotoL";
-    font-size: 18px;
     color: #fff;
     margin: 0 -2em;
     padding: 1em 2em;
-    position: relative;
-    top: -72px;
 
     h3 {
       display: inline-block;
       margin-right: 1.5em;
       margin-bottom: 0;
+      line-height: 31px;
+    }
+
+    a {
+      font-size: 15px;
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     .listing-title-wrapper {
-      align-items: center;
-      display: flex;
+      // align-items: center;
+      // display: flex;
+    }
+
+    .msp-link {
+      text-align: right;
+      a {text-decoration: underline;}
     }
 
     .authority-title {
@@ -267,13 +284,6 @@
         padding-left: 1em;
         margin-top: 1em;
         margin-bottom: 0;
-        li a {
-          font-size: 15px;
-          color: inherit;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
       }
     }
   }
@@ -282,11 +292,12 @@
     font-size: 25px;
     margin-top: 0;
     margin-bottom: 1em;
+    max-width: 380px;
   }
 
   .country-dashboard-section {
     &:not(:last-child) {
-      margin-bottom: 3.5em;
+      margin-bottom: 2em;
     }
 
     .container {
@@ -296,9 +307,8 @@
     .dashboard-wrapper {
       width: 100%;
       max-width: 1300px;
-      padding: 0 2em;
       margin: 0 auto;
-      padding: 1.5em;
+      padding: 0 1.5em;
     }
 
     .dashboard-text {

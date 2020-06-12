@@ -40,7 +40,7 @@
         &lt;title&gt;Tableau URL&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name=&quot;dashboard_height&quot; type=&quot;zope.schema.TextLine&quot;&gt;
-        &lt;default&gt;630px&lt;/default&gt;
+        &lt;default&gt;770px&lt;/default&gt;
         &lt;description&gt;Dashboard height, as a CSS height (ex: 400px)&lt;/description&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Dashboard height&lt;/title&gt;

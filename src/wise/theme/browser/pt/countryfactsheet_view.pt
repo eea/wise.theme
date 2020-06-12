@@ -10,15 +10,34 @@
   <metal:content-core define-macro="content-core">
 
     <div id="country-factsheet">
+      <h1 class="country-title" tal:content="context/Title">Country name</h1>
       <div class="country-header-container">
-        <h1 class="country-title" tal:content="context/Title">Country name</h1>
-
         <div class="row">
           <div class="col-md-6 ch-col">
             <iframe src="./country_marine_waters_image"
               data-embed-group="esri"
               id="country-maplet"
               tal:attributes="src string:${context/absolute_url}/country_marine_waters_map"></iframe>
+
+            <div class="map-info">
+              <div class="legend">
+                <h3 class="legend-title">Legend</h3>
+                <span class="legend-item" tal:repeat="row view/legend">
+                  <img tal:attributes="src python:row[1]" />
+                  <span tal:content="python:row[0]">Title</span>
+                </span>
+              </div>
+              <p class="discreet-map-info">
+                This map draws on information provided by the Member State to
+                represent its marine waters, according to Article 3(1) of the Marine
+                Strategy Framework Directive (2008/56/EC). This map is for
+                illustrative purposes only and should not be considered as the
+                official boundary delimitation between neighboring countries.
+                Jurisdictional borders are the sole responsibility of Member States.
+                The European Commission and European Environment Agency have no
+                responsibility on this matter.
+              </p>
+            </div>
           </div>
           <div class="col-md-6 ch-col">
             <div class="row country-data-wrapper">
@@ -27,7 +46,7 @@
                 <table tal:define="stats view/water_stats" class="marine-stats">
                   <tr tal:repeat="kv view/water_stats">
                     <td tal:content="python:kv[0]">Region name</td>
-                    <td tal:content="python:view.format_nr(kv[1])">Quantity</td>
+                    <td class="stat-nr" tal:content="python:view.format_nr(kv[1])">Quantity</td>
                   </tr>
                   <tfoot tal:condition="python: len(stats) > 1">
                     <tr>
@@ -37,29 +56,20 @@
                   </tfoot>
                 </table>
 
-                <h3><span tal:content="view/country_name"></span> is part of:</h3>
+                <h3>
+                  <span tal:content="context/Title"></span> is part of the following Regional Sea Convention(s):</h3>
                 <div class="country-conventions"
                      tal:define="conventions view/conventions">
-                  <span class="dd-title dd-caret-up">Regional Sea Conventions</span>
                   <ul class="dd-content">
                     <li tal:repeat="conv conventions">
-                      <a href="" tal:attributes="href conv/Web" tal:content="conv/RSC">OSPAR</a>
+                      <a href=""
+                         tal:attributes="href conv/Web"
+                         tal:content="conv/RSC"
+                         target="_blank">
+                         OSPAR</a>
                     </li>
                   </ul>
                 </div>
-
-                <div tal:define="msfd_website view/msfd_website"
-                     tal:condition="msfd_website">
-                  <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
-                  <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
-                </div>
-
-                <div>
-                  <a tal:attributes="href view/msp_link">
-                    Maritime Spatial Planning (MSP) Country Profile
-                  </a>
-                </div>
-
               </div>
               <div class="col-md-6 ch-col">
                 <div class="marine-number">
@@ -88,29 +98,6 @@
             </div>
           </div>
 
-          <div class="row map-info">
-            <div class="col-md-6 ch-col">
-              <div class="legend">
-                <h3 class="legend-title">Legend</h3>
-                <span class="legend-item" tal:repeat="row view/legend">
-                  <img tal:attributes="src python:row[1]" />
-                  <span tal:content="python:row[0]">Title</span>
-                </span>
-              </div>
-            </div>
-            <div class="col-md-6 ch-col">
-              <p class="discreet-map-info">
-                This map draws on information provided by the Member State to
-                represent its marine waters, according to Article 3(1) of the Marine
-                Strategy Framework Directive (2008/56/EC). This map is for
-                illustrative purposes only and should not be considered as the
-                official boundary delimitation between neighboring countries.
-                Jurisdictional borders are the sole responsibility of Member States.
-                The European Commission and European Environment Agency have no
-                responsibility on this matter.
-              </p>
-            </div>
-          </div>
         </div>  <!-- end of country header -->
 
         <!-- <div class="country-authorities">
@@ -157,19 +144,37 @@
           </div>
         </div> -->
 
-        <div class="country-authorities"
-             tal:define="authorities view/authorities"
-             tal:condition="authorities">
+        <div class="country-authorities" tal:define="authorities view/authorities">
           <div class="listing-title-wrapper">
-            <!-- <h3>Title for list</h3> -->
-            <span class="authority-title">National Competent Authority(ies) for the MSFD implementation</span>
-            <span class="read-more">Read more</span>
+            <div class="row">
+              <div class="col-md-6 ch-col">
+                <!-- <h3>Title for list</h3> -->
+                <div tal:condition="authorities">
+                  <span class="authority-title">National Competent Authority(ies) for the MSFD implementation</span>
+                  <span class="read-more">Read more</span>
+                </div>
+              </div>
+              <div class="col-md-6 ch-col">
+                <!-- <div tal:define="msfd_website view/msfd_website"
+                     tal:condition="msfd_website">
+                  <a tal:attributes="href msfd_website/URL"
+                     target="_blank">MSFD national website</a>
+                  <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
+                </div> -->
+
+                <div class="msp-link">
+                  <a tal:attributes="href view/msp_link" target="_blank">
+                    Maritime Spatial Planning (MSP) Country Profile
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="dd-list">
+          <div class="dd-list" tal:condition="authorities">
             <ul>
               <li tal:repeat="auth authorities">
-                <a href="" tal:attributes="href auth/href" tal:content="auth/name">OSPAR</a>
+                <a tal:attributes="href auth/href" tal:content="auth/name" target="_blank">OSPAR</a>
               </li>
             </ul>
           </div>
@@ -191,8 +196,10 @@
                 <div class="col-md-12">
                   <div class="dashboard-wrapper">
                     <div class="row">
-                      <div class="col-md-4 col-xs-12">
+                      <div class="col-xs-12">
                         <h2 class="section-title" tal:content="section/Title"></h2>
+                      </div>
+                      <div class="col-md-4 col-xs-12">
                         <div class="dashboard-text"
                           tal:condition="section/text_above_dashboard|nothing"
                           tal:content="structure section/text_above_dashboard/output">Slide text
@@ -241,21 +248,11 @@
             containerDiv = document.getElementById(id);
             info = window._tableaus[i];
             if (info[0]) {
-              new tableau.Viz(containerDiv, info[0], {height: info[1] || '630px', width: '900px', hideToolbar: true});
+              new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: '900px', hideToolbar: true});
             }
           }
 
           $(function() {
-            var $ddItem = $('.dd-title');
-            $ddItem.each(function() {
-              var $this = $(this);
-              $this.click(function() {
-                var $this = $(this);
-                $this.toggleClass("dd-caret-up dd-caret-down");
-                $this.siblings('.dd-content').fadeToggle();
-              });
-            });
-
             $('.read-more').click(function() {
               var $this = $(this);
               $this.text(function(a,b) {

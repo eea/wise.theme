@@ -175,7 +175,8 @@ class CountryFactsheetView(BrowserView):
 
         for stat in STATS:
             if stat.Country == code:
-                res.append([self.regions[stat.Subregion], stat.Area_km2])
+                area_km2 = int(round(float(stat.Area_km2)));
+                res.append([self.regions[stat.Subregion], area_km2])
 
         return res
 
