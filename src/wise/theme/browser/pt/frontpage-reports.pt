@@ -30,7 +30,7 @@
                   tal:attributes="href report/remoteUrl"
                   class="open-report-link">
                   <img class="lazyload"
-                       data-src="++theme++wise-theme/static/images/newspaper.svg"/>
+                    data-src="/marine/++theme++wise-theme/static/images/newspaper.svg"/>
                   Open Publication
                 </a>
               </div>
