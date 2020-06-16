@@ -158,7 +158,6 @@ ul.plone-nav {
       left: auto;
       right: 28px;
     }
-
   }
 
   > li:hover {
@@ -220,9 +219,23 @@ ul.plone-nav {
   #mainnavigation-wrapper .container {
     padding: 0;
   }
+  .header-container {
+    position: relative;
+  }
+
+  .fp-header-wrapper .fp-wrapper:after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
   .left-logo-section {
-    top: 0;
+    top: -3px;
   }
 
   .site-logo img {
@@ -233,11 +246,17 @@ ul.plone-nav {
     font-size: 12px;
     width: 145px;
     line-height: 15px;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .top-actions {
-    display:flex;
-    position: relative;
+    display: flex;
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
 
     .fa {
       color: #fff;
@@ -292,6 +311,10 @@ ul.plone-nav {
     display: block;
   }
 
+  .plone-navbar-collapse.in .menu-open {
+    display: block!important;
+  }
+
   .plone-navbar-collapse {
     background-color: @blue;
     overflow-x: auto;
@@ -323,14 +346,16 @@ ul.plone-nav {
       display: block;
       background-color: @blue;
       margin: 0 -15px 0 !important;
+      float: none;
 
       > li {
         display: block;
+        float: none;
 
         &:before {
           height: 0;
           width: 0;
-      }
+        }
 
         >a {
           color: #fff;
@@ -339,7 +364,7 @@ ul.plone-nav {
 
       >li:hover {
         a {
-          color: @darker-blue;
+          // color: @darker-blue;
           background-color: transparent;
         }
       }
@@ -417,6 +442,10 @@ ul.plone-nav {
           height: 32px;
           margin-top: 0;
           margin-right: 0;
+
+          &:hover > .caret {
+            border-top: 8px solid @darker-blue;
+          }
 
           .caret {
             border-top: 8px solid #fff;

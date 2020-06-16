@@ -48,7 +48,6 @@
 
     .country-data-wrapper {
       margin: 0 -35px;
-      margin-bottom: 3em;
       font-size: 15px;
       .ch-col {
         padding: 0 35px;
@@ -83,7 +82,15 @@
 
   .marine-data {
     border-right: 1px solid @darker-blue;
-    min-height: 430px;
+    min-height: 420px;
+
+    @media (max-width: 1200px) {
+      border: none;
+      min-height: auto;
+    }
+    @media (max-width: 991px) {
+      margin-top: 1.5em;
+    }
   }
 
   #country-maplet {
@@ -95,16 +102,21 @@
     background-color: transparent;
     border: none;
     color: inherit;
-    margin-bottom: 1.5em;
-    font-family: "RobotoM";
-    padding-bottom: 2em;
+    margin-bottom: 3.5em;
+    font-family: "PoppinsR";
+    font-size: 15px;
     border-bottom: 1px solid @darker-blue;
     width: 100%;
     border-radius: 0;
     td {
-      padding: 0.3em 0.7em;
-      padding-left: 0;
+      padding: 0.5em 0;
       border: none;
+    }
+    tr {
+      td:last-child {
+        text-align: right;
+        padding-left: 0.5em;
+      }
     }
     tbody {
      > tr:not(:last-child) {
@@ -112,13 +124,22 @@
      }
     }
     tfoot tr {
-      font-family: "RobotoB";
+      font-family: "PoppinsSemiB";
       border-top: 1px solid @darker-blue;
+    }
+
+    @media (max-width: 1200px) {
+      margin-bottom: 1.5em;
     }
   }
 
   .marine-number {
-    margin-bottom: 3.5em;
+    &:first-child {
+      margin-bottom: 3.5em;
+      @media (max-width: 1200px) {
+        margin-bottom: 1.5em;
+      }
+    }
     .figure-wrapper {
       .figure-number {
         font-family: "PoppinsB";
@@ -127,7 +148,7 @@
       }
       .figure-content {
         font-family: "PoppinsR";
-        font-size: 14px;
+        font-size: 15px;
         display: block;
         span {
           font-family: "PoppinsB";
@@ -137,7 +158,7 @@
   }
 
   .country-conventions {
-    margin-bottom: 2em;
+    // margin-bottom: 2em;
 
     // .dd-title {
     //   padding-left: 1.3em;
@@ -170,9 +191,16 @@
         list-style-type: square;
 
         a {
-          font-size: 18px;
-          font-family: "RobotoR";
+          font-family: "PoppinsR";
+          font-size: 15px;
+          padding: 0 0 0.3em 0;
         }
+      }
+
+      @media (max-width: 1200px) {
+        border-bottom: 1px solid @darker-blue;
+        margin-bottom: 1.5em;
+        padding-bottom: 1em;
       }
     }
   }
@@ -281,7 +309,6 @@
     font-size: 25px;
     margin-top: 0;
     margin-bottom: 1em;
-    // max-width: 380px;
   }
 
   .factsheet-tableau-vis {
@@ -301,7 +328,6 @@
       width: 100%;
       max-width: 1300px;
       margin: 0 auto;
-      padding: 0 1.5em;
     }
 
     .dashboard-text {

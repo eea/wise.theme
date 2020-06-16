@@ -33,6 +33,11 @@
 .fp-wrapper {
   padding-left: 50px;
   padding-right: 50px;
+
+  @media (max-width: 920px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .fp-container:first-child {
@@ -40,6 +45,10 @@
 }
 .fp-container {
   margin: 5em 0;
+
+  @media (max-width: 480px) {
+    margin: 2.5em 0;
+  }
 }
 
 .fp-container:last-child {
@@ -578,9 +587,9 @@
       font-size: 22px;
     }
 
-    @media only screen and (max-width: 650px) {
-      font-size: 25px;
-    }
+    // @media only screen and (max-width: 650px) {
+    //   font-size: 25px;
+    // }
   }
 
   .card-image-wrapper {
