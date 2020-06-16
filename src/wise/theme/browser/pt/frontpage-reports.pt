@@ -9,8 +9,7 @@
         <div class="reports">
           <div tal:repeat="report reports" class="report-tile">
             <div tal:define="url string:${report/absolute_url}/@@images/image">
-              <div class="report-tile-img lazyload"
-                   tal:attributes="data-bg string: ${url}">
+              <div class="report-tile-img lazyload" tal:attributes="data-bg url">
               </div>
               <!-- <img tal:attributes="src string:${report/absolute_url}/@@images/image/thumb" /> -->
             </div>
@@ -27,6 +26,7 @@
                   Description
                 </p>
                 <a href=""
+                  target="_blank"
                   tal:attributes="href report/remoteUrl"
                   class="open-report-link">
                   <img class="lazyload"

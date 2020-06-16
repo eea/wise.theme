@@ -57,20 +57,21 @@
                   </tfoot>
                 </table>
 
-                <h3>
-                  <span tal:content="context/Title"></span> is part of the following Regional Sea Convention(s):</h3>
-                <div class="country-conventions"
-                     tal:define="conventions view/conventions">
-                  <ul class="dd-content">
-                    <li tal:repeat="conv conventions">
-                      <a href=""
-                         tal:attributes="href conv/Web"
-                         tal:content="conv/RSC"
-                         target="_blank">
-                         OSPAR</a>
-                    </li>
-                  </ul>
-                </div>
+                <tal:def define="conventions view/conventions">
+                  <h3 tal:condition="conventions">
+                    <span tal:content="context/Title"></span> is part of the following Regional Sea Convention(s):</h3>
+                  <div class="country-conventions" tal:condition="conventions" >
+                    <ul class="dd-content">
+                      <li tal:repeat="conv conventions">
+                        <a href=""
+                          tal:attributes="href conv/Web"
+                          tal:content="conv/RSC"
+                          target="_blank">
+                          OSPAR</a>
+                      </li>
+                    </ul>
+                  </div>
+                </tal:def>
               </div>
               <div class="col-lg-6 col-sm-12 ch-col">
                 <div class="marine-number">
