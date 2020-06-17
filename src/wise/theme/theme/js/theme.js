@@ -211,6 +211,7 @@ function initHomepageSlider() {
 }
 
 $(document).ready(function() {
+
   var $window = $(window);
   // are dropdown, nu are default page: not clickable
   // are dropdown, are default page: clickable
@@ -224,6 +225,18 @@ $(document).ready(function() {
     }
     e.preventDefault();
   });
+
+  // Move portlet on country profile pages
+  var isCountryProfile = $('.template-countryfactsheet_view').length > 0;
+  var hasPortlet = $('#portal-column-two').length > 0;
+  if (isCountryProfile && hasPortlet) {
+    $("#portal-column-two").appendTo("#right-portlet");
+  } else {
+    $('.dashboard-wrapper')
+    .children('.row')
+    .children('.col-xs-12')
+    .removeClass()
+  }
 
   $('#main-container').css('visibility', 'visible');
 

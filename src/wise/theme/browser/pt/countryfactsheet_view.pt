@@ -10,8 +10,8 @@
   <metal:content-core define-macro="content-core">
 
     <div id="country-factsheet">
-      <h1 class="country-title" tal:content="context/Title">Country name</h1>
       <div class="country-header-container">
+        <h1 class="country-title" tal:content="context/Title">Country name</h1>
         <div class="row">
           <div class="col-md-6 ch-col">
             <iframe src="./country_marine_waters_image"
@@ -182,62 +182,70 @@
           </div>
         </div>
 
-        <div class="country-content">
-          <div class="row">
-            <div class="col-md-12 col-xs-12" >
-              <div class="pat-autotoc"
-                data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
+      <div class="dashboard-wrapper">
+      <div class="row">
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          <div class="country-content">
+            <div class="row">
+              <div class="col-md-12 col-xs-12" >
+                <div class="pat-autotoc"
+                  data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
 
-            <script>
-              window._tableaus = [];
-            </script>
-            <div tal:repeat="brain context/getFolderContents"
-                 class="country-dashboard-section row">
-              <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
+                <script>
+                  window._tableaus = [];
+                </script>
+                <div tal:repeat="brain context/getFolderContents"
+                     class="country-dashboard-section row">
+                  <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
 
-                <div class="col-md-12">
-                  <div class="dashboard-wrapper">
-                    <div class="row">
-                      <div class="col-xs-12">
-                        <h2 class="section-title" tal:content="section/Title"></h2>
-                      </div>
-                      <div class="col-md-4 col-xs-12">
-                        <div class="dashboard-text"
-                          tal:condition="section/text_above_dashboard|nothing"
-                          tal:content="structure section/text_above_dashboard/output">Slide text
+                    <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-xs-12">
+                            <h2 class="section-title" tal:content="section/Title"></h2>
+                          </div>
+                          <div class="col-md-4 col-xs-12">
+                            <div class="dashboard-text"
+                              tal:condition="section/text_above_dashboard|nothing"
+                              tal:content="structure section/text_above_dashboard/output">Slide text
+                            </div>
+                          </div>
+                          <tal:cond tal:condition="section/tableau_url">
+                            <div class="col-md-8 col-xs-12">
+                              <div tal:attributes="id string:vis-${repeat/brain/index}"
+                                   class="factsheet-tableau-vis"></div>
+                            </div>
+                          </tal:cond>
                         </div>
-                      </div>
-                      <tal:cond tal:condition="section/tableau_url">
-                        <div class="col-md-8 col-xs-12">
-                          <div tal:attributes="id string:vis-${repeat/brain/index}"
-                               class="factsheet-tableau-vis"></div>
-                        </div>
-                      </tal:cond>
+
+                        <div
+                          tal:condition="section/text|nothing"
+                          tal:content="structure section/text/output">Slide text</div>
                     </div>
 
-                    <div
-                      tal:condition="section/text|nothing"
-                      tal:content="structure section/text/output">Slide text</div>
-                  </div>
+                  <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
+                  </tal:def>
                 </div>
-
-                <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
-              </tal:def>
+              </div>
             </div>
           </div>
+        <!-- <div class="col&#45;md&#45;2 col&#45;xs&#45;4 toc&#45;wrapper"> -->
+        <!--   <div class="portlet"> -->
+        <!--     <header class="portletHeader">On this page</header> -->
+        <!--     <div class="portletContent"> -->
+        <!--       <div id="toc"> </div> -->
+        <!--     </div> -->
+        <!--   </div> -->
+        <!-- </div> -->
+
+          </div> <!-- end of country-content -->
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-2">
+          <div id="right-portlet"></div>
         </div>
       </div>
-    <!-- <div class="col&#45;md&#45;2 col&#45;xs&#45;4 toc&#45;wrapper"> -->
-    <!--   <div class="portlet"> -->
-    <!--     <header class="portletHeader">On this page</header> -->
-    <!--     <div class="portletContent"> -->
-    <!--       <div id="toc"> </div> -->
-    <!--     </div> -->
-    <!--   </div> -->
-    <!-- </div> -->
-
-      </div> <!-- end of country-content -->
     </div>
+    </div>
+
 
     <script src="/++theme++wise-theme/static/js/tableau-2.3.0.js"></script>
     <script>
