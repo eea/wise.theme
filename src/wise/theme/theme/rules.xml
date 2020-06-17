@@ -82,11 +82,27 @@
     <!-- drop lead image from country profile view -->
     <drop css:content=".leadimage-header" />
 
-
     <drop css:content="#viewlet-below-content-title" />
     <after css:content=".country-authorities">
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </after>
+
+    <replace css:theme="#content-container" method="raw">
+      <xsl:variable name="central">
+        <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-12</xsl:if>
+        <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-12</xsl:if>
+        <xsl:if test="//aside[@id='portal-column-one'] and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
+        <xsl:if test="not(//aside[@id='portal-column-one']) and not(//aside[@id='portal-column-two'])">col-xs-12 col-sm-12</xsl:if>
+      </xsl:variable>
+
+      <div class="{$central}">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <xsl:apply-templates css:select="#content" />
+          </div>
+        </div>
+      </div>
+    </replace>
 
   </rules>
 
@@ -147,16 +163,15 @@
         <!-- <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p> -->
-      <div class="row">
-        <div class="col-xs-12 col-sm-12">
-          <xsl:apply-templates css:select="#content" />
+        <div class="row">
+          <div class="col-xs-12 col-sm-12">
+            <xsl:apply-templates css:select="#content" />
+          </div>
         </div>
       </div>
-    </div>
-  </replace>
-
-  <replace css:content="#viewlet-below-content" css:theme="#below-content" />
-  <drop css:theme=".msfd-search-wrapper"/>
+    </replace>
+    <replace css:content="#viewlet-below-content" css:theme="#below-content" />
+    <drop css:theme=".msfd-search-wrapper"/>
   </rules>
 
   <!-- MSFD search -->
