@@ -228,14 +228,14 @@
               </div>
             </div>
           </div>
-        <!-- <div class="col&#45;md&#45;2 col&#45;xs&#45;4 toc&#45;wrapper"> -->
-        <!--   <div class="portlet"> -->
-        <!--     <header class="portletHeader">On this page</header> -->
-        <!--     <div class="portletContent"> -->
-        <!--       <div id="toc"> </div> -->
-        <!--     </div> -->
-        <!--   </div> -->
-        <!-- </div> -->
+          <div class="col-md-2 col-xs-3 toc-wrapper">
+            <div class="portlet">
+              <header class="portletHeader">On this page</header>
+              <div class="portletContent">
+                <div id="toc"> </div>
+              </div>
+            </div>
+          </div>
 
           </div> <!-- end of country-content -->
         </div>
@@ -257,9 +257,11 @@
             id = "vis-" + i;
             containerDiv = document.getElementById(id);
             info = window._tableaus[i];
+        if (window.tableau) {
             if (info[0]) {
               new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: '900px', hideToolbar: true});
             }
+        }
           }
 
           $(function() {
