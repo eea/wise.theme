@@ -116,6 +116,14 @@
     />
 
   <browser:page
+    name="countries_dropdown"
+    layer="wise.theme.interfaces.IWiseThemeLayer"
+    class=".countryfactsheets.CountriesDropdownViewlet"
+    permission="zope.Public"
+    template="pt/countries_dropdown.pt"
+    />
+
+  <browser:page
     name="tilelisting_view"
     for="plone.app.contenttypes.interfaces.IFolder"
     template="pt/tilelisting.pt"

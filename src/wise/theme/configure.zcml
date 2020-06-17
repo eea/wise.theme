@@ -71,6 +71,7 @@
 
   <interface interface=".interfaces.IHomepage" />
   <interface interface=".interfaces.IFullWidthLayout" />
+  <interface interface=".interfaces.ICountriesFactsheetDatabase" />
 
   <utility
     component=".vocabulary.layers_vocabulary"

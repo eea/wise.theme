@@ -19,6 +19,11 @@ class IHomepage(Interface):
     """
 
 
+class ICountriesFactsheetDatabase(Interface):
+    """ Marker interface for the context object that is the homepage
+    """
+
+
 class IFullWidthLayout(Interface):
     """ Marker interface
     """
@@ -32,13 +37,15 @@ class IExternalLinks(model.Schema):
     external_links = RichText(title=u"External Links", description=u'',
                               required=False)
 
+
 @provider(IFormFieldProvider)
 class IReferenceLinks(model.Schema):
     """ Reference links interface with RichText schema
     """
 
     reference_links = RichText(title=u"Reference Links", description=u'',
-                              required=False)
+                               required=False)
+
 
 @provider(IFormFieldProvider)
 class IDisclaimer(model.Schema):

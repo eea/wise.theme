@@ -1,4 +1,4 @@
-from zope.component import getMultiAdapter
+# from zope.component import getMultiAdapter
 
 from plone.api import content, portal
 from plone.app.contenttypes.utils import replace_link_variables_by_paths

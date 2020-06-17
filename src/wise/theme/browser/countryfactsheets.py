@@ -11,6 +11,7 @@ from zope.i18n.locales import locales
 from zope.interface import alsoProvides
 from zope.schema.interfaces import IVocabularyFactory
 
+from plone.api import content
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer as create
 from plone.memoize import ram
@@ -465,3 +466,19 @@ class BootstrapCountrySection(BrowserView):
 
         alsoProvides(self.request, IDisableCSRFProtection)
         return 'ok'
+
+
+class CountriesDropdownViewlet(BrowserView):
+    """ Render a dropdown of countries in a folder
+    """
+
+    def countries(self):
+        if self.context.portal_type != 'country_factsheet':
+            return []
+
+        res = content.find(context=self.context.aq_parent,
+                           portal_type="country_factsheet",
+                           depth=1, sort_order='ascending',
+                           sort_on='sortable_title',
+                           )
+        return res

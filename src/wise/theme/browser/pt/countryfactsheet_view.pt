@@ -235,6 +235,13 @@
                 <div id="toc"> </div>
               </div>
             </div>
+
+            <div class="portlet">
+              <header class="portletHeader">Countries</header>
+              <div class="portletContent">
+                <div tal:content="structure context/@@countries_dropdown" />
+              </div>
+            </div>
           </div>
 
           </div> <!-- end of country-content -->
