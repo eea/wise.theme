@@ -321,6 +321,10 @@
     padding: 0.7em;
   }
 
+  .pat-autotoc {
+    .country-dashboard-section:first-child {margin-top: 1.2em;}
+  }
+
   .country-dashboard-section {
       margin-top: 4em;
 
@@ -335,16 +339,11 @@
   }
 }
 
-.dashboard-wrapper {
-  width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
-}
 
 .right-sidebar {
   position: sticky;
   top: -1px;
-  margin-top: 4em;
+  padding-top: 1em;
 
   .portlet-select-country {
     margin-top: 1em;
@@ -355,7 +354,7 @@
   border-left: 2px solid @darker-blue;
 
   .portletHeader {
-    padding: 0 0 10px 10px;
+    padding: 0 0 10px 23px;
   }
 
   #toc {
@@ -367,7 +366,7 @@
 
     a {
       display: block;
-      padding: 7px 10px;
+      padding: 8px 10px;
       padding-left: 23px;
       color: #666;
       font-size: 15px;
@@ -380,7 +379,7 @@
       &.active {
         font-family: "RobotoB";
         color: @darker-blue;
-        background-color: #f7f3ef;
+        background-color: #e2e2e2;
       }
       // &.level1 {
       //   font-size:120%;
@@ -399,4 +398,13 @@
       // }
     }
   }
+}
+
+
+.select-portlet {
+  margin: 1.5em 0 1em 0;
+}
+
+.portlet-select-country {
+  margin-top: 1em;
 }
