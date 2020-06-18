@@ -53,20 +53,6 @@ function alignNavSubmenu() {
   });
 }
 
-function setTwoRowNavigation() {
-  var $nav = $('#portal-globalnav>li>a');
-  $nav.each(function(i, v) {
-    var words = $(this).text();
-    var wordsCount = words.split(' ').length;
-    $(v).contents().eq(0).wrap('<span class="nav-text"/>');
-    if (wordsCount > 2) {
-      var txt = $(this).find('.nav-text');
-      var html = txt.html().split(" ");
-      html = html.slice(0,2).join(" ") + "<br>" + " " + html.slice(2).join(" ");
-      txt.html(html);
-    }
-  });
-}
 
 function displayImageCaption() {
   var $img = $('#content-core p').find('img');
@@ -211,10 +197,8 @@ function initHomepageSlider() {
 }
 
 function countryProfileSideBar() {
-  $(function() {
-    $('#select-countries-dropdown').on('change', function() {
-      document.location = $(this).val();
-    });
+  $('#select-countries-dropdown').on('change', function() {
+    document.location = $(this).val();
   });
 
   $(window).scroll(function() {
@@ -302,7 +286,6 @@ $(document).ready(function() {
     }
   });
 
-  // setTwoRowNavigation();
   autoCollapseNavigation();
   alignNavSubmenu();
   collapsibleContent();
