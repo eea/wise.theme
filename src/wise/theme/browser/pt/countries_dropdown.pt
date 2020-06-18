@@ -1,5 +1,6 @@
 <tal:def define="countries view/countries">
   <select tal:condition="countries" id="select-countries-dropdown">
+    <option value=''>Choose a country</option>
     <tal:rep tal:repeat="brain countries">
       <option tal:attributes="value brain/getId" tal:content="brain/Title">Country name</option>
     </tal:rep>

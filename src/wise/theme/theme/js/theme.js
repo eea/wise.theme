@@ -210,6 +210,29 @@ function initHomepageSlider() {
     });
 }
 
+function countryProfileSideBar() {
+  $(function() {
+    $('#select-countries-dropdown').on('change', function() {
+      document.location = $(this).val();
+    });
+  });
+
+  $(window).scroll(function() {
+    var $countryContent = $('.country-content');
+    if ($countryContent.length) {
+      var contentPos = $countryContent.offset().top;
+      var scrollDistance = $(window).scrollTop() - contentPos;
+      $('.country-dashboard-section').each(function(i) {
+        var posTop = $(this).position().top;
+        if (posTop <= scrollDistance) {
+          $('.autotoc-nav a.active').removeClass('active');
+          $('.autotoc-nav a').eq(i).addClass('active');
+        }
+      });
+    }
+  }).scroll();
+}
+
 $(document).ready(function() {
 
   var $window = $(window);
@@ -225,18 +248,6 @@ $(document).ready(function() {
     }
     e.preventDefault();
   });
-
-  // Move portlet on country profile pages
-  var isCountryProfile = $('.template-countryfactsheet_view').length > 0;
-  var hasPortlet = $('#portal-column-two').length > 0;
-  if (isCountryProfile && hasPortlet) {
-    $("#portal-column-two").appendTo("#right-portlet");
-  } else {
-    $('.dashboard-wrapper')
-    .children('.row')
-    .children('.col-xs-12')
-    .removeClass()
-  }
 
   $('#main-container').css('visibility', 'visible');
 
@@ -296,6 +307,7 @@ $(document).ready(function() {
   alignNavSubmenu();
   collapsibleContent();
   // openSubmenuOnClick();
+  countryProfileSideBar();
 
   $window.on('load', function() {
     displayImageCaption();

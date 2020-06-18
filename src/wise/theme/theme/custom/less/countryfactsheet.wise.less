@@ -337,41 +337,66 @@
 
 .dashboard-wrapper {
   width: 100%;
-  max-width: 1500px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
-
-#right-portlet {
+.right-sidebar {
+  position: sticky;
+  top: -1px;
   margin-top: 4em;
+
+  .portlet-select-country {
+    margin-top: 1em;
+  }
 }
 
 .toc-wrapper {
+  border-left: 2px solid @darker-blue;
+
+  .portletHeader {
+    padding: 0 0 10px 10px;
+  }
+
   #toc {
-    background-color: #EEE;
-    padding: 0.6rem 2rem;
+    padding: 0;
+
+    .autotoc-nav {
+      padding-left: 0;
+    }
 
     a {
       display: block;
-      margin-bottom: 0.4rem;
+      padding: 7px 10px;
+      padding-left: 23px;
+      color: #666;
+      font-size: 15px;
+
+      &:hover {
+        color: @darker-blue;
+        font-family: "RobotoB";
+      }
+
       &.active {
-        font-weight: bolder;
+        font-family: "RobotoB";
+        color: @darker-blue;
+        background-color: #f7f3ef;
       }
-      &.level1 {
-        font-size:120%;
-      }
-      &.level2 {
-        font-size:110%;
-      }
-      &.level3 {
-        font-size:100%;
-      }
-      &.level4 {
-        font-size:90%;
-      }
-      &.level5 {
-        font-size:80%;
-      }
+      // &.level1 {
+      //   font-size:120%;
+      // }
+      // &.level2 {
+      //   font-size:110%;
+      // }
+      // &.level3 {
+      //   font-size:100%;
+      // }
+      // &.level4 {
+      //   font-size:90%;
+      // }
+      // &.level5 {
+      //   font-size:80%;
+      // }
     }
   }
 }

@@ -157,13 +157,6 @@
                 </div>
               </div>
               <div class="col-md-6 ch-col">
-                <!-- <div tal:define="msfd_website view/msfd_website"
-                     tal:condition="msfd_website">
-                  <a tal:attributes="href msfd_website/URL"
-                     target="_blank">MSFD national website</a>
-                  <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
-                </div> -->
-
                 <div class="msp-link">
                   <a tal:attributes="href view/msp_link" target="_blank">
                     Maritime Spatial Planning (MSP) Country Profile
@@ -182,23 +175,30 @@
           </div>
         </div>
 
+        <!-- <div tal:define="msfd_website view/msfd_website"
+             tal:condition="msfd_website">
+          <a tal:attributes="href msfd_website/URL"
+             target="_blank">MSFD national website</a>
+          <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
+        </div> -->
+
       <div class="dashboard-wrapper">
-      <div class="row">
-        <div class="col-xs-12 col-sm-9 col-md-10">
-          <div class="country-content">
-            <div class="row">
-              <div class="col-md-12 col-xs-12" >
-                <div class="pat-autotoc"
-                  data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
+        <div class="row">
+          <div class="col-xs-12 col-sm-9 col-md-10">
+            <div class="country-content">
+              <div class="row">
+                <div class="col-md-12 col-xs-12" >
+                  <div class="pat-autotoc"
+                    data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
 
-                <script>
-                  window._tableaus = [];
-                </script>
-                <div tal:repeat="brain context/getFolderContents"
-                     class="country-dashboard-section row">
-                  <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
+                  <script>
+                    window._tableaus = [];
+                  </script>
+                  <div tal:repeat="brain context/getFolderContents"
+                       class="country-dashboard-section row">
+                    <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
 
-                    <div class="col-md-12">
+                      <div class="col-md-12">
                         <div class="row">
                           <div class="col-xs-12">
                             <h2 class="section-title" tal:content="section/Title"></h2>
@@ -220,37 +220,37 @@
                         <div
                           tal:condition="section/text|nothing"
                           tal:content="structure section/text/output">Slide text</div>
-                    </div>
+                      </div>
 
-                  <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
-                  </tal:def>
+                      <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
+                      </tal:def>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- end of country-content -->
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-2 right-sidebar">
+            <div class="right-sidebar-content">
+              <div class="toc-wrapper">
+                <div class="portlet">
+                  <!-- <header class="portletHeader">On this page</header> -->
+                  <div class="portletContent">
+                    <div id="toc"> </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="portlet">
+                <header class="portletHeader">Country profiles</header>
+                <div class="portlet-select-country">
+                  <div tal:content="structure context/@@countries_dropdown" />
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-2 col-xs-3 toc-wrapper">
-            <div class="portlet">
-              <header class="portletHeader">On this page</header>
-              <div class="portletContent">
-                <div id="toc"> </div>
-              </div>
-            </div>
-
-            <div class="portlet">
-              <header class="portletHeader">Countries</header>
-              <div class="portletContent">
-                <div tal:content="structure context/@@countries_dropdown" />
-              </div>
-            </div>
-          </div>
-
-          </div> <!-- end of country-content -->
-        </div>
-        <div class="col-xs-12 col-sm-3 col-md-2">
-          <div id="right-portlet"></div>
         </div>
       </div>
-    </div>
     </div>
 
 

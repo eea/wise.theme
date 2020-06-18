@@ -87,7 +87,7 @@
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </after>
 
-    <replace css:theme="#content-container" method="raw">
+    <!-- <replace css:theme="#content-container" method="raw">
       <xsl:variable name="central">
         <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-12</xsl:if>
         <xsl:if test="//aside[@id='portal-column-two'] and not(//aside[@id='portal-column-one'])">col-xs-12 col-sm-12</xsl:if>
@@ -102,7 +102,7 @@
           </div>
         </div>
       </div>
-    </replace>
+    </replace> -->
 
     <!-- <before css:theme&#45;children="#column2&#45;container" css:content="#select&#45;countries&#45;dropdown" /> -->
 
