@@ -99,52 +99,7 @@
               </div>
             </div>
           </div>
-
         </div>  <!-- end of country header -->
-
-        <!-- <div class="country-authorities">
-          <div class="row">
-            <div class="col-md-12"
-                tal:define="conventions view/conventions;
-                authorities view/authorities;
-                msfd_website view/msfd_website">
-
-              <div tal:condition="context/text|nothing"
-                   tal:replace="structure context/text/output">
-              Rich text here
-              </div>
-
-              <div tal:condition="conventions">
-                <div><span tal:content="view/country_name">Spain</span> is part of the following Regional Sea Conventions:</div>
-                <ul>
-                  <li tal:repeat="conv conventions">
-                    <a href="" tal:attributes="href conv/Web" tal:content="conv/RSC">OSPAR</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div tal:condition="authorities">
-                <div>National Competent Authority(ies) for the MSFD implementation:</div>
-                <ul>
-                  <li tal:repeat="auth authorities">
-                    <a href="" tal:attributes="href auth/href" tal:content="auth/name">OSPAR</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div tal:condition="msfd_website">
-                <a href="" tal:attributes="href msfd_website/URL">MSFD national website</a>
-                <span tal:condition="msfd_website/Observations">(<span tal:replace="msfd_website/Observations" />)</span>
-              </div>
-
-              <div>
-                <a tal:attributes="href view/msp_link">
-                  Maritime Spatial Planning (MSP) Country Profile
-                </a>
-              </div>
-            </div>
-          </div>
-        </div> -->
 
         <div class="country-authorities" tal:define="authorities view/authorities">
           <div class="listing-title-wrapper">
@@ -185,46 +140,43 @@
         <div class="row">
           <div class="col-xs-12 col-sm-9 col-md-10">
             <div class="country-content">
+              <div class="pat-autotoc"
+                data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
 
-                  <div class="pat-autotoc"
-                    data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
+              <script>
+                window._tableaus = [];
+              </script>
 
-                  <script>
-                    window._tableaus = [];
-                  </script>
-                  <div tal:repeat="brain context/getFolderContents"
-                       class="country-dashboard-section row">
-                    <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
-
-                      <div class="col-md-12">
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <h2 class="section-title" tal:content="section/Title"></h2>
-                          </div>
-                          <div class="col-md-4 col-xs-12">
-                            <div class="dashboard-text"
-                              tal:condition="section/text_above_dashboard|nothing"
-                              tal:content="structure section/text_above_dashboard/output">Slide text
-                            </div>
-                          </div>
-                          <tal:cond tal:condition="section/tableau_url">
-                            <div class="col-md-8 col-xs-12">
-                              <div tal:attributes="id string:vis-${repeat/brain/index}"
-                                   class="factsheet-tableau-vis"></div>
-                            </div>
-                          </tal:cond>
+              <div tal:repeat="brain context/getFolderContents"
+                   class="country-dashboard-section">
+                <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
+                  <div>
+                    <h2 class="section-title" tal:content="section/Title"></h2>
+                    <div class="row">
+                      <div class="col-md-4 col-xs-12">
+                        <div class="dashboard-text"
+                          tal:condition="section/text_above_dashboard|nothing"
+                          tal:content="structure section/text_above_dashboard/output">Slide text
                         </div>
-
-                        <div
-                          tal:condition="section/text|nothing"
-                          tal:content="structure section/text/output">Slide text</div>
                       </div>
+                      <tal:cond tal:condition="section/tableau_url">
+                        <div class="col-md-8 col-xs-12">
+                          <div tal:attributes="id string:vis-${repeat/brain/index}"
+                               class="factsheet-tableau-vis"></div>
+                        </div>
+                      </tal:cond>
+                    </div>
 
-                      <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
-                      </tal:def>
+                    <div
+                      tal:condition="section/text|nothing"
+                      tal:content="structure section/text/output">Slide text
                     </div>
                   </div>
 
+                  <script tal:content="string:window._tableaus.push(['${url}', '${height}'])"></script>
+                  </tal:def>
+                </div>
+              </div>
             </div> <!-- end of country-content -->
           </div>
 
@@ -243,11 +195,11 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> <!-- end of right sidebar -->
+
         </div>
       </div>
     </div>
-
 
     <script src="/++theme++wise-theme/static/js/tableau-2.3.0.js"></script>
     <script>
@@ -259,11 +211,11 @@
             id = "vis-" + i;
             containerDiv = document.getElementById(id);
             info = window._tableaus[i];
-        if (window.tableau) {
-            if (info[0]) {
-              new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: '900px', hideToolbar: true});
+            if (window.tableau) {
+              if (info[0]) {
+                new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: '900px', hideToolbar: true});
+              }
             }
-        }
           }
 
           $(function() {

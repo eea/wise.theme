@@ -35,7 +35,7 @@
 }
 
 .country-title {
-  color: #002d54;
+  color: @darker-blue;
   font-size: 38px;
   margin-bottom: .3em;
   margin-top: 0;
@@ -46,13 +46,6 @@
   margin: 0 -2em;
   padding: 2em;
   color: @darker-blue;
-
-  h1 {
-    color: @darker-blue;
-    font-size: 38px;
-    margin-bottom: 0.3em;
-    margin-top: 0;
-  }
 
   .row {
     margin: 0 -20px;
@@ -169,8 +162,6 @@
   }
 
   .country-conventions {
-    // margin-bottom: 2em;
-
     // .dd-title {
     //   padding-left: 1.3em;
     //   cursor: pointer;
@@ -394,32 +385,11 @@
         color: @darker-blue;
         background-color: #e2e2e2;
       }
-      // &.level1 {
-      //   font-size:120%;
-      // }
-      // &.level2 {
-      //   font-size:110%;
-      // }
-      // &.level3 {
-      //   font-size:100%;
-      // }
-      // &.level4 {
-      //   font-size:90%;
-      // }
-      // &.level5 {
-      //   font-size:80%;
-      // }
     }
   }
 }
 
 .countries-dropdown {
-  &:focus {
-    border-color: #64bee8;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(100, 190, 232, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(100, 190, 232, 0.6);
-}
   dd, dt, ul {
     margin: 0px;
     padding: 0px;
