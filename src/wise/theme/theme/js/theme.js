@@ -197,10 +197,6 @@ function initHomepageSlider() {
 }
 
 function countryProfileSideBar() {
-  $('#select-countries-dropdown').on('change', function() {
-    document.location = $(this).val();
-  });
-
   $(window).scroll(function() {
     var $countryContent = $('.country-content');
     if ($countryContent.length) {
