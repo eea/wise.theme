@@ -10,8 +10,8 @@
   <metal:content-core define-macro="content-core">
 
     <div id="country-factsheet">
+      <h1 class="country-title" tal:content="context/Title">Country name</h1>
       <div class="country-header-container">
-        <h1 class="country-title" tal:content="context/Title">Country name</h1>
         <div class="row">
           <div class="col-md-6 ch-col">
             <iframe src="./country_marine_waters_image"
