@@ -183,21 +183,9 @@
 
       <div class="dashboard-wrapper">
         <div class="row">
-          <div class="col-xs-12 col-sm-9 col-md-10"></div>
-          <div class="col-xs-12 col-sm-3 col-md-2">
-            <div class="portlet select-portlet">
-              <header class="portletHeader">Country profiles</header>
-              <div class="portlet-select-country">
-                <div tal:content="structure context/@@countries_dropdown" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-xs-12 col-sm-9 col-md-10">
             <div class="country-content">
-              <div class="row">
-                <div class="col-md-12 col-xs-12" >
+
                   <div class="pat-autotoc"
                     data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
 
@@ -236,11 +224,17 @@
                       </tal:def>
                     </div>
                   </div>
-                </div>
-              </div>
+
             </div> <!-- end of country-content -->
           </div>
+
           <div class="col-xs-12 col-sm-3 col-md-2 right-sidebar">
+            <div class="portlet select-portlet">
+              <header class="portletHeader">Country profiles</header>
+              <div class="portlet-select-country">
+                <div tal:content="structure context/@@countries_dropdown" />
+              </div>
+            </div>
             <div class="toc-wrapper">
               <div class="portlet">
                 <header class="portletHeader">On this page</header>

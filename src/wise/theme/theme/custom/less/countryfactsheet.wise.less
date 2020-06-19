@@ -309,8 +309,13 @@
     }
   }
 
+  .dashboard-wrapper {
+    margin-top: 2.5em;
+  }
+
   .section-title {
     font-size: 25px;
+    padding-top: 13px;
     margin-top: 0;
     margin-bottom: 1em;
   }
@@ -322,12 +327,12 @@
   }
 
   .pat-autotoc {
-    .country-dashboard-section:first-child {margin-top: 1.2em;}
+    .country-dashboard-section:not(:first-child) {
+      margin-top: 4em;
+    }
   }
 
   .country-dashboard-section {
-      margin-top: 4em;
-
     .container {
       padding: 0;
     }
@@ -339,11 +344,9 @@
   }
 }
 
-
 .right-sidebar {
   position: sticky;
   top: -1px;
-  padding-top: 1em;
 
   .portlet-select-country {
     margin-top: 1em;
@@ -352,6 +355,7 @@
 
 .toc-wrapper {
   border-left: 2px solid @darker-blue;
+  margin-top: 2em;
 
   .portletHeader {
     padding: 0 0 10px 23px;
@@ -400,9 +404,82 @@
   }
 }
 
+.countries-dropdown {
+  &:focus {
+    border-color: #64bee8;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(100, 190, 232, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(100, 190, 232, 0.6);
+}
+  dd, dt, ul {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  dd {position:relative;}
+
+  .dd-select {
+    color: #666;
+    display: block;
+    text-decoration: none;
+    font-weight: normal;
+    position: relative;
+
+    &:after {
+      content:"\e114";
+      font-family: @icon-font-family;
+      font-size: 11px;
+      position: absolute;
+      right: 0;
+      top: 3px;
+    }
+  }
+
+  dt {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .dd-select-list {
+    background: #fff;
+    display: none;
+    list-style: none;
+    position: absolute;
+    left: 0px;
+    top: 2px;
+    width: 100%;
+    min-width: 170px;
+    border: 1px solid #ccc;
+    max-height: 320px;
+    overflow: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .dd-country {
+    padding: 5px 12px;
+    display: block;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e2e2e2;
+    }
+  }
+}
+
 
 .select-portlet {
-  margin: 1.5em 0 1em 0;
+  padding-top: 13px;
+  margin-bottom: 1em;
 }
 
 .portlet-select-country {

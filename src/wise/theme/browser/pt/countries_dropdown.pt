@@ -1,8 +1,18 @@
 <tal:def define="countries view/countries">
-  <select tal:condition="countries" id="select-countries-dropdown">
-    <option value=''>Choose a country</option>
-    <tal:rep tal:repeat="brain countries">
-      <option tal:attributes="value brain/getId" tal:content="brain/Title">Country name</option>
-    </tal:rep>
-  </select>
+  <dl tal:condition="countries" id="select-countries-dropdown" class="countries-dropdown">
+    <dt>
+      <a class="dd-select" href="#">Choose a country</a>
+    </dt>
+    <dd>
+      <ul class="dd-select-list">
+        <tal:rep tal:repeat="brain countries">
+          <li>
+            <a tal:attributes="data-value brain/getId"
+               tal:content="brain/Title"
+               class="dd-country">Country name</a>
+          </li>
+        </tal:rep>
+      </ul>
+    </dd>
+  </dl>
 </tal:def>

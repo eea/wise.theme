@@ -217,6 +217,19 @@ function countryProfileSideBar() {
   }).scroll();
 }
 
+function customCountrySelectDropdown() {
+  $('.dd-select').click(function(e) {
+    $('.dd-select-list').toggle();
+    e.preventDefault();
+  });
+
+  $('.dd-country').click(function() {
+    $('.dd-select-list').hide();
+    var url = $(this).data('value')
+    document.location = url;
+  });
+}
+
 $(document).ready(function() {
 
   var $window = $(window);
@@ -291,6 +304,7 @@ $(document).ready(function() {
   collapsibleContent();
   // openSubmenuOnClick();
   countryProfileSideBar();
+  customCountrySelectDropdown();
 
   $window.on('load', function() {
     displayImageCaption();
@@ -312,8 +326,11 @@ $(document).ready(function() {
   }
 });
 
-
-$(document).click(function() {
+$(document).bind('click', function(e) {
+  var $clicked = $(e.target);
+  if (!$clicked.parents().hasClass("countries-dropdown")) {
+    $('.dd-select-list').hide();
+  }
   $('.search-modal').hide();
   $('.user-actions').find('#personal-bar-container').hide();
 });
