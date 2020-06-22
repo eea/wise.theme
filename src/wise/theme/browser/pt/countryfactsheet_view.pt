@@ -210,10 +210,11 @@
           for(var i = 0; i < window._tableaus.length; i++) {
             id = "vis-" + i;
             containerDiv = document.getElementById(id);
+            var width = Math.floor(jQuery(containerDiv).width());
             info = window._tableaus[i];
             if (window.tableau) {
               if (info[0]) {
-                new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: '900px', hideToolbar: true});
+                new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: width + 'px', hideToolbar: true});
               }
             }
           }
