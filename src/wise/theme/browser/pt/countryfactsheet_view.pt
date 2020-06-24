@@ -137,9 +137,26 @@
         </div> -->
 
       <div class="dashboard-wrapper">
+
         <div class="row">
-          <!-- <div class="col&#45;xs&#45;12 col&#45;sm&#45;9 col&#45;md&#45;10"> -->
+          <div class="col-xs-9">
+          </div>
+
+          <div class="col-xs-3">
+            <div class="portlet select-portlet">
+              <div class="portlet-select-country">
+                <div tal:content="structure context/@@countries_dropdown" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
           <div class="col-xs-12">
+
+
+
             <div class="country-content">
               <div class="pat-autotoc"
                 data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
