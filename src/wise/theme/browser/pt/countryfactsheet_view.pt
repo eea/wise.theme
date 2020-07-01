@@ -137,8 +137,26 @@
         </div> -->
 
       <div class="dashboard-wrapper">
+
         <div class="row">
-          <div class="col-xs-12 col-sm-9 col-md-10">
+          <div class="col-xs-9">
+          </div>
+
+          <div class="col-xs-3">
+            <div class="portlet select-portlet">
+              <div class="portlet-select-country">
+                <div tal:content="structure context/@@countries_dropdown" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12">
+
+
+
             <div class="country-content">
               <div class="pat-autotoc"
                 data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
@@ -180,22 +198,22 @@
             </div> <!-- end of country-content -->
           </div>
 
-          <div class="col-xs-12 col-sm-3 col-md-2 right-sidebar">
-            <div class="portlet select-portlet">
-              <header class="portletHeader">Country profiles</header>
-              <div class="portlet-select-country">
-                <div tal:content="structure context/@@countries_dropdown" />
-              </div>
-            </div>
-            <div class="toc-wrapper">
-              <div class="portlet">
-                <header class="portletHeader">On this page</header>
-                <div class="portletContent">
-                  <div id="toc"> </div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- end of right sidebar -->
+          <!-- <div class="col&#45;xs&#45;12 col&#45;sm&#45;3 col&#45;md&#45;2 right&#45;sidebar"> -->
+          <!--   <div class="portlet select&#45;portlet"> -->
+          <!--     <header class="portletHeader">Country profiles</header> -->
+          <!--     <div class="portlet&#45;select&#45;country"> -->
+          <!--       <div tal:content="structure context/@@countries_dropdown" /> -->
+          <!--     </div> -->
+          <!--   </div> -->
+          <!--   <div class="toc&#45;wrapper"> -->
+          <!--     <div class="portlet"> -->
+          <!--       <header class="portletHeader">On this page</header> -->
+          <!--       <div class="portletContent"> -->
+          <!--         <div id="toc"> </div> -->
+          <!--       </div> -->
+          <!--     </div> -->
+          <!--   </div> -->
+          <!-- </div> <!&#45;&#45; end of right sidebar &#45;&#45;> -->
 
         </div>
       </div>
@@ -210,10 +228,11 @@
           for(var i = 0; i < window._tableaus.length; i++) {
             id = "vis-" + i;
             containerDiv = document.getElementById(id);
+            var width = Math.floor(jQuery(containerDiv).width());
             info = window._tableaus[i];
             if (window.tableau) {
               if (info[0]) {
-                new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: '900px', hideToolbar: true});
+                new tableau.Viz(containerDiv, info[0], {height: info[1] || '770px', width: width + 'px', hideToolbar: true});
               }
             }
           }
