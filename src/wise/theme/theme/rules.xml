@@ -84,6 +84,11 @@
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </after>
 
+    <!-- <drop css:theme=".print-btn-wrapper" />
+    <after css:content=".country-header-container">
+      <xsl:copy-of select='//*[@class="print-btn-wrapper"]' />
+    </after> -->
+
     <!-- <replace css:theme="#content-container" method="raw">
       <xsl:variable name="central">
         <xsl:if test="//aside[@id='portal-column-one'] and //aside[@id='portal-column-two']">col-xs-12 col-sm-12</xsl:if>

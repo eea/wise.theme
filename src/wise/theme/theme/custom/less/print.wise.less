@@ -1,0 +1,52 @@
+@media print {
+
+  #visual-portal-wrapper {
+    h1 {
+      font-size: 30px;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+      color: #002d54;
+    }
+
+    #content-core p {
+      color: #003159;
+    }
+
+    a,
+    a > span {
+      color: #0077bc;
+    }
+
+    a[href]:after {
+      content: none;
+    }
+
+    .print-btn-wrapper,
+    .footer-wrapper,
+    .right-actions-section,
+    .plone-breadcrumb,
+    .portletNavigationTree,
+    .right-sidebar {
+      display: none;
+    }
+
+    .leadimage-wrapper,
+    .leadimage-container {
+      height: 60px;
+    }
+
+    .bottom-links {
+      margin-bottom: 2em;
+    }
+
+    .logo-text {
+      color: #999 !important;
+    }
+
+    #content-header {
+      margin-bottom: 1em;
+    }
+  }
+
+}
