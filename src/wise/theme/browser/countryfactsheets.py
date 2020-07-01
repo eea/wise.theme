@@ -245,7 +245,13 @@ class CountryFactsheetView(BrowserView):
         logger.info("Get authorities: %s", self.context.country)
         code = self.context.country
         try:
-            fname = _get_report_filename_art7_2018(code, None, None, None)
+            try:
+                fname = _get_report_filename_art7_2018(code, None, None, None)
+            except:
+                logger.exception(
+                    "Exception in getting article 2018 filename for "
+                    "countrysheet report % s", code)
+                raise IndexError
             res = self.get_authorities_2018(fname)
             raise IndexError
         except IndexError:
