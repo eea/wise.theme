@@ -1,12 +1,11 @@
 @media print {
-
   #visual-portal-wrapper {
     h1 {
       font-size: 30px;
     }
 
     h1,h2,h3,h4,h5,h6 {
-      color: #002d54;
+      color: #002d54 !important;
     }
 
     #content-core p {
@@ -15,7 +14,7 @@
 
     a,
     a > span {
-      color: #0077bc;
+      color: #0077bc !important;
     }
 
     a[href]:after {
@@ -27,7 +26,10 @@
     .right-actions-section,
     .plone-breadcrumb,
     .portletNavigationTree,
-    .right-sidebar {
+    .right-sidebar,
+    .leadimage-caption,
+    .documentByLine,
+    #edit-zone {
       display: none;
     }
 
@@ -48,5 +50,4 @@
       margin-bottom: 1em;
     }
   }
-
 }
