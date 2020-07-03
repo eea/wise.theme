@@ -1,53 +1,177 @@
 @media print {
-  #visual-portal-wrapper {
-    h1 {
-      font-size: 30px;
+  @page {
+    margin: 2cm 0.5cm;
+  }
+
+  a {
+    page-break-inside: avoid
+  }
+
+  blockquote {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  img {
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+
+  table, pre {
+    page-break-inside: avoid
+  }
+
+  ul, ol, dl  {
+    page-break-before: avoid;
+  }
+
+  #print-button {display: none;}
+
+}
+
+#visual-portal-wrapper.print {
+  .container {
+    padding: 0 1rem!important;
+    width: 670px!important;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .tableau-thumb {display: block; width: 100%;}
+  .factsheet-tableau-vis {display: none;}
+
+  h1,h2,h3,h4,h5,h6 {
+    color: #002d54 !important;
+  }
+
+  #content-core p {
+    color: #003159;
+  }
+
+  a,
+  a > span {
+    color: #0077bc !important;
+  }
+
+  a[href]:after {
+    content: none;
+  }
+
+  #edit-zone,
+  #select-countries-dropdown,
+  #print-button,
+  .print-btn-wrapper,
+  .footer-wrapper,
+  .right-actions-section,
+  .plone-breadcrumb,
+  .portletNavigationTree,
+  .right-sidebar,
+  .leadimage-caption,
+  .documentByLine,
+  .country-authorities .read-more {
+    display: none;
+  }
+
+  .leadimage-wrapper,
+  .leadimage-container {
+    height: 60px;
+  }
+
+  .bottom-links {
+    margin-bottom: 2em;
+  }
+
+  .logo-text {
+    color: #999 !important;
+  }
+
+  #content-header {
+    margin-bottom: 1em;
+  }
+
+  #country-factsheet {
+    .country-header-container {
+      background-color: #fff;
+    }
+    .country-dashboard-section {
+      page-break-inside: avoid;
+      page-break-after: avoid;
+
+      &:not(:first-child) {
+        margin-top: 2em;
+      }
     }
 
-    h1,h2,h3,h4,h5,h6 {
-      color: #002d54 !important;
+    .map-info {
+      margin-top: 1em;
     }
 
-    #content-core p {
-      color: #003159;
+    .marine-data {
+      margin: 1.5em 0;
+      border: none;
+      min-height: auto;
     }
 
-    a,
-    a > span {
-      color: #0077bc !important;
+    .listing-title-wrapper {
+      border-top: 1px solid #002d54;
+      padding-top: 1.5em;
     }
 
-    a[href]:after {
-      content: none;
+    .country-authorities {
+      background-color: #fff;
+      color: inherit;
+
+      .msp-link {
+        text-align: left;
+        margin-top: 0.5em;
+      }
+
+      .dd-list {
+        display: block!important;
+      }
+
+      a {
+        font-family: "PoppinsR";
+      }
+
+      li {
+        color: @link-color;
+      }
     }
 
-    .print-btn-wrapper,
-    .footer-wrapper,
-    .right-actions-section,
-    .plone-breadcrumb,
-    .portletNavigationTree,
-    .right-sidebar,
-    .leadimage-caption,
-    .documentByLine,
-    #edit-zone {
-      display: none;
-    }
-
-    .leadimage-wrapper,
-    .leadimage-container {
-      height: 60px;
-    }
-
-    .bottom-links {
+    .marine-stats {
       margin-bottom: 2em;
     }
 
-    .logo-text {
-      color: #999 !important;
+    .marine-number:first-child {
+      margin-bottom: 2em;
     }
 
-    #content-header {
-      margin-bottom: 1em;
+    .country-data-wrapper {
+      page-break-inside: avoid;
+      page-break-after: avoid;
+      margin: 0 -15px;
+      margin-top: 1.5em;
+    }
+    .ch-col {
+      padding: 0 15px;
+    }
+
+    .col-md-4,
+    .col-md-8,
+    .col-md-6,
+    .col-lg-6 {width: 100%;}
+
+    .country-conventions .dd-content {
+      border-bottom: 1px solid transparent;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
   }
 }

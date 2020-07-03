@@ -22,11 +22,11 @@
   <body>
     <section id="portal-toolbar">
     </section>
-    <div class="outer-wrapper">
+    <div id="outer-container" class="outer-wrapper">
 
-      <header id="content-header" role="banner">
+      <div id="content-header" role="banner">
         <div class="container">
-          <header id="portal-top">
+          <div id="portal-top">
             <div class="header-container">
 
               <div class="left-logo-section">
@@ -78,9 +78,9 @@
                 </div>
               </div>
             </div>
-          </header>
+          </div>
         </div>
-      </header>
+      </div>
 
       <div id="above-content-wrapper">
         <div id="above-content">
@@ -225,7 +225,11 @@
 
     <script>
       function printPage() {
-        window.print();
+        document.getElementById('visual-portal-wrapper').classList.add('print')
+        setTimeout(() => {
+          window.print()
+        }, 500)
+        window.onafterprint = () => document.getElementById('visual-portal-wrapper').classList.remove('print')
       }
     </script>
 

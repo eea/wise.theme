@@ -137,7 +137,6 @@
         </div> -->
 
       <div class="dashboard-wrapper">
-
         <div class="row">
           <div class="col-xs-9">
           </div>
@@ -152,11 +151,7 @@
         </div>
 
         <div class="row">
-
           <div class="col-xs-12">
-
-
-
             <div class="country-content">
               <div class="pat-autotoc"
                 data-pat-autotoc="appendTo:#toc;scrollduration:slow;levels:h2,h3,h4,h5,h6;appendTo:#toc">
@@ -181,6 +176,8 @@
                         <div class="col-md-8 col-xs-12">
                           <div tal:attributes="id string:vis-${repeat/brain/index}"
                                class="factsheet-tableau-vis"></div>
+                          <img class="tableau-thumb"
+                               tal:attributes="data-src string: ${section/tableau_url}"/>
                         </div>
                       </tal:cond>
                     </div>
@@ -236,6 +233,13 @@
               }
             }
           }
+
+          $('.tableau-thumb').each(function() {
+            var $this = $(this);
+            var imgFormat = ".png";
+            var imgSRC = $this.data('src').split('?')[0] + imgFormat;
+            $this.attr('src', imgSRC);
+          });
 
           $(function() {
             $('.read-more').click(function() {
