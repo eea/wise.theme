@@ -226,6 +226,22 @@ function customCountrySelectDropdown() {
   });
 }
 
+function useThumbnailForDashboards() {
+  $('iframe').each(function() {
+    var $this = $(this);
+    var iframeSRC = $this.attr('src');
+    var iframeSourceURL = 'tableau.discomap';
+    if (iframeSRC.indexOf(iframeSourceURL) > -1) {
+      $('<img class="tableau-thumb"/>').insertAfter($this);
+      var $thumb = $this.siblings('.tableau-thumb');
+      var imgFormat = '.png';
+      var thumbSRC = iframeSRC.split('?')[0] + imgFormat;
+      $thumb.attr('src', thumbSRC);
+      $this.addClass('tableau-vis');
+    }
+  });
+}
+
 $(document).ready(function() {
 
   var $window = $(window);
@@ -308,6 +324,7 @@ $(document).ready(function() {
     keyMessagesTabFunctionality();
     setKeyMessagesCardsHeight();
     initHomepageSlider();
+    useThumbnailForDashboards();
   });
 
   var resizeTimer;

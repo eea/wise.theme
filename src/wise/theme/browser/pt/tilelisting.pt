@@ -27,7 +27,7 @@
 
                 <div tal:condition="item/image"
                      class="tile-image tile-listing-image"
-                     tal:attributes="style string:background-image:url('${url}')">
+                     tal:attributes="style string:background-image:url('${url}')!important">
                 </div>
                 <h4 class="tile-title" tal:content="item/title">Title</h4>
                 <p class="tile-summary"

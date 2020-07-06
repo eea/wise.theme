@@ -3,6 +3,11 @@
     margin: 2cm 0.5cm;
   }
 
+  * {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
   a {
     page-break-inside: avoid
   }
@@ -30,7 +35,6 @@
   }
 
   #print-button {display: none;}
-
 }
 
 #visual-portal-wrapper.print {
@@ -39,28 +43,21 @@
     width: 670px!important;
   }
 
-  h1 {
-    font-size: 30px;
-  }
-
-  .tableau-thumb {display: block; width: 100%;}
-  .factsheet-tableau-vis {display: none;}
-
-  h1,h2,h3,h4,h5,h6 {
-    color: #002d54 !important;
-  }
-
-  #content-core p {
-    color: #003159;
+  h1, h2, h3, h4, h5, h6 {
+    color: #000!important;
   }
 
   a,
   a > span {
-    color: #0077bc !important;
+    color: #0077bc!important;
   }
 
   a[href]:after {
     content: none;
+  }
+
+  #content-core p {
+    color: #000!important;
   }
 
   #edit-zone,
@@ -72,19 +69,46 @@
   .plone-breadcrumb,
   .portletNavigationTree,
   .right-sidebar,
+  .leadimage,
+  .image-layer,
   .leadimage-caption,
   .documentByLine,
   .country-authorities .read-more {
     display: none;
   }
 
+  .tableau-vis {display: none;}
+
+  // .site-logo img {
+  //   width: 80px;
+  // }
+  //
+  // .logo-text {
+  //   font-size: 12px;
+  //   width: 145px;
+  //   line-height: 15px;
+  // }
+
   .leadimage-wrapper,
   .leadimage-container {
-    height: 60px;
+    height: 70px;
+  }
+
+  .leadimage-title {
+    margin-top: 1em;
+  }
+
+  .leadimage-view .title-container {
+    position: relative;
   }
 
   .bottom-links {
     margin-bottom: 2em;
+  }
+
+  .portlet {
+    page-break-inside: avoid;
+    page-break-after: avoid;
   }
 
   .logo-text {
@@ -95,13 +119,26 @@
     margin-bottom: 1em;
   }
 
+  .col-sm-4,
+  .col-md-4,
+  .col-md-8,
+  .col-sm-8,
+  .col-md-6,
+  .col-sm-9,
+  .col-lg-6 {width: 100%;}
+
+  .tableau-thumb {display: block; width: 100%;}
+  .factsheet-tableau-vis iframe {display: none!important;}
+
   #country-factsheet {
     .country-header-container {
       background-color: #fff;
+      color: #000;
     }
 
     .country-map-thumb {
       display: block;
+      margin-bottom: 2.5em;
     }
 
     #country-maplet {display: none;}
@@ -169,11 +206,6 @@
     .ch-col {
       padding: 0 15px;
     }
-
-    .col-md-4,
-    .col-md-8,
-    .col-md-6,
-    .col-lg-6 {width: 100%;}
 
     .country-conventions .dd-content {
       border-bottom: 1px solid transparent;
