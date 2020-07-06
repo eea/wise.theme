@@ -20,6 +20,8 @@
               tal:attributes="src string:${context/absolute_url}/country_marine_waters_map;
               data-embed-screenshot python: context.map_preview_image and context.absolute_url() + '/@@images/map_preview_image' or None"></iframe>
 
+              <img class="country-map-thumb"
+                   tal:attributes="src python: context.map_preview_image and context.absolute_url() + '/@@images/map_preview_image' or None"/>
             <div class="map-info">
               <div class="legend">
                 <h3 class="legend-title">Legend</h3>
