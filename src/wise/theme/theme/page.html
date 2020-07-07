@@ -101,6 +101,10 @@
             </div>
           </div>
 
+          <div class="print-loading">
+            <div class="loading-animation"></div>
+          </div>
+
           <div id="column1-container">
           </div>
           <div id="content-container">
@@ -225,11 +229,13 @@
 
     <script>
       function printPage() {
-        document.getElementById('visual-portal-wrapper').classList.add('print')
+        document.getElementById('visual-portal-wrapper').classList.add('print');
+        $('.print-loading').show();
         setTimeout(() => {
-          window.print()
-        }, 1000)
-        window.onafterprint = () => document.getElementById('visual-portal-wrapper').classList.remove('print')
+          $('.print-loading').hide();
+          window.print();
+        }, 2000)
+        window.onafterprint = () => document.getElementById('visual-portal-wrapper').classList.remove('print');
       }
     </script>
 

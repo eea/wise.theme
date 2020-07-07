@@ -22,8 +22,14 @@
   }
 
   img {
+    page-break-before: auto;
+    page-break-after: auto;
     page-break-inside: avoid;
-    page-break-after: avoid;
+  }
+
+  p {
+    page-break-inside: avoid;
+    position: relative;
   }
 
   table, pre {
@@ -38,9 +44,22 @@
 }
 
 #visual-portal-wrapper.print {
+  display: block;
+  height: auto!important;
+  padding-left: 0;
+
+  .outer-wrapper {
+    flex: none;
+  }
+
   .container {
     padding: 0 1rem!important;
     width: 670px!important;
+  }
+
+  img {
+    page-break-inside: avoid;
+    page-break-after: avoid;
   }
 
   h1, h2, h3, h4, h5, h6 {

@@ -179,6 +179,8 @@
                           <div tal:attributes="id string:vis-${repeat/brain/index}"
                                class="factsheet-tableau-vis"></div>
 
+                          <img class="tableau-thumb"
+                               tal:attributes="data-src string: ${section/tableau_url}"/>
                         </div>
                       </tal:cond>
                     </div>
@@ -234,6 +236,13 @@
               }
             }
           }
+
+          $('.tableau-thumb').each(function() {
+            var $this = $(this);
+            var imgFormat = '.png';
+            var imgSRC = $this.data('src').split('?')[0] + imgFormat;
+            $this.attr('src', imgSRC);
+          });
 
           $(function() {
             $('.read-more').click(function() {
