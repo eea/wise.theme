@@ -84,8 +84,8 @@
       <xsl:copy-of select='//*[@id="viewlet-below-content-title"]' />
     </after>
 
-    <!-- <drop css:theme=".print-btn-wrapper" />
-    <after css:content=".country-header-container">
+    <!-- <drop css:theme=".print-btn-wrapper" /> -->
+    <!-- <after css:content=".country-header-container">
       <xsl:copy-of select='//*[@class="print-btn-wrapper"]' />
     </after> -->
 

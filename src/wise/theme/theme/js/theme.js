@@ -327,7 +327,13 @@ $(document).ready(function() {
     setKeyMessagesCardsHeight();
     initHomepageSlider();
     useThumbnailForDashboards();
+
   });
+
+  if ($('#country-factsheet').length > 0) {
+    // move print button on country profile pages under header
+    $('.print-btn-wrapper').insertAfter('.country-header-container');
+  }
 
   var resizeTimer;
   $window.on('resize',function() {
