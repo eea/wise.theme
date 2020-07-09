@@ -416,3 +416,40 @@
 		transform: rotate(360deg)
 	}
 }
+
+
+// Dashboards fullscreen mode
+.fs-button {
+  background-color: rgba(51, 51, 51, 0.3);
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 4px 7px;
+  .glyphicon-fullscreen {
+    font-size: 14px;
+    color: #fff;
+    top: 2px;
+    left: 1px;
+  }
+  &:hover {
+    background-color:  rgba(51, 51, 51, 0.5);
+  }
+}
+
+/* Chrome, Safari and Opera syntax */
+:-webkit-full-screen {
+  background-color: white;
+}
+/* Firefox syntax */
+:-moz-full-screen {
+  background-color: white;
+}
+/* IE/Edge syntax */
+:-ms-fullscreen {
+  background-color: white;
+}
+/* Standard syntax */
+:fullscreen {
+  background-color: white;
+}

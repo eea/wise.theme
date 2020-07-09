@@ -17,9 +17,9 @@
             <iframe src="./country_marine_waters_image"
               data-embed-group="esri"
               id="country-maplet"
+              class="country-map"
               tal:attributes="src string:${context/absolute_url}/country_marine_waters_map;
-              data-embed-screenshot python: context.map_preview_image and context.absolute_url() + '/@@images/map_preview_image' or None"></iframe>
-
+              data-embed-screenshot python: context.map_preview_image and context.absolute_url() + '/@@images/map_preview_image' or None" ></iframe>
               <img class="country-map-thumb"
                    tal:attributes="src python: context.map_preview_image and context.absolute_url() + '/@@images/map_preview_image' or None"/>
             <div class="map-info">
@@ -220,6 +220,7 @@
     </div>
 
     <script src="/++theme++wise-theme/static/js/tableau-2.3.0.js"></script>
+
     <script>
         //<![CDATA[
         jQuery(document).ready(function() {

@@ -226,13 +226,14 @@ function customCountrySelectDropdown() {
   });
 }
 
-function useThumbnailForDashboards() {
+function initThumbnailForDashboards() {
   if ($('#country-factsheet').length === 0) {
     $('iframe').each(function() {
       var $this = $(this);
       var iframeSRC = $this.attr('src');
       var iframeSourceURL = 'tableau.discomap';
-      if (iframeSRC.indexOf(iframeSourceURL) > -1) {
+      var isTableauDashboard = iframeSRC.indexOf(iframeSourceURL) > -1;
+      if (isTableauDashboard) {
         $('<img class="tableau-thumb"/>').insertAfter($this);
         var $thumb = $this.siblings('.tableau-thumb');
         var imgFormat = '.png';
@@ -242,6 +243,46 @@ function useThumbnailForDashboards() {
       }
     });
   }
+}
+
+function initDashboardsFullscreenMode() {
+  $('iframe').each(function(i) {
+    var $this = $(this);
+    var iframeSRC = $this.attr('src');
+    var iframeSourceURL = 'tableau.discomap';
+    var isTableauDashboard = iframeSRC.indexOf(iframeSourceURL) > -1;
+
+    function setupFullscreen() {
+      i += 1;
+      id = 'section-' + i;
+      $this.attr('id', id);
+
+      var fsButton = '<button class="fs-button" title="Fullscreen">' +
+      '<i class="glyphicon glyphicon-fullscreen"></i>' +
+      '</button>';
+
+      $(fsButton).insertAfter($this);
+      var $btn = $this.siblings('.fs-button');
+      $btn.parent().css('position', 'relative');
+
+      var dashboard = document.getElementById(id);
+      $btn.on('click', function() {
+        if (dashboard.requestFullscreen) dashboard.requestFullscreen();
+        else if (dashboard.msRequestFullscreen) dashboard.msRequestFullscreen(); /* IE/Edge */ 
+        else if (dashboard.mozRequestFullScreen) dashboard.mozRequestFullScreen(); /* Firefox */
+        else if (dashboard.webkitRequestFullScreen) dashboard.webkitRequestFullScreen(); /* Chrome, Safari & Opera */
+        else {
+          alert('Sorry, but Fullscreen API is not supported by your browser. ' +
+          'Please consider upgrading to the latest version ' +
+          'or use either Google Chrome or Mozilla Firefox for full support.');
+        }
+      });
+    }
+
+    if (isTableauDashboard) {
+      setupFullscreen();
+    }
+  });
 }
 
 $(document).ready(function() {
@@ -326,8 +367,8 @@ $(document).ready(function() {
     keyMessagesTabFunctionality();
     setKeyMessagesCardsHeight();
     initHomepageSlider();
-    useThumbnailForDashboards();
-
+    initThumbnailForDashboards();
+    initDashboardsFullscreenMode();
   });
 
   if ($('#country-factsheet').length > 0) {
