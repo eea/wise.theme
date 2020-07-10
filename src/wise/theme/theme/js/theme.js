@@ -372,7 +372,7 @@ $(document).ready(function() {
 
   if ($('#country-factsheet').length > 0) {
     // move print button on country profile pages under header
-    $('.print-btn-wrapper').insertAfter('.country-header-container');
+    $('.print-btn-wrapper').insertAfter('.country-authorities');
   }
 
   var resizeTimer;

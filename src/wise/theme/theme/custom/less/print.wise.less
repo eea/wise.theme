@@ -8,8 +8,20 @@
     color-adjust: exact !important;
   }
 
+  html, body {
+    // border: 1px solid white;
+    height: 99%;
+    // page-break-after: avoid;
+    // page-break-before: avoid;
+    // overflow: hidden;
+  }
+
   a {
     page-break-inside: avoid
+  }
+
+  a[href]:after {
+    content: none !important;
   }
 
   blockquote {
