@@ -236,8 +236,7 @@ function initThumbnailForDashboards() {
       if (isTableauDashboard) {
         $('<img class="tableau-thumb"/>').insertAfter($this);
         var $thumb = $this.siblings('.tableau-thumb');
-        var imgFormat = '.png';
-        var thumbSRC = iframeSRC.split('?')[0] + imgFormat;
+        var thumbSRC = iframeSRC + '&:format=png';
         $thumb.attr('src', thumbSRC);
         $this.addClass('tableau-vis');
       }
@@ -257,7 +256,7 @@ function initDashboardsFullscreenMode() {
       id = 'section-' + i;
       $this.attr('id', id);
 
-      var fsButton = '<button class="fs-button" title="Fullscreen">' +
+      var fsButton = '<button class="fs-button" title="Full Screen">' +
       '<i class="glyphicon glyphicon-fullscreen"></i>' +
       '</button>';
 
@@ -268,7 +267,7 @@ function initDashboardsFullscreenMode() {
       var dashboard = document.getElementById(id);
       $btn.on('click', function() {
         if (dashboard.requestFullscreen) dashboard.requestFullscreen();
-        else if (dashboard.msRequestFullscreen) dashboard.msRequestFullscreen(); /* IE/Edge */ 
+        else if (dashboard.msRequestFullscreen) dashboard.msRequestFullscreen(); /* IE/Edge */
         else if (dashboard.mozRequestFullScreen) dashboard.mozRequestFullScreen(); /* Firefox */
         else if (dashboard.webkitRequestFullScreen) dashboard.webkitRequestFullScreen(); /* Chrome, Safari & Opera */
         else {
