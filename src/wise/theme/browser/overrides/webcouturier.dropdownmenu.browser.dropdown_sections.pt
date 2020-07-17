@@ -13,9 +13,12 @@
       <div class="plone-navbar-header navbar-header">
         <button type="button" class="plone-navbar-toggle navbar-toggle collapsed" data-toggle="collapse" data-target="#portal-globalnav-collapse" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+          <div class="menu-icon-toggle">
+              <input class="mobile-box" type="checkbox" />
+              <span class="icon-bar top-bar"></span>
+              <span class="icon-bar middle-bar"></span>
+              <span class="icon-bar bottom-bar"></span>
+          </div>
         </button>
       </div>
 

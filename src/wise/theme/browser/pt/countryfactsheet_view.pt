@@ -108,8 +108,17 @@
             <div class="row">
               <div class="col-md-6 ch-col">
                 <div tal:condition="authorities">
-                  <span class="authority-title">National Competent Authority(ies) for the MSFD implementation</span>
-                  <span class="read-more">Read more</span>
+                  <div>
+                    <span class="authority-title">National Competent Authority(ies) for the MSFD implementation</span>
+                    <span class="read-more">Read more</span>
+                  </div>
+                  <div class="dd-list">
+                    <ul>
+                      <li tal:repeat="auth authorities">
+                        <a tal:attributes="href auth/href" tal:content="auth/name" target="_blank">OSPAR</a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div class="col-md-6 ch-col">
@@ -120,14 +129,6 @@
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="dd-list" tal:condition="authorities">
-            <ul>
-              <li tal:repeat="auth authorities">
-                <a tal:attributes="href auth/href" tal:content="auth/name" target="_blank">OSPAR</a>
-              </li>
-            </ul>
           </div>
         </div>
 
@@ -140,10 +141,10 @@
 
       <div class="dashboard-wrapper">
         <div class="row">
-          <div class="col-xs-9">
+          <div class="col-sm-9 col-xs-12">
           </div>
 
-          <div class="col-xs-3">
+          <div class="col-sm-3 col-xs-12">
             <div class="portlet select-portlet">
               <div class="portlet-select-country">
                 <div tal:content="structure context/@@countries_dropdown" />

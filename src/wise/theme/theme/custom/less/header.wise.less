@@ -11,16 +11,19 @@
 }
 
 .fp-header.collapse-nav {
+  // .fp-wrapper {
+  //   padding: 0;
+  // }
   .plone-navbar-toggle {
     border-color: #fff;
 
     .icon-bar {
-      background-color: #fff;
+      background-color: #fff !important;
     }
   }
 
   #portal-top {
-    padding: 8px 15px;
+    padding: 8px 0;
   }
 
   .fp-header-wrapper {
@@ -37,6 +40,12 @@
 
   .plone-navbar {
     border:none;
+  }
+}
+
+.fp-header.collapse-nav {
+  .plone-navbar-collapse {
+    top: 54px !important;
   }
 }
 
@@ -291,14 +300,14 @@
 
 .sticky-header {
   position: fixed !important;
-  top: 0px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 999;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,.2);
   transform: translate3d(0px, 0px, 0px);
-  padding: 8px 15px;
+  padding: 8px 15px !important;
 
   .site-logo img {
     width: 80px;

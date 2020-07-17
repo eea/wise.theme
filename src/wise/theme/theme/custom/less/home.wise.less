@@ -46,7 +46,7 @@
 .fp-container {
   margin: 5em 0;
 
-  @media (max-width: 480px) {
+  @media (max-width: @screen-xs-min) {
     margin: 2.5em 0;
   }
 }
@@ -81,7 +81,7 @@
     padding: 1em 2em;
   }
 
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: @screen-xs-min) {
     flex: 0 100%;
   }
 }
@@ -308,6 +308,10 @@
     @media only screen and (max-width: 650px) {
       font-size: 24px;
     }
+
+    @media only screen and (max-width: @screen-xs-min) {
+      font-size: 22px;
+    }
   }
 
   .card-link {
@@ -435,6 +439,10 @@
 
     @media only screen and (max-width: 1270px) {
       font-size: 22px;
+    }
+
+    @media only screen and (max-width: @screen-xs-min) {
+      font-size: 20px;
     }
   }
 

@@ -177,3 +177,34 @@ input[type="search"] {
     }
   }
 }
+
+#parent-fieldname-text {
+  p div > img,
+  p > img {
+    width: auto;
+    height: auto;
+
+    @media only screen and (max-width: 900px) {
+      width: 100%;
+    }
+  }
+}
+
+
+@media only screen and (max-width: @screen-xs-min) {
+  .plone-modal {
+    padding: 0 !important;
+  }
+  .plone-modal-dialog {
+    width: 100% !important;
+    right: 0 !important;
+    left: 0 !important;
+  }
+
+  .plone-modal-content {
+    width: 100% !important;
+    max-width: 350px;
+    // left: -17px;
+  }
+
+}

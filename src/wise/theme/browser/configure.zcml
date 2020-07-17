@@ -184,21 +184,9 @@
       permission="cmf.ManagePortal"
       />
 
-  <!--  -->
-  <!-- layer="wise.theme.interfaces.IWiseThemeLayer" -->
-
-  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
-  <!-- <include package="z3c.jbot" file="meta.zcml" /> -->
-
-  <!-- <browser:jbot -->
-    <!--   directory="overrides" -->
-    <!--   layer="wise.theme.interfaces.IWiseThemeLayer" -->
-    <!--   /> -->
 
   <!-- Disabled for Plone5 new theme, will need to be enabled selectively, after testing -->
 
-  <!-- <include file="overrides.zcml" /> -->
-  <!--  -->
   <!-- <browser:viewlet -->
     <!--   name="tlspu.cookiepolicy" -->
     <!--   manager="plone.app.layout.viewlets.interfaces.IBelowContent" -->

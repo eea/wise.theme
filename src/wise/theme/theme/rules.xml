@@ -234,7 +234,7 @@
   <!-- Left column -->
   <rules css:if-content="#portal-column-one">
     <replace css:theme="#column1-container">
-      <div id="sidebar" class="col-xs-6 col-sm-4 sidebar-offcanvas">
+      <div id="sidebar" class="col-xs-12 col-sm-4 sidebar-offcanvas">
         <aside id="portal-column-one">
           <xsl:copy-of css:select="#portal-column-one > *" />
         </aside>
@@ -245,7 +245,7 @@
   <!-- Right column -->
   <rules css:if-content="#portal-column-two">
     <replace css:theme="#column2-container">
-      <div id="sidebar" class="col-xs-6 col-sm-4 sidebar-offcanvas" role="complementary">
+      <div id="sidebar" class="col-xs-12 col-sm-4 sidebar-offcanvas" role="complementary">
         <aside id="portal-column-two">
           <xsl:copy-of css:select="#portal-column-two > *" />
         </aside>
