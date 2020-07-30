@@ -249,24 +249,25 @@ function initDashboardsToolbar() {
     var iframeSRC = $iframe.attr('src');
     var isTableauDashboard = iframeSRC.indexOf('tableau.discomap') > -1;
 
-    $iframe
-    .parent()
-    .css('position', 'relative');
+    $iframe.wrap('<div class="iframe-wrapper"/>');
+
+    var $iframeWrapper = $iframe.parent('.iframe-wrapper');
+    $iframeWrapper.parent().css('position', 'relative');
 
     var datavizToolbar = '<div class="dataviz-toolbar"/>';
-    $(datavizToolbar).insertAfter($iframe);
-    var $toolbar = $iframe.siblings('.dataviz-toolbar');
+    $(datavizToolbar).insertAfter($iframeWrapper);
+    var $toolbar = $iframeWrapper.siblings('.dataviz-toolbar');
 
     // Copy tableau dashboard link
     function setupShareButton() {
-      var toolbarShareButton = '<div class="cl-button" title="Share">' +
+      var toolbarShareButton = '<div class="toolbar-button cl-button" title="Share">' +
        '<i class="glyphicon glyphicon-share"></i>' +
       '</div>';
 
       var html = '<div class="share-dialog">' +
         '<div class="dialog-wrapper">' +
-          '<i class="glyphicon glyphicon-plus close-dialog" />' +
-          '<span class="dialog-title">Dashboard sharing URL</span>' +
+          '<i class="glyphicon glyphicon-remove close-dialog" />' +
+          '<span class="dialog-title">Share Dashboard</span>' +
           '<div class="input-wrapper">' +
             '<input type="text" class="copy-link-input" />' +
           '</div>' +
@@ -303,7 +304,7 @@ function initDashboardsToolbar() {
         window.setTimeout(function() {
           e.trigger.textContent = 'Copy sharing URL';
           e.trigger.style.backgroundColor = '#005588';
-        }, 2500);
+        }, 2000);
       });
 
       clipboard.on('error', function(e) {
@@ -315,16 +316,23 @@ function initDashboardsToolbar() {
     function setupFullScreenMode() {
       i += 1;
       id = 'section-' + i;
-      $iframe.attr('id', id);
+      $iframeWrapper.attr('id', id);
 
-      var fullScreenButton = '<div class="fs-button" title="Full Screen">' +
+      var fullScreenButton = '<div class="toolbar-button fs-button" title="Full Screen">' +
       '<i class="glyphicon glyphicon-fullscreen"></i>' +
       '</div>';
 
+      var exitfullScreenButton = '<div class="toolbar-button close-fs-button" title="Exit Full Screen">' +
+      '<i class="glyphicon glyphicon-remove"></i>' +
+      '</div>';
+
       $(fullScreenButton).appendTo($toolbar);
+      $(exitfullScreenButton).appendTo($iframeWrapper);
       var $goFullScreen = $('.fs-button', $toolbar);
+      var $exitFullScreen = $('.close-fs-button', $iframeWrapper);
 
       var dashboard = document.getElementById(id);
+
       $goFullScreen.on('click', function() {
         if (dashboard.requestFullscreen) dashboard.requestFullscreen();
         else if (dashboard.msRequestFullscreen) dashboard.msRequestFullscreen(); /* IE/Edge */
@@ -336,9 +344,18 @@ function initDashboardsToolbar() {
           'or use either Google Chrome or Mozilla Firefox for full support.');
         }
       });
+
+      $exitFullScreen.on('click', function() {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.msExitFullscreen) window.top.document.msExitFullscreen();
+      });
     }
 
     if (isTableauDashboard) {
+      $iframe.addClass('wm-tableau');
+
       setupFullScreenMode();
       setupShareButton();
     }

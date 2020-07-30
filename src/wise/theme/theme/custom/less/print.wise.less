@@ -72,6 +72,8 @@
     page-break-after: avoid;
   }
 
+  table img {padding: 0 10px;}
+
   h1, h2, h3, h4, h5, h6 {
     color: #000!important;
   }
@@ -105,7 +107,7 @@
   .leadimage-caption,
   .documentByLine,
   .country-authorities .read-more,
-  .fs-button,
+  .dataviz-toolbar,
   .read-more-btn,
   .article-link {
     display: none;
@@ -170,11 +172,18 @@
     margin-bottom: 10px;
   }
 
-  .dataTables_filter,
-  .dataTables_length { display: none; }
+  .frontend {
+    .dataTables_filter,
+    .dataTables_length { display: none; }
 
-  .dataTables_wrapper table.dataTable {
-    width: 100% !important;
+    .dataTables_wrapper table.dataTable {
+      width: 100% !important;
+    }
+
+    .dataTables_wrapper table.dataTable thead th {
+      color: #fff;
+    }
+
   }
 
   .col-sm-4,
@@ -190,6 +199,14 @@
 
   .label {
     border: none;
+  }
+
+  .portlet {
+    .portletHeader,
+    .portletContent > *,
+    .portletContent > div:not(.portalMessage) {
+      padding-left: 0;
+    }
   }
 
   #country-factsheet {

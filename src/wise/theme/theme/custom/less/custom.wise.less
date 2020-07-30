@@ -276,6 +276,7 @@
 
     table.dataTable {
       margin: 1em 0 !important;
+      width: 100% !important;
     }
 
     div.dataTables_info,
@@ -296,7 +297,10 @@
 
     table.dataTable thead th {
       background-color: @blue !important;
-      color: #fff;
+      color: #fff !important;
+      span {
+        color: #fff !important;
+      }
     }
 
     .dataTables_paginate {
@@ -428,7 +432,7 @@
 
 // Dashboards toolbar
 
-.tableau-vis {
+.wm-tableau {
   padding-right: 57px !important;
 }
 
@@ -445,11 +449,11 @@
   }
 }
 
-.fs-button,
-.cl-button {
+.toolbar-button {
   background-color: #005588;
   padding: 3px 7px;
-  margin: 7px auto;
+  margin: 0 auto;
+  margin-bottom: 7px;
   cursor: pointer;
   width: 30px;
   height: 30px;
@@ -467,8 +471,8 @@
 
 .share-dialog {
   position: absolute;
-  right: -5px;
-  top: 43px;
+  right: -13px;
+  top: 36px;
   z-index: 999;
   min-width: 460px;
   display: none;
@@ -525,49 +529,24 @@
 
     .close-dialog {
       display: inline-block;
-      color: #d7d7d7;
+      color: #b3b3b3;
       cursor: pointer;
       font-size: 13px;
       float: right;
-      &:before {
-        display: inline-block;
-        transform: rotate(45deg);
-      }
       &:hover {
         color: #9e9e9e;
       }
     }
-
-    // .tooltip {
-    //   display: none;
-    //   position: absolute;
-    //   bottom: -25px;
-    //   left: 43%;
-    //   transform: translate(-50%, -50%);
-    //   background-color: rgba(51, 51, 51, 0.8);
-    //   color: #fff;
-    //   padding: 3px 9px;
-    //   border-radius: 5px;
-    //   z-index: 999;
-    //   font-family: 'RobotoR';
-    //   font-size: 14px;
-    //   text-align: center;
-    //
-    //   &:after {
-    //     content: "";
-    //     position: absolute;
-    //     bottom: 100%;
-    //     left: 50%;
-    //     margin-left: -5px;
-    //     border-width: 5px;
-    //     border-style: solid;
-    //     border-color: transparent transparent rgba(51, 51, 51, 0.8) transparent;
-    //   }
-    // }
   }
 }
 
-
+.close-fs-button  {
+  z-index: 9;
+  position: fixed;
+  right: 12px;
+  top: 10px;
+  display: none;
+}
 
 /* Chrome, Safari and Opera syntax */
 :-webkit-full-screen {
@@ -584,4 +563,44 @@
 /* Standard syntax */
 :fullscreen {
   background-color: white;
+}
+
+.iframe-wrapper:-webkit-full-screen {
+  iframe {
+    height: 100% !important;
+    width: 100%;
+  }
+  .close-fs-button {
+    display: block;
+  }
+}
+
+.iframe-wrapper:-moz-full-screen, {
+  iframe {
+    height: 100%!important;
+    width: 100%;
+  }
+  .close-fs-button {
+    display: block;
+  }
+}
+
+.iframe-wrapper:-ms-fullscreen {
+  iframe {
+    height: 100% !important;
+    width: 100%;
+  }
+  .close-fs-button {
+    display: block;
+  }
+}
+
+.iframe-wrapper:fullscreen {
+  iframe {
+    height: 100% !important;
+    width: 100%;
+  }
+  .close-fs-button {
+    display: block;
+  }
 }
