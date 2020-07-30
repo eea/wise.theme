@@ -426,24 +426,148 @@
 }
 
 
-// Dashboards fullscreen mode
-.fs-button {
-  background-color: rgba(51, 51, 51, 0.3);
-  border: none;
+// Dashboards toolbar
+
+.tableau-vis {
+  padding-right: 57px !important;
+}
+
+.dataviz-toolbar {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  padding: 2px 5px;
-  .glyphicon-fullscreen {
-    font-size: 14px;
-    color: #fff;
-    top: 2px;
-    left: 1px;
-  }
-  &:hover {
-    background-color:  rgba(51, 51, 51, 0.5);
+  top: 15px;
+  right: 15px;
+}
+
+#country-factsheet {
+  .fs-button i,
+  .cl-button i {
+    top: 3px;
   }
 }
+
+.fs-button,
+.cl-button {
+  background-color: #005588;
+  padding: 3px 7px;
+  margin: 7px auto;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  i {
+    font-size: 16px;
+    color: #fff;
+    transition: all .05s ease-in-out;
+  }
+  &:hover {
+    > i {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.share-dialog {
+  position: absolute;
+  right: -5px;
+  top: 43px;
+  z-index: 999;
+  min-width: 460px;
+  display: none;
+
+  .dialog-wrapper {
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 1.3em;
+    margin-right: 55px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+
+    .input-wrapper {
+      position: relative;
+      &:before {
+        font-family: @icon-font-family;
+        content:"\e144";
+        position: absolute;
+        top: 30px;
+        left: 8px;
+        color: #9e9e9e;
+        font-size: 13px;
+      }
+
+      input {
+        display: inline-block;
+        width: 100%;
+        margin: 1.5em 0;
+        padding-left: 1.7em;
+      }
+    }
+
+    .dialog-title {
+      font-size: 16px;
+      font-family: 'RobotoR';
+      color: @text-color;
+    }
+
+    .copy-btn {
+      width:  100%;
+      background-color: @blue;
+      color: #fff;
+      font-family: 'PoppinsSemiB';
+      position: relative;
+      border: none;
+      border-radius: 4px;
+      &:hover {
+        background-color: @light-blue;
+        box-shadow: none;
+      }
+
+      i { top: 2px; }
+    }
+
+    .close-dialog {
+      display: inline-block;
+      color: #d7d7d7;
+      cursor: pointer;
+      font-size: 13px;
+      float: right;
+      &:before {
+        display: inline-block;
+        transform: rotate(45deg);
+      }
+      &:hover {
+        color: #9e9e9e;
+      }
+    }
+
+    // .tooltip {
+    //   display: none;
+    //   position: absolute;
+    //   bottom: -25px;
+    //   left: 43%;
+    //   transform: translate(-50%, -50%);
+    //   background-color: rgba(51, 51, 51, 0.8);
+    //   color: #fff;
+    //   padding: 3px 9px;
+    //   border-radius: 5px;
+    //   z-index: 999;
+    //   font-family: 'RobotoR';
+    //   font-size: 14px;
+    //   text-align: center;
+    //
+    //   &:after {
+    //     content: "";
+    //     position: absolute;
+    //     bottom: 100%;
+    //     left: 50%;
+    //     margin-left: -5px;
+    //     border-width: 5px;
+    //     border-style: solid;
+    //     border-color: transparent transparent rgba(51, 51, 51, 0.8) transparent;
+    //   }
+    // }
+  }
+}
+
+
 
 /* Chrome, Safari and Opera syntax */
 :-webkit-full-screen {

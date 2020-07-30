@@ -85,6 +85,8 @@
     content: none;
   }
 
+  table img { height: auto; width: 100%;}
+
   #content-core p {
     color: #000!important;
   }
@@ -103,8 +105,32 @@
   .leadimage-caption,
   .documentByLine,
   .country-authorities .read-more,
-  .fs-button {
+  .fs-button,
+  .read-more-btn,
+  .article-link {
     display: none;
+  }
+
+  .articles-wrapper {
+    display: block;
+  }
+
+  .article-box {
+    page-break-inside: avoid;
+    display: inline-block;
+  }
+
+  .article-box-header {
+    min-height: 70px;
+  }
+
+  .article-box-wrapper {
+    background-color: #59d3ff !important;
+  }
+
+  .collapse-content {
+    height: auto;
+    overflow: visible;
   }
 
   .tableau-vis {display: none !important;}
@@ -139,6 +165,18 @@
     margin-bottom: 1em;
   }
 
+  .tile-listing-wrapper .tile-title {
+    min-height: auto;
+    margin-bottom: 10px;
+  }
+
+  .dataTables_filter,
+  .dataTables_length { display: none; }
+
+  .dataTables_wrapper table.dataTable {
+    width: 100% !important;
+  }
+
   .col-sm-4,
   .col-md-4,
   .col-md-8,
@@ -149,6 +187,10 @@
 
   .tableau-thumb {display: block; width: 100%;}
   .factsheet-tableau-vis {display: none!important;}
+
+  .label {
+    border: none;
+  }
 
   #country-factsheet {
     .country-header-container {
@@ -233,4 +275,24 @@
       padding-bottom: 0;
     }
   }
+
+
+  // wise msfd
+  .wise-search-form-container dd,
+  #wise-search-form dd {
+    overflow: auto;
+    max-height: auto;
+  }
+
+  .ui-autocomplete { display: none; }
+
+  .controls {
+    background-color: #ddd !important;
+  }
+
+  // .field>span {
+  //   max-height: auto;
+  // }
+
+  #form-buttons-download { display: none; }
 }
