@@ -231,7 +231,7 @@ function initThumbnailForDashboards() {
     $('iframe').each(function() {
       var $this = $(this);
       var iframeSRC = $this.attr('src');
-      var isTableauDashboard = iframeSRC.indexOf('tableau.discomap') > -1;
+      var isTableauDashboard = /tableau/i.test(iframeSRC);
       if (isTableauDashboard) {
         $('<img class="tableau-thumb"/>').insertAfter($this);
         var $thumb = $this.siblings('.tableau-thumb');
@@ -247,46 +247,57 @@ function initDashboardsToolbar() {
   $('iframe').each(function(i) {
     var $iframe = $(this);
     var iframeSRC = $iframe.attr('src');
-    var isTableauDashboard = iframeSRC.indexOf('tableau.discomap') > -1;
+    var isTableauDashboard = /tableau/i.test(iframeSRC);
 
     $iframe.wrap('<div class="iframe-wrapper"/>');
-
     var $iframeWrapper = $iframe.parent('.iframe-wrapper');
     $iframeWrapper.parent().css('position', 'relative');
 
-    var datavizToolbar = '<div class="dataviz-toolbar"/>';
-    $(datavizToolbar).insertAfter($iframeWrapper);
-    var $toolbar = $iframeWrapper.siblings('.dataviz-toolbar');
-
     // Copy tableau dashboard link
     function setupShareButton() {
-      var toolbarShareButton = '<div class="toolbar-button cl-button" title="Share">' +
-       '<i class="glyphicon glyphicon-share"></i>' +
-      '</div>';
 
-      var html = '<div class="share-dialog">' +
-        '<div class="dialog-wrapper">' +
-          '<i class="glyphicon glyphicon-remove close-dialog" />' +
-          '<span class="dialog-title">Share Dashboard</span>' +
-          '<div class="input-wrapper">' +
-            '<input type="text" class="copy-link-input" />' +
-          '</div>' +
-          '<button class="copy-btn" data-clipboard="">' +
-            'Copy sharing URL' +
-          '</button>' +
-        '</div>' +
-      '</div>';
+      var pathArray = iframeSRC.split('/');
+      var t_siteRoot = '/' + pathArray[3] + '/' + pathArray[4];
+      var t_name = pathArray[6] + '/' + pathArray[7].split('?')[0];
+      var t_filter = pathArray[7].split('?')[1];
+      t_filter = t_filter.split('&:')[0];
 
-      $(toolbarShareButton).appendTo($toolbar);
-      $(html).appendTo($toolbar);
+      var embed = "<script type='text/javascript'" +
+      "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'></script>" +
+      "<div class='tableauPlaceholder' style='width: 100%; height: 850px;'>" +
+        "<object class='tableauViz' width='100%' height='850' style='display:none;'>" +
+          "<param name='host_url' value='https%3A%2F%2Ftableau.discomap.eea.europa.eu%2F' />" +
+          "<param name='site_root' value='" + t_siteRoot + "' />" +
+          "<param name='name' value='"+ t_name + "' />" +
+          "<param name='filter' value='"+ t_filter + "'/>" +
+          "<param name='toolbar' value='no' />"+
+          "<param name='isGuestRedirectFromVizportal' value='y' />" +
+        "</object>" +
+      "</div>";
 
       var $copyLinkButton = $('.copy-btn', $toolbar);
+      var $copyEmbedButton = $('.copy-embed', $toolbar);
       var $closeDialog = $('.close-dialog', $toolbar);
       var $shareButton = $('.cl-button', $toolbar);
       var $dialog = $('.share-dialog', $toolbar);
+      var $textarea = $('textarea', $toolbar);
+      var $input = $('.copy-link-input', $toolbar);
+      var $tabNavItem = $('.daviz-nav-tabs', $toolbar).children('li');
 
+      $textarea.val(embed);
       $copyLinkButton.attr('data-clipboard-text', iframeSRC);
+      $copyEmbedButton.attr('data-clipboard-text', embed);
       $('.copy-link-input').attr('value', iframeSRC);
+
+      $tabNavItem.click(function() {
+        var $this = $(this);
+        var tab_id = $this.attr('data-tab');
+
+        $tabNavItem.removeClass('current');
+        $this.parent().siblings('.daviz-tab-content').removeClass('current');
+        $this.addClass('current');
+        $this.parent().siblings("#" + tab_id).addClass('current');
+      });
 
       $shareButton.click(function() {
         $dialog.show();
@@ -296,13 +307,20 @@ function initDashboardsToolbar() {
         $dialog.hide();
       });
 
-      var clipboard = new ClipboardJS('.copy-btn');
+      $textarea.on('click',function() { this.select(); });
+      $input.on('click',function() { this.select(); });
+
+      var clipboard = new ClipboardJS('.dialog-btn');
       clipboard.on('success', function(e) {
         e.clearSelection();
-        e.trigger.textContent = 'Link copied to clipboard';
+        e.trigger.textContent = 'Copied to clipboard!';
         e.trigger.style.backgroundColor = '#269b65';
         window.setTimeout(function() {
-          e.trigger.textContent = 'Copy sharing URL';
+          if (e.trigger.className.indexOf("copy-embed")!== -1) {
+            e.trigger.textContent = 'Copy embed code';
+          } else {
+            e.trigger.textContent = 'Copy sharing URL';
+          }
           e.trigger.style.backgroundColor = '#005588';
         }, 2000);
       });
@@ -318,15 +336,10 @@ function initDashboardsToolbar() {
       id = 'section-' + i;
       $iframeWrapper.attr('id', id);
 
-      var fullScreenButton = '<div class="toolbar-button fs-button" title="Full Screen">' +
-      '<i class="glyphicon glyphicon-fullscreen"></i>' +
-      '</div>';
-
       var exitfullScreenButton = '<div class="toolbar-button close-fs-button" title="Exit Full Screen">' +
       '<i class="glyphicon glyphicon-remove"></i>' +
       '</div>';
 
-      $(fullScreenButton).appendTo($toolbar);
       $(exitfullScreenButton).appendTo($iframeWrapper);
       var $goFullScreen = $('.fs-button', $toolbar);
       var $exitFullScreen = $('.close-fs-button', $iframeWrapper);
@@ -355,6 +368,13 @@ function initDashboardsToolbar() {
 
     if (isTableauDashboard) {
       $iframe.addClass('wm-tableau');
+
+      $('.daviz-toolbar-container')
+      .children('.dashboard-toolbar')
+      .clone()
+      .insertAfter($iframeWrapper);
+
+      var $toolbar = $iframeWrapper.siblings('.dataviz-toolbar');
 
       setupFullScreenMode();
       setupShareButton();
