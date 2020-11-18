@@ -43,6 +43,15 @@
     <drop css:content="#viewlet-above-content"/>
   </rules> -->
 
+
+  <!-- add .fullwidth class for compliance module -->
+  <rules css:if-content=".full-width-marker">
+    <prepend theme="/html/body">
+      <xsl:attribute name="class">
+        <xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
+    </prepend>
+  </rules>
+
   <rules css:if-not-content=".section-front-page">
     <theme href="page.html" />
   </rules>
