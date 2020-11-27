@@ -319,16 +319,18 @@
   }
 }
 
-body.plone-toolbar-left-default {
-  .sticky-header {
-    width: calc(100% - 4.75em);
-    left: 3.75em;
+@media only screen and (min-width: 767px) {
+  body.plone-toolbar-left-default {
+    .sticky-header {
+      width: calc(~"100% - 60px");
+      left: 60px;
+    }
   }
-}
 
-body.plone-toolbar-left-expanded {
-  .sticky-header {
-    width: calc(100% - 9.6em);
-    left: 7.5em;
+  body.plone-toolbar-left-expanded {
+    .sticky-header {
+      width: calc(~"100% - 120px");
+      left: 120px;
+    }
   }
 }
