@@ -249,10 +249,6 @@ function initDashboardsToolbar() {
     var iframeSRC = $iframe.attr('src');
     var isTableauDashboard = /tableau/i.test(iframeSRC);
 
-    $iframe.wrap('<div class="iframe-wrapper"/>');
-    var $iframeWrapper = $iframe.parent('.iframe-wrapper');
-    $iframeWrapper.parent().css('position', 'relative');
-
     // Copy tableau dashboard link
     function setupShareButton() {
 
@@ -368,6 +364,9 @@ function initDashboardsToolbar() {
 
     if (isTableauDashboard) {
       $iframe.addClass('wm-tableau');
+      $iframe.wrap('<div class="iframe-wrapper"/>');
+      var $iframeWrapper = $iframe.parent('.iframe-wrapper');
+      $iframeWrapper.parent().css('position', 'relative');
 
       $('.daviz-toolbar-container')
       .children('.dashboard-toolbar')
