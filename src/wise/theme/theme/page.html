@@ -142,41 +142,45 @@
               </div>
               <div class="share-dialog">
                 <div class="dialog-wrapper">
-                  <i class="glyphicon glyphicon-remove close-dialog"></i>
-                  <span class="dialog-title">Share Dashboard</span>
-                  <ul class="daviz-nav-tabs">
-                    <li data-tab="share-link" class="daviz-tab-item current">
-                      <span class="nav-dot"
-                        ><i class="glyphicon glyphicon-link"
-                      /></span>
-                      <span class="daviz-tab-title">URL</span>
-                    </li>
-                    <li data-tab="share-embed" class="daviz-tab-item">
-                      <span class="nav-dot">
-                        <i class="glyphicon glyphicon-menu-left" />
-                        <i class="glyphicon glyphicon-menu-right"
-                      /></span>
-                      <span class="daviz-tab-title">Embed</span>
-                    </li>
-                  </ul>
-                  <div id="share-link" class="daviz-tab-content current">
-                    <div class="input-wrapper">
-                      <input type="text" class="copy-link-input" value="" />
+                  <div class="dialog-header">
+                    <i class="glyphicon glyphicon-remove close-dialog"></i>
+                    <span class="dialog-title">Share Dashboard</span>
+                  </div>
+                  <div class="dialog-body">
+                    <ul class="daviz-nav-tabs">
+                      <li data-tab="share-link" class="daviz-tab-item current">
+                        <span class="nav-dot"
+                          ><i class="glyphicon glyphicon-link"
+                        /></span>
+                        <span class="daviz-tab-title">URL</span>
+                      </li>
+                      <li data-tab="share-embed" class="daviz-tab-item">
+                        <span class="nav-dot">
+                          <i class="glyphicon glyphicon-menu-left" />
+                          <i class="glyphicon glyphicon-menu-right"
+                        /></span>
+                        <span class="daviz-tab-title">Embed</span>
+                      </li>
+                    </ul>
+                    <div id="share-link" class="daviz-tab-content current">
+                      <div class="input-wrapper">
+                        <input type="text" class="copy-link-input" value="" />
+                      </div>
+                      <button class="copy-btn dialog-btn" data-clipboard-text>
+                        Copy sharing URL
+                      </button>
                     </div>
-                    <button class="copy-btn dialog-btn" data-clipboard-text>
-                      Copy sharing URL
-                    </button>
+                    <div id="share-embed" class="daviz-tab-content">
+                      <textarea></textarea>
+                      <button
+                        class="copy-btn copy-embed dialog-btn"
+                        data-clipboard-text
+                      >
+                        Copy embed code
+                      </button>
+                    </div>
+                    <span class="close-dialog">Cancel</span>
                   </div>
-                  <div id="share-embed" class="daviz-tab-content">
-                    <textarea></textarea>
-                    <button
-                      class="copy-btn copy-embed dialog-btn"
-                      data-clipboard-text
-                    >
-                      Copy embed code
-                    </button>
-                  </div>
-                  <span class="close-dialog">Cancel</span>
                 </div>
               </div>
             </div>

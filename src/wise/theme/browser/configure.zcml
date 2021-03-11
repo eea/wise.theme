@@ -57,6 +57,15 @@
     permission="zope2.View"
     />
 
+
+  <browser:viewlet
+    name="tableau_viewlet"
+    for="plone.app.contenttypes.interfaces.IDocument"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    template="pt/tableau_dashboard.pt"
+    permission="zope2.View"
+    />
+
   <browser:viewlet
     for="..interfaces.IExternalLinks"
     name="external_links_viewlet"

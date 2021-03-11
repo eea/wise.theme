@@ -1,7 +1,7 @@
 {
   "name": "wise.theme",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plone theme for WISE Marine",
   "main": "Gruntfile.js",
   "dependencies": {
     "autoprefixer": "^6.3.5",

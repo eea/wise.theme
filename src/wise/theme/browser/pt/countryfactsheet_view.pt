@@ -165,7 +165,9 @@
 
               <div tal:repeat="brain context/getFolderContents"
                    class="country-dashboard-section">
-                <tal:def define="section brain/getObject; height section/dashboard_height; url section/tableau_url | string:">
+                <tal:def define="section brain/getObject;
+                                 height section/dashboard_height;
+                                 url section/tableau_url | string:">
                   <div>
                     <h2 class="section-title" tal:content="section/Title"></h2>
                     <div class="row">
