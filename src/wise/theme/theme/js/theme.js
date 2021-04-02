@@ -494,7 +494,7 @@ $(document).ready(function () {
 
   if ($("#country-factsheet").length > 0) {
     // move print button on country profile pages under header
-    $(".print-btn-wrapper").insertAfter(".country-authorities");
+    $("#print-button").insertAfter(".country-title");
   }
 
   var resizeTimer;
