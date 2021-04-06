@@ -192,19 +192,42 @@ def subthemes_vocabulary(context):
     return values_to_vocab(subthemes)
 
 
-organisations = [
-    "European Environment Agency",
-    "Environment Directorate General of the European Commission ",
-    "European Topic Centre on Inland, Coastal and Marine waters",
-    "OSPAR Commission-Protecting and conserving the North-East Atlantic and its",
-    "resources",
-    "The Baltic Marine Environment Protection Commission",
-    "UN Environment Programme / Mediterranean Action Plan",
-    "Black Sea Commission (BS",
-    "Other",
-]
+organisations = {
+    "EEA": dict(
+        title="European Environment Agency", website="https://www.eea.europa.eu/"
+    ),
+    "DG ENV": dict(
+        title="Environment Directorate General of the European Commission ",
+        website="https://ec.europa.eu/environment/index_en.htm",
+    ),
+    "ETC/ICM": dict(
+        title="European Topic Centre on Inland, Coastal and Marine waters",
+        website="https://www.eionet.europa.eu/etcs/etc-icm",
+    ),
+    "OSPAR": dict(
+        title="OSPAR Commission-Protecting and conserving the "
+        "North-East Atlantic and its resources",
+        website="https://www.ospar.org/",
+    ),
+    "HELCOM": dict(
+        title="The Baltic Marine Environment Protection Commission",
+        website="https://helcom.fi/",
+    ),
+    "UNEP/MAP": dict(
+        title="UN Environment Programme / Mediterranean Action Plan",
+        website="www.unepmap.org",
+    ),
+    "BSC": dict(
+        title="Black Sea Commission (BSC)",
+        website="http://www.blacksea-commission.org/",
+    ),
+    "Other": dict(title="Other", website=""),
+}
 
 
 @provider(IVocabularyFactory)
 def organisations_vocabulary(context):
-    return values_to_vocab(organisations)
+    terms = [SimpleTerm(acro, acro, label) for acro, label in organisations.items()]
+    terms.sort(key=lambda t: t.title)
+    vocab = SimpleVocabulary(terms)
+    return vocab
