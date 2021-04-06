@@ -41,7 +41,7 @@ ul.plone-nav {
     top: 6px;
   }
 
-  >li:first-child:before{
+  > li:first-child:before {
     display: none;
   }
 
@@ -67,7 +67,7 @@ ul.plone-nav {
 
     > .submenu {
       border: 1px solid #f1f1f1;
-      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       background-color: #fff;
       text-align: left;
       position: absolute;
@@ -131,30 +131,30 @@ ul.plone-nav {
         padding: 0.5em 0.4em;
         display: block;
 
-         > li {
-           float: none;
+        > li {
+          float: none;
 
-           a {
-             padding: 0.4rem 0;
+          a {
+            padding: 0.4rem 0;
 
-             &:hover {
-               background-color: transparent;
-               color: #b3c0cb;
-             }
-           }
-         }
+            &:hover {
+              background-color: transparent;
+              color: #b3c0cb;
+            }
+          }
+        }
       }
     }
 
-    >.aligned-submenu {
+    > .aligned-submenu {
       right: 0;
       left: auto;
     }
-    >.aligned-submenu:before {
+    > .aligned-submenu:before {
       left: auto;
       right: 30px;
     }
-    >.aligned-submenu:after {
+    > .aligned-submenu:after {
       left: auto;
       right: 28px;
     }
@@ -175,7 +175,6 @@ ul.plone-nav {
     }
   }
 }
-
 
 // mobile icon
 .plone-navbar-toggle {
@@ -236,9 +235,8 @@ ul.plone-nav {
     border-radius: 3px;
     z-index: 1;
     transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-    opacity 0.55s ease;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
   }
 
   input.mobile-box:checked ~ .icon-bar {
@@ -257,7 +255,6 @@ ul.plone-nav {
   }
 }
 
-
 // Collapsed mobile menu
 
 .collapse-nav {
@@ -271,7 +268,7 @@ ul.plone-nav {
   }
 
   .fp-header-wrapper .fp-wrapper:after {
-    content: '';
+    content: "";
     width: 100%;
     height: 1px;
     background-color: #fff;
@@ -287,6 +284,7 @@ ul.plone-nav {
 
   .site-logo img {
     width: 80px;
+    height: auto;
   }
 
   .site-logo-text {
@@ -323,7 +321,7 @@ ul.plone-nav {
     display: none !important;
   }
 
-  .user-wrapper>a,
+  .user-wrapper > a,
   .top-actions .user-icon {
     background-position: -25px -22px;
   }
@@ -359,7 +357,7 @@ ul.plone-nav {
   }
 
   .plone-navbar-collapse.in .menu-open {
-    display: block!important;
+    display: block !important;
   }
 
   .plone-navbar-collapse {
@@ -368,7 +366,7 @@ ul.plone-nav {
     overflow-y: auto;
     position: fixed;
     padding-right: 15px;
-    padding-left:  15px;
+    padding-left: 15px;
     width: 320px;
     right: 0;
     top: 56px;
@@ -404,12 +402,12 @@ ul.plone-nav {
           width: 0;
         }
 
-        >a {
+        > a {
           color: #fff;
         }
       }
 
-      >li:hover {
+      > li:hover {
         a {
           background-color: transparent;
         }
@@ -419,14 +417,14 @@ ul.plone-nav {
         display: none;
       }
 
-      >li:not(:first-child) {
-        >a {
+      > li:not(:first-child) {
+        > a {
           border-top: 1px solid #fff;
         }
       }
 
       li {
-        >a {
+        > a {
           display: block;
           text-align: left;
         }
@@ -476,7 +474,7 @@ ul.plone-nav {
         }
 
         .opener {
-          display: inline-block;
+          display: block;
           margin-right: 0;
           background: transparent;
           border-color: transparent;
@@ -525,5 +523,5 @@ ul.plone-nav {
   display: block !important;
 }
 .two-columns {
-  column-count: 2;    // should be ok for all cases
+  column-count: 2; // should be ok for all cases
 }

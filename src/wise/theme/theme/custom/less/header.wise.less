@@ -1,4 +1,4 @@
-//* // HEADER //*//
+// HEADER
 
 // FrontPage header
 #content-header.fp-header {
@@ -11,9 +11,6 @@
 }
 
 .fp-header.collapse-nav {
-  // .fp-wrapper {
-  //   padding: 0;
-  // }
   .plone-navbar-toggle {
     border-color: #fff;
 
@@ -39,7 +36,7 @@
   }
 
   .plone-navbar {
-    border:none;
+    border: none;
   }
 }
 
@@ -92,6 +89,7 @@
     > li {
       float: left;
       margin: 0;
+
       &:before {
         content: "";
         width: 1px;
@@ -101,9 +99,11 @@
         left: 0px;
         background: #fff;
       }
+
       > a {
         color: #fff;
       }
+
       &:hover > a {
         color: #fff;
         background-color: rgba(255, 255, 255, 0.3);
@@ -111,7 +111,6 @@
     }
   }
 }
-
 
 // Page header
 #content-header {
@@ -135,6 +134,10 @@
 .site-logo {
   display: inline-block;
   vertical-align: middle;
+
+  a {
+    display: inline-block;
+  }
 }
 
 .site-logo-text {
@@ -161,7 +164,8 @@
     width: 23px;
     margin: 0 auto;
     display: block;
-    background: url('/marine/++theme++wise-theme/static/images/top-icons.svg') no-repeat;
+    background: url("/marine/++theme++wise-theme/static/images/top-icons.svg")
+      no-repeat;
   }
 
   .search-icon {
@@ -178,9 +182,7 @@
   }
 }
 
-
-//* // top search section
-
+// Top search section
 .search-icon {
   cursor: pointer;
 }
@@ -205,7 +207,7 @@
   color: #fff;
 
   &:before {
-    content:"\e003";
+    content: "\e003";
     font-family: @icon-font-family;
     font-size: 17px;
   }
@@ -229,8 +231,7 @@
   }
 }
 
-
-//* // login and user actions
+// Login and user actions
 
 .user-wrapper > a {
   height: 23px;
@@ -240,7 +241,8 @@
   display: block;
   position: relative;
   bottom: 2px;
-  background: url(/marine/++theme++wise-theme/static/images/top-icons.svg) no-repeat;
+  background: url("/marine/++theme++wise-theme/static/images/top-icons.svg")
+    no-repeat;
   background-position: -25px 1px;
   display: inline-block;
 }
@@ -268,21 +270,24 @@
       list-style-type: none;
     }
 
-    >li.plone-toolbar-separator {
-      >a {
+    > li.plone-toolbar-separator {
+      > a {
         display: none;
       }
+
       li {
-        >span {
+        > span {
           padding: 0.5em 0.8em;
           display: block;
           font-family: "RobotoM";
         }
+
         a {
           padding: 0 0.8em 0.5em 0.8em;
           display: block;
           position: relative;
         }
+
         .icon-logout:before {
           font-size: 12px;
           line-height: 18px;
@@ -304,13 +309,14 @@
   right: 0;
   z-index: 999;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transform: translate3d(0px, 0px, 0px);
   padding: 8px 15px !important;
 
   .site-logo img {
     width: 80px;
   }
+
   .site-logo-text {
     font-size: 12px;
     width: 145px;

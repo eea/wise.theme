@@ -55,6 +55,10 @@
   margin-bottom: 2em;
 }
 
+.fp-spotlight {
+  overflow: hidden;
+}
+
 .topic-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -92,6 +96,8 @@
   img {
     display: block;
     margin: 0 auto;
+    height: 65px;
+    width: 65px;
   }
 }
 
@@ -171,7 +177,7 @@
 
       .published-info {
         color: @light-blue;
-        font-size:smaller;
+        font-size: smaller;
         margin-bottom: 0.8rem;
       }
       p {
@@ -183,7 +189,6 @@
     }
   }
 }
-
 
 .fp-key-messages-wrapper {
   background-color: #f7f3ef;
@@ -428,14 +433,18 @@
     }
   }
 
-  .fp-tab-card.blue-color{ color: #fff; }
+  .fp-tab-card.blue-color {
+    color: #fff;
+  }
 
   .tab-card-content {
     padding: 1.3em;
     font-family: "PoppinsL";
     font-size: 25px;
 
-    p {margin:0;}
+    p {
+      margin: 0;
+    }
 
     @media only screen and (max-width: 1270px) {
       font-size: 22px;
@@ -500,22 +509,28 @@
     }
 
     @-webkit-keyframes sk-bouncedelay {
-      0%, 80%, 100% {
+      0%,
+      80%,
+      100% {
         -webkit-transform: scale(0);
       }
       40% {
-        -webkit-transform: scale(1.0);
+        -webkit-transform: scale(1);
       }
     }
 
     @keyframes sk-bouncedelay {
-      0%, 80%, 100% {
+      0%,
+      80%,
+      100% {
         -webkit-transform: scale(0);
         transform: scale(0);
-      } 40% {
-        -webkit-transform: scale(1.0);
-        transform: scale(1.0);
-      } 70%{
+      }
+      40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      70% {
         background-color: @darker-blue;
       }
     }

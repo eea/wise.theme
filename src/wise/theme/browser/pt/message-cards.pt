@@ -44,6 +44,7 @@
                           tal:attributes="href card/url"
                           class="card-link"
                           target="_blank"
+                          rel="noopener"
                           title="Read more">
                           <span class="card-link-btn"></span>
                         </a>

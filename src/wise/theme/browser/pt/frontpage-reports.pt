@@ -17,6 +17,7 @@
               <a href=""
                 tal:attributes="href report/external_url"
                 target="_blank"
+                rel="noopener"
                 class="report-title-link">
                 <h4 class="report-tile-title" tal:content="report/Title">Title</h4>
               </a>
@@ -29,7 +30,11 @@
                   target="_blank"
                   tal:attributes="href report/remoteUrl"
                   class="open-report-link">
-                  <img class="lazyload"
+                  <img
+                    class="lazyload"
+                    alt="Newspaper icon"
+                    height="15"
+                    width="22"
                     data-src="/marine/++theme++wise-theme/static/images/newspaper.svg"/>
                   Open Publication
                 </a>
