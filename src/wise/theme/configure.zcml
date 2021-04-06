@@ -68,6 +68,14 @@
       />
 
   <genericsetup:registerProfile
+      name="metadata_catalogue"
+      title="WISE Theme Metadata Catalogue"
+      description="Install metadata catalogue specific settings"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/upgrades/metadata_catalogue"
+      />
+
+  <genericsetup:registerProfile
       name="uninstall"
       title="Uninstall: Plone Theme: WISE Theme"
       description="Uninstalls the Plone theme package wise.theme."
