@@ -48,6 +48,16 @@
       marker=".interfaces.IDisclaimer"
       />
 
+  <plone:behavior
+      name="wise.catalogue-metadata"
+      title="Wise Catalogue metadata"
+      description="Adds WISE Catalogue metadata fields"
+      factory=".behavior.CatalogueMetadata"
+      provides=".interfaces.IReferenceLinks"
+      for="plone.dexterity.interfaces.IDexterityContent"
+      marker=".interfaces.IReferenceLinks"
+      />
+
   <genericsetup:registerProfile
       name="default"
       title="Plone Theme: WISE Theme"
