@@ -53,9 +53,9 @@
       title="Wise Catalogue metadata"
       description="Adds WISE Catalogue metadata fields"
       factory=".behavior.CatalogueMetadata"
-      provides=".interfaces.IReferenceLinks"
+      provides=".interfaces.ICatalogueMetadata"
       for="plone.dexterity.interfaces.IDexterityContent"
-      marker=".interfaces.IReferenceLinks"
+      marker=".interfaces.ICatalogueMetadata"
       />
 
   <genericsetup:registerProfile

@@ -227,7 +227,9 @@ organisations = {
 
 @provider(IVocabularyFactory)
 def organisations_vocabulary(context):
-    terms = [SimpleTerm(acro, acro, label) for acro, label in organisations.items()]
+    terms = [
+        SimpleTerm(acro, acro, info["title"]) for acro, info in organisations.items()
+    ]
     terms.sort(key=lambda t: t.title)
     vocab = SimpleVocabulary(terms)
     return vocab

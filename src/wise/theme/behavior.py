@@ -31,3 +31,4 @@ class CatalogueMetadata(MetadataBase):
     theme = DCFieldProperty(ICatalogueMetadata["theme"])
     subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
     publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
+    thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])

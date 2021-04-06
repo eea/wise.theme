@@ -4,6 +4,7 @@
 
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import model
 from zope.interface import Interface, provider
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
@@ -72,17 +73,25 @@ class ICatalogueMetadata(model.Schema):
     """
 
     organisation = Choice(
-        title=u"Organisation", required=True, vocabulary="wise_organisations_vocabulary"
+        title=u"Organisation",
+        required=True,
+        vocabulary="wise_organisations_vocabulary",
+        default="EEA",
     )
 
     dpsir_type = Choice(
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    theme = Choice(title=u"Theme", required=False, vocabulary="wise_theme_vocabulary")
+    theme = Choice(title=u"Theme", required=False, vocabulary="wise_themes_vocabulary")
 
     subtheme = Choice(
         title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
     )
 
     publication_year = Int(title=u"Publication year", required=True)
+
+    thumbnail = NamedBlobImage(
+        title=u"Preview image (thumbnail)",
+        required=False,
+    )
