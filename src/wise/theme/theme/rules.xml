@@ -72,6 +72,13 @@
       <xsl:attribute name="class">
         <xsl:value-of select="/html/body/@class"/> leadimage-view</xsl:attribute>
     </prepend>
+
+    <drop css:content="#plone-document-byline" />
+    <before css:theme=".print-btn-wrapper">
+      <div class="col-xs-12">
+        <xsl:copy-of select='//*[@id="plone-document-byline"]' />
+      </div>
+    </before>
   </rules>
 
   <rules css:if-content=".leadImageOverride">

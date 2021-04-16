@@ -1,0 +1,11 @@
+<div tal:condition="view/enabled" id="page-toc">
+  <div class="toc-wrapper">
+    <div id="toc"></div>
+  </div>
+
+  <script>
+      jQuery(document).ready(function() {
+        $('.pat-autotoc').data('pat-autotoc', 'appendTo:#toc;scrollduration:slow;levels:h1,h2,h3,h4,h5,h6;appendTo:#toc');
+      });
+  </script>
+</div>

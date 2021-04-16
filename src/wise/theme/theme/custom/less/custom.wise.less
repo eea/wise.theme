@@ -73,15 +73,18 @@
 
 .bottom-links {
   padding-left: 0;
+
   h3 {
     font-family: "PoppinsSemiB";
   }
+
   ol {
     padding-left: 1em;
     a {
       padding: 0.2em 0;
       display: inline-block;
     }
+
     a:before {
       content: "";
     }
@@ -89,9 +92,11 @@
 
   ul {
     padding-left: 0;
+
     li {
       list-style-type: none;
       padding: 0.2em 0 0.2em 0.85em;
+
       &:before {
         content: "\e250";
         font-family: @icon-font-family;
@@ -101,10 +106,12 @@
         width: 1.2em;
       }
     }
+
     > .has-link {
       &:before {
         color: @link-color;
       }
+
       &:hover:before {
         color: @darker-blue;
       }
@@ -113,9 +120,11 @@
 
   p {
     margin-bottom: 0;
+
     a {
       padding: 0.2em 0;
       display: inline-block;
+
       &:before {
         content: "\e250";
         font-family: @icon-font-family;
@@ -183,6 +192,7 @@
   &:hover {
     background-color: #00437d;
   }
+
   &:after {
     font-family: @icon-font-family;
     content: "\e259";
@@ -192,6 +202,7 @@
     left: 3px;
   }
 }
+
 .arrow-up {
   &:after {
     content: "\e260";
@@ -634,7 +645,6 @@
     }
 
     .close-dialog {
-      display: inline-block;
       color: #b3b3b3;
       cursor: pointer;
       font-size: 13px;
@@ -760,7 +770,6 @@
   }
 
   .close-download-dialog {
-    display: inline-block;
     color: #b3b3b3;
     cursor: pointer;
     font-size: 13px;
@@ -780,4 +789,69 @@
       }
     }
   }
+}
+
+// ToC
+#page-toc {
+  margin-bottom: 1.5em;
+}
+
+.toc-wrapper {
+  a {
+    display: table;
+    font-family: "RobotoL";
+    font-size: 18px;
+    color: @text-color;
+    position: relative;
+    padding-left: 15px;
+
+    &:hover {
+      color: #3e9dbf;
+    }
+
+    &:before {
+      content: "■";
+      position: absolute;
+      top: 4px;
+      left: 2px;
+      font-size: 12px;
+    }
+  }
+}
+
+// Scroll to top button
+.scroll-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 99;
+}
+
+.scroll-button {
+  color: #fff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  text-shadow: none;
+  background-image: none;
+  background-color: #59d3ff;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: @darker-blue;
+
+    .scroll-icon {
+      color: #fff;
+    }
+  }
+}
+
+.scroll-icon {
+  font-size: 22px;
+  position: relative;
+  left: 2px;
+  color: @darker-blue;
 }
