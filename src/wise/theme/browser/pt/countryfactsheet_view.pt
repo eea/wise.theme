@@ -186,7 +186,8 @@
                       <div class="col-md-4 col-xs-12">
                         <div class="dashboard-text"
                           tal:condition="section/text_above_dashboard|nothing"
-                          tal:content="structure section/text_above_dashboard/output">Slide text
+                          tal:content="structure section/text_above_dashboard/output">
+                          Dashboard text
                         </div>
                       </div>
                       <tal:cond tal:condition="section/tableau_url">
@@ -195,13 +196,19 @@
                                class="factsheet-tableau-vis"></div>
                           <img class="tableau-thumb"
                                 tal:attributes="src python: url + '&:format=png'"/>
+
+                          <div class="dashboard-source"
+                            tal:condition="section/dashboard_source|nothing"
+                            tal:content="structure section/dashboard_source/output">
+                            Dashboard source
+                          </div>
                         </div>
                       </tal:cond>
                     </div>
 
                     <div
                       tal:condition="section/text|nothing"
-                      tal:content="structure section/text/output">Slide text
+                      tal:content="structure section/text/output">Text
                     </div>
                   </div>
 

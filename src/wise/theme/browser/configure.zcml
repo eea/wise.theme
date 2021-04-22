@@ -48,21 +48,20 @@
     />
 
   <browser:viewlet
+    name="tableau_viewlet"
+    for="plone.app.contenttypes.interfaces.IDocument"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
+    template="pt/tableau_dashboard.pt"
+    permission="zope2.View"
+    />
+
+  <browser:viewlet
     for="..interfaces.IReferenceLinks"
     name="references_viewlet"
     page="*"
     request="*"
     manager="plone.app.layout.viewlets.interfaces.IBelowContent"
     template="pt/references_viewlet.pt"
-    permission="zope2.View"
-    />
-
-
-  <browser:viewlet
-    name="tableau_viewlet"
-    for="plone.app.contenttypes.interfaces.IDocument"
-    manager="plone.app.layout.viewlets.interfaces.IBelowContentBody"
-    template="pt/tableau_dashboard.pt"
     permission="zope2.View"
     />
 
