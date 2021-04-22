@@ -72,6 +72,11 @@ class ICatalogueMetadata(model.Schema):
     website and SDI catalogue
     """
 
+    original_source = TextLine(
+        title=u"Original source",
+        description=u"If EEA link, can trigger automatic fetching of EEA information",
+    )
+
     organisation = Choice(
         title=u"Organisation",
         required=True,
@@ -95,3 +100,5 @@ class ICatalogueMetadata(model.Schema):
         title=u"Preview image (thumbnail)",
         required=False,
     )
+
+    sources = RichText(title=u"Sources", description=u"", required=False)

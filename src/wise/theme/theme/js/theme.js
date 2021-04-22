@@ -406,6 +406,30 @@ function initDashboardsToolbar() {
   });
 }
 
+function initReadEEAContent() {
+  var $input = $("#form-widgets-ICatalogueMetadata-original_source");
+
+  var $btn = $("<button>Fetch remote data</button>").on('click', function() {
+    $btn.html('Fetching data...');
+    $btn.attr('disabled', true);
+
+    console.log('click');
+    var val = $input.val();
+    if (val && val.indexOf('www.eea.europa.eu') > -1) {
+      $.get('./@@external_proxy', {url: val}, function(data){
+        console.log('data', data);
+        $("#form-widgets-IDublinCore-title").val(data.title);
+        $("#form-widgets-IDublinCore-description").html(data.description && data.description.data || '')
+        $btn.html('Fetch remote data');
+        $btn.attr('disabled', false);
+      });
+    }
+    return false;
+  });
+
+  $input.parent().append($btn);
+}
+
 $(document).ready(function () {
   var $window = $(window);
   // are dropdown, nu are default page: not clickable
@@ -481,6 +505,8 @@ $(document).ready(function () {
   // openSubmenuOnClick();
   countryProfileSideBar();
   customCountrySelectDropdown();
+
+  initReadEEAContent();
 
   $window.on("load", function () {
     displayImageCaption();
