@@ -1,5 +1,5 @@
 <tal:cond tal:condition="exists: context/dashboard_url">
-  <div tal:define="url context/dashboard_url">
+  <div tal:define="url context/dashboard_url" tal:condition="url">
     <div class="tableau-wrapper">
       <div class="toolbar-button dl-button" title="Download">
         <i class="glyphicon glyphicon-download-alt"></i>
