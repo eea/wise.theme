@@ -1,6 +1,9 @@
+
+import requests
+
 from plone.app.dexterity.behaviors.metadata import (DCFieldProperty,
                                                     MetadataBase)
-
+from plone.namedfile.file import NamedBlobImage
 from .interfaces import (ICatalogueMetadata, IDisclaimer, IExternalLinks,
                          IReferenceLinks)
 
@@ -35,3 +38,30 @@ class CatalogueMetadata(MetadataBase):
     thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])
 
     sources = DCFieldProperty(ICatalogueMetadata["sources"])
+
+
+def set_thumbnail(context, event):
+    """ Set the thumbnail image if it was not completed and the
+        original_source is www.eea.europa.eu
+    """
+
+    if not context.original_source:
+        return context
+
+    if 'www.eea.europa.eu' not in context.original_source:
+        return context
+
+    if context.thumbnail:
+        return context
+
+    image_url = context.original_source + '/image_large'
+    filename = u'image_large.png'
+    response = requests.get(image_url)
+
+    if not response.ok:
+        return context
+
+    context.thumbnail = NamedBlobImage(data=response.content,
+                                       filename=filename)
+
+    return context

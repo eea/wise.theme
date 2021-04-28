@@ -84,6 +84,12 @@
       post_handler=".setuphandlers.uninstall"
       />
 
+  <subscriber
+    for=".interfaces.ICatalogueMetadata
+         zope.lifecycleevent.IObjectCreatedEvent"
+    handler=".behavior.set_thumbnail"
+    />
+
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="wise.theme-hiddenprofiles"

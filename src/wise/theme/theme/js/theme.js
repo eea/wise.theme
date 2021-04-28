@@ -419,7 +419,7 @@ function initReadEEAContent() {
       $.get('./@@external_proxy', {url: val}, function(data){
         console.log('data', data);
         $("#form-widgets-IDublinCore-title").val(data.title);
-        $("#form-widgets-IDublinCore-description").html(data.description && data.description.data || '')
+        $("#form-widgets-IDublinCore-description").html(data.description && data.description.data || '');
         $btn.html('Fetch remote data');
         $btn.attr('disabled', false);
       });
