@@ -11,6 +11,7 @@
   <includeDependencies package="." />
 
   <include package=".browser" />
+  <include file="search.zcml" />
 
   <plone:static
       directory="theme"
@@ -85,10 +86,10 @@
       />
 
   <subscriber
-    for=".interfaces.ICatalogueMetadata
-         zope.lifecycleevent.IObjectCreatedEvent"
-    handler=".behavior.set_thumbnail"
-    />
+      for=".interfaces.ICatalogueMetadata
+           zope.lifecycleevent.IObjectCreatedEvent"
+      handler=".behavior.set_thumbnail"
+      />
 
   <utility
       factory=".setuphandlers.HiddenProfiles"
