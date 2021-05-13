@@ -2,7 +2,7 @@
   "name": "wise-search-cra",
   "version": "0.1.0",
   "private": true,
-  "homepage": "++resource++measures-catalogue/",
+  "homepage": ".",
   "dependencies": {
     "@eeacms/search": "link:.yalc/@eeacms/search",
     "@testing-library/jest-dom": "^5.11.4",
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "rimraf build/*; craco start",
-    "build": "rimraf build/*; craco build",
+    "build": "rimraf build/*; env-cmd -f .env.production craco build",
     "test": "craco test",
     "eject": "craco eject"
   },
@@ -40,6 +40,7 @@
   "devDependencies": {
     "@craco/craco": "^6.1.2",
     "@semantic-ui-react/craco-less": "^1.2.1",
+    "env-cmd": "^10.1.0",
     "semantic-ui-less": "^2.4.1",
     "serve": "^11.3.2"
   }
