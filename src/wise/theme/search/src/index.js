@@ -9,12 +9,12 @@ import '@elastic/react-search-ui-views/lib/styles/styles.css';
 // import './index.css';
 import './semantic-ui.less';
 
+// ++resource++measures-catalogue/
+
 const demoRegistry = installDemo(registry);
 
 ReactDOM.render(
-  <React.StrictMode>
     <SearchApp registry={demoRegistry} appName="wise" />,
-  </React.StrictMode>,
   document.getElementById('search-app')
 );
 

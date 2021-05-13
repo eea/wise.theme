@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/search",
-  "version": "0.1.0+ca05a91c",
+  "version": "0.1.0+e4783d2b",
   "private": false,
   "main": "dist/index.js",
   "directories": {
@@ -107,5 +107,5 @@
     "react": "^17.0.2",
     "semantic-ui-less": "^2.4.1"
   },
-  "yalcSig": "ca05a91ceca6d285f3993a4ef2392331"
+  "yalcSig": "e4783d2b7e11fef614cb4eb1ea24d7e1"
 }

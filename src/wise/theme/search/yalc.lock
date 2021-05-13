@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@eeacms/search": {
-      "signature": "ca05a91ceca6d285f3993a4ef2392331",
+      "signature": "e4783d2b7e11fef614cb4eb1ea24d7e1",
       "link": true
     }
   }
