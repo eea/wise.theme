@@ -36,3 +36,4 @@ report.html
 *.pyc
 src/wise/theme/theme/node_modules
 *~
+es7-storage-volume
