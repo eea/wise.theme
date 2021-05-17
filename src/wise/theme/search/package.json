@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@eeacms/search": "link:.yalc/@eeacms/search",
+    "@eeacms/search": "file:.yalc/@eeacms/search",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "rimraf build/*; craco start",
-    "link-searchlib": "npx yalc add @eeacms/search --link && yarn --force",
+    "link-searchlib": "npx yalc link @eeacms/search && yarn --force",
     "build": "rimraf build/*; env-cmd -f .env.production craco build",
     "test": "craco test",
     "eject": "craco eject"

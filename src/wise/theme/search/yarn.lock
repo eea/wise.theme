@@ -1171,9 +1171,18 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-"@eeacms/search@link:.yalc/@eeacms/search":
-  version "0.0.0"
-  uid ""
+"@eeacms/search@file:.yalc/@eeacms/search":
+  version "0.1.0"
+  dependencies:
+    "@elastic/react-search-ui" "^1.5.1"
+    "@elastic/react-search-ui-views" "^1.5.1"
+    "@elastic/search-ui" "^1.5.1"
+    lodash.clonedeep "^4.5.0"
+    lodash.isfunction "^3.0.9"
+    node-fetch "^2.6.1"
+    semantic-ui-react "^2.0.3"
+    webpack-bundle-analyzer "^4.4.1"
+    webpack-node-externals "^3.0.0"
 
 "@elastic/react-search-ui-views@1.5.1", "@elastic/react-search-ui-views@^1.5.1":
   version "1.5.1"
