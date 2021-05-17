@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "@eeacms/search": {
-      "signature": "ddfc0abbf0fce7fef989ab66e2b056bc",
-      "link": true
-    }
-  }
-}
