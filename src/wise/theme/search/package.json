@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "rimraf build/*; craco start",
-    "link-searchlib": "npx yalc add @eeacms/search --link && yarn",
+    "link-searchlib": "npx yalc add @eeacms/search --link && yarn --force",
     "build": "rimraf build/*; env-cmd -f .env.production craco build",
     "test": "craco test",
     "eject": "craco eject"
