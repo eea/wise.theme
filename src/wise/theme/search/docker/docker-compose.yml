@@ -14,6 +14,8 @@ services:
         volumes:
           - .:/code/config
           - ./data:/sources_from_git/app/config/wise/data
+        depends_on:
+          - es
 
     es:
         image: eeacms/elastic:7
