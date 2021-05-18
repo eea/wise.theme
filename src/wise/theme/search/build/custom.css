@@ -45,19 +45,27 @@
   border-bottom: none;
 }
 
-.searchapp-wise .sui-layout-main-body {
+.searchapp-wise .sui-layout-main-body,
+.ui.modal > .content {
   font-family: "RobotoL";
   font-size: 18px;
   color: rgba(0, 0, 0, 0.87);
   margin-bottom: 2em;
 }
 
+.ui.modal > .content {
+  font-size: 18px !important;
+}
+
 .searchapp-wise .sui-layout-main-body .item {
   margin-top: 2em;
 }
 
-.searchapp-wise .sui-layout-main-body .item h4 {
-  font-family: "PoppinsSemiB";
+.searchapp-wise .sui-layout-main-body .item h4,
+.ui.modal > .header {
+  font-family: "PoppinsSemiB" !important;
+  font-size: 20px !important;
+  color: #002d54 !important;
 }
 
 .searchapp-wise .header.listing-view-item {
@@ -116,4 +124,45 @@
 .searchapp-wise .rc-pagination-item-active:hover {
   background-color: #064c7f;
   color: #fff;
+}
+
+.listing-view-item.header {
+  cursor: pointer;
+}
+
+.listing-view-details .listing-view-details-section {
+  padding: 1em 0em;
+}
+
+.listing-view-details .listing-view-details-section .details-field {
+  display: flex;
+}
+
+.listing-view-details
+  .listing-view-details-section
+  .details-field:first-of-type {
+  border-bottom: none;
+}
+
+.listing-view-details .details-field {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.listing-view-details
+  .listing-view-details-section
+  .details-field
+  .details-field-label {
+  font-family: "RobotoM";
+  width: 20%;
+  border-right: 1px solid #ddd;
+  padding: 0.3em 1em 0.3em 0.3em;
+}
+
+.listing-view-details
+  .listing-view-details-section
+  .details-field
+  .details-field-value {
+  width: 80%;
+  padding: 0.3em 0.3em 0.3em 1em;
 }
