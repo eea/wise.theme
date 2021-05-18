@@ -1,3 +1,87 @@
-body {
-  background-color: red !important;
+.searchapp-wise .sui-layout-body__inner {
+  max-width: 100%;
+  padding: 0;
+}
+
+.searchapp-wise .sui-layout-header {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.searchapp-wise .sui-facet {
+  font-family: "RobotoL" !important;
+}
+
+.searchapp-wise .sui-facet__title {
+  padding-top: 2em;
+  margin-top: 2em !important;
+  border-top: 1px solid #ddd;
+}
+
+.searchapp-wise .sui-multi-checkbox-facet {
+  font-weight: normal !important;
+  font-size: 14px;
+  color: #4d4d4d;
+}
+
+.searchapp-wise .sui-multi-checkbox-facet__checkbox {
+  margin-right: 8px;
+}
+
+.searchapp-wise .sui-sorting {
+  margin-bottom: 32px;
+}
+
+.searchapp-wise .sui-facet__title,
+.searchapp-wise .sui-sorting__label {
+  font-family: "PoppinsB" !important;
+  font-size: 14px;
+  color: #002d54;
+  margin-bottom: 5px;
+}
+
+.searchapp-wise .sui-facet__title {
+  border-bottom: none;
+}
+
+.searchapp-wise .sui-layout-main-body .item {
+  margin-top: 2em;
+}
+
+.searchapp-wise .sui-layout-main-body .item h4 {
+  font-family: "PoppinsSemiB";
+}
+
+.searchapp-wise .header.listing-view-item {
+  cursor: pointer;
+}
+
+.searchapp-wise .sui-paging-info,
+.searchapp-wise .sui-results-per-page {
+  font-family: "PoppinsR";
+  font-size: 14px;
+}
+
+.searchapp-wise .sui-select {
+  font-family: "RobotoL";
+  font-size: 13px;
+}
+
+.searchapp-wise a,
+.searchapp-wise a:hover {
+  color: inherit !important;
+}
+
+.searchapp-wise .sui-facet-view-more {
+  font-family: "PoppinsR";
+  font-size: 14px;
+  color: #0077bc;
+}
+
+.searchapp-wise .sui-facet-search__text-input:focus {
+  border: 1px solid #6bc6fa;
+}
+
+.searchapp-wise .viewSelector .ui.button {
+  font-size: 14px;
 }
