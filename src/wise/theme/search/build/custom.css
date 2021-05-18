@@ -22,6 +22,7 @@
   font-weight: normal !important;
   font-size: 14px;
   color: #4d4d4d;
+  margin-bottom: 0;
 }
 
 .searchapp-wise .sui-multi-checkbox-facet__checkbox {
@@ -44,6 +45,13 @@
   border-bottom: none;
 }
 
+.searchapp-wise .sui-layout-main-body {
+  font-family: "RobotoL";
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 2em;
+}
+
 .searchapp-wise .sui-layout-main-body .item {
   margin-top: 2em;
 }
@@ -57,14 +65,13 @@
 }
 
 .searchapp-wise .sui-paging-info,
-.searchapp-wise .sui-results-per-page {
-  font-family: "PoppinsR";
+.searchapp-wise .sui-results-per-page,
+.searchapp-wise .sui-select,
+.searchapp-wise .sui-search-box,
+.sui-facet-search__text-input,
+.searchapp-wise .sui-facet-view-more {
+  font-family: "PoppinsR" !important;
   font-size: 14px;
-}
-
-.searchapp-wise .sui-select {
-  font-family: "RobotoL";
-  font-size: 13px;
 }
 
 .searchapp-wise a,
@@ -73,15 +80,40 @@
 }
 
 .searchapp-wise .sui-facet-view-more {
-  font-family: "PoppinsR";
-  font-size: 14px;
   color: #0077bc;
 }
 
-.searchapp-wise .sui-facet-search__text-input:focus {
-  border: 1px solid #6bc6fa;
+.searchapp-wise input:focus,
+.searchapp-wise .sui-select__control--is-focused {
+  border: 1px solid #6bc6fa !important;
 }
 
 .searchapp-wise .viewSelector .ui.button {
   font-size: 14px;
+}
+
+.searchapp-wise .sui-select__value-container--has-value {
+  font-family: "PoppinsSemiB" !important;
+}
+
+.searchapp-wise .sui-search-box__text-input {
+  padding: 10px;
+}
+
+.searchapp-wise .sui-search-box__submit {
+  background-color: #002d54;
+  border: none;
+  color: #fff;
+}
+
+.searchapp-wise .sui-search-box__submit:hover {
+  background-color: #005588 !important;
+  background: none;
+  color: #fff;
+}
+
+.searchapp-wise .rc-pagination-item-active,
+.searchapp-wise .rc-pagination-item-active:hover {
+  background-color: #064c7f;
+  color: #fff;
 }
