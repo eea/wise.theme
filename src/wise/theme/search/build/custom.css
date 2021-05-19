@@ -1,11 +1,15 @@
+.searchapp-wise .sui-layout-body {
+  background-color: transparent;
+}
+
 .searchapp-wise .sui-layout-body__inner {
   max-width: 100%;
   padding: 0;
 }
 
 .searchapp-wise .sui-layout-header {
-  padding-left: 0;
   padding-right: 0;
+  padding-left: 0;
 }
 
 .searchapp-wise .sui-facet {
@@ -14,15 +18,15 @@
 
 .searchapp-wise .sui-facet__title {
   padding-top: 2em;
-  margin-top: 2em !important;
   border-top: 1px solid #ddd;
+  margin-top: 2em !important;
 }
 
 .searchapp-wise .sui-multi-checkbox-facet {
-  font-weight: normal !important;
-  font-size: 14px;
-  color: #4d4d4d;
   margin-bottom: 0;
+  color: #4d4d4d;
+  font-size: 14px;
+  font-weight: normal !important;
 }
 
 .searchapp-wise .sui-multi-checkbox-facet__checkbox {
@@ -35,10 +39,10 @@
 
 .searchapp-wise .sui-facet__title,
 .searchapp-wise .sui-sorting__label {
+  margin-bottom: 5px;
+  color: #002d54;
   font-family: "PoppinsB" !important;
   font-size: 14px;
-  color: #002d54;
-  margin-bottom: 5px;
 }
 
 .searchapp-wise .sui-facet__title {
@@ -47,10 +51,10 @@
 
 .searchapp-wise .sui-layout-main-body,
 .ui.modal > .content {
+  margin-bottom: 2em;
+  color: rgba(0, 0, 0, 0.87);
   font-family: "RobotoL";
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.87);
-  margin-bottom: 2em;
 }
 
 .ui.modal > .content {
@@ -63,9 +67,9 @@
 
 .searchapp-wise .sui-layout-main-body .item h4,
 .ui.modal > .header {
+  color: #002d54 !important;
   font-family: "PoppinsSemiB" !important;
   font-size: 20px !important;
-  color: #002d54 !important;
 }
 
 .searchapp-wise .header.listing-view-item {
@@ -109,14 +113,14 @@
 }
 
 .searchapp-wise .sui-search-box__submit {
-  background-color: #002d54;
   border: none;
+  background-color: #002d54;
   color: #fff;
 }
 
 .searchapp-wise .sui-search-box__submit:hover {
-  background-color: #005588 !important;
   background: none;
+  background-color: #005588 !important;
   color: #fff;
 }
 
@@ -153,10 +157,10 @@
   .listing-view-details-section
   .details-field
   .details-field-label {
-  font-family: "RobotoM";
   width: 20%;
-  border-right: 1px solid #ddd;
   padding: 0.3em 1em 0.3em 0.3em;
+  border-right: 1px solid #ddd;
+  font-family: "RobotoM";
 }
 
 .listing-view-details
