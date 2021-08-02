@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {SearchApp, registry} from '@eeacms/search';
 import reportWebVitals from './reportWebVitals';
-import installDemo from './demo';
+import installConfig from './config';
 
 import '@elastic/react-search-ui-views/lib/styles/styles.css';
 
-// import './index.css';
 import './semantic-ui.less';
 
 // ++resource++measures-catalogue/
+// import './index.css';
 
-const demoRegistry = installDemo(registry);
+const configRegistry = installConfig(registry);
 
 ReactDOM.render(
-    <SearchApp registry={demoRegistry} appName="wise" />,
+    <SearchApp registry={configRegistry} appName="wise" />,
   document.getElementById('search-app')
 );
 

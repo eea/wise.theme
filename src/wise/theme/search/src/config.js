@@ -1,23 +1,24 @@
 import { suiFacet, mergeConfig } from '@eeacms/search';
 
 const wise_config = {
+  layoutComponent: 'RightColumnLayout',
   facets: [
-    suiFacet({ field: 'Country', isFilterable: true, isMulti: true }),
-    suiFacet({ field: 'Sector', isMulti: true }),
-    suiFacet({ field: 'Use_or_activity', label: 'Use or activity' }),
-    suiFacet({ field: 'Status' }),
     suiFacet({
       field: 'Origin_of_the_measure',
       label: 'Origin of the measure',
     }),
-    suiFacet({
-      field: 'Nature_of_the_measure',
-      label: 'Nature of the measure',
-    }),
-    suiFacet({ field: 'Water_body_category', label: 'Water body category' }),
-    suiFacet({ field: 'Spatial_scope', label: 'Spatial scope' }),
-    suiFacet({ field: 'Measure_Impacts_to', label: 'Measure impacts' }),
+    suiFacet({ field: 'Sector', isMulti: true }),
     suiFacet({ field: 'Descriptors' }),
+    // suiFacet({ field: 'Country', isFilterable: true, isMulti: true }),
+    // suiFacet({ field: 'Use_or_activity', label: 'Use or activity' }),
+    // suiFacet({ field: 'Status' }),
+    // suiFacet({
+    //   field: 'Nature_of_the_measure',
+    //   label: 'Nature of the measure',
+    // }),
+    // suiFacet({ field: 'Water_body_category', label: 'Water body category' }),
+    // suiFacet({ field: 'Spatial_scope', label: 'Spatial scope' }),
+    // suiFacet({ field: 'Measure_Impacts_to', label: 'Measure impacts' }),
   ],
   highlight: {
     fields: {

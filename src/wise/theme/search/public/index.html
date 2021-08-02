@@ -10,6 +10,9 @@
   i18n:domain="plone"
 >
   <head metal:fill-slot="head_slot">
+        <script>
+          window.runtimeConfig = {};
+        </script>
     <tal:insert
       tal:replace="nothing"
       tal:define="dummy python:request.set('enable_border', 1);
