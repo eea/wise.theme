@@ -4,16 +4,19 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "@eeacms/search": "file:.yalc/@eeacms/search",
+    "@eeacms/search": "*",
+    "@elastic/react-search-ui-views": "^1.5.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "craco-babel-loader": "^0.1.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "develop": "missdev --config=jsconfig.json --output=addons",
     "start": "rimraf build/*; craco start",
     "link-searchlib": "npx yalc link @eeacms/search && yarn --force",
     "build": "rimraf build/*; env-cmd -f .env.production craco build",
@@ -40,8 +43,12 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.1.2",
+    "@dvhb/craco-extend-scope": "^1.0.1",
     "@semantic-ui-react/craco-less": "^1.2.1",
+    "craco-alias": "^3.0.1",
     "env-cmd": "^10.1.0",
+    "mrs-developer": "^1.6.0",
+    "rimraf": "^3.0.2",
     "semantic-ui-less": "^2.4.1",
     "serve": "^11.3.2"
   }
