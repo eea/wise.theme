@@ -53,6 +53,7 @@ const resolveSearchlib = () => {
     path.dirname(path.normalize(require.resolve('@eeacms/search'))),
     '../src',
   );
+  // const searchlib = path.join(__dirname, '../src/addons/searchlib/packages/searchlib/src');
   return searchlib;
 };
 
@@ -74,7 +75,7 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   swSrc: resolveModule(resolveApp, 'src/service-worker'),
 
-  searchlib: resolveSearchlib(),
+  // searchlib: resolveSearchlib(),
   publicUrlOrPath,
 };
 

@@ -1,3 +1,5 @@
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const nodeExternals = require('webpack-node-externals');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -20,6 +22,9 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const paths = require('./paths');
 // console.log('paths', paths);
 const modules = require('./modules');
+
+console.log('modules', modules);
+
 const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
@@ -404,7 +409,7 @@ module.exports = function (webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: [paths.appSrc, paths.searchlib],
+              include: [paths.appSrc],    // , paths.searchlib
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
@@ -581,6 +586,7 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      // new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
@@ -776,10 +782,11 @@ module.exports = function (webpackEnv) {
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,
-    externals: {
+    externals: [
+      // nodeExternals({allowlist: ['react', 'react-dom']})
       // react: 'react',
       // 'react-dom': 'react-dom',
-    },
+    ],
   };
   console.log('resolve alias:', config.resolve.alias);
   // console.log(path.resolve(config.resolve.alias['@eeacms/search']));
