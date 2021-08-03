@@ -53,6 +53,7 @@ function getAdditionalModulePaths(options = {}) {
  * @param {*} options
  */
 function getWebpackAliases(options = {}) {
+  console.log('options', options);
   const baseUrl = options.baseUrl;
 
   if (!baseUrl) {
@@ -61,19 +62,21 @@ function getWebpackAliases(options = {}) {
 
   const baseUrlResolved = path.resolve(paths.appPath, baseUrl);
 
-  if (path.relative(paths.appPath, baseUrlResolved) === '') {
-    const out = {
-      src: paths.appSrc,
-      '../../theme.config': path.resolve(paths.appPath, './theme/theme.config'),
-      '../../theme.config$': path.resolve(
-        paths.appPath,
-        './theme/theme.config',
-      ),
-      ...options.paths,
-      '@eeacms/search': paths.searchlib,
-    };
-    return out;
-  }
+  console.log('bur',baseUrlResolved, path.relative(paths.appPath, baseUrlResolved) );
+
+  const out = {
+    src: paths.appSrc,
+    '../../theme.config': path.resolve(paths.appPath, './theme/theme.config'),
+    '../../theme.config$': path.resolve(
+      paths.appPath,
+      './theme/theme.config',
+    ),
+    ...options.paths,
+    // '@eeacms/search': paths.searchlib,
+  };
+  return out;
+  // if (path.relative(paths.appPath, baseUrlResolved) === '') {
+  // }
 }
 
 /**
@@ -125,12 +128,13 @@ function getModules() {
   }
 
   config = config || {};
+  console.log('config', config);
   const options = config.compilerOptions || {};
 
   const additionalModulePaths = getAdditionalModulePaths(options);
 
   const ret = {
-    additionalModulePaths: additionalModulePaths,
+    additionalModulePaths: [...additionalModulePaths],    // , paths.searchlib
     webpackAliases: getWebpackAliases(options),
     jestAliases: getJestAliases(options),
     hasTsConfig,
