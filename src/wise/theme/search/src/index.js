@@ -5,12 +5,14 @@ import installConfig from './config';
 
 import '@elastic/react-search-ui-views/lib/styles/styles.css';
 import "@eeacms/search-less/dist/main.css";
+import './less/custom.less';
 
 // ++resource++measures-catalogue/
 // import './index.css';
 
 const configRegistry = installConfig(registry);
-console.log('here 2');
+
+console.log('config', configRegistry);
 
 ReactDOM.render(
     <SearchApp registry={configRegistry} appName="wise" />,

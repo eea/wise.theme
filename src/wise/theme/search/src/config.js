@@ -1,7 +1,9 @@
 import { suiFacet, mergeConfig } from '@eeacms/search';
+import WiseLayout from './components/WiseLayout';
 
 const wise_config = {
-  layoutComponent: 'RightColumnLayout',
+  layoutComponent: 'WiseLayout',
+  searchBoxComponent: 'SimpleSearchInput',
   facets: [
     suiFacet({
       field: 'Origin_of_the_measure',
@@ -46,7 +48,7 @@ const wise_config = {
   },
   listingViewParams: {
     titleField: 'Measure_name',
-    urlField: 'CodeCatalogue',
+    // urlField: 'CodeCatalogue',
     extraFields: [
       {
         field: 'Origin_of_the_measure',
@@ -108,6 +110,13 @@ const wise_config = {
   },
 };
 
+const wise_resolve = {
+  WiseLayout: {
+    component: WiseLayout
+  }
+
+};
+
 export default function installDemo(config) {
   config.searchui.wise = mergeConfig(wise_config, config.searchui.default);
 
@@ -119,6 +128,8 @@ export default function installDemo(config) {
       label: 'Origin of the measure',
     }),
   ];
+
+  config.resolve = mergeConfig(wise_resolve, config.resolve);
 
   return config;
 }

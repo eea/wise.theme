@@ -23,7 +23,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "watch": "PUBLIC_URL=++resource++measures-catalogue node scripts/watch.js"
+    "watch": "PUBLIC_URL=/++resource++measures-catalogue node scripts/watch.js"
   },
   "bugs": {
     "url": "https://github.com/eea/searchlib/issues"
