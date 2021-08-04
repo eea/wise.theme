@@ -1,5 +1,5 @@
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const nodeExternals = require('webpack-node-externals');
+// const nodeExternals = require('webpack-node-externals');
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
