@@ -48,14 +48,14 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
-const resolveSearchlib = () => {
-  const searchlib = path.join(
-    path.dirname(path.normalize(require.resolve('@eeacms/search'))),
-    '../src',
-  );
-  // const searchlib = path.join(__dirname, '../src/addons/searchlib/packages/searchlib/src');
-  return searchlib;
-};
+// const resolveSearchlib = () => {
+//   const searchlib = path.join(
+//     path.dirname(path.normalize(require.resolve('@eeacms/search'))),
+//     '../src',
+//   );
+//   // const searchlib = path.join(__dirname, '../src/addons/searchlib/packages/searchlib/src');
+//   return searchlib;
+// };
 
 // config after eject: we're in ./config/
 module.exports = {

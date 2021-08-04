@@ -128,7 +128,7 @@ function getModules() {
   }
 
   config = config || {};
-  console.log('config', config);
+  // console.log('config', config);
   const options = config.compilerOptions || {};
 
   const additionalModulePaths = getAdditionalModulePaths(options);
@@ -139,7 +139,7 @@ function getModules() {
     jestAliases: getJestAliases(options),
     hasTsConfig,
   };
-  console.log('retret', ret);
+  // console.log('retret', ret);
   return ret;
 }
 
