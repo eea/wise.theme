@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/++resource++measures-catalogue/static/js/main.chunk.js",
+    "main.js.map": "/++resource++measures-catalogue/static/js/main.chunk.js.map",
+    "runtime.js": "/++resource++measures-catalogue/static/js/bundle.js",
+    "runtime.js.map": "/++resource++measures-catalogue/static/js/bundle.js.map",
+    "vendors~main.js": "/++resource++measures-catalogue/static/js/vendors~main.chunk.js",
+    "vendors~main.js.map": "/++resource++measures-catalogue/static/js/vendors~main.chunk.js.map",
+    "static/media/141f868b6ac636fbceb20a41e18e127a.eot": "/++resource++measures-catalogue/static/media/141f868b6ac636fbceb20a41e18e127a.141f868b.eot",
+    "static/media/1ea12027852ca504f1dcde6d3225c546.svg": "/++resource++measures-catalogue/static/media/1ea12027852ca504f1dcde6d3225c546.1ea12027.svg",
+    "static/media/24bc54460b46982dbf7ff5d5f4fc17cd.ttf": "/++resource++measures-catalogue/static/media/24bc54460b46982dbf7ff5d5f4fc17cd.24bc5446.ttf",
+    "static/media/c3361ae06f2a38981b6b1efb4044ffbb.woff": "/++resource++measures-catalogue/static/media/c3361ae06f2a38981b6b1efb4044ffbb.c3361ae0.woff"
+  },
+  "entrypoints": [
+    "static/js/bundle.js",
+    "static/js/vendors~main.chunk.js",
+    "static/js/main.chunk.js"
+  ]
+}
