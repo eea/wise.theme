@@ -32,9 +32,15 @@ def read_details_csv_files(location):
             # data[base] = []
             for line in reader:
                 items = zip([h.strip() for h in headers], line)
-                data[line[index]].append(dict(items))
+                item = dict(items)
+                item['_id'] = get_id(item)
+                data[line[index]].append(item)
 
-    return data
+    res = {}
+    for index, items in data.items():
+        res[index] = dict(zip([item['_id'] for item in items], items))
+
+    return res
 
 
 def read_master_csv_files(location):
@@ -52,7 +58,9 @@ def read_master_csv_files(location):
         # data[base] = []
         for line in reader:
             items = zip([h.strip() for h in headers], line)
-            data.append(dict(items))
+            item = dict(items)
+            item['_id'] = get_id(item)
+            data.append(item)
 
     return data
 
@@ -123,11 +131,11 @@ def main():
 
     data = read_details_csv_files('./csv')
 
-    cursors = defaultdict(lambda: 0)
+    # cursors = defaultdict(lambda: 0)
     for (i, line) in enumerate(master_data):
-        measure_name = line[OM]
-        rec = data[measure_name][cursors[measure_name]]
         master_rec = master_data[i]
+        measure_name = line[OM]
+        rec = data[measure_name][master_rec['_id']]
         keys = master_rec.keys()
         for k, v in rec.items():
             for mk in keys:
@@ -136,15 +144,20 @@ def main():
             if k in master_rec \
                     and master_rec[k] \
                     and master_rec[k].lower() != v.lower():
-                import pdb
-                pdb.set_trace()
+                print(
+                    f"Data conflict at position: : {i} ({master_rec['_id']})")
+                print(f"Key: {k}. Conflicting sheet: {measure_name}.")
+                print(f"Master value: {master_rec[k]}. Sheet value: {v}")
+                print("")
+                # import pdb
+                # pdb.set_trace()
             master_rec[k] = v
 
         fix_descriptor(master_rec)
         fix_impacts(master_rec)
         fix_keywords(master_rec)
 
-        cursors[measure_name] += 1
+        # cursors[measure_name] += 1
         _id = get_id(master_rec)
         master_rec['_id'] = _id
         master_rec['_index'] = index
