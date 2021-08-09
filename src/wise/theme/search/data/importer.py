@@ -31,7 +31,7 @@ def read_details_csv_files(location):
 
             # data[base] = []
             for line in reader:
-                items = zip(headers, line)
+                items = zip([h.strip() for h in headers], line)
                 data[line[index]].append(dict(items))
 
     return data
@@ -51,7 +51,7 @@ def read_master_csv_files(location):
 
         # data[base] = []
         for line in reader:
-            items = zip(headers, line)
+            items = zip([h.strip() for h in headers], line)
             data.append(dict(items))
 
     return data
@@ -133,6 +133,11 @@ def main():
             for mk in keys:
                 if k.lower().strip() == mk.lower().strip():
                     k = mk
+            if k in master_rec \
+                    and master_rec[k] \
+                    and master_rec[k].lower() != v.lower():
+                import pdb
+                pdb.set_trace()
             master_rec[k] = v
 
         fix_descriptor(master_rec)
