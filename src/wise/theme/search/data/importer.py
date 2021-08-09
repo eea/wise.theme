@@ -22,14 +22,13 @@ def read_details_csv_files(location):
         with open(os.path.join(location, name)) as f:
             reader = iter(csv.reader(f))
 
-            # headers = reader.next()
             headers = None
             for line in reader:
                 headers = line
                 break
+
             index = headers.index('Origin of the measure')
 
-            # data[base] = []
             for line in reader:
                 items = zip([h.strip() for h in headers], line)
                 item = dict(items)
@@ -48,14 +47,11 @@ def read_master_csv_files(location):
     with open(os.path.join(location, 'master.csv')) as f:
         reader = iter(csv.reader(f))
 
-        # headers = reader.next()
         headers = None
         for line in reader:
             headers = line
             break
-        # index = headers.index('Origin of the measure')
 
-        # data[base] = []
         for line in reader:
             items = zip([h.strip() for h in headers], line)
             item = dict(items)
@@ -122,6 +118,13 @@ def get_id(rec):
         return rec['CodeCatalogue']
 
 
+def remap(k):
+    if k == 'Feature Name':
+        k = 'Feature name'
+
+    return k
+
+
 def main():
     host = 'localhost'
     index = 'wise_catalogue_measures'
@@ -131,36 +134,34 @@ def main():
 
     data = read_details_csv_files('./csv')
 
-    # cursors = defaultdict(lambda: 0)
-    for (i, line) in enumerate(master_data):
-        master_rec = master_data[i]
-        measure_name = line[OM]
-        rec = data[measure_name][master_rec['_id']]
-        keys = master_rec.keys()
+    for (i, main) in enumerate(master_data):
+        measure_name = main[OM]
+        rec = data[measure_name][main['_id']]
+
+        keys = main.keys()
         for k, v in rec.items():
+            # uses the key from master record
             for mk in keys:
                 if k.lower().strip() == mk.lower().strip():
                     k = mk
-            if k in master_rec \
-                    and master_rec[k] \
-                    and master_rec[k].lower() != v.lower():
+            k = remap(k)
+            if k in main \
+                    and main[k] \
+                    and main[k].lower() != v.lower():
                 print(
-                    f"Data conflict at position: : {i} ({master_rec['_id']})")
+                    f"Data conflict at position: : {i} ({main['_id']})")
                 print(f"Key: {k}. Conflicting sheet: {measure_name}.")
-                print(f"Master value: {master_rec[k]}. Sheet value: {v}")
+                print(f"Master value: {main[k]}. Sheet value: {v}")
                 print("")
-                # import pdb
-                # pdb.set_trace()
-            master_rec[k] = v
+            main[k] = v
 
-        fix_descriptor(master_rec)
-        fix_impacts(master_rec)
-        fix_keywords(master_rec)
+        fix_descriptor(main)
+        fix_impacts(main)
+        fix_keywords(main)
 
-        # cursors[measure_name] += 1
-        _id = get_id(master_rec)
-        master_rec['_id'] = _id
-        master_rec['_index'] = index
+        _id = get_id(main)
+        main['_id'] = _id
+        main['_index'] = index
 
     ids = set([rec['_id'] for rec in master_data])
     print(len(ids))
@@ -182,18 +183,6 @@ def main():
         successes += ok
 
     print("Indexed %d/%d documents" % (successes, num_docs))
-
-    # jsonl = '\n'.join(body)
-    # with open('out.jsonl', 'w') as f:
-    #     f.write(jsonl)
-
-    # import pdb
-    # pdb.set_trace()
-    # conn.bulk(jsonl, index=index)
-
-    # for i, doc in enumerate(master_data):
-    # conn.index(index="wise", id=uid, body=doc)
-    # print(f"Index #{i}: {uid}")
 
 
 if __name__ == "__main__":
