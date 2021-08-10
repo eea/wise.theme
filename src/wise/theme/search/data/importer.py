@@ -7,6 +7,7 @@ from collections import defaultdict
 
 import tqdm
 from elasticsearch import Elasticsearch
+from elasticsearch.client import IndicesClient
 from elasticsearch.helpers import streaming_bulk
 
 OM = 'Origin of the measure'
@@ -141,15 +142,37 @@ def main():
     conn = Elasticsearch([host])
     master_data = read_master_csv_files('./csv')
 
+    resp = conn.indices.create(
+        index,
+        body={
+            "mappings": {
+                "properties": {
+                    "Sector": {"type": "keyword"},
+                    # "did_you_mean": {"type": "text", "analyzer": "didYouMean"},
+                    # "autocomplete": {"type": "text", "analyzer": "autocomplete"},
+                    # "CodeCatalogue": {"type": "text", "analyzer": "none"},
+                    # "Use_or_activity": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Measure_name": {"type": "text", "analyzer": "none"},
+                    # "Status": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Origin_of_the_measure": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Nature_of_the_measure": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Water_body_category": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Spatial_scope": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Country": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Measure_Impacts_to": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Measure_Impacts_to__further_details_": {"type": "text", "analyzer": "none"},
+                    # "Descriptors": {"type": "text", "analyzer": "none", "fielddata": True},
+                    # "Descriptors_flags": {"type": "text", "analyzer": "none", "fielddata": True}
+                }
+            }
+
+        })
+    assert resp.get('acknowledged') is True
     data = read_details_csv_files('./csv')
 
     for (i, main) in enumerate(master_data):
         measure_name = main[OM]
         rec = data[measure_name][main['_id']]
-
-        # if main['_id'] == 'WFD07':
-        #     import pdb
-        #     pdb.set_trace()
 
         keys = main.keys()
         for k, v in rec.items():
