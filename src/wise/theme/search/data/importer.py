@@ -7,7 +7,6 @@ from collections import defaultdict
 
 import tqdm
 from elasticsearch import Elasticsearch
-from elasticsearch.client import IndicesClient
 from elasticsearch.helpers import streaming_bulk
 
 OM = 'Origin of the measure'
@@ -135,6 +134,29 @@ def fix_misspellings(rec):
         # if rec[k].endswith('\n'):
 
 
+def make_mappings(data):
+    blacklist = ['_id', "_index"]
+    fields = set()
+    for line in data:
+        for k in line.keys():
+            fields.add(k)
+
+    mapping = {}
+    for f in fields:
+        if f not in blacklist:
+            mapping[f] = {"type": "keyword"}
+
+    return mapping
+    # {
+    # "Sector": {"type": "keyword"},
+    # "did_you_mean": {"type": "text", "analyzer": "didYouMean"},
+    # "autocomplete": {"type": "text", "analyzer": "autocomplete"},
+    # "CodeCatalogue": {"type": "text", "analyzer": "none"},
+    # "Use_or_activity": {"type": "text", "analyzer": "none",
+    # "fielddata": True},
+    # }
+
+
 def main():
     host = 'localhost'
     index = 'wise_catalogue_measures'
@@ -142,32 +164,6 @@ def main():
     conn = Elasticsearch([host])
     master_data = read_master_csv_files('./csv')
 
-    resp = conn.indices.create(
-        index,
-        body={
-            "mappings": {
-                "properties": {
-                    "Sector": {"type": "keyword"},
-                    # "did_you_mean": {"type": "text", "analyzer": "didYouMean"},
-                    # "autocomplete": {"type": "text", "analyzer": "autocomplete"},
-                    # "CodeCatalogue": {"type": "text", "analyzer": "none"},
-                    # "Use_or_activity": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Measure_name": {"type": "text", "analyzer": "none"},
-                    # "Status": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Origin_of_the_measure": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Nature_of_the_measure": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Water_body_category": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Spatial_scope": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Country": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Measure_Impacts_to": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Measure_Impacts_to__further_details_": {"type": "text", "analyzer": "none"},
-                    # "Descriptors": {"type": "text", "analyzer": "none", "fielddata": True},
-                    # "Descriptors_flags": {"type": "text", "analyzer": "none", "fielddata": True}
-                }
-            }
-
-        })
-    assert resp.get('acknowledged') is True
     data = read_details_csv_files('./csv')
 
     for (i, main) in enumerate(master_data):
@@ -202,6 +198,16 @@ def main():
 
     ids = set([rec['_id'] for rec in master_data])
     print(f"Unique records: {len(ids)}")
+
+    resp = conn.indices.create(
+        index,
+        body={
+            "mappings": {
+                "properties": make_mappings(master_data)
+            }
+
+        })
+    assert resp.get('acknowledged') is True
 
     body = []
     for doc in master_data:
