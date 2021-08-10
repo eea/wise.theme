@@ -18,7 +18,6 @@ def read_details_csv_files(location):
     fnames = [f for f in os.listdir(location)
               if f.endswith('csv') and f != 'master.csv']
     for name in fnames:
-        # base = name.split('.')[0]
         with open(os.path.join(location, name)) as f:
             reader = iter(csv.reader(f))
 
@@ -34,6 +33,7 @@ def read_details_csv_files(location):
                 item = dict(items)
                 item['_id'] = get_id(item)
                 data[line[index]].append(item)
+                fix_misspellings(item)
 
     res = {}
     for index, items in data.items():
@@ -57,6 +57,7 @@ def read_master_csv_files(location):
             item = dict(items)
             item['_id'] = get_id(item)
             data.append(item)
+            fix_misspellings(item)
 
     return data
 
@@ -125,6 +126,14 @@ def remap(k):
     return k
 
 
+def fix_misspellings(rec):
+    for k, v in rec.items():
+        if v == 'Nos specified':
+            rec[k] = 'Not specified'
+        rec[k] = rec[k].strip()
+        # if rec[k].endswith('\n'):
+
+
 def main():
     host = 'localhost'
     index = 'wise_catalogue_measures'
@@ -137,6 +146,10 @@ def main():
     for (i, main) in enumerate(master_data):
         measure_name = main[OM]
         rec = data[measure_name][main['_id']]
+
+        # if main['_id'] == 'WFD07':
+        #     import pdb
+        #     pdb.set_trace()
 
         keys = main.keys()
         for k, v in rec.items():
@@ -151,9 +164,10 @@ def main():
                 print(
                     f"Data conflict at position: : {i} ({main['_id']})")
                 print(f"Key: {k}. Conflicting sheet: {measure_name}.")
-                print(f"Master value: {main[k]}. Sheet value: {v}")
+                print(f"Master value: <{main[k]}>. Sheet value: <{v}>")
                 print("")
-            main[k] = v
+            else:
+                main[k] = v
 
         fix_descriptor(main)
         fix_impacts(main)
@@ -164,7 +178,7 @@ def main():
         main['_index'] = index
 
     ids = set([rec['_id'] for rec in master_data])
-    print(len(ids))
+    print(f"Unique records: {len(ids)}")
 
     body = []
     for doc in master_data:
