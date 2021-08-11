@@ -63,7 +63,6 @@ const details = {
     {
       title: 'Further information',
       condition: (rec) => {
-        console.log('rec', rec);
         return rec['Origin of the measure']?.raw === 'HD (Directive 92/43/EEC)' && rec['MeasureCode'] && rec['MeasureCode'].raw.startsWith('HDH');
       },
       fields: [
@@ -81,7 +80,6 @@ const details = {
     {
       title: 'Further information',
       condition: (rec) => {
-        console.log('rec', rec);
         return rec['Origin of the measure']?.raw === 'HD (Directive 92/43/EEC)' && rec['MeasureCode'] && rec['MeasureCode'].raw.startsWith('HDSP');
       },
       fields: [
@@ -155,9 +153,10 @@ const wise_config = {
     suiFacet({
       field: 'Origin of the measure',
       label: 'Origin of the measure',
+      isFilterable: false
     }),
-    suiFacet({ field: 'Sector', isMulti: true }),
-    suiFacet({ field: 'Descriptors' }),
+    suiFacet({ field: 'Sector', isMulti: true, isFilterable: false }),
+    suiFacet({ field: 'Descriptors', isFilterable: false }),
     // suiFacet({ field: 'Country', isFilterable: true, isMulti: true }),
     // suiFacet({ field: 'Use_or_activity', label: 'Use or activity' }),
     // suiFacet({ field: 'Status' }),

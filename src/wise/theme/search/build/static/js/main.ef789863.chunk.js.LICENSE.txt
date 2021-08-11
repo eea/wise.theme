@@ -622,6 +622,8 @@
 
 /*! ./Result/TableView */
 
+/*! ./ResultModal */
+
 /*! ./Results */
 
 /*! ./ResultsPerPage */
@@ -703,6 +705,8 @@
 /*! ./StepTitle */
 
 /*! ./Sticky */
+
+/*! ./String */
 
 /*! ./StringList/StringList */
 
