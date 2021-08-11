@@ -157,6 +157,11 @@ def make_mappings(data):
     # }
 
 
+# def fix_fieldnames(rec):
+    # for k, v in rec.items():
+    #     k = k.replace(' ', '_').replace('(', '').replace(')')
+
+
 def main():
     host = 'localhost'
     index = 'wise_catalogue_measures'
@@ -191,6 +196,7 @@ def main():
         fix_descriptor(main)
         fix_impacts(main)
         fix_keywords(main)
+        # fix_fieldnames(main)
 
         _id = get_id(main)
         main['_id'] = _id

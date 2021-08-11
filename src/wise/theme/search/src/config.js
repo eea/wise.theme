@@ -6,7 +6,7 @@ const wise_config = {
   searchBoxComponent: 'SimpleSearchInput',
   facets: [
     suiFacet({
-      field: 'Origin_of_the_measure',
+      field: 'Origin of the measure',
       label: 'Origin of the measure',
     }),
     suiFacet({ field: 'Sector', isMulti: true }),
@@ -30,7 +30,7 @@ const wise_config = {
   sortOptions: [
     {
       name: 'Title',
-      value: 'Measure_name',
+      value: 'Measure name',
       direction: 'asc',
     },
   ],
@@ -38,44 +38,44 @@ const wise_config = {
     columns: [
       {
         title: 'Measure name',
-        field: 'Measure_name',
+        field: 'Measure name',
       },
       {
         title: 'Origin of the measure',
-        field: 'Origin_of_the_measure',
+        field: 'Origin of the measure',
       },
     ],
   },
   listingViewParams: {
-    titleField: 'Measure_name',
+    titleField: 'Measure name',
     // urlField: 'CodeCatalogue',
     extraFields: [
       {
-        field: 'Origin_of_the_measure',
+        field: 'Origin of the measure',
         label: 'Origin of the measure',
       },
       {
-        field: 'Nature_of_the_measure',
+        field: 'Nature of the measure',
         label: 'Nature of the measure',
       },
       {
-        field: 'Spatial_scope',
+        field: 'Spatial scope',
         label: 'Spatial scope',
       },
     ],
     details: {
-      titleField: 'Measure_name',
+      titleField: 'Measure name',
       extraFields: [
         {
-          field: 'Origin_of_the_measure',
+          field: 'Origin of the measure',
           label: 'Origin of the measure',
         },
         {
-          field: 'Nature_of_the_measure',
+          field: 'Nature of the measure',
           label: 'Nature of the measure',
         },
         {
-          field: 'Spatial_scope',
+          field: 'Spatial scope',
           label: 'Spatial scope',
         },
       ],
@@ -83,11 +83,11 @@ const wise_config = {
         {
           fields: [
             {
-              field: 'Use_or_activity',
+              field: 'Use or activity',
               label: 'Use or activity',
             },
             {
-              field: 'Measure_Impacts_to',
+              field: 'Measure Impacts to',
               label: 'Measure impacts',
             },
           ],
@@ -96,11 +96,11 @@ const wise_config = {
           title: 'Main',
           fields: [
             {
-              field: 'Origin_of_the_measure',
+              field: 'Origin of the measure',
               label: 'Origin of the measure',
             },
             {
-              field: 'Nature_of_the_measure',
+              field: 'Nature of the measure',
               label: 'Nature of the measure',
             },
           ],
@@ -124,7 +124,7 @@ export default function installDemo(config) {
   config.searchui.minimal.facets = [
     suiFacet({ field: 'Sector' }),
     suiFacet({
-      field: 'Origin_of_the_measure',
+      field: 'Origin of the measure',
       label: 'Origin of the measure',
     }),
   ];
