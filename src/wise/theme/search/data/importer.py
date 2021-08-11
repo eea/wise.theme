@@ -87,6 +87,18 @@ def fix_impacts(rec):
     rec['Impacts'] = s
 
 
+def fix_region(rec):
+    regions = {
+        "MATL": "Marine Atlantic Region",
+        "MBAL": "Marine Baltic Region",
+        "MBLS": "Marine Region Black Sea",
+        "MMAC": "Marine Macaronesian Region",
+        "MMED": "Marine Mediterranean Region	"
+    }
+    if 'Region' in rec and rec['Region']:
+        rec['Region'] = regions[rec['Region']]
+
+
 def fix_keywords(rec):
     s = []
 
@@ -196,6 +208,7 @@ def main():
         fix_descriptor(main)
         fix_impacts(main)
         fix_keywords(main)
+        fix_region(main)
         # fix_fieldnames(main)
 
         _id = get_id(main)
