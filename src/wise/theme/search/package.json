@@ -116,7 +116,7 @@
   },
   "dependencies": {
     "@eeacms/search": "*",
-    "@eeacms/search-less": "file:.yalc/@eeacms/search-less",
+    "@eeacms/search-less": "*",
     "@elastic/react-search-ui-views": "^1.7.0",
     "cra-build-watch": "^3.4.0",
     "semantic-ui-css": "^2.4.1",

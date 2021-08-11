@@ -5,6 +5,7 @@ import installConfig from './config';
 
 import '@elastic/react-search-ui-views/lib/styles/styles.css';
 import "@eeacms/search-less/dist/main.css";
+
 import './less/custom.less';
 
 // ++resource++measures-catalogue/
