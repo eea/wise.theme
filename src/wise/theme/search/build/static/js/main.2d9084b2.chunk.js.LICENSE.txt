@@ -2898,6 +2898,8 @@
 
 /*! @eeacms/search/registry */
 
+/*! @eeacms/search/utils */
+
 /*! @elastic/react-search-ui */
 
 /*! @elastic/react-search-ui-views */

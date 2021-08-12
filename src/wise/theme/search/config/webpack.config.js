@@ -203,8 +203,9 @@ module.exports = function (webpackEnv) {
             // We include the app code last so that if there is a runtime error during
             // initialization, it doesn't blow up the WebpackDevServer client, and
             // changing JS code would still trigger a refresh.
+          // `${paths.appSrc}/server.js`,
           ]
-        : paths.appIndexJs,
+        : [paths.appIndexJs, ],
     output: {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
