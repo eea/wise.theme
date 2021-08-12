@@ -245,15 +245,6 @@ const wise_resolve = {
 export default function installDemo(config) {
   config.searchui.wise = mergeConfig(wise_config, config.searchui.default);
 
-  config.searchui.minimal = mergeConfig(config.searchui.default, wise_config);
-  config.searchui.minimal.facets = [
-    suiFacet({ field: 'Sector' }),
-    suiFacet({
-      field: 'Origin of the measure',
-      label: 'Origin of the measure',
-    }),
-  ];
-
   config.resolve = mergeConfig(wise_resolve, config.resolve);
 
   return config;

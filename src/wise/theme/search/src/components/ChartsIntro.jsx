@@ -79,8 +79,8 @@ const ChartsIntro = (props) => {
   }, [appConfig]);
 
   const barData = chartData ? getBarChartData(chartData) : [];
-  console.log('all', chartData);
-  console.log('barData', barData);
+  // console.log('all', chartData);
+  // console.log('barData', barData);
 
   return <div className="charts-intro-page">
     {chartData ? ( <>
