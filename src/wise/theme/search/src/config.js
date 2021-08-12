@@ -1,5 +1,6 @@
 import { suiFacet, mergeConfig } from '@eeacms/search';   // multiTermFacet,
 import WiseLayout from './components/WiseLayout';
+import ChartsIntro from './components/ChartsIntro';
 
 const details = {
   titleField: 'Measure name',
@@ -206,6 +207,9 @@ const wise_config = {
     ],
     details,
   },
+  initialView: {
+    factory: "ChartsIntro"
+  },
   listingViewParams: {
     titleField: 'Measure name',
     // urlField: 'CodeCatalogue',
@@ -231,6 +235,9 @@ const wise_config = {
 const wise_resolve = {
   WiseLayout: {
     component: WiseLayout
+  },
+  ChartsIntro: {
+    component: ChartsIntro
   }
 
 };
