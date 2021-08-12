@@ -78,7 +78,7 @@ const ChartsIntro = (props) => {
     return () => { alreadyRequested = true }
   }, [appConfig]);
 
-  const barData = getBarChartData(chartData || {});
+  const barData = chartData ? getBarChartData(chartData) : [];
   console.log('all', chartData);
   console.log('barData', barData);
 
