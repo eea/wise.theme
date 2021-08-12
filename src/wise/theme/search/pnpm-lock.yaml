@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@babel/core': 7.12.3
   '@babel/plugin-proposal-export-default-from': ^7.12.13
+  '@babel/preset-react': ^7.14.5
   '@eeacms/search': '*'
   '@eeacms/search-less': '*'
   '@elastic/react-search-ui-views': ^1.7.0
@@ -28,6 +29,7 @@ specifiers:
   bfj: ^7.0.2
   camelcase: ^6.1.0
   case-sensitive-paths-webpack-plugin: 2.3.0
+  cors: ^2.8.5
   cra-build-watch: ^3.4.0
   css-loader: 4.3.0
   dotenv: 8.2.0
@@ -70,12 +72,13 @@ specifiers:
   postcss-safe-parser: 5.0.2
   prettier: ^2.2.1
   prompts: 2.4.0
-  react: '17'
+  react: ^17.0.2
   react-app-polyfill: ^2.0.0
   react-dev-utils: ^11.0.3
   react-dom: '17'
   react-json-view: ^1.21.3
   react-refresh: ^0.8.3
+  regenerator-runtime: ^0.13.9
   resolve: 1.18.1
   resolve-url-loader: ^3.1.2
   sass-loader: ^10.0.5
@@ -103,7 +106,9 @@ dependencies:
   '@nivo/bar': 0.73.1_d2d88a10f5f59d9c4de0292bca2d5fe7
   '@nivo/core': 0.73.0_react-dom@17.0.2+react@17.0.2
   '@nivo/pie': 0.73.0_d2d88a10f5f59d9c4de0292bca2d5fe7
+  cors: 2.8.5
   cra-build-watch: 3.4.0_webpack@4.44.2
+  regenerator-runtime: 0.13.9
   semantic-ui-css: 2.4.1
   semantic-ui-less: 2.4.1
   semantic-ui-react: 2.0.3_react-dom@17.0.2+react@17.0.2
@@ -111,6 +116,7 @@ dependencies:
 devDependencies:
   '@babel/core': 7.12.3
   '@babel/plugin-proposal-export-default-from': 7.14.5_@babel+core@7.12.3
+  '@babel/preset-react': 7.14.5_@babel+core@7.12.3
   '@pmmmwh/react-refresh-webpack-plugin': 0.4.3_9f0995138d24e525eb86c097d82409c0
   '@storybook/addon-actions': 6.3.6_react-dom@17.0.2+react@17.0.2
   '@storybook/addon-essentials': 6.3.6_e2e09bbe24ad013829cd27452d473403
@@ -7476,6 +7482,14 @@ packages:
   /core-util-is/1.0.2:
     resolution: {integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=}
     dev: true
+
+  /cors/2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+    dev: false
 
   /cosmiconfig/5.2.1:
     resolution: {integrity: sha512-H65gsXo1SKjf8zmrJ67eJk8aIRKV5ff2D4uKZIBZShbhGSpEmsQOPW/SKMKYhSTrqR7ufy6RP69rPogdaPh/kA==}
@@ -16682,7 +16696,6 @@ packages:
   /vary/1.1.2:
     resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
     engines: {node: '>= 0.8'}
-    dev: true
 
   /vendors/1.0.4:
     resolution: {integrity: sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==}

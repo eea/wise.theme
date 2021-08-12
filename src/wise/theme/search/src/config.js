@@ -148,6 +148,8 @@ const details = {
 
 
 const wise_config = {
+  host: "http://localhost:7000",
+  elastic_index: "es",
   layoutComponent: 'WiseLayout',
   searchBoxComponent: 'SimpleSearchInput',
   facets: [
@@ -239,7 +241,6 @@ const wise_resolve = {
   ChartsIntro: {
     component: ChartsIntro
   }
-
 };
 
 export default function installDemo(config) {

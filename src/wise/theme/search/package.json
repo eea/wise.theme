@@ -1,7 +1,7 @@
 {
   "name": "demo",
   "version": "1.0.0",
-  "description": "Searchlib demo",
+  "description": "WISE Catalogue of Measure",
   "author": "Tiberiu Ichim <tiberiu.ichim@gmail.com>",
   "license": "MIT",
   "main": "src/index.js",
@@ -12,9 +12,6 @@
   "files": [
     "src"
   ],
-  "publishConfig": {
-    "registry": "https://registry.yarnpkg.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eea/searchlib.git"
@@ -23,7 +20,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "watch": "PUBLIC_URL=/++resource++measures-catalogue/ node scripts/watch.js"
+    "watch": "PUBLIC_URL=/++resource++measures-catalogue/ node scripts/watch.js",
+    "server": "PROXY_ES_DSN=http://localhost:9200/wise_catalogue_measures NODE_PATH=./node_modules/ node dist/server.js",
+    "build:server": "env NODE_ENV=development pnpm webpack -c webpack.server.config.js"
   },
   "bugs": {
     "url": "https://github.com/eea/searchlib/issues"
@@ -31,6 +30,7 @@
   "devDependencies": {
     "@babel/core": "7.12.3",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/preset-react": "^7.14.5",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
@@ -91,7 +91,7 @@
     "postcss-safe-parser": "5.0.2",
     "prettier": "^2.2.1",
     "prompts": "2.4.0",
-    "react": "17",
+    "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
     "react-dev-utils": "^11.0.3",
     "react-dom": "17",
@@ -121,7 +121,9 @@
     "@nivo/bar": "^0.73.1",
     "@nivo/core": "^0.73.0",
     "@nivo/pie": "^0.73.0",
+    "cors": "^2.8.5",
     "cra-build-watch": "^3.4.0",
+    "regenerator-runtime": "^0.13.9",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-less": "^2.4.1",
     "semantic-ui-react": "^2.0.3"
