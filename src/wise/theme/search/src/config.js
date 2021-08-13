@@ -162,7 +162,9 @@ const wise_config = {
   host: 'http://localhost:7000',
   elastic_index: 'es',
   layoutComponent: 'WiseLayout',
-  searchBoxComponent: 'SimpleSearchInput',
+  searchBoxInputComponent: 'SimpleSearchInput',
+  // searchBoxComponent: 'searchui.SearchBox',
+  useSearchPhrases: false,
   facets: [
     suiFacet({
       field: 'Origin of the measure',
