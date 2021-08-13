@@ -101,21 +101,21 @@ const ChartsIntro = (props) => {
     <div className="charts-intro-page">
       {chartData ? (
         <>
-          <Grid columns="3">
+          <Grid columns="3" stackable>
             <Grid.Row>
-              <Grid.Column>
+              <Grid.Column mobile={16} tablet={16} computer={8}>
                 <div style={{ height: '400px' }}>
                   <h3>Measure impacts to</h3>
                   <PieChart data={getMeasureImpacts(chartData)} />
                 </div>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column mobile={16} tablet={16} computer={8}>
                 <div style={{ height: '400px' }}>
                   <h3>Origin of the measure</h3>
                   <PieChart data={getOriginOfMeasure(chartData)} />
                 </div>
               </Grid.Column>
-              <Grid.Column>
+              <Grid.Column mobile={16} tablet={16} computer={8}>
                 <div style={{ height: '400px' }}>
                   <h3>Sectors</h3>
                   <PieChart data={getSectors(chartData)} />

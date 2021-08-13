@@ -1,4 +1,4 @@
-import { suiFacet, mergeConfig } from '@eeacms/search';   // multiTermFacet,
+import { suiFacet, mergeConfig } from '@eeacms/search'; // multiTermFacet,
 import WiseLayout from './components/WiseLayout';
 import ChartsIntro from './components/ChartsIntro';
 
@@ -21,12 +21,12 @@ const details = {
   sections: [
     {
       fields: [
-        { field: 'Measure name', },
-        { field: 'Sector', },
-        { field: 'Use or activity', },
-        { field: 'Origin of the measure', },
-        { field: 'Nature of the measure', },
-        { field: 'Status', },
+        { field: 'Measure name' },
+        { field: 'Sector' },
+        { field: 'Use or activity' },
+        { field: 'Origin of the measure' },
+        { field: 'Nature of the measure' },
+        { field: 'Status' },
         {
           field: 'Measure Impacts to',
           label: 'Measure impacts to',
@@ -35,128 +35,139 @@ const details = {
           field: 'Measure Impacts to (further details)',
           label: 'Measure impacts to, further details ',
         },
-        { field: 'Water body category', },
-        { field: 'Spatial scope', },
-        { field: 'Country', label: 'Country coverage'},
+        { field: 'Water body category' },
+        { field: 'Spatial scope' },
+        { field: 'Country', label: 'Country coverage' },
       ],
     },
     {
       title: 'Further information',
-      condition: (rec) => rec['Origin of the measure']?.raw === 'WFD (Directive 2000/60/EC)',
+      condition: (rec) =>
+        rec['Origin of the measure']?.raw === 'WFD (Directive 2000/60/EC)',
       fields: [
-        { field: 'Nature of physical modification', },
-        { field: 'Effect on hydromorphology', },
-        { field: 'Ecological impacts', },
+        { field: 'Nature of physical modification' },
+        { field: 'Effect on hydromorphology' },
+        { field: 'Ecological impacts' },
       ],
     },
     {
       title: 'Further information',
-      condition: (rec) => rec['Origin of the measure']?.raw === 'MSFD (Directive 2008/56/EC)',
+      condition: (rec) =>
+        rec['Origin of the measure']?.raw === 'MSFD (Directive 2008/56/EC)',
       fields: [
-        {field: 'Link to existing policies', },
-        {field: 'KTMs it links to', },
-        {field: 'Relevant targets', },
-        {field: 'Relevant features from MSFD Annex III', },
-        {field: 'Spatial  scope_MSFD', label: "MSFD Spatial scope"},
-        {field: 'Keywords', },
-      ],
-    },
-    {
-      title: 'Further information',
-      condition: (rec) => {
-        return rec['Origin of the measure']?.raw === 'HD (Directive 92/43/EEC)' && rec['MeasureCode'] && rec['MeasureCode'].raw.startsWith('HDH');
-      },
-      fields: [
-        {field: 'Measure purpose', },
-        {field: 'Measure type recommended to address E02 and/or E03', },
-        {field: 'Measure location', },
-        {field: 'Measure response', },
-        {field: 'Measure additional info', },
-        {field: 'Pressure type', label: 'Type of pressure'},
-        {field: 'Pressure name', },
-        {field: 'Ranking', },
-        {field: 'Region', },
+        { field: 'Link to existing policies' },
+        { field: 'KTMs it links to' },
+        { field: 'Relevant targets' },
+        { field: 'Relevant features from MSFD Annex III' },
+        { field: 'Spatial  scope_MSFD', label: 'MSFD Spatial scope' },
+        { field: 'Keywords' },
       ],
     },
     {
       title: 'Further information',
       condition: (rec) => {
-        return rec['Origin of the measure']?.raw === 'HD (Directive 92/43/EEC)' && rec['MeasureCode'] && rec['MeasureCode'].raw.startsWith('HDSP');
+        return (
+          rec['Origin of the measure']?.raw === 'HD (Directive 92/43/EEC)' &&
+          rec['MeasureCode'] &&
+          rec['MeasureCode'].raw.startsWith('HDH')
+        );
       },
       fields: [
-        {field: 'Measure purpose', },
-        {field: 'Measure type recommended to address E02 and/or E03', },
-        {field: 'Measure location', },
-        {field: 'Measure response', },
-        {field: 'Measure additional info', },
-        {field: 'Pressure type', label: 'Type of pressure'},
-        {field: 'Pressure name', },
-        {field: 'Ranking', },
-        {field: 'Region', label: "Marine region"},
+        { field: 'Measure purpose' },
+        { field: 'Measure type recommended to address E02 and/or E03' },
+        { field: 'Measure location' },
+        { field: 'Measure response' },
+        { field: 'Measure additional info' },
+        { field: 'Pressure type', label: 'Type of pressure' },
+        { field: 'Pressure name' },
+        { field: 'Ranking' },
+        { field: 'Region' },
       ],
     },
     {
       title: 'Further information',
-      condition: (rec) => rec['Origin of the measure']?.raw === 'BD (Directive 79/409/EEC)',
+      condition: (rec) => {
+        return (
+          rec['Origin of the measure']?.raw === 'HD (Directive 92/43/EEC)' &&
+          rec['MeasureCode'] &&
+          rec['MeasureCode'].raw.startsWith('HDSP')
+        );
+      },
       fields: [
-        {field: 'Measure purpose', },
-        {field: 'Measure type recommended to address E02 and/or E03', },
-        {field: 'Measure location', },
-        {field: 'Measure response', },
-        {field: 'Measure additional info', },
-        {field: 'Pressure type', label: 'Type of pressure'},
-        {field: 'Pressure name', },
-        {field: 'Ranking', },
-        {field: 'Season', },
+        { field: 'Measure purpose' },
+        { field: 'Measure type recommended to address E02 and/or E03' },
+        { field: 'Measure location' },
+        { field: 'Measure response' },
+        { field: 'Measure additional info' },
+        { field: 'Pressure type', label: 'Type of pressure' },
+        { field: 'Pressure name' },
+        { field: 'Ranking' },
+        { field: 'Region', label: 'Marine region' },
       ],
     },
     {
       title: 'Further information',
-      condition: (rec) => rec['Origin of the measure']?.raw === 'MSPD (Directive 2008/56/EC)',
+      condition: (rec) =>
+        rec['Origin of the measure']?.raw === 'BD (Directive 79/409/EEC)',
       fields: [
-        { field: 'Nature of physical modification', },
-        { field: 'MSPD implementation status', },
-        { field: 'Shipping Tackled', },
-        { field: 'Traffic separation scheme', },
-        { field: 'Priority Areas', },
-        { field: 'Approaching Areas', },
-        { field: 'Precautionary areas', },
-        { field: 'Areas to be avoided', },
-        { field: 'Future Scenarios', },
-        { field: 'Source', },
-        { field: 'Keywords', },
-        { field: 'Authority', },
-        { field: 'General View', },
-        { field: 'Ports', },
-        { field: 'Future Expectations', },
-        { field: 'Safety manner', },
-        { field: 'Objective', },
-        { field: 'Categories', },
+        { field: 'Measure purpose' },
+        { field: 'Measure type recommended to address E02 and/or E03' },
+        { field: 'Measure location' },
+        { field: 'Measure response' },
+        { field: 'Measure additional info' },
+        { field: 'Pressure type', label: 'Type of pressure' },
+        { field: 'Pressure name' },
+        { field: 'Ranking' },
+        { field: 'Season' },
+      ],
+    },
+    {
+      title: 'Further information',
+      condition: (rec) =>
+        rec['Origin of the measure']?.raw === 'MSPD (Directive 2008/56/EC)',
+      fields: [
+        { field: 'Nature of physical modification' },
+        { field: 'MSPD implementation status' },
+        { field: 'Shipping Tackled' },
+        { field: 'Traffic separation scheme' },
+        { field: 'Priority Areas' },
+        { field: 'Approaching Areas' },
+        { field: 'Precautionary areas' },
+        { field: 'Areas to be avoided' },
+        { field: 'Future Scenarios' },
+        { field: 'Source' },
+        { field: 'Keywords' },
+        { field: 'Authority' },
+        { field: 'General View' },
+        { field: 'Ports' },
+        { field: 'Future Expectations' },
+        { field: 'Safety manner' },
+        { field: 'Objective' },
+        { field: 'Categories' },
       ],
     },
     {
       title: 'Further information',
       condition: (rec) => rec['Origin of the measure']?.raw === 'Sectorial',
       fields: [
-        { field: 'Impacts', },
-        { field: 'Spatial scale', },
-        { field: 'Source', label: 'Source(s)'},
+        { field: 'Impacts' },
+        { field: 'Spatial scale' },
+        { field: 'Source', label: 'Source(s)' },
       ],
     },
   ],
 };
 
-
 const wise_config = {
-  host: "http://localhost:7000",
-  elastic_index: "es",
+  host: 'http://localhost:7000',
+  elastic_index: 'es',
   layoutComponent: 'WiseLayout',
   searchBoxComponent: 'SimpleSearchInput',
   facets: [
     suiFacet({
       field: 'Origin of the measure',
       label: 'Origin of the measure',
-      isFilterable: false
+      isFilterable: false,
     }),
     suiFacet({ field: 'Sector', isMulti: true, isFilterable: false }),
     suiFacet({ field: 'Descriptors', isFilterable: false }),
@@ -210,7 +221,7 @@ const wise_config = {
     details,
   },
   initialView: {
-    factory: "ChartsIntro"
+    factory: 'ChartsIntro',
   },
   listingViewParams: {
     titleField: 'Measure name',
@@ -233,14 +244,13 @@ const wise_config = {
   },
 };
 
-
 const wise_resolve = {
   WiseLayout: {
-    component: WiseLayout
+    component: WiseLayout,
   },
   ChartsIntro: {
-    component: ChartsIntro
-  }
+    component: ChartsIntro,
+  },
 };
 
 export default function installDemo(config) {
@@ -250,4 +260,3 @@ export default function installDemo(config) {
 
   return config;
 }
-

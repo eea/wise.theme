@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {SearchApp, registry} from '@eeacms/search';
+import { SearchApp, registry } from '@eeacms/search';
 import installConfig from './config';
 
 import '@elastic/react-search-ui-views/lib/styles/styles.css';
-import "@eeacms/search-less/dist/main.css";
+import '@eeacms/search-less/dist/main.css';
 
 import './less/custom.less';
 
@@ -16,8 +16,8 @@ const configRegistry = installConfig(registry);
 console.log('config', configRegistry);
 
 ReactDOM.render(
-    <SearchApp registry={configRegistry} appName="wise" />,
-  document.getElementById('search-app')
+  <SearchApp registry={configRegistry} appName="wise" />,
+  document.getElementById('search-app'),
 );
 
 // If you want to start measuring performance in your app, pass a function
