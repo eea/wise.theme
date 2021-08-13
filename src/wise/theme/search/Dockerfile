@@ -11,28 +11,33 @@ RUN curl -f https://get.pnpm.io/v6.7.js | node - add --global pnpm
 RUN mkdir -p /opt/searchproxy \
  && chown -R node /opt/searchproxy
 
-WORKDIR /opt/searchproxy/
+RUN mkdir -p /opt/dependencies \
+ && chown -R node /opt/dependencies
+
+WORKDIR /opt/dependencies/
+
+ENV CYPRESS_INSTALL_BINARY=0
 
 RUN git clone https://github.com/eea/searchlib.git \
 	&& cd searchlib \
   && git checkout develop \
   && pnpm i
 
-RUN cd /opt/searchproxy/searchlib/packages/searchlib \
+RUN cd /opt/dependencies/searchlib/packages/searchlib \
   && pnpm build
 
-RUN cd /opt/searchproxy/searchlib/packages/searchlib-less \
+RUN cd /opt/dependencies/searchlib/packages/searchlib-less \
   && pnpm build
 
-RUN cd /opt/searchproxy/searchlib/packages/searchlib-middleware \
+RUN cd /opt/dependencies/searchlib/packages/searchlib-middleware \
   && pnpm build
 
-COPY . /opt/searchproxy
+COPY ./* /opt/searchproxy/
 
 RUN cd /opt/searchproxy \
-	&& pnpm link searchlib/packages/searchlib \
-  && pnpm link searchlib/packages/searchlib-less \
-  && pnpm link searchlib/packages/searchlib-middleware
+	&& pnpm link ../dependencies/searchlib/packages/searchlib \
+  && pnpm link ../dependencies/searchlib/packages/searchlib-less \
+  && pnpm link ../dependencies/searchlib/packages/searchlib-middleware
 
 RUN cd /opt/searchproxy \
   && pnpm i
@@ -43,14 +48,3 @@ RUN cd /opt/searchproxy \
 CMD pnpm server
 
 EXPOSE 7000
-
-# RUN npm install -g yo @plone/generator-volto wait-on
-#
-# USER node
-# RUN yo --no-insight @plone/volto --no-interactive
-#
-# RUN RAZZLE_API_PATH=VOLTO_API_PATH RAZZLE_INTERNAL_API_PATH=VOLTO_INTERNAL_API_PATH yarn \
-#  && RAZZLE_API_PATH=VOLTO_API_PATH RAZZLE_INTERNAL_API_PATH=VOLTO_INTERNAL_API_PATH yarn build
-# COPY entrypoint.sh /
-# ENTRYPOINT ["/entrypoint.sh"]
-# CMD ["yarn", "start:prod"]
