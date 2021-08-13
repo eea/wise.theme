@@ -2,7 +2,7 @@ import React from 'react';
 import { runRequest } from '@eeacms/search';
 import { PieChart } from './PieChart';
 import { BarChart } from './BarChart';
-import { Grid } from 'semantic-ui-react'; // , Segment
+import { Grid, Table } from 'semantic-ui-react'; // , Segment
 
 const REQUEST = {
   size: 0,
@@ -76,6 +76,41 @@ const getBarChartData = (data) => {
   }));
 };
 
+const OriginTable = ({ columns, rows, data }) => {
+  return (
+    <Table>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Origin of measure</Table.HeaderCell>
+          {columns.map((col) => (
+            <Table.HeaderCell key={col}>{col}</Table.HeaderCell>
+          ))}
+        </Table.Row>
+        {rows.map((origin) => (
+          <Table.Row key={origin}>
+            <Table.HeaderCell>{origin}</Table.HeaderCell>
+            {columns.map((descriptor, i) => (
+              <Table.Cell key={`${i}-${descriptor}`}>
+                {data[i][origin]}
+              </Table.Cell>
+            ))}
+          </Table.Row>
+        ))}
+        <Table.Row>
+          <Table.HeaderCell>Total</Table.HeaderCell>
+          {data.map((item) => (
+            <Table.Cell key={item.Descriptor}>
+              {rows
+                .map((r) => parseInt(item[r]) || 0)
+                .reduce((a, b) => a + b, 0)}
+            </Table.Cell>
+          ))}
+        </Table.Row>
+      </Table.Header>
+    </Table>
+  );
+};
+
 const ChartsIntro = (props) => {
   const { appConfig } = props;
   const [chartData, setChartData] = React.useState();
@@ -97,7 +132,7 @@ const ChartsIntro = (props) => {
     parseInt(a.Descriptor.slice(1)) > parseInt(b.Descriptor.slice(1)) ? 1 : -1,
   );
   // console.log('all', chartData);
-  // console.log('barData', barData);
+  console.log('barData', barData);
 
   return (
     <div className="charts-intro-page">
@@ -129,12 +164,19 @@ const ChartsIntro = (props) => {
             <h3>Origin of the measure/Descriptors</h3>
             <BarChart
               data={barData}
-              keys={Object.keys(barData[0] || {}).filter(
-                (k) => k !== 'Descriptor',
-              )}
+              keys={Object.keys(barData[1] || {}) // [0] doesn't have all keys
+                .filter((k) => k !== 'Descriptor')
+                .sort()}
               indexBy="Descriptor"
             />
           </div>
+          <OriginTable
+            data={barData}
+            columns={barData.map(({ Descriptor }) => Descriptor)}
+            rows={Object.keys(barData[1] || {})
+              .filter((k) => k !== 'Descriptor')
+              .sort()}
+          />
         </>
       ) : (
         ''
