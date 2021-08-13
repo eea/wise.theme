@@ -1,6 +1,6 @@
 FROM node:14-buster-slim
 
-RUN runDeps="openssl ca-certificates patch" \
+RUN runDeps="openssl ca-certificates patch git curl" \
  && apt-get update \
  && apt-get install -y --no-install-recommends $runDeps \
  && apt-get clean \
@@ -11,10 +11,11 @@ RUN curl -f https://get.pnpm.io/v6.7.js | node - add --global pnpm
 RUN mkdir -p /opt/searchproxy \
  && chown -R node /opt/searchproxy
 
-COPY . /opt/searchproxy
+WORKDIR /opt/searchproxy/
 
 RUN git clone https://github.com/eea/searchlib.git \
 	&& cd searchlib \
+  && git checkout develop \
   && pnpm i
 
 RUN cd /opt/searchproxy/searchlib/packages/searchlib \
@@ -26,15 +27,19 @@ RUN cd /opt/searchproxy/searchlib/packages/searchlib-less \
 RUN cd /opt/searchproxy/searchlib/packages/searchlib-middleware \
   && pnpm build
 
+COPY . /opt/searchproxy
+
 RUN cd /opt/searchproxy \
 	&& pnpm link searchlib/packages/searchlib \
   && pnpm link searchlib/packages/searchlib-less \
   && pnpm link searchlib/packages/searchlib-middleware
 
 RUN cd /opt/searchproxy \
+  && pnpm i
+
+RUN cd /opt/searchproxy \
   && pnpm build:server
 
-WORKDIR /opt/searchproxy/
 CMD pnpm server
 
 EXPOSE 7000
