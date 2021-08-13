@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "wise-catalogue-measures",
   "version": "1.0.0",
   "description": "WISE Catalogue of Measure",
   "author": "Tiberiu Ichim <tiberiu.ichim@gmail.com>",
@@ -21,7 +21,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "watch": "PUBLIC_URL=/++resource++measures-catalogue/ node scripts/watch.js",
-    "server": "PROXY_ES_DSN=http://localhost:9200/wise_catalogue_measures NODE_PATH=./node_modules/ node dist/server.js",
+    "server": "PROXY_ES_DSN=${PROXY_ES_DSN:-http://localhost:9200/wise_catalogue_measures} NODE_PATH=./node_modules/ node dist/server.js",
     "build:server": "env NODE_ENV=development pnpm webpack -c webpack.server.config.js"
   },
   "bugs": {

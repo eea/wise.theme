@@ -32,7 +32,9 @@ RUN cd /opt/dependencies/searchlib/packages/searchlib-less \
 RUN cd /opt/dependencies/searchlib/packages/searchlib-middleware \
   && pnpm build
 
-COPY ./* /opt/searchproxy/
+COPY . /opt/searchproxy/
+
+WORKDIR /opt/searchproxy/
 
 RUN cd /opt/searchproxy \
 	&& pnpm link ../dependencies/searchlib/packages/searchlib \
@@ -45,6 +47,6 @@ RUN cd /opt/searchproxy \
 RUN cd /opt/searchproxy \
   && pnpm build:server
 
-CMD pnpm server
+CMD pnpm run server
 
 EXPOSE 7000
