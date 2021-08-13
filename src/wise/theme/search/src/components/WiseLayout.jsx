@@ -8,9 +8,7 @@ const RightColumnLayout = (props) => {
       <Grid columns={2} stackable className="body-content">
         <Grid.Row>
           <Grid.Column widescreen={12}>
-            <div>
-            {header}
-            </div>
+            <div>{header}</div>
             <div>{bodyHeader}</div>
             <div>{bodyContent}</div>
           </Grid.Column>

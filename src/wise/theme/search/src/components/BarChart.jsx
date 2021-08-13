@@ -1,6 +1,6 @@
 // install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/bar
-import { ResponsiveBar } from '@nivo/bar'
+import { ResponsiveBar } from '@nivo/bar';
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
@@ -10,7 +10,11 @@ import { ResponsiveBar } from '@nivo/bar'
 // const fill = [ { match: { id: 'fries' }, id: 'dots' }, { match: { id: 'sandwich' }, id: 'lines' }];
 //[ 'hot dog', 'burger', 'sandwich', 'kebab', 'fries', 'donut' ]
 
-export const BarChart = ({ data /* see data tab */, keys, indexBy="country" }) => (
+export const BarChart = ({
+  data /* see data tab */,
+  keys,
+  indexBy = 'country',
+}) => (
   <ResponsiveBar
     data={data}
     keys={keys}
@@ -24,12 +28,12 @@ export const BarChart = ({ data /* see data tab */, keys, indexBy="country" }) =
     defs={[
       {
         id: 'dots',
-          type: 'patternDots',
-          background: 'inherit',
-          color: '#38bcb2',
-          size: 4,
-          padding: 1,
-          stagger: true
+        type: 'patternDots',
+        background: 'inherit',
+        color: '#38bcb2',
+        size: 4,
+        padding: 1,
+        stagger: true,
       },
       {
         id: 'lines',
@@ -38,11 +42,11 @@ export const BarChart = ({ data /* see data tab */, keys, indexBy="country" }) =
         color: '#eed312',
         rotation: -45,
         lineWidth: 6,
-        spacing: 10
-      }
+        spacing: 10,
+      },
     ]}
-    fill={[ ]}
-    borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
+    fill={[]}
+    borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
     axisTop={null}
     axisRight={null}
     axisBottom={{
@@ -51,7 +55,7 @@ export const BarChart = ({ data /* see data tab */, keys, indexBy="country" }) =
       tickRotation: 0,
       // legend: 'country',
       legendPosition: 'middle',
-      legendOffset: 32
+      legendOffset: 32,
     }}
     axisLeft={{
       tickSize: 5,
@@ -59,34 +63,34 @@ export const BarChart = ({ data /* see data tab */, keys, indexBy="country" }) =
       tickRotation: 0,
       // legend: 'Count',
       legendPosition: 'middle',
-      legendOffset: -40
+      legendOffset: -40,
     }}
     labelSkipWidth={12}
     labelSkipHeight={12}
-    labelTextColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
+    labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
     legends={[
       {
         dataFrom: 'keys',
-          anchor: 'bottom-right',
-          direction: 'column',
-          justify: false,
-          translateX: 120,
-          translateY: 0,
-          itemsSpacing: 2,
-          itemWidth: 100,
-          itemHeight: 20,
-          itemDirection: 'left-to-right',
-          itemOpacity: 0.85,
-          symbolSize: 20,
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemOpacity: 1
-              }
-            }
-          ]
-      }
+        anchor: 'bottom-right',
+        direction: 'column',
+        justify: false,
+        translateX: 120,
+        translateY: 0,
+        itemsSpacing: 2,
+        itemWidth: 100,
+        itemHeight: 20,
+        itemDirection: 'left-to-right',
+        itemOpacity: 0.85,
+        symbolSize: 20,
+        effects: [
+          {
+            on: 'hover',
+            style: {
+              itemOpacity: 1,
+            },
+          },
+        ],
+      },
     ]}
   />
-)
+);
