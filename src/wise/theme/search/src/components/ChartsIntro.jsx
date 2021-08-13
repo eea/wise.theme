@@ -93,7 +93,9 @@ const ChartsIntro = (props) => {
     };
   }, [appConfig]);
 
-  const barData = chartData ? getBarChartData(chartData) : [];
+  const barData = (chartData ? getBarChartData(chartData) : []).sort((a, b) =>
+    parseInt(a.Descriptor.slice(1)) > parseInt(b.Descriptor.slice(1)) ? 1 : -1,
+  );
   // console.log('all', chartData);
   // console.log('barData', barData);
 
@@ -126,7 +128,7 @@ const ChartsIntro = (props) => {
           <div style={{ height: '600px' }}>
             <h3>Origin of the measure/Descriptors</h3>
             <BarChart
-              data={getBarChartData(chartData)}
+              data={barData}
               keys={Object.keys(barData[0] || {}).filter(
                 (k) => k !== 'Descriptor',
               )}

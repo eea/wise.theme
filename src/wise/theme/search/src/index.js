@@ -13,8 +13,6 @@ import './less/custom.less';
 
 const configRegistry = installConfig(registry);
 
-console.log('config', configRegistry);
-
 ReactDOM.render(
   <SearchApp registry={configRegistry} appName="wise" />,
   document.getElementById('search-app'),
