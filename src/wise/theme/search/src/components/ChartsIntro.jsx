@@ -131,6 +131,8 @@ const ChartsIntro = (props) => {
   const barData = (chartData ? getBarChartData(chartData) : []).sort((a, b) =>
     parseInt(a.Descriptor.slice(1)) > parseInt(b.Descriptor.slice(1)) ? 1 : -1,
   );
+  const measureData = chartData ? getMeasureImpacts(chartData) : [];
+  console.log('measureData', measureData);
   // console.log('all', chartData);
   console.log('barData', barData);
 
@@ -141,9 +143,9 @@ const ChartsIntro = (props) => {
           <Grid columns="3" stackable>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={8}>
-                <div style={{ height: '400px' }}>
+                <div style={{ height: '400px', border: '1px solid red' }}>
                   <h3>Measure impacts to</h3>
-                  <PieChart data={getMeasureImpacts(chartData)} />
+                  <PieChart data={measureData} />
                 </div>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={16} computer={8}>
