@@ -265,7 +265,7 @@ export default function installDemo(config) {
   config.searchui.wise = mergeConfig(wise_config, config.searchui.default);
   config.resolve = mergeConfig(wise_resolve, config.resolve);
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && process.env.USE_ES_PROXY === 'true') {
     config.searchui.wise.host = getClientProxyAddress();
   }
 
