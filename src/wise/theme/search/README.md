@@ -23,6 +23,7 @@ Then create a new folder, set the layout to [@@measures-search](http://localhost
 
 There are 3 different modes to run the app:
 
+- `pnpm run start` runs a live development server, outside of Plone. Use [localhost:3000](http://localhost:3000) for quickest development path.
+
 - `pnpm run watch` builds the index.html and resources to develop and use the page in Plone
 - `pnpm run build` static builds the index.html and resources for final use in Plone
-- `pnpm run start` runs a live development server, outside of Plone. Use [localhost:3000](http://localhost:3000) for quickest development path.

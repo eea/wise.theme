@@ -7,16 +7,16 @@
     i18n_domain="wise.theme"
     >
 
-<!--  <browser:page-->
-<!--      name="measures-search"-->
-<!--      for="*"-->
-<!--      template="./search/build/index.html"-->
-<!--      permission="zope.Public"-->
-<!--      />-->
+   <browser:page
+       name="measures-search"
+       for="*"
+       template="./search/build/index.html"
+       permission="zope.Public"
+       />
 
-<!--  <browser:resourceDirectory-->
-<!--      name="measures-catalogue"-->
-<!--      directory="./search/build"-->
-<!--      />-->
+   <browser:resourceDirectory
+       name="measures-catalogue"
+       directory="./search/build"
+       />
 
 </configure>
