@@ -257,7 +257,7 @@ const wise_resolve = {
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
-  url.pathname = '/es';
+  url.pathname = '';
   return url.toString();
 };
 
