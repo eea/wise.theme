@@ -1,8 +1,8 @@
 // import React from 'react';    // needed for inclusion in bundle
 import runtime from 'regenerator-runtime/runtime'; // compatibility with react-speech-recognition
 
-import {registry} from '@eeacms/search';
-import {makeServer} from '@eeacms/search-middleware';
+import { registry } from '@eeacms/search';
+import { makeServer } from '@eeacms/search-middleware';
 import installConfig from './config';
 
 console.log('runtime', runtime);
@@ -12,5 +12,5 @@ const app = makeServer(configRegistry);
 const port = process.env.PORT || '7000';
 
 app.listen(port, () => {
-  console.log(`ES Proxy app running on http://localhost:${port}`)
-})
+  console.log(`ES Proxy app running on http://localhost:${port}`);
+});

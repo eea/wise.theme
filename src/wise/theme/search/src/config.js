@@ -255,10 +255,19 @@ const wise_resolve = {
   },
 };
 
+const getClientProxyAddress = () => {
+  const url = new URL(window.location);
+  url.pathname = '/es';
+  return url.toString();
+};
+
 export default function installDemo(config) {
   config.searchui.wise = mergeConfig(wise_config, config.searchui.default);
-
   config.resolve = mergeConfig(wise_resolve, config.resolve);
+
+  if (typeof window !== 'undefined') {
+    config.searchui.wise.host = getClientProxyAddress();
+  }
 
   return config;
 }
