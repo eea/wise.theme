@@ -143,7 +143,7 @@ const ChartsIntro = (props) => {
           <Grid columns="3" stackable>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={8}>
-                <div style={{ height: '400px', border: '1px solid red' }}>
+                <div style={{ height: '400px' }}>
                   <h3>Measure impacts to</h3>
                   <PieChart data={measureData} />
                 </div>
