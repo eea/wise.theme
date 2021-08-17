@@ -143,42 +143,55 @@ const ChartsIntro = (props) => {
           <Grid columns="3" stackable>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={8}>
-                <div style={{ height: '400px' }}>
-                  <h3>Measure impacts to</h3>
+                <div className="chart-wrapper">
+                  <h3 className="chart-title">Measure impacts to</h3>
                   <PieChart data={measureData} />
                 </div>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={16} computer={8}>
-                <div style={{ height: '400px' }}>
-                  <h3>Origin of the measure</h3>
+                <div className="chart-wrapper">
+                  <h3 className="chart-title">Origin of the measure</h3>
                   <PieChart data={getOriginOfMeasure(chartData)} />
                 </div>
               </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={8}>
-                <div style={{ height: '400px' }}>
-                  <h3>Sectors</h3>
+                <div className="chart-wrapper">
+                  <h3 className="chart-title">Sectors</h3>
                   <PieChart data={getSectors(chartData)} />
                 </div>
               </Grid.Column>
             </Grid.Row>
+            <Grid.Row>
+              <Grid.Column mobile={16} tablet={16} computer={16}>
+                <div className="chart-wrapper" style={{ height: '600px' }}>
+                  <h3 className="chart-title">
+                    Origin of the measure/Descriptors
+                  </h3>
+                  <BarChart
+                    data={barData}
+                    keys={Object.keys(barData[1] || {}) // [0] doesn't have all keys
+                      .filter((k) => k !== 'Descriptor')
+                      .sort()}
+                    indexBy="Descriptor"
+                  />
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+              <Grid.Column mobile={16} tablet={16} computer={16}>
+                <OriginTable
+                  data={barData}
+                  columns={barData.map(({ Descriptor }) => Descriptor)}
+                  rows={Object.keys(barData[1] || {})
+                    .filter((k) => k !== 'Descriptor')
+                    .sort()}
+                />
+              </Grid.Column>
+            </Grid.Row>
           </Grid>
-          <div style={{ height: '600px' }}>
-            <h3>Origin of the measure/Descriptors</h3>
-            <BarChart
-              data={barData}
-              keys={Object.keys(barData[1] || {}) // [0] doesn't have all keys
-                .filter((k) => k !== 'Descriptor')
-                .sort()}
-              indexBy="Descriptor"
-            />
-          </div>
-          <OriginTable
-            data={barData}
-            columns={barData.map(({ Descriptor }) => Descriptor)}
-            rows={Object.keys(barData[1] || {})
-              .filter((k) => k !== 'Descriptor')
-              .sort()}
-          />
         </>
       ) : (
         ''
