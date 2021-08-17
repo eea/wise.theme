@@ -156,9 +156,14 @@ def make_mappings(data):
     mapping = {}
     for f in fields:
         if f not in blacklist:
-            mapping[f] = {"type": "keyword"}
+            mapping[f] = {"type": "keyword",
+                          "copy_to": ['all_fields_for_freetext']}
 
+    mapping['all_fields_for_freetext'] = {
+        "type": "text", "analyzer": "standard"      # analyzer:freetext
+    }
     return mapping
+
     # {
     # "Sector": {"type": "keyword"},
     # "did_you_mean": {"type": "text", "analyzer": "didYouMean"},
@@ -175,8 +180,12 @@ def make_mappings(data):
 
 
 def main():
-    host = '10.50.4.114'
+    host = 'localhost'
+    # host = '10.50.4.114'
     index = 'wise_catalogue_measures'
+
+    # with open('./analyzers.json') as f:
+    #     analyzers = json.loads(f.read())
 
     conn = Elasticsearch([host])
     master_data = read_master_csv_files('./csv')
