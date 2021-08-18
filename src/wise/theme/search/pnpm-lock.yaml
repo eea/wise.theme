@@ -63,6 +63,7 @@ specifiers:
   lodash.isfunction: ^3.0.9
   mini-css-extract-plugin: 0.11.3
   node-fetch: ^2.6.1
+  npm-run-all: ^4.1.5
   optimize-css-assets-webpack-plugin: ^6.0.0
   pnp-webpack-plugin: 1.6.4
   postcss-flexbugs-fixes: 4.2.1
@@ -168,6 +169,7 @@ devDependencies:
   lodash.isfunction: 3.0.9
   mini-css-extract-plugin: 0.11.3_webpack@4.44.2
   node-fetch: 2.6.1
+  npm-run-all: 4.1.5
   optimize-css-assets-webpack-plugin: 6.0.1_webpack@4.44.2
   pnp-webpack-plugin: 1.6.4
   postcss-flexbugs-fixes: 4.2.1
@@ -12144,6 +12146,11 @@ packages:
       readable-stream: 2.3.7
     dev: true
 
+  /memorystream/0.3.1:
+    resolution: {integrity: sha1-htcJCzDORV1j+64S3aUaR93K+bI=}
+    engines: {node: '>= 0.10.0'}
+    dev: true
+
   /meow/8.0.0:
     resolution: {integrity: sha512-nbsTRz2fwniJBFgUkcdISq8y/q9n9VbiHYbfwklFh5V4V2uAcxtKQkDc0yCLPM/kP0d+inZBewn3zJqewHE7kg==}
     engines: {node: '>=10'}
@@ -12604,6 +12611,22 @@ packages:
   /normalize-url/6.1.0:
     resolution: {integrity: sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==}
     engines: {node: '>=10'}
+    dev: true
+
+  /npm-run-all/4.1.5:
+    resolution: {integrity: sha512-Oo82gJDAVcaMdi3nuoKFavkIHBRVqQ1qvMb+9LHk/cF4P6B2m8aP04hGf7oL6wZ9BuGwX1onlLhpuoofSyoQDQ==}
+    engines: {node: '>= 4'}
+    hasBin: true
+    dependencies:
+      ansi-styles: 3.2.1
+      chalk: 2.4.2
+      cross-spawn: 6.0.5
+      memorystream: 0.3.1
+      minimatch: 3.0.4
+      pidtree: 0.3.1
+      read-pkg: 3.0.0
+      shell-quote: 1.7.2
+      string.prototype.padend: 3.1.2
     dev: true
 
   /npm-run-path/2.0.2:
@@ -13131,6 +13154,12 @@ packages:
   /picomatch/2.3.0:
     resolution: {integrity: sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==}
     engines: {node: '>=8.6'}
+
+  /pidtree/0.3.1:
+    resolution: {integrity: sha512-qQbW94hLHEqCg7nhby4yRC7G2+jYHY4Rguc2bjw7Uug4GIJuu1tvf2uHaZv5Q8zdt+WKJ6qK1FOI6amaWUo5FA==}
+    engines: {node: '>=0.10'}
+    hasBin: true
+    dev: true
 
   /pify/2.3.0:
     resolution: {integrity: sha1-7RQaasBDqEnqWISY59yosVMw6Qw=}

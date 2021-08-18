@@ -17,12 +17,14 @@
     "url": "git+https://github.com/eea/searchlib.git"
   },
   "scripts": {
-    "start": "USE_ES_PROXY=false node scripts/start.js",
-    "build": "USE_ES_PROXY=true node scripts/build.js",
+    "start": "USE_ES_PROXY=${USE_ES_PROXY:-false} node scripts/start.js",
+    "build": "USE_ES_PROXY=${USE_ES_PROXY:-true} node scripts/build.js",
     "test": "node scripts/test.js",
-    "watch": "USE_ES_PROXY=false PUBLIC_URL=/++resource++measures-catalogue/ node scripts/watch.js",
+    "watch": "USE_ES_PROXY=${USE_ES_PROXY:-false} PUBLIC_URL=/++resource++measures-catalogue/ node scripts/watch.js",
+    "watch:server": "node scripts/watch-server.js",
     "server": "PROXY_ES_DSN=${PROXY_ES_DSN:-http://localhost:9200/wise_catalogue_measures} NODE_PATH=./node_modules/ node dist/server.js",
-    "build:server": "env NODE_ENV=development pnpm webpack -c webpack.server.config.js"
+    "build:server": "env NODE_ENV=development pnpm webpack -c webpack.server.config.js",
+    "run:server": "npm-run-all watch:server server"
   },
   "bugs": {
     "url": "https://github.com/eea/searchlib/issues"
@@ -82,6 +84,7 @@
     "lodash.isfunction": "^3.0.9",
     "mini-css-extract-plugin": "0.11.3",
     "node-fetch": "^2.6.1",
+    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^6.0.0",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.2.1",

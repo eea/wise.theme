@@ -244,6 +244,7 @@ const wise_config = {
     ],
     details,
   },
+  download_fields: [],
 };
 
 const wise_resolve = {
