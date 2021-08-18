@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react';
 const RightColumnLayout = (props) => {
   const { bodyContent, bodyFooter, bodyHeader, header, sideContent } = props;
   return (
-    <div className="container">
+    <div>
       <Grid columns={2} stackable className="body-content">
         <Grid.Row>
           <Grid.Column widescreen={12}>
