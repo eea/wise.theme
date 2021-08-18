@@ -182,6 +182,7 @@ def make_mappings(data):
 def main():
     host = 'localhost'
     # host = '10.50.4.114'
+    host = '10.50.4.82'
     index = 'wise_catalogue_measures'
 
     # with open('./analyzers.json') as f:
