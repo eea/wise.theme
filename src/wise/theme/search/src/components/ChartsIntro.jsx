@@ -4,6 +4,10 @@ import { PieChart } from './PieChart';
 import { BarChart } from './BarChart';
 import { Grid, Table } from 'semantic-ui-react'; // , Segment
 
+const getPercentage = (value, total) => {
+  return (value * 100) / total;
+};
+
 const REQUEST = {
   size: 0,
   aggs: {
@@ -43,27 +47,34 @@ const REQUEST = {
 };
 
 const getMeasureImpacts = (data) => {
-  return data.MeasureImpacts.buckets.map(({ key, doc_count }) => ({
+  const rawData = data.MeasureImpacts.buckets.map(({ key, doc_count }) => ({
     id: key,
     label: key,
     value: doc_count,
   }));
+  const total = rawData.reduce((acc, n) => acc + n.value, 0);
+  return rawData.map((v) => ({ ...v, value: v.value / total }));
 };
 
 const getOriginOfMeasure = (data) => {
-  return data.Origin.buckets.map(({ key, doc_count }) => ({
+  const rawData = data.Origin.buckets.map(({ key, doc_count }) => ({
     id: key,
     label: key,
     value: doc_count,
   }));
+  const total = rawData.reduce((acc, n) => acc + n.value, 0);
+  return rawData.map((v) => ({ ...v, value: v.value / total }));
 };
 
 const getSectors = (data) => {
-  return data.Sectors.buckets.map(({ key, doc_count }) => ({
+  const rawData = data.Sectors.buckets.map(({ key, doc_count }) => ({
     id: key,
     label: key,
     value: doc_count,
   }));
+  // console.log('sector data', { rawData, data });
+  const total = rawData.reduce((acc, n) => acc + n.value, 0);
+  return rawData.map((v) => ({ ...v, value: v.value / total }));
 };
 
 /**
@@ -80,7 +91,6 @@ const getSectors = (data) => {
  */
 const getBarChartData = (data, originKeys) => {
   const allOrigins = data ? data.Origin.buckets.map(({ key }) => key) : [];
-  // console.log('data', data, allOrigins);
   const fallback = Object.assign(
     {},
     ...allOrigins.map((Origin) => ({ [Origin]: 0 })),
@@ -97,7 +107,6 @@ const getBarChartData = (data, originKeys) => {
     }),
   );
 
-  console.log('res', res);
   return res;
 };
 
@@ -171,9 +180,9 @@ const ChartsIntro = (props) => {
     }
   }, []);
 
-  const allOrigins = chartData
-    ? chartData.Origin.buckets.map(({ key }) => key)
-    : [];
+  // const allOrigins = chartData
+  //   ? chartData.Origin.buckets.map(({ key }) => key)
+  //   : [];
 
   const barData = (chartData ? getBarChartData(chartData) : []).sort((a, b) =>
     parseInt(a.Descriptor.slice(1)) > parseInt(b.Descriptor.slice(1)) ? 1 : -1,
@@ -195,13 +204,16 @@ const ChartsIntro = (props) => {
               <Grid.Column mobile={16} tablet={16} computer={8}>
                 <div className="chart-wrapper">
                   <h3 className="chart-title">Measure impacts to</h3>
-                  <PieChart data={measureData} />
+                  <PieChart data={measureData} valueFormat=">-.2%" />
                 </div>
               </Grid.Column>
               <Grid.Column mobile={16} tablet={16} computer={8}>
                 <div className="chart-wrapper">
                   <h3 className="chart-title">Origin of the measure</h3>
-                  <PieChart data={getOriginOfMeasure(chartData)} />
+                  <PieChart
+                    data={getOriginOfMeasure(chartData)}
+                    valueFormat=">-.2%"
+                  />
                 </div>
               </Grid.Column>
             </Grid.Row>
@@ -209,7 +221,7 @@ const ChartsIntro = (props) => {
               <Grid.Column mobile={16} tablet={16} computer={8}>
                 <div className="chart-wrapper">
                   <h3 className="chart-title">Sectors</h3>
-                  <PieChart data={getSectors(chartData)} />
+                  <PieChart data={getSectors(chartData)} valueFormat=">-.2%" />
                 </div>
               </Grid.Column>
             </Grid.Row>
