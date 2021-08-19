@@ -24,6 +24,9 @@
 
   <body metal:fill-slot="content-core">
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <div tal:condition="context/text | nothing" id="has_context_text"></div>
+
     <div id="search-app">
       <!--
         This HTML file is a template.

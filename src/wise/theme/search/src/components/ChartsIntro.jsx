@@ -66,14 +66,39 @@ const getSectors = (data) => {
   }));
 };
 
-const getBarChartData = (data) => {
-  return data.OriginByDescriptor.buckets.map(({ key, doc_count, Origin }) => ({
-    Descriptor: key,
-    ...Object.assign(
-      {},
-      ...Origin.buckets.map(({ key, doc_count }) => ({ [key]: doc_count })),
-    ),
-  }));
+/**
+ * Prepare data for bar chart. Data is an array of objects like:
+ *
+ * {
+ *  BD (Directive 79/409/EEC): 2260
+ *  Descriptor: "D1"
+ *  HD (Directive 92/43/EEC): 1865
+ *  MSFD (Directive 2008/56/EC): 78
+ *  Sectorial: 8
+ *  WFD (Directive 2000/60/EC): 12
+ * }
+ */
+const getBarChartData = (data, originKeys) => {
+  const allOrigins = data ? data.Origin.buckets.map(({ key }) => key) : [];
+  // console.log('data', data, allOrigins);
+  const fallback = Object.assign(
+    {},
+    ...allOrigins.map((Origin) => ({ [Origin]: 0 })),
+  );
+
+  const res = data.OriginByDescriptor.buckets.map(
+    ({ key, doc_count, Origin }) => ({
+      Descriptor: key,
+      ...fallback,
+      ...Object.assign(
+        {},
+        ...Origin.buckets.map(({ key, doc_count }) => ({ [key]: doc_count })),
+      ),
+    }),
+  );
+
+  console.log('res', res);
+  return res;
 };
 
 const OriginTable = ({ columns, rows, data }) => {
@@ -114,6 +139,7 @@ const OriginTable = ({ columns, rows, data }) => {
 const ChartsIntro = (props) => {
   const { appConfig } = props;
   const [chartData, setChartData] = React.useState();
+  const [outsideText, setOutsideText] = React.useState('');
 
   React.useEffect(() => {
     let alreadyRequested = false;
@@ -128,18 +154,42 @@ const ChartsIntro = (props) => {
     };
   }, [appConfig]);
 
+  const targetNode = React.useRef();
+
+  React.useEffect(() => {
+    const originNode = document.querySelector('#has_context_text');
+    if (originNode) {
+      const url = new URL(window.location);
+      url.search = '';
+      fetch(url.toString(), {
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => setOutsideText(data?.text?.data));
+    }
+  }, []);
+
+  const allOrigins = chartData
+    ? chartData.Origin.buckets.map(({ key }) => key)
+    : [];
+
   const barData = (chartData ? getBarChartData(chartData) : []).sort((a, b) =>
     parseInt(a.Descriptor.slice(1)) > parseInt(b.Descriptor.slice(1)) ? 1 : -1,
   );
   const measureData = chartData ? getMeasureImpacts(chartData) : [];
-  console.log('measureData', measureData);
+  // console.log('measureData', measureData);
   // console.log('all', chartData);
-  console.log('barData', barData);
+  // console.log('barData', barData);
 
   return (
     <div className="charts-intro-page">
       {chartData ? (
         <>
+          <div id="content-text-target" ref={targetNode}>
+            <div dangerouslySetInnerHTML={{ __html: outsideText }}></div>
+          </div>
           <Grid columns="3" stackable>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={8}>
