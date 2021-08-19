@@ -4,7 +4,7 @@ import { ResponsivePie } from '@nivo/pie';
 export const PieChart = ({ data /* see data tab */, ...rest }) => (
   <ResponsivePie
     data={data}
-    margin={{ top: 80, right: 240, bottom: 80, left: 0 }}
+    margin={{ top: -80, right: 40, bottom: 90, left: 40 }}
     innerRadius={0.5}
     padAngle={0.7}
     cornerRadius={3}
@@ -21,15 +21,15 @@ export const PieChart = ({ data /* see data tab */, ...rest }) => (
     fill={[]}
     legends={[
       {
-        anchor: 'right',
+        anchor: 'bottom',
         direction: 'column',
         justify: false,
-        translateX: 120,
-        translateY: 0,
+        translateX: -30,
+        translateY: 50,
         itemWidth: 100,
         itemHeight: 20,
         itemsSpacing: 0,
-        symbolSize: 20,
+        symbolSize: 10,
         itemDirection: 'left-to-right',
       },
     ]}

@@ -201,13 +201,13 @@ const ChartsIntro = (props) => {
           </div>
           <Grid columns="3" stackable>
             <Grid.Row>
-              <Grid.Column mobile={16} tablet={16} computer={8}>
+              <Grid.Column>
                 <div className="chart-wrapper">
                   <h3 className="chart-title">Measure impacts to</h3>
                   <PieChart data={measureData} valueFormat=">-.2%" />
                 </div>
               </Grid.Column>
-              <Grid.Column mobile={16} tablet={16} computer={8}>
+              <Grid.Column>
                 <div className="chart-wrapper">
                   <h3 className="chart-title">Origin of the measure</h3>
                   <PieChart
@@ -216,18 +216,18 @@ const ChartsIntro = (props) => {
                   />
                 </div>
               </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-              <Grid.Column mobile={16} tablet={16} computer={8}>
+              <Grid.Column>
                 <div className="chart-wrapper">
                   <h3 className="chart-title">Sectors</h3>
                   <PieChart data={getSectors(chartData)} valueFormat=">-.2%" />
                 </div>
               </Grid.Column>
             </Grid.Row>
+          </Grid>
+          <Grid>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={16}>
-                <div className="chart-wrapper" style={{ height: '600px' }}>
+                <div className="chart-wrapper" style={{ height: '800px' }}>
                   <h3 className="chart-title">
                     Origin of the measure/Descriptors
                   </h3>

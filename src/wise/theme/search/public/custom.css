@@ -3,12 +3,12 @@
   font-family: 'RobotoL' !important;
 }
 
-.row {
+#search-app .row {
   margin-left: -1rem !important;
   margin-right: -1rem !important;
 }
 
-#search-app .ui.grid > * {
+#search-app .charts-intro-page .ui.grid > * {
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -273,7 +273,7 @@
 /* Charts  */
 
 .chart-wrapper {
-  height: 400px;
+  height: 450px;
   padding: 1em;
   border: 1px solid #ddd;
 }
@@ -282,6 +282,7 @@
   color: #666;
   text-align: center;
   text-transform: uppercase;
+  font-size: 15px;
 }
 
 /* Table */
@@ -305,6 +306,12 @@
   border-left: none !important;
 }
 
+@media only screen and (max-width: 1295px) {
+  .chart-wrapper {
+    height: 380px;
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ui.stackable.grid > .row {
     margin: 0 !important;
@@ -313,5 +320,59 @@
   .ui.stackable.grid > .row > .column {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
+  }
+
+  .ui.stackable.grid > .row > .column {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
+    width: 50% !important;
+  }
+  .chart-wrapper {
+    height: 450px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
+    width: 100% !important;
+  }
+  .chart-wrapper {
+    height: 750px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 800px) {
+  .chart-wrapper {
+    height: 600px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
+    width: 50% !important;
+  }
+  .chart-wrapper {
+    height: 450px;
+  }
+}
+
+@media only screen and (min-width: 550px) and (max-width: 600px) {
+  #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
+    width: 50% !important;
+  }
+  .chart-wrapper {
+    height: 480px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
+    width: 100% !important;
+  }
+  .chart-wrapper {
+    height: 470px;
   }
 }
