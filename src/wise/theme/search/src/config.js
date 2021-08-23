@@ -170,19 +170,20 @@ const wise_config = {
       field: 'Origin of the measure',
       label: 'Origin of the measure',
       isFilterable: false,
+      show: 100,
     }),
-    suiFacet({ field: 'Sector', isMulti: true, isFilterable: false }),
-    suiFacet({ field: 'Descriptors', isFilterable: false }),
-    // suiFacet({ field: 'Country', isFilterable: true, isMulti: true }),
-    // suiFacet({ field: 'Use_or_activity', label: 'Use or activity' }),
-    // suiFacet({ field: 'Status' }),
-    // suiFacet({
-    //   field: 'Nature_of_the_measure',
-    //   label: 'Nature of the measure',
-    // }),
-    // suiFacet({ field: 'Water_body_category', label: 'Water body category' }),
-    // suiFacet({ field: 'Spatial_scope', label: 'Spatial scope' }),
-    // suiFacet({ field: 'Measure_Impacts_to', label: 'Measure impacts' }),
+    suiFacet({
+      field: 'Sector',
+      isMulti: true,
+      isFilterable: false,
+      show: 100,
+    }),
+    suiFacet({
+      field: 'Descriptors',
+      isFilterable: false,
+      show: 100,
+      sort: [{ Descriptors: { order: 'asc' } }],
+    }),
   ],
   highlight: {
     fields: {
