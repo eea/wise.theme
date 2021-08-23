@@ -182,7 +182,52 @@ const wise_config = {
       field: 'Descriptors',
       isFilterable: false,
       show: 100,
-      sort: [{ Descriptors: { order: 'asc' } }],
+      facetValues: [
+        {
+          value: 'D1',
+          name: 'D1. Biodiversity',
+        },
+        {
+          value: 'D2',
+          name: 'D2. NIS',
+        },
+        {
+          value: 'D3',
+          name: 'D3. Commercial fish',
+        },
+        {
+          value: 'D4',
+          name: 'D4. food webs',
+        },
+        {
+          value: 'D5',
+          name: 'D5. Eutrophication',
+        },
+        {
+          value: 'D6',
+          name: 'D6. Sea floor integrity',
+        },
+        {
+          value: 'D7',
+          name: 'D7. Hydrographical alteration',
+        },
+        {
+          value: 'D8',
+          name: 'D8. Contaminants',
+        },
+        {
+          value: 'D9',
+          name: 'D9. Contaminants in seafood',
+        },
+        {
+          value: 'D10',
+          name: 'D10. Marine litter',
+        },
+        {
+          value: 'D11',
+          name: 'D11. Introduction of energy',
+        },
+      ],
     }),
   ],
   highlight: {
