@@ -1530,6 +1530,8 @@
 
 /*! ./bisector.js */
 
+/*! ./buildQuestionRequest */
+
 /*! ./cardinal.js */
 
 /*! ./cardinalClosed.js */
@@ -2804,6 +2806,8 @@
 
 /*! ./week.js */
 
+/*! ./withAnswers */
+
 /*! ./withSearch */
 
 /*! ./words.js */
@@ -2818,31 +2822,7 @@
 
 /*! ./zoom.js */
 
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/assertThisInitialized */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/asyncToGenerator */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/classCallCheck */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/createClass */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/createSuper */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/defineProperty */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/inherits */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/objectSpread2 */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/slicedToArray */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/esm/toConsumableArray */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/interopRequireDefault */
-
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/regenerator */
+/*! /home/tibi/work/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/interopRequireDefault */
 
 /*! @babel/runtime/helpers/assertThisInitialized */
 
@@ -2852,43 +2832,15 @@
 
 /*! @babel/runtime/helpers/defineProperty */
 
-/*! @babel/runtime/helpers/esm/arrayLikeToArray */
-
-/*! @babel/runtime/helpers/esm/arrayWithHoles */
-
-/*! @babel/runtime/helpers/esm/arrayWithoutHoles */
-
 /*! @babel/runtime/helpers/esm/assertThisInitialized */
 
 /*! @babel/runtime/helpers/esm/createClass */
 
-/*! @babel/runtime/helpers/esm/defineProperty */
-
 /*! @babel/runtime/helpers/esm/extends */
-
-/*! @babel/runtime/helpers/esm/getPrototypeOf */
 
 /*! @babel/runtime/helpers/esm/inheritsLoose */
 
-/*! @babel/runtime/helpers/esm/isNativeReflectConstruct */
-
-/*! @babel/runtime/helpers/esm/iterableToArray */
-
-/*! @babel/runtime/helpers/esm/iterableToArrayLimit */
-
-/*! @babel/runtime/helpers/esm/nonIterableRest */
-
-/*! @babel/runtime/helpers/esm/nonIterableSpread */
-
 /*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */
-
-/*! @babel/runtime/helpers/esm/possibleConstructorReturn */
-
-/*! @babel/runtime/helpers/esm/setPrototypeOf */
-
-/*! @babel/runtime/helpers/esm/typeof */
-
-/*! @babel/runtime/helpers/esm/unsupportedIterableToArray */
 
 /*! @babel/runtime/helpers/extends */
 
@@ -2939,6 +2891,8 @@
 /*! @eeacms/search/lib/hocs */
 
 /*! @eeacms/search/lib/hocs/appConfig */
+
+/*! @eeacms/search/lib/hocs/useIsMounted */
 
 /*! @eeacms/search/lib/runRequest */
 
@@ -3263,10 +3217,6 @@
 /*! react-transition-group */
 
 /*! react-use-measure */
-
-/*! regenerator-runtime */
-
-/*! regenerator-runtime/runtime */
 
 /*! regexp.prototype.flags */
 

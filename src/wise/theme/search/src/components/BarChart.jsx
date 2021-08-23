@@ -19,7 +19,7 @@ export const BarChart = ({
     data={data}
     keys={keys}
     indexBy={indexBy}
-    margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+    margin={{ top: 50, right: 200, bottom: 50, left: 60 }}
     padding={0.3}
     valueScale={{ type: 'linear' }}
     indexScale={{ type: 'band', round: true }}
@@ -74,10 +74,10 @@ export const BarChart = ({
         anchor: 'bottom-right',
         direction: 'column',
         justify: false,
-        translateX: 120,
+        translateX: 200,
         translateY: 0,
         itemsSpacing: 2,
-        itemWidth: 100,
+        itemWidth: 180,
         itemHeight: 20,
         itemDirection: 'left-to-right',
         itemOpacity: 0.85,

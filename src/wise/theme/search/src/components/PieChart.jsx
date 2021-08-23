@@ -21,11 +21,11 @@ export const PieChart = ({ data /* see data tab */, ...rest }) => (
     fill={[]}
     legends={[
       {
-        anchor: 'bottom',
+        anchor: 'top',
         direction: 'column',
         justify: false,
         translateX: -30,
-        translateY: 50,
+        translateY: 350,
         itemWidth: 100,
         itemHeight: 20,
         itemsSpacing: 0,

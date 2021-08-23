@@ -175,7 +175,15 @@ const ChartsIntro = (props) => {
           Accept: 'application/json',
         },
       })
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.log('Error in making backend server request', error);
+        })
         .then((response) => response.json())
+        .catch((error) => {
+          // eslint-disable-next-line
+          console.log('Error in reading intro text from backend server', error);
+        })
         .then((data) => setOutsideText(data?.text?.data));
     }
   }, []);
@@ -227,7 +235,7 @@ const ChartsIntro = (props) => {
           <Grid>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={16} computer={16}>
-                <div className="chart-wrapper" style={{ height: '800px' }}>
+                <div className="chart-wrapper" style={{ height: '500px' }}>
                   <h3 className="chart-title">
                     Origin of the measure/Descriptors
                   </h3>
