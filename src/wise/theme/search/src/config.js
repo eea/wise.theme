@@ -186,46 +186,57 @@ const wise_config = {
         {
           value: 'D1',
           name: 'D1. Biodiversity',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-1/index_en.htm',
         },
         {
           value: 'D2',
-          name: 'D2. NIS',
+          name: 'D2. Non-indigenous Species',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-2/index_en.htm',
         },
         {
           value: 'D3',
-          name: 'D3. Commercial fish',
+          name: 'D3.  Commercial Fish and shellfish',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-3/index_en.htm',
         },
         {
           value: 'D4',
-          name: 'D4. food webs',
+          name: 'D4. Food Webs',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-4/index_en.htm',
         },
         {
           value: 'D5',
           name: 'D5. Eutrophication',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-5/index_en.htm',
         },
         {
           value: 'D6',
-          name: 'D6. Sea floor integrity',
+          name: 'D6. Sea-floor Integrity',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-6/index_en.htm',
         },
         {
           value: 'D7',
-          name: 'D7. Hydrographical alteration',
+          name: 'D7. Hydrographical Conditions',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-7/index_en.htm',
         },
         {
           value: 'D8',
           name: 'D8. Contaminants',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-8/index_en.htm',
         },
         {
           value: 'D9',
-          name: 'D9. Contaminants in seafood',
+          name: 'D9. Contaminants in Seafood',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-9/index_en.htm',
         },
         {
           value: 'D10',
-          name: 'D10. Marine litter',
+          name: 'D10. Marine Litter',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-10/index_en.htm',
         },
         {
           value: 'D11',
-          name: 'D11. Introduction of energy',
+          name: 'D11. Energy including Underwater Noise',
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-11/index_en.htm'
         },
       ],
     }),
