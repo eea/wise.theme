@@ -236,7 +236,7 @@ const wise_config = {
         {
           value: 'D11',
           name: 'D11. Energy including Underwater Noise',
-          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-11/index_en.htm'
+          url: 'https://ec.europa.eu/environment/marine/good-environmental-status/descriptor-11/index_en.htm',
         },
       ],
     }),

@@ -374,7 +374,7 @@
 
 /*! ./Facets */
 
-/*! ./Facets/Facet */
+/*! ./Facets/FacetWrapper */
 
 /*! ./Facets/Facets */
 
@@ -1622,6 +1622,8 @@
 
 /*! ./components */
 
+/*! ./components/Facets/state */
+
 /*! ./components/ParentSize */
 
 /*! ./components/ParentSizeModern */
@@ -2648,9 +2650,13 @@
 
 /*! ./useEventListener */
 
+/*! ./useIsMounted */
+
 /*! ./useIsomorphicLayoutEffect */
 
 /*! ./usePopper */
+
+/*! ./useSearchContext */
 
 /*! ./useSort */
 
@@ -2892,8 +2898,6 @@
 
 /*! @eeacms/search/lib/hocs/appConfig */
 
-/*! @eeacms/search/lib/hocs/useIsMounted */
-
 /*! @eeacms/search/lib/runRequest */
 
 /*! @eeacms/search/lib/search */
@@ -3035,6 +3039,10 @@
 /*! is-date-object */
 
 /*! is-regex */
+
+/*! jotai */
+
+/*! jotai/utils */
 
 /*! keyboard-key */
 
