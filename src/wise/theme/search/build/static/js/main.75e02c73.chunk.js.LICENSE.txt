@@ -2870,7 +2870,7 @@
 
 /*! @eeacms/search/components/Facets/HistogramFacet */
 
-/*! @eeacms/search/components/Facets/TermFacet */
+/*! @eeacms/search/components/Facets/MultiTermFacet */
 
 /*! @eeacms/search/components/Result/CardItem */
 
