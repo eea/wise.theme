@@ -1,16 +1,16 @@
 .searchapp-wise {
   background-color: #fff !important;
-  font-family: 'RobotoL' !important;
+  font-family: "RobotoL" !important;
 }
 
 #search-app .row {
-  margin-left: -1rem !important;
   margin-right: -1rem !important;
+  margin-left: -1rem !important;
 }
 
 #search-app .charts-intro-page .ui.grid > * {
-  margin-left: auto !important;
   margin-right: auto !important;
+  margin-left: auto !important;
 }
 
 .sorting {
@@ -22,8 +22,8 @@
 }
 
 .ui.container.view-selector .buttons .button {
-  background-color: transparent !important;
   border: 1px solid #e8e8e8;
+  background-color: transparent !important;
   color: #666 !important;
 }
 
@@ -41,17 +41,17 @@
 .ui.modal > .content {
   margin-bottom: 2em;
   color: rgba(0, 0, 0, 0.87);
-  font-family: 'RobotoL';
+  font-family: "RobotoL";
   font-size: 18px;
 }
 
 .body-footer .column > .row > * {
-  padding-left: 1rem;
   padding-right: 1rem;
+  padding-left: 1rem;
 }
 
-.sui-app-info {
-  margin-top: 1.5em;
+.searchapp-wise .sui-app-info {
+  display: none;
 }
 
 .searchapp-wise .sui-layout-main-body .item {
@@ -61,7 +61,7 @@
 .searchapp-wise .sui-layout-main-body .item h4,
 .ui.modal > .header {
   color: #002d54 !important;
-  font-family: 'PoppinsSemiB' !important;
+  font-family: "PoppinsSemiB" !important;
   font-size: 20px !important;
 }
 
@@ -71,7 +71,7 @@
 .searchapp-wise .sui-search-box,
 .sui-facet-search__text-input,
 .searchapp-wise .sui-facet-view-more {
-  font-family: 'PoppinsR' !important;
+  font-family: "PoppinsR" !important;
   font-size: 14px !important;
 }
 
@@ -86,7 +86,11 @@
 }
 
 .searchapp-wise .sui-select__value-container--has-value {
-  font-family: 'PoppinsSemiB' !important;
+  font-family: "PoppinsSemiB" !important;
+}
+
+.bottom-links h3 {
+  margin-top: 20px !important;
 }
 
 /* Search box  */
@@ -98,6 +102,7 @@
 .searchapp-wise .sui-search-box__submit {
   border: none;
   background: #002d54;
+  border-radius: 4px;
   box-shadow: none;
   color: #fff;
 }
@@ -120,6 +125,10 @@
 
 /* Pagination  */
 
+.searchapp-wise .sui-paging {
+  margin-bottom: 0;
+}
+
 .searchapp-wise .rc-pagination-item-active,
 .searchapp-wise .rc-pagination-item-active:hover {
   background-color: #064c7f;
@@ -134,7 +143,7 @@
 
 .listing-view-item.header {
   cursor: pointer !important;
-  font-family: 'PoppinsSemiB' !important;
+  font-family: "PoppinsSemiB" !important;
   font-size: 18px !important;
 }
 
@@ -149,9 +158,9 @@
 }
 
 .searchapp-wise .ui.celled.table tr th {
-  font-family: 'RobotoM' !important;
-  font-weight: normal !important;
+  font-family: "RobotoM" !important;
   font-size: 16px;
+  font-weight: normal !important;
 }
 
 .searchapp-wise .ui.celled.table tr td h4 {
@@ -170,7 +179,7 @@
 /* Facets */
 
 .searchapp-wise .sui-facet {
-  font-family: 'RobotoL' !important;
+  font-family: "RobotoL" !important;
 }
 
 .searchapp-wise .sui-facet__title {
@@ -198,8 +207,8 @@
 }
 
 .searchapp-wise .sui-facet-view-more:hover {
-  outline: none !important;
   box-shadow: none !important;
+  outline: none !important;
 }
 
 .searchapp-wise .sui-facet-view-more:hover {
@@ -261,9 +270,9 @@
 .listing-view-details .details-field-label {
   padding: 0.7em 1em 0.7em 0.7em !important;
   border-right: none !important;
-  font-family: 'RobotoM' !important;
-  font-weight: normal !important;
   background-color: #f9f9f9 !important;
+  font-family: "RobotoM" !important;
+  font-weight: normal !important;
 }
 
 .listing-view-details .details-field-value {
@@ -280,9 +289,9 @@
 
 .chart-title {
   color: #666;
+  font-size: 15px;
   text-align: center;
   text-transform: uppercase;
-  font-size: 15px;
 }
 
 /* Table */
@@ -293,7 +302,7 @@
 
 .charts-intro-page .ui.table thead th {
   border-left: none !important;
-  font-family: 'RobotoM' !important;
+  font-family: "RobotoM" !important;
   font-weight: normal !important;
 }
 
@@ -314,9 +323,10 @@
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ui.stackable.grid > .row {
-    margin: 0 !important;
     padding: 0 !important;
+    margin: 0 !important;
   }
+
   .ui.stackable.grid > .row > .column {
     padding-top: 1rem !important;
     padding-bottom: 1rem !important;
@@ -330,6 +340,7 @@
   #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
     width: 50% !important;
   }
+
   .chart-wrapper {
     height: 450px;
   }
@@ -339,6 +350,7 @@
   #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
     width: 100% !important;
   }
+
   .chart-wrapper {
     height: 750px;
   }
@@ -354,6 +366,7 @@
   #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
     width: 50% !important;
   }
+
   .chart-wrapper {
     height: 450px;
   }
@@ -363,6 +376,7 @@
   #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
     width: 50% !important;
   }
+
   .chart-wrapper {
     height: 480px;
   }
@@ -372,6 +386,7 @@
   #search-app .charts-intro-page .ui.stackable.grid > .row > .column {
     width: 100% !important;
   }
+
   .chart-wrapper {
     height: 470px;
   }
