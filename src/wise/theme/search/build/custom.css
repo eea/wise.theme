@@ -1,6 +1,6 @@
 .searchapp-wise {
   background-color: #fff !important;
-  font-family: "RobotoL" !important;
+  font-family: 'RobotoL' !important;
 }
 
 #search-app .row {
@@ -27,6 +27,10 @@
   color: #666 !important;
 }
 
+.ui.container.view-selector .buttons .button i.icon {
+  margin: 0 !important;
+}
+
 .ui.container.view-selector .buttons .button:hover,
 .ui.container.view-selector .buttons .active.button {
   background-color: #e8e8e8 !important;
@@ -41,7 +45,7 @@
 .ui.modal > .content {
   margin-bottom: 2em;
   color: rgba(0, 0, 0, 0.87);
-  font-family: "RobotoL";
+  font-family: 'RobotoL';
   font-size: 18px;
 }
 
@@ -61,7 +65,7 @@
 .searchapp-wise .sui-layout-main-body .item h4,
 .ui.modal > .header {
   color: #002d54 !important;
-  font-family: "PoppinsSemiB" !important;
+  font-family: 'PoppinsSemiB' !important;
   font-size: 20px !important;
 }
 
@@ -71,7 +75,7 @@
 .searchapp-wise .sui-search-box,
 .sui-facet-search__text-input,
 .searchapp-wise .sui-facet-view-more {
-  font-family: "PoppinsR" !important;
+  font-family: 'PoppinsR' !important;
   font-size: 14px !important;
 }
 
@@ -86,7 +90,7 @@
 }
 
 .searchapp-wise .sui-select__value-container--has-value {
-  font-family: "PoppinsSemiB" !important;
+  font-family: 'PoppinsSemiB' !important;
 }
 
 .bottom-links h3 {
@@ -143,7 +147,7 @@
 
 .listing-view-item.header {
   cursor: pointer !important;
-  font-family: "PoppinsSemiB" !important;
+  font-family: 'PoppinsSemiB' !important;
   font-size: 18px !important;
 }
 
@@ -158,7 +162,7 @@
 }
 
 .searchapp-wise .ui.celled.table tr th {
-  font-family: "RobotoM" !important;
+  font-family: 'RobotoM' !important;
   font-size: 16px;
   font-weight: normal !important;
 }
@@ -179,7 +183,7 @@
 /* Facets */
 
 .searchapp-wise .sui-facet {
-  font-family: "RobotoL" !important;
+  font-family: 'RobotoL' !important;
 }
 
 .searchapp-wise .sui-facet__title {
@@ -271,7 +275,7 @@
   padding: 0.7em 1em 0.7em 0.7em !important;
   border-right: none !important;
   background-color: #f9f9f9 !important;
-  font-family: "RobotoM" !important;
+  font-family: 'RobotoM' !important;
   font-weight: normal !important;
 }
 
@@ -302,7 +306,7 @@
 
 .charts-intro-page .ui.table thead th {
   border-left: none !important;
-  font-family: "RobotoM" !important;
+  font-family: 'RobotoM' !important;
   font-weight: normal !important;
 }
 

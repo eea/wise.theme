@@ -4,9 +4,9 @@ import { PieChart } from './PieChart';
 import { BarChart } from './BarChart';
 import { Grid, Table } from 'semantic-ui-react'; // , Segment
 
-const getPercentage = (value, total) => {
-  return (value * 100) / total;
-};
+// const getPercentage = (value, total) => {
+//   return (value * 100) / total;
+// };
 
 const REQUEST = {
   size: 0,
