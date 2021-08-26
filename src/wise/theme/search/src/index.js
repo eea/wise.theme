@@ -12,6 +12,7 @@ import './less/custom.less';
 // import './index.css';
 
 const configRegistry = installConfig(registry);
+console.log('cofnig', configRegistry);
 
 ReactDOM.render(
   <SearchApp registry={configRegistry} appName="wise" />,
