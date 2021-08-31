@@ -155,6 +155,30 @@
   color: #bec9d3 !important;
 }
 
+#search-app .searchapp-wise .simple-item-link {
+  color: #4183c4 !important;
+  font-family: 'RobotoR' !important;
+  padding-left: 5px;
+}
+
+.searchapp-wise .extra .simple-item-label {
+  font-family: 'RobotoM' !important;
+}
+
+.searchapp-wise .extra .simple-item-extra:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.searchapp-wise .extra .simple-item-extra {
+  width: 100%;
+  padding: 7px 0;
+  font-size: 16px;
+}
+
+.searchapp-wise .descriptor-item .array-string-item {
+  padding-right: 0 !important;
+}
+
 /* Results 'Table' view */
 
 .searchapp-wise .ui.celled.table {

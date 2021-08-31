@@ -1,6 +1,7 @@
 import { suiFacet, mergeConfig } from '@eeacms/search'; // multiTermFacet,
 import WiseLayout from './components/WiseLayout';
 import ChartsIntro from './components/ChartsIntro';
+import ListingViewItem from './components/ListingViewItem';
 
 const details = {
   titleField: 'Measure name',
@@ -310,6 +311,9 @@ const wise_resolve = {
   },
   ChartsIntro: {
     component: ChartsIntro,
+  },
+  ListingViewItem: {
+    component: ListingViewItem,
   },
 };
 

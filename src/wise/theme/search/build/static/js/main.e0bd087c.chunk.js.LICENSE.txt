@@ -618,6 +618,10 @@
 
 /*! ./Result/CardItem */
 
+/*! ./Result/ResultModal */
+
+/*! ./Result/String */
+
 /*! ./Result/TableRowItem */
 
 /*! ./Result/TableView */
