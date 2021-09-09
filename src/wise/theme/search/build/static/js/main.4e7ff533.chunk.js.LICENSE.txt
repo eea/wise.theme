@@ -618,10 +618,6 @@
 
 /*! ./Result/CardItem */
 
-/*! ./Result/ResultModal */
-
-/*! ./Result/String */
-
 /*! ./Result/TableRowItem */
 
 /*! ./Result/TableView */
@@ -2832,7 +2828,7 @@
 
 /*! ./zoom.js */
 
-/*! /home/krisztina/Krisztina/work/measures-catalogue/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/interopRequireDefault */
+/*! /home/tibi/work/searchlib/node_modules/.pnpm/@babel+runtime@7.12.1/node_modules/@babel/runtime/helpers/interopRequireDefault */
 
 /*! @babel/runtime/helpers/assertThisInitialized */
 
