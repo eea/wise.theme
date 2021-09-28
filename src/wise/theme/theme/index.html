@@ -153,6 +153,11 @@
 
       <div class="fp-container">
         <div class="container">
+          <div class="fp-wrapper fp-intro">
+            WISE-Marine provides access to information and data on the state of
+            Europe’s seas, on the pressures affecting them, and on the actions
+            being taken to protect and conserve the marine environment.
+          </div>
           <div class="fp-wrapper fp-spotlight">
             <h3 class="fp-heading">In the spotlight</h3>
             <div class="topic-wrapper">
@@ -238,6 +243,26 @@
                     Directives.
                   </p>
                 </a>
+              </div>
+              <div class="topic-box memory-box">
+                <!-- <div class="topic-header">
+                <img
+                alt="Europe map icon"
+                src="/marine/++theme++wise-theme/static/images/europe.svg"
+                />
+                <h4 class="topic-title">
+                Country Profile <br />Factsheets
+              </h4>
+            </div> -->
+                <div class="memory-box-wrapper">
+                  <p>
+                    In memory of
+                    <strong>Irene del Barrio Alvarellos,</strong>our colleague
+                    who has been instrumental in developing and running
+                    WISE-Marine, in particular the EU Marine Strategy Framework
+                    Directive reporting and assessment components.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -412,7 +437,7 @@
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["trackPageView"]);
       _paq.push(["enableLinkTracking"]);
-      (function () {
+      (function() {
         var u = "https://matomo.eea.europa.eu/";
         _paq.push(["setTrackerUrl", u + "piwik.php"]);
         _paq.push(["setSiteId", "19"]);
@@ -429,13 +454,13 @@
     <!-- End Matomo Code -->
 
     <script>
-      document.addEventListener("lazybeforeunveil", function (e) {
+      document.addEventListener("lazybeforeunveil", function(e) {
         var bg = e.target.getAttribute("data-bg");
         if (bg) {
           e.target.style.backgroundImage = "url(" + bg + ")";
         }
       });
-      (function () {
+      (function() {
         window.lazySizesConfig = window.lazySizesConfig || {};
         window.lazySizesConfig.loadMode = 1;
         window.lazySizesConfig.expand = 10;

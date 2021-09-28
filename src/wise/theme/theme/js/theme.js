@@ -15,11 +15,11 @@ function autoCollapseNavigation() {
   }
 
   // sticky menu
-  $(function () {
+  $(function() {
     var div = $("#portal-top");
     var isNavCollapsed = $(".collapse-nav").length > 0;
 
-    $(window).on("scroll touchmove", function () {
+    $(window).on("scroll touchmove", function() {
       if (isNavCollapsed) {
         var scroll = $(window).scrollTop();
         div.toggleClass("sticky-header", scroll >= 100);
@@ -37,7 +37,7 @@ function alignNavSubmenu() {
   var $nav = $("#portal-globalnav");
   var $navItems = $nav.children("li");
   var mainMenuWidth = $header.width();
-  $navItems.mouseenter(function () {
+  $navItems.mouseenter(function() {
     var $this = $(this);
     var $submenu = $this.children(".submenu");
     var subMenuWidth = $submenu.width();
@@ -54,7 +54,7 @@ function alignNavSubmenu() {
 
 function displayImageCaption() {
   var $img = $("#content-core p").find("img");
-  $img.each(function () {
+  $img.each(function() {
     var $this = $(this);
     var imgWithSource = !$this.attr("title").match(/png|jpg/g);
     var imgClass = $this.attr("class");
@@ -71,22 +71,25 @@ function displayImageCaption() {
 function collapsibleContent() {
   var $readMoreBtn = $(".read-more-btn");
   if ($readMoreBtn.length > 0) {
-    $readMoreBtn.each(function () {
+    $readMoreBtn.each(function() {
       var $this = $(this);
       $this.closest("table").addClass("collapse-wrapper");
-      $this.parent().siblings().wrapAll('<div class="collapse-content"/>');
+      $this
+        .parent()
+        .siblings()
+        .wrapAll('<div class="collapse-content"/>');
       var collapsibleContent = $this.parent().siblings(".collapse-content");
 
       $('<div class="collapse-layer fadein"/>').prependTo(collapsibleContent);
 
-      $this.click(function () {
+      $this.click(function() {
         var $btn = $(this);
         collapsibleContent
           .toggleClass("in")
           .find(".collapse-layer")
           .toggleClass("fadein");
 
-        $btn.toggleClass("arrow-up").text(function (a, b) {
+        $btn.toggleClass("arrow-up").text(function(a, b) {
           return b == "Read more" ? "Read less" : "Read more";
         });
       });
@@ -116,7 +119,7 @@ function collapsibleContent() {
 function keyMessagesTabFunctionality() {
   var $tabNavItem = $(".fp-nav-tabs li");
 
-  $tabNavItem.click(function () {
+  $tabNavItem.click(function() {
     var $this = $(this);
     var tab_id = $this.attr("data-tab");
 
@@ -133,9 +136,9 @@ function setKeyMessagesCardsHeight() {
   var $tab = $(".fp-tab-content");
   var maxHeight = 0;
 
-  $tab.each(function () {
+  $tab.each(function() {
     var $card = $(this).find(".tab-card-content");
-    $card.each(function () {
+    $card.each(function() {
       var $this = $(this);
       maxHeight =
         $this.outerHeight() > maxHeight ? $this.outerHeight() : maxHeight;
@@ -146,11 +149,11 @@ function setKeyMessagesCardsHeight() {
 
 function initKeyMessageSlider() {
   var $tabSlider = $(".fp-tab-slider");
-  $tabSlider.each(function (index, element) {
+  $tabSlider.each(function(index, element) {
     var $slider = $(this);
 
     $slider
-      .on("init", function () {
+      .on("init", function() {
         $(".spinner-wrapper").hide();
       })
       .slick({
@@ -165,17 +168,17 @@ function initKeyMessageSlider() {
             breakpoint: 1060,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 2,
-            },
+              slidesToScroll: 2
+            }
           },
           {
             breakpoint: 650,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1,
-            },
-          },
-        ],
+              slidesToScroll: 1
+            }
+          }
+        ]
       });
   });
 }
@@ -190,22 +193,24 @@ function initHomepageSlider() {
     autoplay: true,
     autoplaySpeed: 4000,
     prevArrow: $(".slide-prev"),
-    nextArrow: $(".slide-next"),
+    nextArrow: $(".slide-next")
   });
 }
 
 function countryProfileSideBar() {
   $(window)
-    .scroll(function () {
+    .scroll(function() {
       var $countryContent = $(".country-content");
       if ($countryContent.length) {
         var contentPos = $countryContent.offset().top;
         var scrollDistance = $(window).scrollTop() - contentPos;
-        $(".country-dashboard-section").each(function (i) {
+        $(".country-dashboard-section").each(function(i) {
           var posTop = $(this).position().top;
           if (posTop <= scrollDistance) {
             $(".autotoc-nav a.active").removeClass("active");
-            $(".autotoc-nav a").eq(i).addClass("active");
+            $(".autotoc-nav a")
+              .eq(i)
+              .addClass("active");
           }
         });
       }
@@ -214,12 +219,12 @@ function countryProfileSideBar() {
 }
 
 function customCountrySelectDropdown() {
-  $(".dd-select").click(function (e) {
+  $(".dd-select").click(function(e) {
     $(".dd-select-list").toggle();
     e.preventDefault();
   });
 
-  $(".dd-country").click(function () {
+  $(".dd-country").click(function() {
     $(".dd-select-list").hide();
     var url = $(this).data("value");
     document.location = url;
@@ -228,7 +233,7 @@ function customCountrySelectDropdown() {
 
 function initThumbnailForDashboards() {
   if ($("#country-factsheet").length === 0) {
-    $("iframe").each(function () {
+    $("iframe").each(function() {
       var $this = $(this);
       var iframeSRC = $this.attr("src");
       var isTableauDashboard = /tableau/i.test(iframeSRC);
@@ -244,7 +249,7 @@ function initThumbnailForDashboards() {
 }
 
 function initDashboardsToolbar() {
-  $("iframe").each(function (i) {
+  $("iframe").each(function(i) {
     var $iframe = $(this);
     var iframeSRC = $iframe.attr("src");
     var isTableauDashboard = /tableau/i.test(iframeSRC);
@@ -291,12 +296,15 @@ function initDashboardsToolbar() {
       $copyEmbedButton.attr("data-clipboard-text", embed);
       $(".copy-link-input").attr("value", iframeSRC);
 
-      $tabNavItem.click(function () {
+      $tabNavItem.click(function() {
         var $this = $(this);
         var tab_id = $this.attr("data-tab");
 
         $tabNavItem.removeClass("current");
-        $this.parent().siblings(".daviz-tab-content").removeClass("current");
+        $this
+          .parent()
+          .siblings(".daviz-tab-content")
+          .removeClass("current");
         $this.addClass("current");
         $this
           .parent()
@@ -304,28 +312,28 @@ function initDashboardsToolbar() {
           .addClass("current");
       });
 
-      $shareButton.click(function () {
+      $shareButton.click(function() {
         $dialog.show();
       });
 
-      $closeDialog.click(function () {
+      $closeDialog.click(function() {
         $dialog.hide();
       });
 
-      $textarea.on("click", function () {
+      $textarea.on("click", function() {
         this.select();
       });
 
-      $input.on("click", function () {
+      $input.on("click", function() {
         this.select();
       });
 
       var clipboard = new ClipboardJS(".dialog-btn");
-      clipboard.on("success", function (e) {
+      clipboard.on("success", function(e) {
         e.clearSelection();
         e.trigger.textContent = "Copied to clipboard!";
         e.trigger.style.backgroundColor = "#269b65";
-        window.setTimeout(function () {
+        window.setTimeout(function() {
           if (e.trigger.className.indexOf("copy-embed") !== -1) {
             e.trigger.textContent = "Copy embed code";
           } else {
@@ -335,7 +343,7 @@ function initDashboardsToolbar() {
         }, 2000);
       });
 
-      clipboard.on("error", function (e) {
+      clipboard.on("error", function(e) {
         console.log("Trigger:", e.trigger);
       });
     }
@@ -357,7 +365,7 @@ function initDashboardsToolbar() {
 
       var dashboard = document.getElementById(id);
 
-      $goFullScreen.on("click", function () {
+      $goFullScreen.on("click", function() {
         if (dashboard.requestFullscreen) {
           dashboard.requestFullscreen();
         } else if (dashboard.msRequestFullscreen) {
@@ -378,7 +386,7 @@ function initDashboardsToolbar() {
         }
       });
 
-      $exitFullScreen.on("click", function () {
+      $exitFullScreen.on("click", function() {
         if (document.exitFullscreen) document.exitFullscreen();
         else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
         else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
@@ -409,19 +417,21 @@ function initDashboardsToolbar() {
 function initReadEEAContent() {
   var $input = $("#form-widgets-ICatalogueMetadata-original_source");
 
-  var $btn = $("<button>Fetch remote data</button>").on('click', function() {
-    $btn.html('Fetching data...');
-    $btn.attr('disabled', true);
+  var $btn = $("<button>Fetch remote data</button>").on("click", function() {
+    $btn.html("Fetching data...");
+    $btn.attr("disabled", true);
 
-    console.log('click');
+    console.log("click");
     var val = $input.val();
-    if (val && val.indexOf('www.eea.europa.eu') > -1) {
-      $.get('./@@external_proxy', {url: val}, function(data){
-        console.log('data', data);
+    if (val && val.indexOf("www.eea.europa.eu") > -1) {
+      $.get("./@@external_proxy", { url: val }, function(data) {
+        console.log("data", data);
         $("#form-widgets-IDublinCore-title").val(data.title);
-        $("#form-widgets-IDublinCore-description").html(data.description && data.description.data || '');
-        $btn.html('Fetch remote data');
-        $btn.attr('disabled', false);
+        $("#form-widgets-IDublinCore-description").html(
+          (data.description && data.description.data) || ""
+        );
+        $btn.html("Fetch remote data");
+        $btn.attr("disabled", false);
       });
     }
     return false;
@@ -430,7 +440,7 @@ function initReadEEAContent() {
   $input.parent().append($btn);
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
   var $window = $(window);
   // are dropdown, nu are default page: not clickable
   // are dropdown, are default page: clickable
@@ -438,8 +448,12 @@ $(document).ready(function () {
   // Main navigation menu:
   // if item (folder) has not set a default page
   // prevent default link behavior on click
-  $(".is-not-dp > a, #portal-globalnav>li>ul .hasDropDown").click(function (e) {
-    if ($(this).siblings().hasClass("expand-dropdown")) {
+  $(".is-not-dp > a, #portal-globalnav>li>ul .hasDropDown").click(function(e) {
+    if (
+      $(this)
+        .siblings()
+        .hasClass("expand-dropdown")
+    ) {
       return true;
     }
     e.preventDefault();
@@ -448,49 +462,54 @@ $(document).ready(function () {
   $("#main-container").css("visibility", "visible");
 
   // Top search modal
-  $(".search-icon").click(function (e) {
+  $(".search-icon").click(function(e) {
     $(".search-modal").fadeToggle("fast");
     e.stopPropagation();
   });
 
-  $(".search-modal").click(function (e) {
+  $(".search-modal").click(function(e) {
     e.stopPropagation();
   });
 
-  $(".user-icon").click(function (e) {
-    $(this).siblings("#personal-bar-container").fadeToggle("fast");
+  $(".user-icon").click(function(e) {
+    $(this)
+      .siblings("#personal-bar-container")
+      .fadeToggle("fast");
     e.stopPropagation();
   });
 
-  $(function () {
+  $(function() {
     var $navItem = $("#portal-globalnav>li");
     var $frontPage = $(".section-front-page");
     if (!$frontPage.length) {
-      $navItem.each(function () {
+      $navItem.each(function() {
         var $this = $(this);
         $this.addClass("nav-separator");
         $this
-          .mouseenter(function () {
+          .mouseenter(function() {
             $(this)
               .removeClass("nav-separator")
               .next()
               .removeClass("nav-separator");
           })
-          .mouseleave(function () {
-            $(this).addClass("nav-separator").next().addClass("nav-separator");
+          .mouseleave(function() {
+            $(this)
+              .addClass("nav-separator")
+              .next()
+              .addClass("nav-separator");
           });
       });
     }
   });
 
-  $(function () {
+  $(function() {
     var $bottomLinks = $(".bottom-links");
     var linkItem = $bottomLinks.find("ul li");
     if ($bottomLinks.length > 0) {
       $bottomLinks
         .parent("#viewlet-below-content")
         .addClass("bottom-links-wrapper");
-      linkItem.each(function () {
+      linkItem.each(function() {
         var $this = $(this);
         if ($this.children("a").length > 0) {
           $this.addClass("has-link");
@@ -508,7 +527,7 @@ $(document).ready(function () {
 
   initReadEEAContent();
 
-  $window.on("load", function () {
+  $window.on("load", function() {
     displayImageCaption();
     initKeyMessageSlider();
     keyMessagesTabFunctionality();
@@ -524,7 +543,7 @@ $(document).ready(function () {
   }
 
   var resizeTimer;
-  $window.on("resize", function () {
+  $window.on("resize", function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(doneResizing, 100);
   });
@@ -535,11 +554,13 @@ $(document).ready(function () {
   }
 });
 
-$(document).bind("click", function (e) {
+$(document).bind("click", function(e) {
   var $clicked = $(e.target);
   if (!$clicked.parents().hasClass("countries-dropdown")) {
     $(".dd-select-list").hide();
   }
   $(".search-modal").hide();
-  $(".user-actions").find("#personal-bar-container").hide();
+  $(".user-actions")
+    .find("#personal-bar-container")
+    .hide();
 });

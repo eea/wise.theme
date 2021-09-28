@@ -109,7 +109,7 @@ class FrontpageReportsViewlet(ViewletBase):
         results = content.find(
             portal_type='external_report', state='published',
             sort_on="EffectiveDate", sort_order="descending"
-        )[:2]
+        )[:3]
 
         return [b.getObject() for b in results]
 
