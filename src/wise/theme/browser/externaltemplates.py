@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from plone import api
 from plone.app.theming.interfaces import IThemeSettings
 from plone.registry.interfaces import IRegistry

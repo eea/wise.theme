@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from wise.theme.interfaces import ISlideshowCreatedEvent
 from wise.theme.interfaces import ISlideshowRemovedEvent
 from wise.theme.interfaces import ISlideshowWillBeCreatedEvent

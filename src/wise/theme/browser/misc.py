@@ -1,10 +1,11 @@
 # from plone.api import content, portal
+from __future__ import absolute_import
 import json
 import logging
 
 import requests
 from Products.Five.browser import BrowserView
-from urlparse import urlparse, urlunparse
+from six.moves.urllib.parse import urlparse, urlunparse
 from zope.component import getUtilitiesFor
 from zope.schema.interfaces import IVocabularyFactory
 

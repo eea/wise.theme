@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
 from wise.theme.testing import WISE_THEME_ACCEPTANCE_TESTING  # noqa

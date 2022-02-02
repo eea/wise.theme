@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from __future__ import absolute_import
+from __future__ import print_function
 import csv
 import json
 import os
@@ -8,6 +10,8 @@ from collections import defaultdict
 import tqdm
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import streaming_bulk
+from six.moves import range
+from six.moves import zip
 
 OM = 'Origin of the measure'
 
@@ -29,7 +33,7 @@ def read_details_csv_files(location):
             index = headers.index('Origin of the measure')
 
             for line in reader:
-                items = zip([h.strip() for h in headers], line)
+                items = list(zip([h.strip() for h in headers], line))
                 item = dict(items)
                 item['_id'] = get_id(item)
                 data[line[index]].append(item)
@@ -53,7 +57,7 @@ def read_master_csv_files(location):
             break
 
         for line in reader:
-            items = zip([h.strip() for h in headers], line)
+            items = list(zip([h.strip() for h in headers], line))
             item = dict(items)
             item['_id'] = get_id(item)
             data.append(item)
@@ -104,7 +108,7 @@ def fix_keywords(rec):
 
     if 'Keywords' in rec:
         rec['Keywords'] = list(
-            filter(None, [k.strip() for k in rec['Keywords'].split(',')]))
+            [_f for _f in [k.strip() for k in rec['Keywords'].split(',')] if _f])
         return
 
     fields = [
@@ -197,7 +201,7 @@ def main():
         measure_name = main[OM]
         rec = data[measure_name][main['_id']]
 
-        keys = main.keys()
+        keys = list(main.keys())
         for k, v in rec.items():
             # uses the key from master record
             for mk in keys:
@@ -254,7 +258,7 @@ def main():
         progress.update(1)
         successes += ok
 
-    print("Indexed %d/%d documents" % (successes, num_docs))
+    print(("Indexed %d/%d documents" % (successes, num_docs)))
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 # from zope.component import getMultiAdapter
 
+from __future__ import absolute_import
 from plone.api import content, portal
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.app.layout.viewlets import ViewletBase

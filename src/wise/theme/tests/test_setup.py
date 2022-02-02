@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Setup tests for this package."""
+from __future__ import absolute_import
 from plone import api
 from wise.theme.testing import WISE_THEME_INTEGRATION_TESTING  # noqa
 

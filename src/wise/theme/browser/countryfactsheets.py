@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import json
 import logging
 from collections import namedtuple
 from decimal import Decimal
-from urllib2 import HTTPError
+from six.moves.urllib.error import HTTPError
 
 import requests
 from lxml.etree import fromstring
@@ -428,7 +429,7 @@ class BootstrapCountrySection(BrowserView):
             'MT': 'Malta',
             'RO': 'Romania',
         }
-        for code, info in sorted(self.countries().items(), key=lambda x: x[0]):
+        for code, info in sorted(list(self.countries().items()), key=lambda x: x[0]):
             if not info.get('title'):
                 info['title'] = codes[info['Country']]
 

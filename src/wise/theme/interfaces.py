@@ -2,6 +2,7 @@
 
 """ Module where all interfaces, events and exceptions live."""
 
+from __future__ import absolute_import
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.namedfile.field import NamedBlobImage

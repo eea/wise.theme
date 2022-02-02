@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from zope.component import getMultiAdapter, getUtility
 
 from Acquisition import aq_inner

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from zope.interface import provider
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
