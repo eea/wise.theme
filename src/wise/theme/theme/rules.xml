@@ -52,8 +52,12 @@
     </prepend>
   </rules>
 
-  <rules css:if-not-content=".section-front-page">
+  <rules css:if-not-content=".section-front-page, #wise-search-form">
     <theme href="page.html" />
+  </rules>
+
+  <rules css:if-content="#wise-search-form">
+    <theme href="msfd.html" />
   </rules>
 
   <!-- hide print button on search page-->

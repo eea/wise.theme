@@ -2,8 +2,8 @@
 
 // FrontPage header
 #content-header.fp-header {
-  padding: 0 !important;
   position: relative;
+  padding: 0 !important;
 }
 
 .fp-header .sticky-header {
@@ -48,9 +48,9 @@
 
 .fp-header-wrapper {
   position: absolute;
-  width: 100%;
   z-index: 998;
   top: 35px;
+  width: 100%;
 
   .header-container {
     display: block;
@@ -58,7 +58,7 @@
 
   .site-logo-text {
     color: #fff;
-    font-family: "RobotoR";
+    font-family: 'RobotoR';
   }
 
   .right-actions-section {
@@ -72,6 +72,7 @@
       .search-icon {
         background-position: 0px -21px;
       }
+
       .user-icon,
       .user-wrapper > a {
         background-position: -25px -21px;
@@ -80,24 +81,25 @@
   }
 
   .plone-navbar {
-    text-align: right;
     border-top: 1px solid #fff;
+    text-align: right;
   }
 
   ul.plone-nav {
     float: right;
+
     > li {
-      float: left;
       margin: 0;
+      float: left;
 
       &:before {
-        content: "";
-        width: 1px;
         position: absolute;
-        height: 36px;
         top: 0;
         left: 0px;
+        width: 1px;
+        height: 36px;
         background: #fff;
+        content: '';
       }
 
       > a {
@@ -105,8 +107,8 @@
       }
 
       &:hover > a {
-        color: #fff;
         background-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
       }
     }
   }
@@ -141,14 +143,14 @@
 }
 
 .site-logo-text {
-  color: @lighter-gray;
-  text-transform: uppercase;
-  font-family: "RobotoB";
-  font-size: 13px;
   display: inline-block;
-  vertical-align: middle;
   width: 100px;
+  color: @lighter-gray;
+  font-family: 'RobotoB';
+  font-size: 13px;
   line-height: 15px;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
 
 .top-actions {
@@ -160,11 +162,11 @@
   }
 
   .top-icon {
-    height: 23px;
-    width: 23px;
-    margin: 0 auto;
     display: block;
-    background: url("/marine/++theme++wise-theme/static/images/top-icons.svg")
+    width: 23px;
+    height: 23px;
+    margin: 0 auto;
+    background: url('/marine/++theme++wise-theme/static/images/top-icons.svg')
       no-repeat;
   }
 
@@ -173,12 +175,12 @@
   }
 
   .user-icon {
-    background-position: -25px 1px;
-    display: inline-block;
-    margin-left: 1em;
-    cursor: pointer;
     position: relative;
     bottom: 2px;
+    display: inline-block;
+    margin-left: 1em;
+    background-position: -25px 1px;
+    cursor: pointer;
   }
 }
 
@@ -188,29 +190,30 @@
 }
 
 .search-modal {
-  display: none;
   position: absolute;
+  z-index: 999;
   top: 2em;
   right: 0;
-  padding: 1em;
-  background-color: #fff;
-  z-index: 999;
+  display: none;
   width: 300px;
+  padding: 1em;
   border: 1px solid #f1f1f1;
+  background-color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .submit-mobile-only {
   display: none;
-  background-color: transparent;
   border: none;
+  background-color: transparent;
   color: #fff;
 
   &:before {
-    content: "\e003";
+    content: '\e003';
     font-family: @icon-font-family;
     font-size: 17px;
   }
+
   &:hover {
     background-color: transparent;
     color: #fff;
@@ -218,12 +221,12 @@
 }
 
 .search-submit {
-  width: 100%;
   display: block;
-  color: #fff;
+  width: 100%;
+  margin-top: 0.5em;
   background-color: @darker-blue;
   border-radius: 0;
-  margin-top: 0.5em;
+  color: #fff;
 
   &:hover {
     background-color: @dark-blue;
@@ -234,17 +237,17 @@
 // Login and user actions
 
 .user-wrapper > a {
-  height: 23px;
-  width: 23px;
-  margin: 0 auto;
-  margin-left: 1em;
-  display: block;
   position: relative;
   bottom: 2px;
-  background: url("/marine/++theme++wise-theme/static/images/top-icons.svg")
+  display: block;
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  margin: 0 auto;
+  margin-left: 1em;
+  background: url('/marine/++theme++wise-theme/static/images/top-icons.svg')
     no-repeat;
   background-position: -25px 1px;
-  display: inline-block;
 }
 
 .user-actions {
@@ -257,14 +260,14 @@
 
   #personal-bar-container {
     position: absolute;
+    z-index: 999;
     top: 2em;
     right: 0;
-    background-color: #fff;
-    z-index: 999;
+    display: none;
     min-width: 190px;
     border: 1px solid #f1f1f1;
+    background-color: #fff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: none;
 
     li {
       list-style-type: none;
@@ -277,25 +280,25 @@
 
       li {
         > span {
-          padding: 0.5em 0.8em;
           display: block;
-          font-family: "RobotoM";
+          padding: 0.5em 0.8em;
+          font-family: 'RobotoM';
         }
 
         a {
-          padding: 0 0.8em 0.5em 0.8em;
-          display: block;
           position: relative;
+          display: block;
+          padding: 0 0.8em 0.5em 0.8em;
         }
 
         .icon-logout:before {
-          font-size: 12px;
-          line-height: 18px;
           position: absolute;
           top: 0;
           right: 10px;
           margin-top: 4px;
           color: #c4183c;
+          font-size: 12px;
+          line-height: 18px;
         }
       }
     }
@@ -304,22 +307,22 @@
 
 .sticky-header {
   position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 999;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 8px 15px !important;
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transform: translate3d(0px, 0px, 0px);
-  padding: 8px 15px !important;
 
   .site-logo img {
     width: 80px;
   }
 
   .site-logo-text {
-    font-size: 12px;
     width: 145px;
+    font-size: 12px;
     line-height: 15px;
   }
 }
@@ -327,15 +330,15 @@
 @media only screen and (min-width: 767px) {
   body.plone-toolbar-left-default {
     .sticky-header {
-      width: calc(~"100% - 60px");
       left: 60px;
+      width: calc(~'100% - 60px');
     }
   }
 
   body.plone-toolbar-left-expanded {
     .sticky-header {
-      width: calc(~"100% - 120px");
       left: 120px;
+      width: calc(~'100% - 120px');
     }
   }
 }
