@@ -52,11 +52,11 @@
     </prepend>
   </rules>
 
-  <rules css:if-not-content=".section-front-page, #wise-search-form">
+  <rules css:if-not-content=".section-front-page, .wise-search-form-msfd">
     <theme href="page.html" />
   </rules>
 
-  <rules css:if-content="#wise-search-form">
+  <rules css:if-content=".wise-search-form-msfd">
     <theme href="msfd.html" />
   </rules>
 
