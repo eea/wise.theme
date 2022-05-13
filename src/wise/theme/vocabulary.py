@@ -26,6 +26,18 @@ topo-vector
     "\n"
 )
 
+legislative_reference = [
+    "Water Framework Directive",
+    "Floods Directive",
+    "Bathing Water Directive",
+    "Nitrates Directive",
+    "Urban Waste Water Treatment Directive",
+    "Drinking Water Directive",
+    "Marine Strategy Framework Directive",
+    "Habitats Directive",
+    "Birds Directive",
+]
+
 layers = [lr.strip() for lr in layers if lr.strip()]
 
 
@@ -234,3 +246,9 @@ def organisations_vocabulary(context):
     terms.sort(key=lambda t: t.title)
     vocab = SimpleVocabulary(terms)
     return vocab
+
+
+@provider(IVocabularyFactory)
+def legislative_vocabulary(context):
+    """legislative_vocabulary"""
+    return values_to_vocab(legislative_reference)

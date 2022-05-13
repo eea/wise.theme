@@ -3,14 +3,15 @@
 """ Module where all interfaces, events and exceptions live."""
 
 from __future__ import absolute_import
+from plone.app.dexterity import _
 from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.namedfile.field import NamedBlobImage
+from plone.schema import JSONField
 from plone.supermodel import model
 from zope.interface import Interface, provider
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
+from zope.schema import Choice, Int, Text, TextLine, Tuple
 
 
 class IWiseThemeLayer(IDefaultBrowserLayer):
@@ -73,9 +74,43 @@ class ICatalogueMetadata(model.Schema):
     website and SDI catalogue
     """
 
+    title = TextLine(title=_(u"label_title", default=u"Title"), required=True)
+
+    description = Text(
+        title=_(u"label_description", default=u"Description"),
+        description=_(
+            u"help_description",
+            default=u"Used in item listings and search results."
+        ),
+        required=True,
+    )
+
+    lineage = Text(
+        title=u"Lineage",
+        required=False,
+    )
     original_source = TextLine(
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
+    )
+
+    legislative_reference = Tuple(
+        title="Legislative reference",
+        required=False,
+        value_type=Choice(
+            title=u"Single legislative reference",
+            vocabulary="wise_legislative_vocabulary",
+        ))
+
+    embed_url = TextLine(
+        title=u"Tableau URL",
+        required=False,
+    )
+
+    webmap_url = TextLine(
+        title=u"Embed URL",
+        description=u"Webmap URL",
+        required=False,
     )
 
     organisation = Choice(
@@ -96,6 +131,32 @@ class ICatalogueMetadata(model.Schema):
     )
 
     publication_year = Int(title=u"Publication year", required=True)
+
+    license_copyright = TextLine(
+        title=_(u"label_title", default=u"Rights"), required=False
+    )
+
+    temporal_coverage = JSONField(
+        title=u"Temporal coverage",
+        required=False, widget="temporal", default={}
+    )
+
+    geo_coverage = JSONField(
+        title=u"Geographical coverage",
+        required=False, widget="geolocation", default={}
+    )
+
+    data_source_info = RichText(
+        title=u"Data source information",
+        description=u"Rich text, double click for toolbar.",
+        required=False,
+    )
+
+    external_links = RichText(
+        title=u"External links",
+        description=u"Rich text, double click for toolbar.",
+        required=False,
+    )
 
     thumbnail = NamedBlobImage(
         title=u"Preview image (thumbnail)",

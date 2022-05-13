@@ -134,6 +134,11 @@
       name="wise_dpsir_vocabulary"
       component=".vocabulary.dpsir_vocabulary"
       />
+  
+  <utility
+    name="wise_legislative_vocabulary"
+    component=".vocabulary.legislative_vocabulary"
+    />
 
   <adapter
       factory=".catalog.has_default_page"
