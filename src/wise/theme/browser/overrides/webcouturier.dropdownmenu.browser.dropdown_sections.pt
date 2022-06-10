@@ -4,6 +4,7 @@
      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
      tal:define="portal_tabs view/portal_tabs"
      tal:condition="portal_tabs"
+     tal:on-error="string: "
      i18n:domain="plone">
 
   <p class="hiddenStructure" i18n:translate="heading_sections">Navigation</p>
