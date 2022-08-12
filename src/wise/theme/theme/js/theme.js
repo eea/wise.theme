@@ -294,7 +294,8 @@ function initDashboardsToolbar() {
       $textarea.val(embed);
       $copyLinkButton.attr("data-clipboard-text", iframeSRC);
       $copyEmbedButton.attr("data-clipboard-text", embed);
-      $(".copy-link-input").attr("value", iframeSRC);
+      // $(".copy-link-input").attr("value", iframeSRC);
+      $input.attr("value", iframeSRC);
 
       $tabNavItem.click(function() {
         var $this = $(this);
