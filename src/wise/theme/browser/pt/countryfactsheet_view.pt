@@ -179,7 +179,7 @@
                    class="country-dashboard-section">
                 <tal:def define="section brain/getObject;
                                  height section/dashboard_height;
-                                 url section/tableau_url | string:">
+                                 url python: section.tableau_url or ''">
                   <div>
                     <h2 class="db-section-title" tal:content="section/Title"></h2>
                     <div class="row">

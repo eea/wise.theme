@@ -236,7 +236,13 @@ function initThumbnailForDashboards() {
     $("iframe").each(function() {
       var $this = $(this);
       var iframeSRC = $this.attr("src");
-      var isTableauDashboard = /tableau/i.test(iframeSRC);
+      
+      if(iframeSRC){
+        var isTableauDashboard = /tableau/i.test(iframeSRC);
+      } else {
+        var isTableauDashboard = false;
+      }
+
       if (isTableauDashboard) {
         $('<img class="tableau-thumb"/>').insertAfter($this);
         var $thumb = $this.siblings(".tableau-thumb");
@@ -252,16 +258,31 @@ function initDashboardsToolbar() {
   $("iframe").each(function(i) {
     var $iframe = $(this);
     var iframeSRC = $iframe.attr("src");
-    var isTableauDashboard = /tableau/i.test(iframeSRC);
+    
+    if(iframeSRC){
+      var isTableauDashboard = /tableau/i.test(iframeSRC);
+    } else {
+      var isTableauDashboard = false;
+    }
+    
 
     // Copy tableau dashboard link
     function setupShareButton() {
       var pathArray = iframeSRC.split("/");
       var t_siteRoot = "/" + pathArray[3] + "/" + pathArray[4];
-      var t_name = pathArray[6] + "/" + pathArray[7].split("?")[0];
-      var t_filter = pathArray[7].split("?")[1];
-      t_filter = t_filter.split("&:")[0];
+      
+      if(pathArray.length == 6) {
+        // https://tableau-public.discomap.eea.europa.eu/views/BathingWaterQuality_Marine_Country_profile_2020_16431054968230/Country?P_Country=Croatia
+        var t_name = pathArray[4] + "/" + pathArray[5].split("?")[0];
+        var t_filter = pathArray[5].split("?")[1];
+      } else {
+        // https://tableau.discomap.eea.europa.eu/t/Wateronline/views/GESassessments_CountryProfiles/CountryProfiles?Country=Croatia
+        var t_name = pathArray[6] + "/" + pathArray[7].split("?")[0];
+        var t_filter = pathArray[7].split("?")[1];
+      }
 
+      t_filter = t_filter.split("&:")[0];
+      
       var embed =
         "<script type='text/javascript'" +
         "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'></script>" +
@@ -410,7 +431,9 @@ function initDashboardsToolbar() {
       var $toolbar = $iframeWrapper.siblings(".dataviz-toolbar");
 
       setupFullScreenMode();
-      setupShareButton();
+      if(iframeSRC){
+        setupShareButton();
+      }
     }
   });
 }
