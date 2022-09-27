@@ -93,7 +93,13 @@ class ICatalogueMetadata(model.Schema):
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
     )
-
+    category = Tuple(
+        title=u"Topics",
+        required=False,
+        default=(),
+        value_type=TextLine(
+            title=u"Single topic",
+        ))
     legislative_reference = Tuple(
         title="Legislative reference",
         required=False,
@@ -124,11 +130,11 @@ class ICatalogueMetadata(model.Schema):
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    theme = Choice(title=u"Theme", required=False, vocabulary="wise_themes_vocabulary")
+    #theme = Choice(title=u"Theme", required=False, vocabulary="wise_themes_vocabulary")
 
-    subtheme = Choice(
-        title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
-    )
+    #subtheme = Choice(
+    #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
+    #)
 
     publication_year = Int(title=u"Publication year", required=True)
 
