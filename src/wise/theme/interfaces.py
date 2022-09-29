@@ -93,13 +93,13 @@ class ICatalogueMetadata(model.Schema):
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
     )
-    category = Tuple(
-        title=u"Topics",
-        required=False,
-        default=(),
-        value_type=TextLine(
-            title=u"Single topic",
-        ))
+    #category = Tuple(
+     #   title=u"Topics",
+      #  required=False,
+      #  default=(),
+      #  value_type=TextLine(
+       #     title=u"Single topic",
+       # ))
     legislative_reference = Tuple(
         title="Legislative reference",
         required=False,
@@ -142,15 +142,15 @@ class ICatalogueMetadata(model.Schema):
         title=_(u"label_title", default=u"Rights"), required=False
     )
 
-    temporal_coverage = JSONField(
-        title=u"Temporal coverage",
-        required=False, widget="temporal", default={}
-    )
+    #temporal_coverage = JSONField(
+    #    title=u"Temporal coverage",
+    #    required=False, widget="temporal", default={}
+    #)
 
-    geo_coverage = JSONField(
-        title=u"Geographical coverage",
-        required=False, widget="geolocation", default={}
-    )
+    #geo_coverage = JSONField(
+     #   title=u"Geographical coverage",
+      #  required=False, widget="geolocation", default={}
+    #)
 
     data_source_info = RichText(
         title=u"Data source information",
