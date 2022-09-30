@@ -130,7 +130,7 @@ class ICatalogueMetadata(model.Schema):
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    #theme = Choice(title=u"Theme", required=False, vocabulary="wise_themes_vocabulary")
+    theme = TextLine(title=u"Theme", required=False)
 
     #subtheme = Choice(
     #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"

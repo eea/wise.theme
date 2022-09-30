@@ -40,7 +40,7 @@ class CatalogueMetadata(MetadataBase):
     legislative_reference = DCFieldProperty(
         ICatalogueMetadata["legislative_reference"])
     dpsir_type = DCFieldProperty(ICatalogueMetadata["dpsir_type"])
-    #theme = DCFieldProperty(ICatalogueMetadata["theme"])
+    theme = DCFieldProperty(ICatalogueMetadata["theme"])
     #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
     publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
     license_copyright = DCFieldProperty(
