@@ -111,11 +111,6 @@
       />
 
   <utility
-      name="wise_themes_vocabulary"
-      component=".vocabulary.themes_vocabulary"
-      />
-
-  <utility
       name="wise_subthemes_vocabulary"
       component=".vocabulary.subthemes_vocabulary"
       />
@@ -140,6 +135,10 @@
     component=".vocabulary.legislative_vocabulary"
     />
 
+  <utility
+      name="wise_category_vocabulary"
+      component=".vocabulary.CategoryVocabularyFactory"
+    />
   <adapter
       factory=".catalog.has_default_page"
       name="has_default_page"

@@ -1,5 +1,6 @@
 from __future__ import absolute_import
-from zope.interface import provider
+from zope.interface import provider, implementer
+from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
@@ -204,6 +205,18 @@ subthemes = [
 def subthemes_vocabulary(context):
     return values_to_vocab(subthemes)
 
+@implementer(IVocabularyFactory)
+class KeywordsVocabulary(BKV):
+    """KeywordsVocabulary"""
+    def __init__(self, index):
+        self.keyword_index = index
+
+    # def __call__(self, *args, **kwargs):
+    #     return super(KeywordsVocabulary, self).__call__(*args, **kwargs)
+
+
+CategoryVocabularyFactory = KeywordsVocabulary("category")
+
 
 organisations = {
     "EEA": dict(
@@ -237,7 +250,6 @@ organisations = {
     "Other": dict(title="Other", website=""),
 }
 
-
 @provider(IVocabularyFactory)
 def organisations_vocabulary(context):
     terms = [
@@ -246,7 +258,6 @@ def organisations_vocabulary(context):
     terms.sort(key=lambda t: t.title)
     vocab = SimpleVocabulary(terms)
     return vocab
-
 
 @provider(IVocabularyFactory)
 def legislative_vocabulary(context):

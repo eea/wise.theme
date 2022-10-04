@@ -9,6 +9,8 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.namedfile.field import NamedBlobImage
 from plone.schema import JSONField
 from plone.supermodel import model
+from plone.app.z3cform.widget import AjaxSelectFieldWidget
+from plone.autoform import directives
 from zope.interface import Interface, provider
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from zope.schema import Choice, Int, Text, TextLine, Tuple
@@ -93,12 +95,16 @@ class ICatalogueMetadata(model.Schema):
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
     )
-    theme = Tuple(
-        title=u"Theme",
+    directives.widget("category", vocabulary="wise_category_vocabulary")
+    category = Tuple(
+        title=u"Topics",
         required=False,
         default=(),
-        value_type=TextLine()
-    )
+        value_type=TextLine(
+            title=u"Single topic",
+        ))
+
+
     legislative_reference = Tuple(
         title="Legislative reference",
         required=False,

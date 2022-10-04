@@ -1,5 +1,6 @@
 
 from __future__ import absolute_import
+from unicodedata import category
 import requests
 
 from plone.app.dexterity.behaviors.metadata import (DCFieldProperty,
@@ -40,7 +41,7 @@ class CatalogueMetadata(MetadataBase):
     legislative_reference = DCFieldProperty(
         ICatalogueMetadata["legislative_reference"])
     dpsir_type = DCFieldProperty(ICatalogueMetadata["dpsir_type"])
-    theme = DCFieldProperty(ICatalogueMetadata["theme"])
+    category = DCFieldProperty(ICatalogueMetadata["category"])
     #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
     publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
     license_copyright = DCFieldProperty(
