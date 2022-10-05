@@ -1,6 +1,5 @@
 
 from __future__ import absolute_import
-from unicodedata import category
 import requests
 
 from plone.app.dexterity.behaviors.metadata import (DCFieldProperty,

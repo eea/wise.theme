@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 <registry>
 
+	<records interface="plone.app.querystring.interfaces.IQueryField"
+		prefix="plone.app.querystring.field.category">
+		<value key="title" translate="">Category</value>
+		<value key="description" translate=""></value>
+		<value key="enabled">True</value>
+		<value key="sortable">True</value>
+		<value key="operations">
+		<element>plone.app.querystring.operation.selection.any</element>
+		<element>plone.app.querystring.operation.selection.all</element>
+		</value>
+		<value key="group" translate="">Marine</value>
+		<value key="vocabulary">wise_category_vocabulary</value>
+	</records>
+
 	<record name="plone.custom_plugins" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="custom_plugins">
 	    <field type="plone.registry.field.List">
 	      <default/>

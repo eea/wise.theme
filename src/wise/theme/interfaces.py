@@ -95,14 +95,13 @@ class ICatalogueMetadata(model.Schema):
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
     )
+    
     directives.widget("category", vocabulary="wise_category_vocabulary")
-    category = Tuple(
+
+    category = TextLine(
         title=u"Topics",
         required=False,
-        default=(),
-        value_type=TextLine(
-            title=u"Single topic",
-        ))
+    )
 
 
     legislative_reference = Tuple(
