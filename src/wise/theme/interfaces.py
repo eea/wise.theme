@@ -5,6 +5,7 @@
 from __future__ import absolute_import
 from plone.app.dexterity import _
 from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.namedfile.field import NamedBlobImage
 from plone.schema import JSONField
@@ -124,11 +125,17 @@ class ICatalogueMetadata(model.Schema):
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    theme = Choice(title=u"Theme", required=False, vocabulary="wise_themes_vocabulary")
-
-    subtheme = Choice(
-        title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
-    )
+    directives.widget("theme", vocabulary="wise_theme_vocabulary")
+    theme = Tuple(
+        title=u"Theme",
+        required=False,
+        default=(),
+        value_type=TextLine(
+            title=u"Single Theme",
+        ))
+    #subtheme = Choice(
+    #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
+    #)
 
     publication_year = Int(title=u"Publication year", required=True)
 
@@ -136,15 +143,15 @@ class ICatalogueMetadata(model.Schema):
         title=_(u"label_title", default=u"Rights"), required=False
     )
 
-    temporal_coverage = JSONField(
-        title=u"Temporal coverage",
-        required=False, widget="temporal", default={}
-    )
+    #temporal_coverage = JSONField(
+    #    title=u"Temporal coverage",
+    #    required=False, widget="temporal", default={}
+    #)
 
-    geo_coverage = JSONField(
-        title=u"Geographical coverage",
-        required=False, widget="geolocation", default={}
-    )
+    #geo_coverage = JSONField(
+    #    title=u"Geographical coverage",
+    #    required=False, widget="geolocation", default={}
+    #)
 
     data_source_info = RichText(
         title=u"Data source information",
