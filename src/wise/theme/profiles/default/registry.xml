@@ -11,7 +11,7 @@
 		<element>plone.app.querystring.operation.selection.any</element>
 		<element>plone.app.querystring.operation.selection.all</element>
 		</value>
-		<value key="group" translate="">Freshwater</value>
+		<value key="group" translate="">Marine</value>
 		<value key="vocabulary">wise_theme_vocabulary</value>
 	</records>
 	<record name="plone.templates" interface="Products.CMFPlone.interfaces.controlpanel.ITinyMCESchema" field="templates">
