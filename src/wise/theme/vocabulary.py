@@ -248,7 +248,7 @@ class KeywordsVocabulary(BKV):
     #     return super(KeywordsVocabulary, self).__call__(*args, **kwargs)
 
 
-ThemeVocabularyFactory = KeywordsVocabulary("theme")
+ThemeVocabularyFactory = KeywordsVocabulary("category")
 
 
 @provider(IVocabularyFactory)

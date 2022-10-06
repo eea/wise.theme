@@ -125,11 +125,13 @@ class ICatalogueMetadata(model.Schema):
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    directives.widget("theme", vocabulary="wise_theme_vocabulary")
-    theme = Tuple(
+    directives.widget("category", vocabulary="wise_theme_vocabulary")
+   # import pdb; pdb.set_trace()
+
+    category = Tuple(
         title=u"Theme",
         required=False,
-        default=(),
+        #default=(""),
         value_type=TextLine(
             title=u"Single Theme",
         ))
