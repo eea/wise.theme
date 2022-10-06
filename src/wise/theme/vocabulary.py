@@ -243,7 +243,7 @@ class KeywordsVocabulary(BKV):
     """KeywordsVocabulary"""
     def __init__(self, index):
         self.keyword_index = index
-
+        self.catalog = [];
     # def __call__(self, *args, **kwargs):
     #     return super(KeywordsVocabulary, self).__call__(*args, **kwargs)
 
