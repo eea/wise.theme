@@ -131,7 +131,6 @@ class ICatalogueMetadata(model.Schema):
     category = Tuple(
         title=u"Theme",
         required=False,
-        #default=(""),
         value_type=TextLine(
             title=u"Single Theme",
         ))

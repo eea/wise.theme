@@ -113,11 +113,6 @@
       />
 
   <utility
-      name="wise_themes_vocabulary"
-      component=".vocabulary.themes_vocabulary"
-      />
-
-  <utility
       name="wise_subthemes_vocabulary"
       component=".vocabulary.subthemes_vocabulary"
       />
