@@ -2,7 +2,7 @@
 <registry >
 
 	<records interface="plone.app.querystring.interfaces.IQueryField"
-		prefix="plone.app.querystring.field.category">
+		prefix="plone.app.querystring.field.theme">
 		<value key="title" translate="">Theme</value>
 		<value key="description" translate=""></value>
 		<value key="enabled">True</value>

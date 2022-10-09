@@ -125,10 +125,10 @@ class ICatalogueMetadata(model.Schema):
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    directives.widget("category", vocabulary="wise_theme_vocabulary")
+    directives.widget("theme", vocabulary="wise_theme_vocabulary")
    # import pdb; pdb.set_trace()
 
-    category = Tuple(
+    theme = Tuple(
         title=u"Theme",
         required=False,
         value_type=TextLine(
@@ -140,9 +140,9 @@ class ICatalogueMetadata(model.Schema):
 
     publication_year = Int(title=u"Publication year", required=True)
 
-    license_copyright = TextLine(
-        title=_(u"label_title", default=u"Rights"), required=False
-    )
+    #license_copyright = TextLine(
+    #    title=_(u"label_title", default=u"Rights"), required=False
+    #)
 
     #temporal_coverage = JSONField(
     #    title=u"Temporal coverage",

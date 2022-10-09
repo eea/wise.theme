@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-   <index name="category" meta_type="FieldIndex">
-    <indexed_attr value="category"/>  
+   <index name="theme" meta_type="FieldIndex">
+    <indexed_attr value="theme"/>  
  <index name="has_default_page" meta_type="FieldIndex">
   <indexed_attr value="has_default_page"/>
  </index>

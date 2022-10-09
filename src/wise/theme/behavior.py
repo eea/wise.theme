@@ -40,11 +40,11 @@ class CatalogueMetadata(MetadataBase):
     legislative_reference = DCFieldProperty(
         ICatalogueMetadata["legislative_reference"])
     dpsir_type = DCFieldProperty(ICatalogueMetadata["dpsir_type"])
-    category = DCFieldProperty(ICatalogueMetadata["category"])
+    theme = DCFieldProperty(ICatalogueMetadata["theme"])
     #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
     publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
-    license_copyright = DCFieldProperty(
-        ICatalogueMetadata["license_copyright"])
+    #license_copyright = DCFieldProperty(
+    #    ICatalogueMetadata["license_copyright"])
     #temporal_coverage = DCFieldProperty(
     #    ICatalogueMetadata["temporal_coverage"])
     #geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
