@@ -1,9 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="wise.theme"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="eea"
     >
 
   <i18n:registerTranslations directory="locales" />
@@ -111,11 +113,6 @@
       />
 
   <utility
-      name="wise_themes_vocabulary"
-      component=".vocabulary.themes_vocabulary"
-      />
-
-  <utility
       name="wise_subthemes_vocabulary"
       component=".vocabulary.subthemes_vocabulary"
       />
@@ -134,7 +131,10 @@
       name="wise_dpsir_vocabulary"
       component=".vocabulary.dpsir_vocabulary"
       />
-  
+  <utility
+      name="wise_theme_vocabulary"
+      component=".vocabulary.ThemeVocabularyFactory"
+      />
   <utility
     name="wise_legislative_vocabulary"
     component=".vocabulary.legislative_vocabulary"

@@ -41,13 +41,13 @@ class CatalogueMetadata(MetadataBase):
         ICatalogueMetadata["legislative_reference"])
     dpsir_type = DCFieldProperty(ICatalogueMetadata["dpsir_type"])
     theme = DCFieldProperty(ICatalogueMetadata["theme"])
-    subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
+    #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
     publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
-    license_copyright = DCFieldProperty(
-        ICatalogueMetadata["license_copyright"])
-    temporal_coverage = DCFieldProperty(
-        ICatalogueMetadata["temporal_coverage"])
-    geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
+    #license_copyright = DCFieldProperty(
+    #    ICatalogueMetadata["license_copyright"])
+    #temporal_coverage = DCFieldProperty(
+    #    ICatalogueMetadata["temporal_coverage"])
+    #geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
     external_links = DCFieldProperty(ICatalogueMetadata["external_links"])
     data_source_info = DCFieldProperty(ICatalogueMetadata["data_source_info"])
     thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])

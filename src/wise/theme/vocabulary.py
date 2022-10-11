@@ -1,6 +1,7 @@
 from __future__ import absolute_import
-from zope.interface import provider
+from zope.interface import provider, implementer
 from zope.schema.interfaces import IVocabularyFactory
+from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 # See https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html
@@ -236,6 +237,17 @@ organisations = {
     ),
     "Other": dict(title="Other", website=""),
 }
+
+@provider(IVocabularyFactory)
+class KeywordsVocabulary(BKV):
+    """KeywordsVocabulary"""
+    def __init__(self, index):
+        self.keyword_index = index
+    # def __call__(self, *args, **kwargs):
+    #     return super(KeywordsVocabulary, self).__call__(*args, **kwargs)
+
+
+ThemeVocabularyFactory = KeywordsVocabulary("theme")
 
 
 @provider(IVocabularyFactory)
