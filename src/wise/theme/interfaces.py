@@ -126,14 +126,15 @@ class ICatalogueMetadata(model.Schema):
     )
 
     directives.widget("theme", vocabulary="wise_theme_vocabulary")
-   # import pdb; pdb.set_trace()
 
     theme = Tuple(
         title=u"Theme",
         required=False,
+        default=(),
         value_type=TextLine(
             title=u"Single Theme",
         ))
+    
     #subtheme = Choice(
     #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
     #)
