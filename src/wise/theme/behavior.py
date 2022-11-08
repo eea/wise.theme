@@ -80,3 +80,24 @@ def set_thumbnail(context, event):
                                        filename=filename)
 
     return context
+
+
+def unset_effective_date(context, event):
+    """ Unset the effective date (published date) when a page is unpublished
+    """
+    if not event.transition or \
+       event.transition.id not in ['reject', 'retract']:
+        return
+
+    if not event.old_state:
+        return
+
+    if not event.new_state:
+        return
+
+    if event.old_state.id != 'published':
+        return
+    
+    context.effective_date = None
+
+    return context

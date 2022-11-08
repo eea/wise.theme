@@ -93,6 +93,12 @@
       handler=".behavior.set_thumbnail"
       />
 
+  <subscriber
+      for="*
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".behavior.unset_effective_date"
+      />
+
   <utility
       factory=".setuphandlers.HiddenProfiles"
       name="wise.theme-hiddenprofiles"
