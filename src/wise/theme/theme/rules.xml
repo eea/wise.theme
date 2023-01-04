@@ -67,7 +67,7 @@
   <drop css:content-children=".frontpage-header-slide-container" />
 
   <!-- add .fullwidth class for compliance module -->
-  <rules css:if-content=".full-width-marker">
+  <rules css:if-content=".full-width-marker" css:if-not-content=".leadimage-header">
     <prepend theme="/html/body">
       <xsl:attribute name="class">
         <xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
@@ -75,7 +75,7 @@
   </rules>
 
   <!-- page lead image -->
-  <rules css:if-content=".leadimage-header">
+  <rules css:if-content=".leadimage-header" css:if-not-content=".full-width-marker">
     <drop css:content=".documentFirstHeading" />
     <prepend theme="/html/body">
       <xsl:attribute name="class">
@@ -91,11 +91,13 @@
   </rules>
 
   <!-- fix cases when both fullwidth and lead-image is present -->
-  <rules css:if-content=".full-width-marker, .leadimage-header">
-    <prepend theme="/html/body">
-      <xsl:attribute name="class">
-        <xsl:value-of select="/html/body/@class"/> fullwidth leadimage-view</xsl:attribute>
-    </prepend>
+  <rules css:if-content=".full-width-marker">
+    <rules css:if-content=".leadimage-header">
+      <prepend theme="/html/body">
+        <xsl:attribute name="class">
+          <xsl:value-of select="/html/body/@class"/> fullwidth leadimage-view</xsl:attribute>
+      </prepend>
+    </rules>
   </rules>
 
   <rules css:if-content=".leadImageOverride">
