@@ -93,6 +93,7 @@ class ICatalogueMetadata(model.Schema):
     original_source = TextLine(
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
+        required=False,
     )
 
     legislative_reference = Tuple(
