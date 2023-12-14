@@ -140,7 +140,8 @@ class ICatalogueMetadata(model.Schema):
     #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
     #)
 
-    publication_year = Int(title=u"Publication year", required=True)
+    # Removed as we use only the "Publishing date"
+    # publication_year = Int(title=u"Publication year", required=True)
 
     #license_copyright = TextLine(
     #    title=_(u"label_title", default=u"Rights"), required=False
