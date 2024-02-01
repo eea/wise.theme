@@ -153,4 +153,9 @@
       name="has_default_page"
       />
 
+  <adapter
+      factory=".catalog.block_types"
+      name="block_types"
+      />
+
 </configure>
