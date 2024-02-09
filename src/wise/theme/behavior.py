@@ -41,6 +41,11 @@ class CatalogueMetadata(MetadataBase):
         ICatalogueMetadata["legislative_reference"])
     dpsir_type = DCFieldProperty(ICatalogueMetadata["dpsir_type"])
     theme = DCFieldProperty(ICatalogueMetadata["theme"])
+    external_links = DCFieldProperty(ICatalogueMetadata["external_links"])
+    data_source_info = DCFieldProperty(ICatalogueMetadata["data_source_info"])
+    thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])
+    sources = DCFieldProperty(ICatalogueMetadata["sources"])
+
     #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
     # publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
     #license_copyright = DCFieldProperty(
@@ -48,11 +53,6 @@ class CatalogueMetadata(MetadataBase):
     #temporal_coverage = DCFieldProperty(
     #    ICatalogueMetadata["temporal_coverage"])
     #geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
-    external_links = DCFieldProperty(ICatalogueMetadata["external_links"])
-    data_source_info = DCFieldProperty(ICatalogueMetadata["data_source_info"])
-    thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])
-    sources = DCFieldProperty(ICatalogueMetadata["sources"])
-
 
 
 def set_thumbnail(context, event):

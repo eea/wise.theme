@@ -129,7 +129,7 @@ class ICatalogueMetadata(model.Schema):
     directives.widget("theme", vocabulary="wise_theme_vocabulary")
 
     theme = Tuple(
-        title=u"Theme",
+        title=u"Sub-Theme",
         required=False,
         default=(),
         value_type=TextLine(
