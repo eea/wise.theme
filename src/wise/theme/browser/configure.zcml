@@ -214,6 +214,10 @@
       permission="zope.Public"
       />
 
+  <subscriber
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+    factory=".blocks.EmbedTableauSerializationTransformer" />
+
 
 
   <!-- Disabled for Plone5 new theme, will need to be enabled selectively, after testing -->
