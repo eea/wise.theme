@@ -41,18 +41,18 @@ class CatalogueMetadata(MetadataBase):
         ICatalogueMetadata["legislative_reference"])
     dpsir_type = DCFieldProperty(ICatalogueMetadata["dpsir_type"])
     theme = DCFieldProperty(ICatalogueMetadata["theme"])
-    #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
-    publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
-    #license_copyright = DCFieldProperty(
-    #    ICatalogueMetadata["license_copyright"])
-    #temporal_coverage = DCFieldProperty(
-    #    ICatalogueMetadata["temporal_coverage"])
-    #geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
     external_links = DCFieldProperty(ICatalogueMetadata["external_links"])
     data_source_info = DCFieldProperty(ICatalogueMetadata["data_source_info"])
     thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])
     sources = DCFieldProperty(ICatalogueMetadata["sources"])
 
+    #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
+    # publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
+    #license_copyright = DCFieldProperty(
+    #    ICatalogueMetadata["license_copyright"])
+    #temporal_coverage = DCFieldProperty(
+    #    ICatalogueMetadata["temporal_coverage"])
+    #geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
 
 
 def set_thumbnail(context, event):
@@ -78,5 +78,26 @@ def set_thumbnail(context, event):
 
     context.thumbnail = NamedBlobImage(data=response.content,
                                        filename=filename)
+
+    return context
+
+
+def unset_effective_date(context, event):
+    """ Unset the effective date (published date) when a page is unpublished
+    """
+    if not event.transition or \
+       event.transition.id not in ['reject', 'retract']:
+        return
+
+    if not event.old_state:
+        return
+
+    if not event.new_state:
+        return
+
+    if event.old_state.id != 'published':
+        return
+    
+    context.effective_date = None
 
     return context
