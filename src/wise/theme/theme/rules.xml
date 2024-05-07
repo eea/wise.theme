@@ -44,14 +44,6 @@
   </rules> -->
 
 
-  <!-- add .fullwidth class for compliance module -->
-  <rules css:if-content=".full-width-marker">
-    <prepend theme="/html/body">
-      <xsl:attribute name="class">
-        <xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
-    </prepend>
-  </rules>
-
   <rules css:if-not-content=".section-front-page, .wise-search-form-msfd">
     <theme href="page.html" />
   </rules>
@@ -74,8 +66,16 @@
   <replace css:theme-children="#frontpage-header-slide" css:content-children=".frontpage-header-slide-container" method="raw" />
   <drop css:content-children=".frontpage-header-slide-container" />
 
+  <!-- add .fullwidth class for compliance module -->
+  <rules css:if-content=".full-width-marker" css:if-not-content=".leadimage-header">
+    <prepend theme="/html/body">
+      <xsl:attribute name="class">
+        <xsl:value-of select="/html/body/@class"/> fullwidth</xsl:attribute>
+    </prepend>
+  </rules>
+
   <!-- page lead image -->
-  <rules css:if-content=".leadimage-header">
+  <rules css:if-content=".leadimage-header" css:if-not-content=".full-width-marker">
     <drop css:content=".documentFirstHeading" />
     <prepend theme="/html/body">
       <xsl:attribute name="class">
@@ -88,6 +88,16 @@
         <xsl:copy-of select='//*[@id="plone-document-byline"]' />
       </div>
     </before>
+  </rules>
+
+  <!-- fix cases when both fullwidth and lead-image is present -->
+  <rules css:if-content=".full-width-marker">
+    <rules css:if-content=".leadimage-header">
+      <prepend theme="/html/body">
+        <xsl:attribute name="class">
+          <xsl:value-of select="/html/body/@class"/> fullwidth leadimage-view</xsl:attribute>
+      </prepend>
+    </rules>
   </rules>
 
   <rules css:if-content=".leadImageOverride">

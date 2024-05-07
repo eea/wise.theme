@@ -16,6 +16,7 @@ class TestSetup(unittest.TestCase):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
         self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer.installProducts(['wise.theme'])
 
     def test_product_installed(self):
         """Test if wise.theme is installed."""
@@ -37,6 +38,7 @@ class TestUninstall(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.installer.installProducts(['wise.theme'])
         self.installer.uninstallProducts(['wise.theme'])
 
     def test_product_uninstalled(self):
