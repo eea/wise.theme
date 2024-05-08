@@ -91,59 +91,72 @@
     <subscriber
         for=".interfaces.ICatalogueMetadata
            zope.lifecycleevent.IObjectCreatedEvent"
-        handler=".behavior.set_thumbnail"
+      handler=".behavior.set_thumbnail"
+      />
+
+  <subscriber
+      for="*
+           Products.DCWorkflow.interfaces.IAfterTransitionEvent"
+      handler=".behavior.unset_effective_date"
+      />
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="wise.theme-hiddenprofiles"
+      />
+
+  <interface interface=".interfaces.IHomepage" />
+  <interface interface=".interfaces.IFullWidthLayout" />
+  <interface interface=".interfaces.ICountriesFactsheetDatabase" />
+
+  <utility
+      name="wise_basemap_layers"
+      component=".vocabulary.layers_vocabulary"
+      />
+
+  <utility
+      name="wise_countries_vocabulary"
+      component=".vocabulary.countries_vocabulary"
+      />
+
+  <utility
+      name="wise_subthemes_vocabulary"
+      component=".vocabulary.subthemes_vocabulary"
+      />
+
+  <utility
+      name="wise_organisations_vocabulary"
+      component=".vocabulary.organisations_vocabulary"
+      />
+
+  <utility
+      name="wise_types_vocabulary"
+      component=".vocabulary.types_vocabulary"
+      />
+
+  <utility
+      name="wise_dpsir_vocabulary"
+      component=".vocabulary.dpsir_vocabulary"
+      />
+
+  <utility
+      name="wise_theme_vocabulary"
+      component=".vocabulary.ThemeVocabularyFactory"
+      />
+
+  <utility
+    name="wise_legislative_vocabulary"
+    component=".vocabulary.legislative_vocabulary"
     />
 
-    <utility
-        factory=".setuphandlers.HiddenProfiles"
-        name="wise.theme-hiddenprofiles"
-    />
+  <adapter
+      factory=".catalog.has_default_page"
+      name="has_default_page"
+      />
 
-    <interface interface=".interfaces.IHomepage" />
-    <interface interface=".interfaces.IFullWidthLayout" />
-    <interface interface=".interfaces.ICountriesFactsheetDatabase" />
-
-    <utility
-        name="wise_basemap_layers"
-        component=".vocabulary.layers_vocabulary"
-    />
-
-    <utility
-        name="wise_countries_vocabulary"
-        component=".vocabulary.countries_vocabulary"
-    />
-
-    <utility
-        name="wise_subthemes_vocabulary"
-        component=".vocabulary.subthemes_vocabulary"
-    />
-
-    <utility
-        name="wise_organisations_vocabulary"
-        component=".vocabulary.organisations_vocabulary"
-    />
-
-    <utility
-        name="wise_types_vocabulary"
-        component=".vocabulary.types_vocabulary"
-    />
-
-    <utility
-        name="wise_dpsir_vocabulary"
-        component=".vocabulary.dpsir_vocabulary"
-    />
-    <utility
-        name="wise_theme_vocabulary"
-        component=".vocabulary.ThemeVocabularyFactory"
-    />
-    <utility
-        name="wise_legislative_vocabulary"
-        component=".vocabulary.legislative_vocabulary"
-    />
-
-    <adapter
-        factory=".catalog.has_default_page"
-        name="has_default_page"
-    />
+  <adapter
+      factory=".catalog.block_types"
+      name="block_types"
+      />
 
 </configure>

@@ -93,6 +93,7 @@ class ICatalogueMetadata(model.Schema):
     original_source = TextLine(
         title=u"Original source",
         description=u"If EEA link, can trigger automatic fetching of EEA information",
+        required=False,
     )
 
     legislative_reference = Tuple(
@@ -126,19 +127,21 @@ class ICatalogueMetadata(model.Schema):
     )
 
     directives.widget("theme", vocabulary="wise_theme_vocabulary")
-   # import pdb; pdb.set_trace()
 
     theme = Tuple(
-        title=u"Theme",
+        title=u"Sub-Theme",
         required=False,
+        default=(),
         value_type=TextLine(
             title=u"Single Theme",
         ))
+    
     #subtheme = Choice(
     #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
     #)
 
-    publication_year = Int(title=u"Publication year", required=True)
+    # Removed as we use only the "Publishing date"
+    # publication_year = Int(title=u"Publication year", required=True)
 
     #license_copyright = TextLine(
     #    title=_(u"label_title", default=u"Rights"), required=False

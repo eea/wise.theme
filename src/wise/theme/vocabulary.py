@@ -249,7 +249,6 @@ class KeywordsVocabulary(BKV):
 
 ThemeVocabularyFactory = KeywordsVocabulary("theme")
 
-
 @provider(IVocabularyFactory)
 def organisations_vocabulary(context):
     terms = [
