@@ -42,7 +42,7 @@ setup(
         'z3c.jbot',
         'plone.app.theming',
         'plone.app.themingplugins',
-
+        'eea.api.dataconnector',
         'webcouturier.dropdownmenu',
     ],
     extras_require={
