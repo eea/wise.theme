@@ -218,6 +218,14 @@
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     factory=".blocks.EmbedTableauSerializationTransformer" />
 
+  <subscriber
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+    factory=".blocks.EmbedMapsSerializationTransformer" />
+
+  <subscriber
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+    factory=".blocks.EmbedEEAMapBlockSerializationTransformer" />
+
 
 
   <!-- Disabled for Plone5 new theme, will need to be enabled selectively, after testing -->

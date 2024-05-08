@@ -11,6 +11,8 @@ from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 from eea.api.dataconnector.browser.blocks import (
     EmbedTableauVisualizationSerializationTransformer as BaseEmbedTableauVisualizationSerializationTransformer,
+    EmbedEEAMapBlockSerializationTransformer as BaseEmbedEEAMapBlockSerializationTransformer,
+    EmbedMapsSerializationTransformer as BaseEmbedMapsSerializationTransformer,
 )
 from eea.api.dataconnector.browser.blocks import getMetadata, getLinkHTML
 
@@ -148,3 +150,123 @@ class EmbedTableauSerializationTransformer(
             **value,
             "tableau_vis_url": tableau_vis_url,
         }
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class EmbedEEAMapBlockSerializationTransformer(
+    BaseEmbedEEAMapBlockSerializationTransformer
+):
+    """Embed eea map block serializer"""
+
+    order = 9999
+    block_type = "embed_eea_map_block"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, value):
+        vis_url, uid = getUrlUid(self, value, "vis_url")
+
+        if "map_visualization_data" in value:
+            del value["map_visualization_data"]
+
+        if not uid:
+            return value
+
+        doc = None
+
+        try:
+            doc = api.content.get(UID=uid)
+        except Unauthorized:
+            return {
+                **value,
+                "tableau_vis_url": vis_url,
+                "map_visualization_data": {
+                    "error": "Apologies, it seems this "
+                    + getLinkHTML(vis_url, "Map (Simple)")
+                    + " has not been published yet."
+                },
+            }
+        except Forbidden:
+            return {
+                **value,
+                "tableau_vis_url": vis_url,
+                "map_visualization_data": {
+                    "error": "Apologies, it seems you do not have "
+                    + "permissions to see this "
+                    + getLinkHTML(vis_url, "Map (Simple)")
+                    + "."
+                },
+            }
+
+        doc_serializer = self._get_doc_serializer(doc)
+        if doc_serializer:
+            return {
+                **value,
+                "vis_url": vis_url,
+                "map_visualization_data": {
+                    **getMetadata(doc_serializer),
+                    **doc_serializer.get("map_visualization_data", {}),
+                },
+            }
+        return {
+            **value,
+            "vis_url": vis_url,
+        }
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class EmbedMapsSerializationTransformer(BaseEmbedMapsSerializationTransformer):
+    """Embed maps serializer"""
+
+    order = 9999
+    block_type = "embed_maps"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, value):
+        url, uid = getUrlUid(self, value, "url")
+
+        if "maps" in value:
+            del value["maps"]
+
+        if not uid:
+            return value
+
+        try:
+            doc = api.content.get(UID=uid)
+        except Unauthorized:
+            return {
+                **value,
+                "maps": {
+                    "error": "Apologies, it seems this "
+                    + getLinkHTML(url, "Map (Interactive)")
+                    + " has not been published yet."
+                },
+            }
+        except Forbidden:
+            return {
+                **value,
+                "maps": {
+                    "error": "Apologies, it seems you do not have "
+                    + "permissions to see this "
+                    + getLinkHTML(url, "Map (Interactive)")
+                    + "."
+                },
+            }
+
+        doc_serializer = self._get_doc_serializer(doc)
+        if doc_serializer:
+            return {
+                **value,
+                "maps": {
+                    **getMetadata(doc_serializer),
+                    **doc_serializer.get("maps", {}),
+                },
+            }
+        return value
