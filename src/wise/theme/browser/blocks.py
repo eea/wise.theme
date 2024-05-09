@@ -29,7 +29,7 @@ def getLink(path):
     # /marine doesn't exists in backend
     # therefore api.content.get(path=/marine/something) -> None
     if URL.path.startswith("/marine"):
-        return path.replace("/marine", "")
+        return path.replace("/marine", "", 1)
     return path
 
 
