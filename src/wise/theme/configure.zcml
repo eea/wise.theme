@@ -159,4 +159,11 @@
       name="block_types"
       />
 
+  <plone:service
+    method="GET"
+    for="zope.interface.Interface"
+    factory=".siblings.SiblingsGet"
+    name="@siblings"
+    permission="zope2.View"
+    />
 </configure>
