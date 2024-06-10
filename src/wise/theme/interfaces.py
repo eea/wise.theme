@@ -126,7 +126,11 @@ class ICatalogueMetadata(model.Schema):
         title=u"DPSIR", required=False, vocabulary="wise_dpsir_vocabulary"
     )
 
-    directives.widget("theme", vocabulary="wise_theme_vocabulary")
+    directives.widget(
+        "theme",
+        vocabulary="wise_theme_vocabulary",
+        frontendOptions={"widget": "wise_theme"},
+    )
 
     theme = Tuple(
         title=u"Sub-Theme",
