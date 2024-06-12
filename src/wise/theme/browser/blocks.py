@@ -142,8 +142,8 @@ class EmbedTableauSerializationTransformer(
                 **value,
                 "tableau_vis_url": tableau_vis_url,
                 "tableau_visualization": {
-                    **getMetadata(doc_serializer),
                     **doc_serializer.get("tableau_visualization", {}),
+                    **getMetadata(doc_serializer)
                 },
             }
         return {
@@ -207,8 +207,8 @@ class EmbedEEAMapBlockSerializationTransformer(
                 **value,
                 "vis_url": vis_url,
                 "map_visualization_data": {
-                    **getMetadata(doc_serializer),
                     **doc_serializer.get("map_visualization_data", {}),
+                    **getMetadata(doc_serializer),
                 },
             }
         return {
@@ -265,8 +265,8 @@ class EmbedMapsSerializationTransformer(BaseEmbedMapsSerializationTransformer):
             return {
                 **value,
                 "maps": {
-                    **getMetadata(doc_serializer),
                     **doc_serializer.get("maps", {}),
+                    **getMetadata(doc_serializer),
                 },
             }
         return value
