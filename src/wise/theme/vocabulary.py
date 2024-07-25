@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 from __future__ import absolute_import
 from zope.interface import provider, implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -244,6 +244,7 @@ organisations = {
 @provider(IVocabularyFactory)
 class KeywordsVocabulary(BKV):
     """KeywordsVocabulary"""
+
     def __init__(self, index):
         self.keyword_index = index
     # def __call__(self, *args, **kwargs):

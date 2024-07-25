@@ -1,5 +1,6 @@
-"""test_robot.py"""
 # -*- coding: utf-8 -*-
+# pylint: skip-file
+"""test_robot.py"""
 from __future__ import absolute_import
 import os
 import robotsuite

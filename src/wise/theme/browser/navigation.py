@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 """navigation.py"""
 from __future__ import absolute_import
 from zope.component import getMultiAdapter, getUtility
@@ -64,7 +64,7 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
 
         # now add the content to results
         for item in rawresult:
-            if (item.exclude_from_nav and 
+            if (item.exclude_from_nav and
                 not context_path.startswith(item.getPath())):  # noqa: E501
                 # skip excluded items if they're not in our context path
                 continue

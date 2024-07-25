@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 """ blocks.py """
 
 import json

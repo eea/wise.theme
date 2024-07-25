@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 from plone import api
 from plone.restapi.interfaces import IExpandableElement, ISerializeToJson
 from plone.restapi.services import Service

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#pylint: skip-file
+# pylint: skip-file
 from __future__ import absolute_import
 from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE

@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 """setuphandlers.py"""
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
@@ -9,6 +9,7 @@ from zope.interface import implementer
 @implementer(INonInstallable)
 class HiddenProfiles(object):
     """HiddenProfiles"""
+
     def getNonInstallableProfiles(self):
         """Hide uninstall profile from site-creation and quickinstaller"""
         return [

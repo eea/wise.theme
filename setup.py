@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Installer for the wise.theme package."""
 
-from setuptools import find_packages, setup
-
 import os
 from os.path import join
 from setuptools import setup, find_packages

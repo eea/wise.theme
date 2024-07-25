@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 """countryfactsheets.py"""
 from __future__ import absolute_import
 import json

@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 from urllib.parse import urlparse
 from AccessControl import Unauthorized
 from plone import api

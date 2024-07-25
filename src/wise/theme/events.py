@@ -1,4 +1,4 @@
-#pylint: skip-file
+# pylint: skip-file
 """ events.py """
 from __future__ import absolute_import
 from wise.theme.interfaces import ISlideshowCreatedEvent
