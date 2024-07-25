@@ -3,16 +3,24 @@
 
 from setuptools import find_packages, setup
 
+import os
+from os.path import join
+from setuptools import setup, find_packages
+
+NAME = 'wise.theme'
+PATH = ['src'] + NAME.split('.') + ['version.txt']
+VERSION = open(join(*PATH)).read().strip()
+
 long_description = '\n\n'.join([
-    open('README.md').read(),
+    open('README.rst').read(),
     open('CONTRIBUTORS.rst').read(),
     open('CHANGES.rst').read(),
+    open(os.path.join("docs", "HISTORY.txt")).read()
 ])
 
-
 setup(
-    name='wise.theme',
-    version='2.0a1',
+    name=NAME,
+    version=VERSION,
     description="Installable theme: wise.theme",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
