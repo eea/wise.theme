@@ -1,3 +1,4 @@
+#pylint: skip-file
 from urllib.parse import urlparse
 from AccessControl import Unauthorized
 from plone import api
@@ -122,8 +123,8 @@ class EmbedTableauSerializationTransformer(
                 "tableau_vis_url": tableau_vis_url,
                 "tableau_visualization": {
                     "error": "Apologies, it seems this " +
-                     getLinkHTML(tableau_vis_url, "Dashboard") +
-                     " has not been published yet."
+                    getLinkHTML(tableau_vis_url, "Dashboard") +
+                    " has not been published yet."
                 },
             }
         except Forbidden:

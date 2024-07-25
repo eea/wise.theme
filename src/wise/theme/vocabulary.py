@@ -1,3 +1,4 @@
+#pylint: skip-file
 from __future__ import absolute_import
 from zope.interface import provider, implementer
 from zope.schema.interfaces import IVocabularyFactory

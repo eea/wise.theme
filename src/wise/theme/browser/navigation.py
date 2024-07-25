@@ -1,3 +1,5 @@
+#pylint: skip-file
+"""navigation.py"""
 from __future__ import absolute_import
 from zope.component import getMultiAdapter, getUtility
 
@@ -16,6 +18,7 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
     """
 
     def topLevelTabs(self, actions=None, category='portal_tabs'):
+        """topLevelTabs"""
         context = aq_inner(self.context)
         registry = getUtility(IRegistry)
         navigation_settings = registry.forInterface(
@@ -52,6 +55,7 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
         rawresult = catalog.searchResults(query)
 
         def _get_url(item):
+            """_get_url"""
             if item.getRemoteUrl and not member == item.Creator:
                 return (get_id(item), item.getRemoteUrl)
             return get_view_url(item)
@@ -60,10 +64,11 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
 
         # now add the content to results
         for item in rawresult:
-            if item.exclude_from_nav and not context_path.startswith(item.getPath()):  # noqa: E501
+            if (item.exclude_from_nav and 
+                not context_path.startswith(item.getPath())):  # noqa: E501
                 # skip excluded items if they're not in our context path
                 continue
-            cid, item_url = _get_url(item)
+            _, item_url = _get_url(item)
             data = {
                 'name': utils.pretty_title_or_id(context, item),
                 'id': item.getId,

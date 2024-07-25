@@ -72,7 +72,7 @@ class ICatalogueMetadata(model.Schema):
     keywords    text    n
     Date of Publication date (at least year)    y
     Last modified in WISE Marine    automatic from plone
-    Link        y   the link can be internal or external links 
+    Link        y   the link can be internal or external links
         (more external, including EEA website and SDI catalogue
     """
 
@@ -93,7 +93,7 @@ class ICatalogueMetadata(model.Schema):
     )
     original_source = TextLine(
         title=u"Original source",
-        description=u"If EEA link, can trigger automatic"
+        description=u"If EEA link, can trigger automatic" +
             "fetching of EEA information",
         required=False,
     )
@@ -143,7 +143,7 @@ class ICatalogueMetadata(model.Schema):
         ))
 
     # subtheme = Choice(
-    #    title=u"Subtheme", required=False, 
+    #    title=u"Subtheme", required=False,
     #    vocabulary="wise_subthemes_vocabulary"
     # )
 
