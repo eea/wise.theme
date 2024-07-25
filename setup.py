@@ -48,8 +48,11 @@ setup(
         'z3c.jbot',
         'plone.app.theming',
         'plone.app.themingplugins',
+        'plone.app.robotframework',
+        'plone.app.testing',
         'eea.api.dataconnector',
         'webcouturier.dropdownmenu',
+        'robotsuite',
     ],
     extras_require={
         'test': [
