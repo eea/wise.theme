@@ -375,15 +375,6 @@ class BootstrapCountrySection(BrowserView):
     def __call__(self):
         parent = self.context
 
-        # info is like:
-        # {'% of the total country area': '10',
-        # 'Country': 'BE',
-        # 'Ecological and chemical status of transitional, coastal and territorial waters': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/WISE_SOW_Status_Marine_Country_profile/SWB_Status_Category_Country?P_Country=Belgium',
-        # 'Marine surface per capita': '0.03',
-        # 'Status of bathing waters in transitional and coastal sites': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/BathingWaterQuality_Marine_Country_profile/Country?P_Country=Belgium',
-        # 'Status of marine species and habitats': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/NatureDirectives_Marine_status_Pie/Pie?Country_param=BE',
-        # 'Status of the marine environment': 'https://tableau.discomap.eea.europa.eu/#/site/Wateronline/views/GESassessments_CountryProfiles/CountryProfiles?Country=Belgium',
-        # 'title': u'Belgium'
         dashboards = [
             ['Status of the marine environment',
                 """COUNTRY has assessed the environmental status of a number of
@@ -429,7 +420,8 @@ class BootstrapCountrySection(BrowserView):
             'MT': 'Malta',
             'RO': 'Romania',
         }
-        for code, info in sorted(list(self.countries().items()), key=lambda x: x[0]):
+        for code, info in sorted(
+                list(self.countries().items()), key=lambda x: x[0]):
             if not info.get('title'):
                 info['title'] = codes[info['Country']]
 

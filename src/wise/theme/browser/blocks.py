@@ -10,8 +10,10 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 from eea.api.dataconnector.browser.blocks import (
-    EmbedTableauVisualizationSerializationTransformer as BaseEmbedTableauVisualizationSerializationTransformer,
-    EmbedEEAMapBlockSerializationTransformer as BaseEmbedEEAMapBlockSerializationTransformer,
+    EmbedTableauVisualizationSerializationTransformer as
+    BaseEmbedTableauVisualizationSerializationTransformer,
+    EmbedEEAMapBlockSerializationTransformer as
+    BaseEmbedEEAMapBlockSerializationTransformer,
     EmbedMapsSerializationTransformer as BaseEmbedMapsSerializationTransformer,
 )
 from eea.api.dataconnector.browser.blocks import getMetadata, getLinkHTML
@@ -119,9 +121,9 @@ class EmbedTableauSerializationTransformer(
                 **value,
                 "tableau_vis_url": tableau_vis_url,
                 "tableau_visualization": {
-                    "error": "Apologies, it seems this "
-                    + getLinkHTML(tableau_vis_url, "Dashboard")
-                    + " has not been published yet."
+                    "error": "Apologies, it seems this " +
+                     getLinkHTML(tableau_vis_url, "Dashboard") +
+                     " has not been published yet."
                 },
             }
         except Forbidden:
@@ -129,10 +131,9 @@ class EmbedTableauSerializationTransformer(
                 **value,
                 "tableau_vis_url": tableau_vis_url,
                 "tableau_visualization": {
-                    "error": "Apologies, it seems you do not have "
-                    + "permissions to see this "
-                    + getLinkHTML(tableau_vis_url, "Dashboard")
-                    + "."
+                    "error": "Apologies, it seems you do not have " +
+                    "permissions to see this " +
+                    getLinkHTML(tableau_vis_url, "Dashboard") + "."
                 },
             }
 
@@ -184,9 +185,9 @@ class EmbedEEAMapBlockSerializationTransformer(
                 **value,
                 "tableau_vis_url": vis_url,
                 "map_visualization_data": {
-                    "error": "Apologies, it seems this "
-                    + getLinkHTML(vis_url, "Map (Simple)")
-                    + " has not been published yet."
+                    "error": "Apologies, it seems this " +
+                    getLinkHTML(vis_url, "Map (Simple)") +
+                    " has not been published yet."
                 },
             }
         except Forbidden:
@@ -194,10 +195,9 @@ class EmbedEEAMapBlockSerializationTransformer(
                 **value,
                 "tableau_vis_url": vis_url,
                 "map_visualization_data": {
-                    "error": "Apologies, it seems you do not have "
-                    + "permissions to see this "
-                    + getLinkHTML(vis_url, "Map (Simple)")
-                    + "."
+                    "error": "Apologies, it seems you do not have " +
+                    "permissions to see this " +
+                    getLinkHTML(vis_url, "Map (Simple)") + "."
                 },
             }
 
@@ -244,19 +244,18 @@ class EmbedMapsSerializationTransformer(BaseEmbedMapsSerializationTransformer):
             return {
                 **value,
                 "maps": {
-                    "error": "Apologies, it seems this "
-                    + getLinkHTML(url, "Map (Interactive)")
-                    + " has not been published yet."
+                    "error": "Apologies, it seems this " +
+                    getLinkHTML(url, "Map (Interactive)") +
+                    " has not been published yet."
                 },
             }
         except Forbidden:
             return {
                 **value,
                 "maps": {
-                    "error": "Apologies, it seems you do not have "
-                    + "permissions to see this "
-                    + getLinkHTML(url, "Map (Interactive)")
-                    + "."
+                    "error": "Apologies, it seems you do not have " +
+                    "permissions to see this " +
+                    getLinkHTML(url, "Map (Interactive)") + "."
                 },
             }
 

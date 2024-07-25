@@ -208,7 +208,8 @@ def subthemes_vocabulary(context):
 
 organisations = {
     "EEA": dict(
-        title="European Environment Agency", website="https://www.eea.europa.eu/"
+        title="European Environment Agency",
+        website="https://www.eea.europa.eu/"
     ),
     "DG ENV": dict(
         title="Environment Directorate General of the European Commission ",
@@ -238,6 +239,7 @@ organisations = {
     "Other": dict(title="Other", website=""),
 }
 
+
 @provider(IVocabularyFactory)
 class KeywordsVocabulary(BKV):
     """KeywordsVocabulary"""
@@ -249,10 +251,12 @@ class KeywordsVocabulary(BKV):
 
 ThemeVocabularyFactory = KeywordsVocabulary("theme")
 
+
 @provider(IVocabularyFactory)
 def organisations_vocabulary(context):
     terms = [
-        SimpleTerm(acro, acro, info["title"]) for acro, info in organisations.items()
+        SimpleTerm(acro, acro, info["title"])
+        for acro, info in organisations.items()
     ]
     terms.sort(key=lambda t: t.title)
     vocab = SimpleVocabulary(terms)

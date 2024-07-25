@@ -17,7 +17,8 @@ class Siblings(object):
 
     def __call__(self, expand=False):
         result = {
-            "siblings": {"@id": "{}/@siblings".format(self.context.absolute_url())}
+            "siblings": {
+                "@id": "{}/@siblings".format(self.context.absolute_url())}
         }
 
         if ("fullobjects" not in self.request.form) and not expand:

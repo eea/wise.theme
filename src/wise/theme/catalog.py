@@ -10,6 +10,7 @@ from .blocks import BlocksTraverser
 def has_default_page(object, **kw):
     return bool(object.getDefaultPage())
 
+
 class BlockType(object):
     """Check block types."""
 
@@ -21,13 +22,14 @@ class BlockType(object):
         _type = block.get('@type', '')
 
         print(_type)
-        if _type: 
+        if _type:
             self.out.add(_type)
+
 
 @indexer(IDexterityContent)
 def block_types(obj):
     blocks_type = set()
     bt = BlockType(obj, blocks_type)
-    traverser=BlocksTraverser(obj)
+    traverser = BlocksTraverser(obj)
     traverser(bt)
     return list(blocks_type)
