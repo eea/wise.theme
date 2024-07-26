@@ -54,9 +54,6 @@ setup(
         'webcouturier.dropdownmenu',
         'robotsuite',
         'wise.msfd@git+ssh://git@github.com:eea/wise.msfd.git',
-        'pyexcel==0.6.7',
-        'pyexcel-xlsx==0.6.0',
-        'openpyxl==3.0.10',
     ],
     extras_require={
         'test': [
@@ -67,6 +64,10 @@ setup(
             'plone.testing>=5.0.0',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
+            'pdfkit',
+            'pyexcel==0.6.7',
+            'pyexcel-xlsx==0.6.0',
+            'openpyxl==3.0.10',
         ],
     },
     entry_points="""
