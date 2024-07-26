@@ -9,18 +9,15 @@ Installation
 
 * Install ``wise.theme`` by adding it to your buildout:
 
-    ```
     [buildout]
+
     ...
+
     eggs =
-        ...
         wise.theme
-    ```
 
-* And then running:
 
-    ``bin/buildout``
-
+and then running ``bin/buildout``
 
 Contribute
 ----------
