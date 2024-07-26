@@ -42,6 +42,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'wise.msfd@git+ssh://git@github.com:eea/wise.msfd.git',
         'plone.api',
         'Products.GenericSetup>=1.8.2',
         'setuptools',
