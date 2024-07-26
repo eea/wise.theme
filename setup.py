@@ -42,7 +42,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'wise.msfd@git+ssh://git@github.com:eea/wise.msfd.git',
         'plone.api',
         'Products.GenericSetup>=1.8.2',
         'setuptools',
@@ -54,6 +53,10 @@ setup(
         'eea.api.dataconnector',
         'webcouturier.dropdownmenu',
         'robotsuite',
+        'wise.msfd@git+ssh://git@github.com:eea/wise.msfd.git',
+        'pyexcel==0.6.7',
+        'pyexcel-xlsx==0.6.0',
+        'openpyxl==3.0.10',
     ],
     extras_require={
         'test': [
