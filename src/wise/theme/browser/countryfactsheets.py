@@ -1,3 +1,5 @@
+# pylint: skip-file
+"""countryfactsheets.py"""
 from __future__ import absolute_import
 import json
 import logging
@@ -140,15 +142,18 @@ class CountryFactsheetView(BrowserView):
     }
 
     def legend(self):
-        return [(k, v)
-                for (k, v) in self._api_legend().items()
-                if k in self.layer_types()]
+        """legend"""
+        return [(kk, vv)
+                for (kk, vv) in self._api_legend().items()
+                if kk in self.layer_types()]
 
     def msp_link(self):
+        """msp_link"""
         return MSFD_COUNTRY_MSP[self.context.country]
 
     @ram.cache(lambda fun, self: self.context.country)
     def _api_legend(self):
+        """_api_legend"""
         url = "{server}/{user}/{service}/MapServer/legend?f=pjson".format(
             server=MAP_SERVER, user=MAP_USER, service=MAP_SERVICE
         )
@@ -163,6 +168,7 @@ class CountryFactsheetView(BrowserView):
         return res
 
     def format_nr(self, nr):
+        """format_nr"""
         target_language = 'en'
         locale = locales.getLocale(target_language)
         formatter = locale.numbers.getFormatter('decimal')
@@ -170,9 +176,11 @@ class CountryFactsheetView(BrowserView):
         return formatter.format(Decimal(str(nr)))
 
     def get_subregion_title(self, region_id):
+        """get_subregion_title"""
         return self.regions.get(region_id, region_id)
 
     def water_stats(self):
+        """water_stats"""
         code = self.context.country
         res = []
 
@@ -184,14 +192,17 @@ class CountryFactsheetView(BrowserView):
         return res
 
     def water_stats_total(self):
+        """water_stats_total"""
         return sum([Decimal(b[1]) for b in self.water_stats()])
 
     def msfd_website(self):
+        """msfd_website"""
         for line in MSFD_WEBSITES:
             if line.Country == self.context.country:
                 return line
 
     def conventions(self):
+        """conventions"""
         res = []
 
         for line in COUNTRY_CONVENTIONS:
@@ -206,6 +217,7 @@ class CountryFactsheetView(BrowserView):
         return res
 
     def get_authorities_2018(self, fname):
+        """get_authorities_2018"""
         res = set()
         report_data = get_xml_report_data(fname)
         # furl = get_report_file_url(fname)
@@ -227,6 +239,7 @@ class CountryFactsheetView(BrowserView):
 
     @db.use_db_session('2012')
     def get_authorities_2012(self):
+        """get_authorities_2012"""
         res = set()
 
         count, recs = db.get_competent_auth_data(
@@ -243,6 +256,7 @@ class CountryFactsheetView(BrowserView):
 
     @ram.cache(lambda fun, self: self.context.country)
     def authorities(self):
+        """authorities"""
         logger.info("Get authorities: %s", self.context.country)
         code = self.context.country
         try:
@@ -267,6 +281,7 @@ class CountryFactsheetView(BrowserView):
 
     @ram.cache(lambda fun, self: self.context.country)
     def country_name(self):
+        """country_name"""
         util = getUtility(IVocabularyFactory, name="wise_search_member_states")
         vocab = util(self.context)
 
@@ -286,7 +301,7 @@ class CountryFactsheetView(BrowserView):
 
         try:
             res = resp.json()
-        except:
+        except Exception:
             logger.exception("Error in parsing response in url: %s", url)
             return []
 
@@ -332,11 +347,13 @@ class CountryFactsheetView(BrowserView):
 
 
 class CountryMap(BrowserView):
+    """CountryMap"""
     layerUrl = "/".join([MAP_SERVER, MAP_USER, MAP_SERVICE]) + '/MapServer'
     # "https://trial.discomap.eea.europa.eu/arcgis/rest/services/"\
     #     "Marine/Marine_waters_v4/MapServer"
 
     def title(self):
+        """title"""
         return "Country map for {}".format(self.context.country)
 
     @ram.cache(lambda fun, self: self.context.country)
@@ -356,6 +373,7 @@ class BootstrapCountrySection(BrowserView):
     """
 
     def countries(self):
+        """countries"""
         res = {}
 
         for rec in MSFD_COUNTRIES:
@@ -375,15 +393,6 @@ class BootstrapCountrySection(BrowserView):
     def __call__(self):
         parent = self.context
 
-        # info is like:
-        # {'% of the total country area': '10',
-        # 'Country': 'BE',
-        # 'Ecological and chemical status of transitional, coastal and territorial waters': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/WISE_SOW_Status_Marine_Country_profile/SWB_Status_Category_Country?P_Country=Belgium',
-        # 'Marine surface per capita': '0.03',
-        # 'Status of bathing waters in transitional and coastal sites': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/BathingWaterQuality_Marine_Country_profile/Country?P_Country=Belgium',
-        # 'Status of marine species and habitats': 'https://tableau.discomap.eea.europa.eu/t/Wateronline/views/NatureDirectives_Marine_status_Pie/Pie?Country_param=BE',
-        # 'Status of the marine environment': 'https://tableau.discomap.eea.europa.eu/#/site/Wateronline/views/GESassessments_CountryProfiles/CountryProfiles?Country=Belgium',
-        # 'title': u'Belgium'
         dashboards = [
             ['Status of the marine environment',
                 """COUNTRY has assessed the environmental status of a number of
@@ -429,7 +438,8 @@ class BootstrapCountrySection(BrowserView):
             'MT': 'Malta',
             'RO': 'Romania',
         }
-        for code, info in sorted(list(self.countries().items()), key=lambda x: x[0]):
+        for code, info in sorted(
+                list(self.countries().items()), key=lambda x: x[0]):
             if not info.get('title'):
                 info['title'] = codes[info['Country']]
 

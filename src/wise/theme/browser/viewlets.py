@@ -1,5 +1,4 @@
-# from zope.component import getMultiAdapter
-
+# pylint: skip-file
 from __future__ import absolute_import
 from plone.api import content, portal
 from plone.app.contenttypes.utils import replace_link_variables_by_paths

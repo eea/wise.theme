@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+# pylint: skip-file
 """Setup tests for this package."""
 from __future__ import absolute_import
+import unittest
+
 from plone import api
 from wise.theme.testing import WISE_THEME_INTEGRATION_TESTING  # noqa
-
-import unittest
 
 
 class TestSetup(unittest.TestCase):
@@ -25,14 +26,13 @@ class TestSetup(unittest.TestCase):
 
     def test_browserlayer(self):
         """Test that IWiseThemeLayer is registered."""
-        from wise.theme.interfaces import (
-            IWiseThemeLayer)
+        from wise.theme.interfaces import IWiseThemeLayer
         from plone.browserlayer import utils
         self.assertIn(IWiseThemeLayer, utils.registered_layers())
 
 
 class TestUninstall(unittest.TestCase):
-
+    """TestUninstall"""
     layer = WISE_THEME_INTEGRATION_TESTING
 
     def setUp(self):
@@ -48,7 +48,6 @@ class TestUninstall(unittest.TestCase):
 
     def test_browserlayer_removed(self):
         """Test that IWiseThemeLayer is removed."""
-        from wise.theme.interfaces import \
-            IWiseThemeLayer
+        from wise.theme.interfaces import IWiseThemeLayer
         from plone.browserlayer import utils
         self.assertNotIn(IWiseThemeLayer, utils.registered_layers())

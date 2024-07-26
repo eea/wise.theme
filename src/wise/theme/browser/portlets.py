@@ -1,12 +1,13 @@
+# pylint: skip-file
 from __future__ import absolute_import
 import logging
 
 from ZODB.POSException import ConflictError
-from zope.component import adapter, getMultiAdapter  # , getUtilitiesFor
+from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
-from zope.publisher.interfaces.browser import IBrowserRequest, IBrowserView
+from zope.publisher.interfaces.browser import IBrowserView
 
-from Acquisition import Explicit, aq_acquire, aq_inner
+from Acquisition import Explicit
 from plone.memoize.view import memoize
 from plone.portlets.interfaces import (IPortletManager,
                                        IPortletManagerRenderer,

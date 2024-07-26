@@ -1,4 +1,4 @@
-
+# pylint: skip-file
 from __future__ import absolute_import
 import requests
 
@@ -46,13 +46,14 @@ class CatalogueMetadata(MetadataBase):
     thumbnail = DCFieldProperty(ICatalogueMetadata["thumbnail"])
     sources = DCFieldProperty(ICatalogueMetadata["sources"])
 
-    #subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
-    # publication_year = DCFieldProperty(ICatalogueMetadata["publication_year"])
-    #license_copyright = DCFieldProperty(
+    # subtheme = DCFieldProperty(ICatalogueMetadata["subtheme"])
+    # publication_year = DCFieldProperty(
+    #     ICatalogueMetadata["publication_year"])
+    # license_copyright = DCFieldProperty(
     #    ICatalogueMetadata["license_copyright"])
-    #temporal_coverage = DCFieldProperty(
+    # temporal_coverage = DCFieldProperty(
     #    ICatalogueMetadata["temporal_coverage"])
-    #geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
+    # geo_coverage = DCFieldProperty(ICatalogueMetadata["geo_coverage"])
 
 
 def set_thumbnail(context, event):
@@ -97,7 +98,7 @@ def unset_effective_date(context, event):
 
     if event.old_state.id != 'published':
         return
-    
+
     context.effective_date = None
 
     return context

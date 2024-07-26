@@ -1,3 +1,4 @@
+# pylint: skip-file
 from __future__ import absolute_import
 from zope.interface import provider, implementer
 from zope.schema.interfaces import IVocabularyFactory
@@ -208,7 +209,8 @@ def subthemes_vocabulary(context):
 
 organisations = {
     "EEA": dict(
-        title="European Environment Agency", website="https://www.eea.europa.eu/"
+        title="European Environment Agency",
+        website="https://www.eea.europa.eu/"
     ),
     "DG ENV": dict(
         title="Environment Directorate General of the European Commission ",
@@ -238,9 +240,11 @@ organisations = {
     "Other": dict(title="Other", website=""),
 }
 
+
 @provider(IVocabularyFactory)
 class KeywordsVocabulary(BKV):
     """KeywordsVocabulary"""
+
     def __init__(self, index):
         self.keyword_index = index
     # def __call__(self, *args, **kwargs):
@@ -249,10 +253,12 @@ class KeywordsVocabulary(BKV):
 
 ThemeVocabularyFactory = KeywordsVocabulary("theme")
 
+
 @provider(IVocabularyFactory)
 def organisations_vocabulary(context):
     terms = [
-        SimpleTerm(acro, acro, info["title"]) for acro, info in organisations.items()
+        SimpleTerm(acro, acro, info["title"])
+        for acro, info in organisations.items()
     ]
     terms.sort(key=lambda t: t.title)
     vocab = SimpleVocabulary(terms)

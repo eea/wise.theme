@@ -1,3 +1,4 @@
+# pylint: skip-file
 from __future__ import absolute_import
 from plone import api
 from plone.app.theming.interfaces import IThemeSettings

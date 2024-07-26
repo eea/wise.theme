@@ -35,7 +35,8 @@ class IFullWidthLayout(Interface):
 class IExternalLinks(model.Schema):
     """External links interface with RichText schema"""
 
-    external_links = RichText(title=u"External Links", description=u"", required=False)
+    external_links = RichText(
+        title=u"External Links", description=u"", required=False)
 
 
 @provider(IFormFieldProvider)
@@ -71,8 +72,8 @@ class ICatalogueMetadata(model.Schema):
     keywords    text    n
     Date of Publication date (at least year)    y
     Last modified in WISE Marine    automatic from plone
-    Link        y   the link can be internal or external links (more external, including EEA
-    website and SDI catalogue
+    Link        y   the link can be internal or external links
+        (more external, including EEA website and SDI catalogue
     """
 
     title = TextLine(title=_(u"label_title", default=u"Title"), required=True)
@@ -92,7 +93,8 @@ class ICatalogueMetadata(model.Schema):
     )
     original_source = TextLine(
         title=u"Original source",
-        description=u"If EEA link, can trigger automatic fetching of EEA information",
+        description=u"If EEA link, can trigger automatic" +
+        "fetching of EEA information",
         required=False,
     )
 
@@ -139,27 +141,28 @@ class ICatalogueMetadata(model.Schema):
         value_type=TextLine(
             title=u"Single Theme",
         ))
-    
-    #subtheme = Choice(
-    #    title=u"Subtheme", required=False, vocabulary="wise_subthemes_vocabulary"
-    #)
+
+    # subtheme = Choice(
+    #    title=u"Subtheme", required=False,
+    #    vocabulary="wise_subthemes_vocabulary"
+    # )
 
     # Removed as we use only the "Publishing date"
     # publication_year = Int(title=u"Publication year", required=True)
 
-    #license_copyright = TextLine(
+    # license_copyright = TextLine(
     #    title=_(u"label_title", default=u"Rights"), required=False
-    #)
+    # )
 
-    #temporal_coverage = JSONField(
+    # temporal_coverage = JSONField(
     #    title=u"Temporal coverage",
     #    required=False, widget="temporal", default={}
-    #)
+    # )
 
-    #geo_coverage = JSONField(
+    # geo_coverage = JSONField(
     #    title=u"Geographical coverage",
     #    required=False, widget="geolocation", default={}
-    #)
+    # )
 
     data_source_info = RichText(
         title=u"Data source information",
