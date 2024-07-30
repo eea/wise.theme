@@ -1,7 +1,14 @@
 Changelog
 =========
 
-1.0dev (unreleased)
+1.2-dev0 - (unreleased)
+---------------------------
+
+1.1 - (2024-07-26)
+---------------------------
+* Change: First release [laszlocseh]
+
+1.0dev (2024-07-26)
 ------------------
 * Added override template for voltobackendwarning
   [olimpiurob refs #261847]
