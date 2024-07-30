@@ -128,13 +128,13 @@
       layer="wise.theme.interfaces.IWiseThemeLayer"
       />
 
-  <browser:page
+  <!-- <browser:page
       name="countries_dropdown"
       class=".countryfactsheets.CountriesDropdownViewlet"
       template="pt/countries_dropdown.pt"
       permission="zope.Public"
       layer="wise.theme.interfaces.IWiseThemeLayer"
-      />
+      /> -->
 
   <browser:page
       name="tilelisting_view"
@@ -146,23 +146,23 @@
       title="Tile Listing View"
       />
 
-  <browser:page
+  <!-- <browser:page
       name="countryfactsheet_view"
       for="plone.app.contenttypes.interfaces.IFolder"
       class=".countryfactsheets.CountryFactsheetView"
       template="pt/countryfactsheet_view.pt"
       permission="zope2.View"
       layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
-      />
+      /> -->
 
-  <browser:page
+  <!-- <browser:page
       name="country_marine_waters_map"
       for="plone.app.contenttypes.interfaces.IFolder"
       class=".countryfactsheets.CountryMap"
       template="pt/country_marine_waters_map.pt"
       permission="zope2.View"
       layer="plone.app.contenttypes.interfaces.IPloneAppContenttypesLayer"
-      />
+      /> -->
 
   <configure package="plone.app.contenttypes.browser">
     <browser:page
@@ -200,12 +200,12 @@
       layer="wise.theme.interfaces.IWiseThemeLayer"
       />
 
-  <browser:page
+  <!-- <browser:page
       name="bootstrap_countries"
       for="*"
       class=".countryfactsheets.BootstrapCountrySection"
       permission="cmf.ManagePortal"
-      />
+      /> -->
 
   <browser:page
       name="external_proxy"
